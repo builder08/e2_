@@ -91,8 +91,8 @@ class NimSetup(Setup, ServiceStopScreen):
 
 	def adaptConfigModeChoices(self):
 		if self.nim.isCompatible("DVB-S") and not self.nim.isFBCLink():
-			# redefine configMode choices with only the possible/required options.
-			# We have to pre-define them here as here all tuner configs are known
+			#redefine configMode choices with only the possible/required options.
+			#We have to pre-define them here as here all tuner configs are known
 			config_mode_choices = {"simple": _("Simple"), "advanced": _("Advanced")}
 			if not self.nim.multi_type:
 				config_mode_choices["nothing"] = _("Disabled")
@@ -141,7 +141,7 @@ class NimSetup(Setup, ServiceStopScreen):
 				self.configMode = (self.indent % _("Configuration mode"), self.nimConfig.configMode, _("Select 'FBC SCR' if this tuner will connect to a SCR (Unicable/JESS) device. For all other setups select 'FBC automatic'.") if self.nim.isFBCLink() else _("Configure this tuner using simple or advanced options, or loop it through to another tuner, or copy a configuration from another tuner, or disable it."))
 				self.list.append(self.configMode)
 				warning_text = _(" Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number.")
-				if self.nimConfig.configMode.value == "simple":  # simple setup
+				if self.nimConfig.configMode.value == "simple":			#simple setup
 					self.diseqcModeEntry = (self.indent % pgettext("Satellite configuration mode", "Mode"), self.nimConfig.diseqcMode, _("Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."))
 					self.list.append(self.diseqcModeEntry)
 					if self.nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
@@ -198,7 +198,7 @@ class NimSetup(Setup, ServiceStopScreen):
 						cur_orb_pos = self.nimConfig.advanced.sats.orbital_position
 						if cur_orb_pos is not None:
 							if cur_orb_pos not in self.nimConfig.advanced.sat.keys():
-								cur_orb_pos = next(iter(self.nimConfig.advanced.sat))  # get first key
+								cur_orb_pos = next(iter(self.nimConfig.advanced.sat)) # get first key
 							self.fillListWithAdvancedSatEntrys(self.nimConfig.advanced.sat[cur_orb_pos])
 					self.have_advanced = True
 				if self.nimConfig.configMode.value != "nothing" and config.usage.setup_level.index >= 2:
@@ -376,9 +376,9 @@ class NimSetup(Setup, ServiceStopScreen):
 		self.saveAll(reopen=True)
 		return True
 
-	def autoDiseqcRun(self, ports):
+	def autoDiseqcRun(self, ports, order="all"):
 		self.stopService()
-		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.simpleDiSEqCSetVoltageTone, self.nimConfig.simpleDiSEqCOnlyOnSatChange)
+		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.simpleDiSEqCSetVoltageTone, self.nimConfig.simpleDiSEqCOnlyOnSatChange, order)
 
 	def autoDiseqcCallback(self, result):
 		from Screens.Wizard import Wizard
@@ -710,7 +710,15 @@ class NimSetup(Setup, ServiceStopScreen):
 
 	def key_yellow(self):
 		if self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value):
-			self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1)
+			east_order = self.nimConfig.diseqcMode.value == "single" and ("13/19.2/23.5/28.2/4.8/9/16/36/56 - °E", "east") or ("13/19.2/23.5/28.2/4.8/9/16 - °E", "east")
+			menu = [(_("All"), "all"), ("13/19.2/23.5/28.2 - °E", "astra"), east_order, ("0.8/5/30 - °W", "west")]
+			if self.nimConfig.diseqcMode.value == "single":
+				menu.append(("36/56 - °E" + _(" (circular LNB)"), "circular"))
+			menu.append((_("No"), "no"))
+			def cb(choice):
+				if choice and choice[1] != "no":
+					self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1, choice[1])
+			self.session.openWithCallback(cb, ChoiceBox, title=_("Select satellite list:"), list=menu)
 		elif self.configMode:
 			self.nimConfig.configMode.selectNext()
 			self["config"].invalidate(self.configMode)
@@ -812,7 +820,7 @@ class NimSelection(Screen):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
 						if x.isFBCLink():
-							text = "%s %s" % (_("FBC automatic\nconnected to"), nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name)
+							text = _("FBC automatic\nconnected to")
 						else:
 							text = "%s %s" % ({"loopthrough": _("Loop through from"), "equal": _("Equal to"), "satposdepends": _("Second cable of motorized LNB")}[nimConfig.configMode.value],
 								nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name)
