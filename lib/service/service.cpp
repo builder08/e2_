@@ -127,16 +127,19 @@ eServiceReference::eServiceReference(const std::string &string)
 		{
 			path=pathstr;
 		}
+
+		path = urlDecode(path);
+		name = urlDecode(name);
+
+		if(!name.empty())
+		{
+			std::string res_name = "";
+			std::string res_provider = "";
+			eServiceReference::parseNameAndProviderFromName(name, res_name, res_provider);
+			name = res_name;
+			prov = res_provider;
+		}
 	}
-
-	path = urlDecode(path);
-	name = urlDecode(name);
-
-	std::string res_name = "";
-	std::string res_provider = "";
-	eServiceReference::parseNameAndProviderFromName(name, res_name, res_provider);
-	name = res_name;
-	prov = res_provider;
 }
 
 std::string eServiceReference::toString() const
