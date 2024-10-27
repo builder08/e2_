@@ -2143,7 +2143,7 @@ msgid "Active clients"
 msgstr "Активные клиенты"
 
 msgid "Adapter Settings"
-msgstr "Настройки адаптера"
+msgstr "Настройка адаптера"
 
 msgid "Adapter settings"
 msgstr "Настройки адаптера"
@@ -2575,7 +2575,7 @@ msgid "Also on standby"
 msgstr "Также и в режиме ожидания"
 
 msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
-msgstr "Также используйте строку #DESCRIPTION после каждой строки #SERVICE для хранения названия канала."
+msgstr "Также использовать строку #DESCRIPTION после каждой строки #SERVICE для хранения названия канала."
 
 msgid "Alternative"
 msgstr "Альтернативный"
@@ -4359,7 +4359,7 @@ msgid "Channel up"
 msgstr "Канал вверх"
 
 msgid "Channel zap delay another button"
-msgstr "Задержка любой другой кнопки при переключении каналов"
+msgstr "ЗЗадержка следующей кнопки при переключении"
 
 msgid "Channel zap delay first button"
 msgstr "Задержка первой кнопки при переключении каналов"
@@ -5368,7 +5368,7 @@ msgid "Configure your NTP server."
 msgstr "Настройка NTP сервера."
 
 msgid "Configure your Network"
-msgstr "Настройки сети"
+msgstr "Настройка сети"
 
 msgid "Configure your internal LAN"
 msgstr "Настройка LAN"
@@ -9336,7 +9336,7 @@ msgid "IP address"
 msgstr "IP-адрес"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
-msgstr "IP-адрес сервера Stream Relay, используемый для дешифрации каналов, которые можно расшифровать только через Stream Relay."
+msgstr "IP-адрес сервера Stream Relay, используемого для дешифрации каналов, которые можно расшифровать только через Stream Relay."
 
 msgid "IP of fallback remote receiver"
 msgstr "IP запасного удаленного ресивера"
@@ -11402,7 +11402,7 @@ msgid "Network Log Actions"
 msgstr "Действия с сетевым логом"
 
 msgid "Network MAC settings"
-msgstr "Настройки сетевого MAC"
+msgstr "Настройка MAC-адреса"
 
 msgid "Network Speed:"
 msgstr "Скорость сети:"
@@ -11417,7 +11417,7 @@ msgid "Network Services"
 msgstr "Сетевые службы"
 
 msgid "Network Settings"
-msgstr "Настройки сети"
+msgstr "Настройка сети"
 
 msgid "Network Setup Actions"
 msgstr "Действия по настройке сети"
@@ -11490,7 +11490,7 @@ msgid "Neutrino  (keymap.ntr)"
 msgstr "Нейтрино (keymap.ntr)"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
-msgstr "Никогда не декодировать контент во время записи. Это отменяет индивидуальную настройку таймера на глобальном уровне. Если включено, контент не будет декодирован во время записи и Вам надо будет выполнить отложенное декодирование позже. По умолчанию: выкл."
+msgstr "Не декодировать передачу во время записи. Эта функция глобально переопределяет настройки отдельных таймеров. Если включено, запись будет сохранена зашифрованной и должна быть расшифрована позже (автономное/offline декодирование). По умолчанию: ВЫКЛ."
 
 msgid "Never"
 msgstr "Никогда"
@@ -11778,7 +11778,7 @@ msgid "Norfolk Island"
 msgstr "Остров Норфолк"
 
 msgid "Normal"
-msgstr "Нормальная (Декодирование)"
+msgstr "Нормальный (Декодирование)"
 
 msgid "Normal mode"
 msgstr "Нормальный режим"
@@ -13002,7 +13002,7 @@ msgid "Port D"
 msgstr "Порт D"
 
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
-msgstr "Номер порта сервера Stream Relay, используемый для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
+msgstr "Номер порта сервера Stream Relay, используемого для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
 
 msgid "Port of fallback remote receiver"
 msgstr "Порт запасного удаленного ресивера"
@@ -15103,7 +15103,7 @@ msgid "Select the User Band to be assigned to this tuner. This is an index into 
 msgstr "Выберите пользовательский диапазон, который будет назначен данному тюнеру. Это индекс в таблице частот, который коммутатор SCR или LNB SCR использует для передачи запрошенного транспондера тюнеру."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
-msgstr "Выберите задержку остановки внутренней ретрансляции канала перед переключением тюнера на другой канал. Значение '0' рекомендуется только для устройств с несколькими спутниковыми тюнерами."
+msgstr "Задайте время задержки требуемой для остановки внутренней ретрансляции потока перед переключением занятого тюнера на другой канал. Значение '0' рекомендуется только для устройств с несколькими спутниковыми тюнерами."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Выберите символ или действие под курсором виртуальной клавиатуры"
@@ -15716,10 +15716,10 @@ msgid "Sets the root directory of movie list, to remove the '..' from being show
 msgstr "Устанавливает корневой каталог списка фильмов, чтобы убрать «..» из отображаемой в этой папке."
 
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Настройка"
 
 msgid "Settings..."
-msgstr "Настройки..."
+msgstr "Настройка..."
 
 msgid "Setting Packages"
 msgstr "Пакеты настройки"
@@ -15882,10 +15882,10 @@ msgid "Setup your display"
 msgstr "Настройки дисплея"
 
 msgid "Setup your local network"
-msgstr "Настройки локальной сети"
+msgstr "Настройка локальной сети"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Настройки локальной сети. Wlan нужно подключать через USB"
+msgstr "Настройка локальной сети. Для доступа к беспроводной сети нужно загрузить ресивер с подключенным беспроводным USB-адаптером"
 
 msgid "Setup your mounts for network"
 msgstr "Настройки подключений сети"
@@ -15894,19 +15894,19 @@ msgid "Setup your network interface. If no Wlan stick is used, you only can sele
 msgstr "Настройки сетевого интерфейса. Если нет Wlan, можно выбирать только Lan"
 
 msgid "Setup your network mounts"
-msgstr "Настройки сетевых подключений"
+msgstr "Настройка сетевых подключений"
 
 msgid "Setup your positioner"
-msgstr "Настройки позиционера"
+msgstr "Настройка позиционера"
 
 msgid "Setup your positioner for your satellite system"
-msgstr "Настройки позиционера"
+msgstr "Настройте позиционер для вашей спутниковой системы"
 
 msgid "Setup your recording config"
-msgstr "Настройки записи"
+msgstr "Настройте конфигурацию записи"
 
 msgid "Setup your remote buttons"
-msgstr "Настройки пульта"
+msgstr "Настройте кнопки пульта ДУ"
 
 msgid "Setup your satellite equipment"
 msgstr "Настройка спутникового оборудования"
@@ -17316,7 +17316,7 @@ msgid "Stored position"
 msgstr "Сохраненное положение"
 
 msgid "Stream Relay Setup"
-msgstr "Настройки Stream Relay"
+msgstr "Настройка Stream Relay"
 
 msgid "Stream Relay URL"
 msgstr "URL-адрес ретрансляции потока"
