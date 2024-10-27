@@ -232,19 +232,15 @@ public:
 //////
 	void loadBouquet(const char *path);
 	void deleteBouquet(const std::string filename);
+	eServiceReference searchReference(int tsid, int onid, int sid);
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
-	void loadIPTVCachefile(const char *);
-	void parseIPTVServiceData(ePtr<eDVBService> s, std::string str);
-	void saveIptvServicelist(const char *file);
-	std::vector<ePtr<eDVBService>> iptv_services;
 	void addLcnToDB(int ns, int onid, int tsid, int sid, uint16_t lcn, uint32_t signal);
 	void saveLcnDB();
 #endif
 	void resetLcnDB(int dvb_namespace=0);
-	eServiceReference searchReference(int tsid, int onid, int sid);
 	void setNumberingMode(int numberingMode);
 	void setLoadUnlinkedUserbouquets(int value) { m_load_unlinked_userbouquets=value; }
 	void renumberBouquet();
