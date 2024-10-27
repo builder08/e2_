@@ -556,18 +556,16 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 
 	std::string sref = ref.toString();
 	if (!sref.empty()) {
-		sref = replace_all(sref, "," , "_");
-		std::vector<ePtr<eDVBService>> &iptv_services = eDVBDB::getInstance()->iptv_services;
-		for(std::vector<ePtr<eDVBService>>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it) {
-			// eDebug("[eServiceMP3] iptv_services m_reference_str : %s", (*it)->m_reference_str.c_str());
-			if (sref.find((*it)->m_reference_str) != std::string::npos) {
-				m_currentAudioStream = (*it)->getCacheEntry( eDVBService::cMPEGAPID);
-				m_currentSubtitleStream = (*it)->getCacheEntry(  eDVBService::cSUBTITLE);
+		std::vector<eIPTVDBItem> &iptv_services = eDVBDB::getInstance()->iptv_services;
+		for(std::vector<eIPTVDBItem>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it) {
+			if (sref.find(it->s_ref) != std::string::npos) {
+				m_currentAudioStream = it->ampeg_pid;
+				m_currentSubtitleStream = it->subtitle_pid;
 				m_cachedSubtitleStream = m_currentSubtitleStream;
-				break;
 			}
 		}
 	}
+
 	CONNECT(m_subtitle_sync_timer->timeout, eServiceMP3::pushSubtitles);
 	CONNECT(m_dvb_subtitle_sync_timer->timeout, eServiceMP3::pushDVBSubtitles);
 	CONNECT(m_pump.recv_msg, eServiceMP3::gstPoll);
@@ -962,7 +960,6 @@ eServiceMP3::~eServiceMP3()
 		m_to_paused = false;
 		eDebug("[eServiceMP3] **** PIPELINE DESTRUCTED ****");
 	}
-
 	m_new_dvb_subtitle_page_connection = 0;
 }
 
@@ -1017,22 +1014,28 @@ DEFINE_REF(GstMessageContainer);
 
 void eServiceMP3::setCacheEntry(bool isAudio, int pid)
 {
-	// eDebug("[eServiceMP3] setCacheEntry %d %d / %s", isAudio, pid, m_ref.toString().c_str());
-	std::string ref = replace_all(m_ref.toString(), ",", "_");
 	bool hasFoundItem = false;
-	std::vector<ePtr<eDVBService>> &iptv_services = eDVBDB::getInstance()->iptv_services;
-	for(std::vector<ePtr<eDVBService>>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it) {
-		if (ref.find((*it)->m_reference_str) != std::string::npos) {
+	std::vector<eIPTVDBItem> &iptv_services = eDVBDB::getInstance()->iptv_services;
+	for(std::vector<eIPTVDBItem>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it) {
+		if (m_ref.toString().find(it->s_ref) != std::string::npos) {
 			hasFoundItem = true;
-			(*it)->setCacheEntry( isAudio ? eDVBService::cMPEGAPID : eDVBService::cSUBTITLE, pid);
+			if (isAudio) {
+				it->ampeg_pid = pid;
+			}
+			else
+			{
+				it->subtitle_pid = pid;
+			}
 			break;
 		}
 	}
 	if (!hasFoundItem) {
-		ePtr<eDVBService> s = new eDVBService;
-		s->m_reference_str = ref;
-		s->setCacheEntry( isAudio ? eDVBService::cMPEGAPID : eDVBService::cSUBTITLE, pid);
-		iptv_services.push_back(s);
+		std::vector<std::string> ref_split = split(m_ref.toString(), ":");
+		std::vector<std::string> ref_split_r(ref_split.begin(), ref_split.begin() + 10);
+		std::string ref_s;
+		join_str(ref_split_r, ':', ref_s);
+		eIPTVDBItem item(ref_s, isAudio ? pid : -1, -1, -1, -1, -1, -1, -1, isAudio ? -1 : pid, -1);
+		iptv_services.push_back(item);
 	}
 }
 
@@ -2296,7 +2299,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						configvalue = eSettings::audio_autoselect4;
 						if (configvalue != "")
 							autoaudio_languages.push_back(configvalue);
-
 						for (unsigned int i = 0; i < m_audioStreams.size(); i++)
 						{
 							if (!m_audioStreams[i].language_code.empty())
@@ -2313,7 +2315,6 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 								}
 							}
 						}
-
 						if (autoaudio)
 							selectTrack(autoaudio);
 					}
@@ -2576,15 +2577,14 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 			bool hasChanges = m_audioStreams.size() != audioStreams_temp.size() || std::equal(m_audioStreams.begin(), m_audioStreams.end(), audioStreams_temp.begin());
 			if (!hasChanges)
 				hasChanges = m_subtitleStreams.size() != subtitleStreams_temp.size() || std::equal(m_subtitleStreams.begin(), m_subtitleStreams.end(), subtitleStreams_temp.begin());
-
 			if (hasChanges)
 			{
-				eTrace("[eServiceMP3] audio or subtitle stream difference -- re enumerating");
+				eDebug("[eServiceMP3] audio or subtitle stream difference -- re enumerating");
 				m_audioStreams.clear();
 				m_subtitleStreams.clear();
 				std::copy(audioStreams_temp.begin(), audioStreams_temp.end(), back_inserter(m_audioStreams));
 				std::copy(subtitleStreams_temp.begin(), subtitleStreams_temp.end(), back_inserter(m_subtitleStreams));
-				eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE before evUpdatedInfo");
+				eDebug("[eServiceMP3] evUpdatedInfo called for audiosubs");
 				m_event((iPlayableService*)this, evUpdatedInfo);
 			}
 
@@ -3168,10 +3168,8 @@ void eServiceMP3::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 void eServiceMP3::pushDVBSubtitles()
 {
 	pts_t running_pts = 0, decoder_ms;
-
 	if (getPlayPosition(running_pts) < 0)
 		eTrace("[eServiceMP3] Cant get current decoder time.");
-
 	while (1)
 	{
 		eDVBSubtitlePage dvb_page;
@@ -3432,8 +3430,9 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack &track)
 	if (m_cachedSubtitleStream >= 0 && m_cachedSubtitleStream < (int)m_subtitleStreams.size())
 	{
 		// eDebug("[eServiceMP3][getCachedSubtitle] (m_cachedSubtitleStream >= 0 && m_cachedSubtitleStream < m_subtitleStreams_size)");
-		track.type = (m_subtitleStreams[m_cachedSubtitleStream].type == stDVB) ? 0 : 2;
-		track.pid = m_cachedSubtitleStream;
+		subtype_t type = m_subtitleStreams[m_cachedSubtitleStream].type;
+		track.type = type == stDVB ? 0 : 2;
+		track.pid = m_cachedSubtitleStream + 1;
 		track.page_number = int(m_subtitleStreams[m_cachedSubtitleStream].type);
 		track.magazine_number = 0;
 		track.language_code = m_subtitleStreams[m_cachedSubtitleStream].language_code;
@@ -3446,7 +3445,7 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack &track)
 RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlelist)
 {
 // 	eDebug("[eServiceMP3] getSubtitleList");
-	int stream_idx = 0;
+	int stream_idx = 1;
 
 	for (std::vector<subtitleStream>::iterator IterSubtitleStream(m_subtitleStreams.begin()); IterSubtitleStream != m_subtitleStreams.end(); ++IterSubtitleStream)
 	{
@@ -3457,6 +3456,17 @@ RESULT eServiceMP3::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 		case stVOB:
 		case stPGS:
 			break;
+		case stDVB:
+		{
+			struct SubtitleTrack track = {};
+			track.type = 0;
+			track.pid = stream_idx;
+			track.page_number = int(type);
+			track.magazine_number = 0;
+			track.language_code = IterSubtitleStream->language_code;
+			subtitlelist.push_back(track);
+			break;
+		}
 		default:
 		{
 			struct SubtitleTrack track = {};
