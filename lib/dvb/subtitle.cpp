@@ -257,7 +257,7 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment, bool isBufferProcess)
 {
 	int segment_type, page_id, segment_length, processed_length;
-	if (*segment++ !=  DVB_SUB_SYNC_BYTE)
+	if (*segment++ != DVB_SUB_SYNC_BYTE)
 	{
 		eDebug("[eDVBSubtitleParser] out of sync.");
 		return -1;
@@ -305,7 +305,8 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment, bool isBuffer
 			page->cluts = 0;
 			page->next = 0;
 			*ppage = page;
-		} else
+		}
+		else
 		{
 			if (page->pcs_size != segment_length)
 				page->page_version_number = -1;
@@ -1097,7 +1098,8 @@ DEFINE_REF(eDVBSubtitleParser);
 
 eDVBSubtitleParser::eDVBSubtitleParser()
 	:m_pages(0), m_display_size(720,576)
-{ }
+{
+}
 
 eDVBSubtitleParser::eDVBSubtitleParser(iDVBDemux *demux)
 	:m_pages(0), m_display_size(720,576)
