@@ -18,11 +18,9 @@
 #include <dvbsi++/satellite_delivery_system_descriptor.h>
 #include <dvbsi++/s2_satellite_delivery_system_descriptor.h>
 #include <dirent.h>
-#include <lib/nav/core.h>
 #include <fstream>
-//#include <stdexcept>
-//#include <exception>
-#include <regex>
+#include <stdexcept>
+#include <exception>
 
 /*
  * Copyright (C) 2017 Marcus Metzler <mocm@metzlerbros.de>
@@ -512,65 +510,6 @@ void eDVBDB::reloadServicelist()
 {
 	m_services.clear();
 	loadServicelist(eEnv::resolve("${sysconfdir}/enigma2/lamedb").c_str());
-}
-
-void eDVBDB::loadIPTVCachefile(const char *file)
-{
-	CFile f(file, "rt");
-	if (!f)
-	{
-		eDebug("[eDVBDB] can't open %s: %m", file);
-		return;
-	}
-	iptv_services.clear();
-	int scount=0;
-	char line[1024];
-	while (fgets(line, 1024, f))
-	{
-		int len = strlen(line);
-		if (!len) continue;
-		if (line[len - 1] == '\n')
-			line[len - 1] = '\0';
-		if (!strncmp(line, "s:", 2)) // Service data
-		{
-			char * sdata = strchr(line, ',');
-			ePtr<eDVBService> s = new eDVBService;
-			if (sdata)
-			{
-				*sdata++ = '\0';
-				parseIPTVServiceData(s, sdata);
-			}
-			s->m_reference_str = line + 2;
-			iptv_services.push_back(s);
-			scount ++;
-		}
-	}
-	eDebug("[eDVBDB] loaded %d iptv channels from cache file.", scount);
-}
-
-void eDVBDB::parseIPTVServiceData(ePtr<eDVBService> s, std::string str)
-{
-	while ((!str.empty()) && str[1]==':')
-	{
-		size_t c=str.find(',');
-		char p=str[0];
-		std::string v;
-		if (c == std::string::npos)
-		{
-			v=str.substr(2);
-			str="";
-		} else
-		{
-			v=str.substr(2, c-2);
-			str=str.substr(c+1);
-		}
-		if (p == 'c')
-		{
-			int cid, val;
-			sscanf(v.c_str(), "%02d%x", &cid, &val);
-			s->setCacheEntry((eDVBService::cacheID)cid,val);
-		}
-	}
 }
 
 void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
@@ -1331,38 +1270,6 @@ void eDVBDB::deleteBouquet(const std::string filename)
 	closedir(dir);
 }
 
-void eDVBDB::saveIptvServicelist()
-{
-	saveIptvServicelist(eEnv::resolve("${sysconfdir}/enigma2/iptvcache").c_str());
-}
-void eDVBDB::saveIptvServicelist(const char *file)
-{
-	std::string filename = file;
-	CFile f((filename + ".writing").c_str(), "w");
-	if (!f)
-		eFatal("[eDVBDB] couldn't save iptv cache file!");
-	else
-	{
-		eDebug("[eDVBDB] saveIptvServicelist");
-		for(std::vector<ePtr<eDVBService>>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it)
-		{
-			eDebug("[eDVBDB] saveIptvServicelist %s",(*it)->m_reference_str.c_str());
-			fprintf(f, "s:%s", (*it)->m_reference_str.c_str());
-			for (int x=0; x < eDVBService::cacheMax; ++x)
-			{
-				// write cached pids
-				int entry = (*it)->getCacheEntry((eDVBService::cacheID)x);
-				if (entry != -1) {
-					fprintf(f, ",c:%02d%x", x, entry);
-				}
-			}
-			fprintf(f, "\n");
-		}
-		f.sync();
-		rename((filename + ".writing").c_str(), filename.c_str());
-	}
-}
-
 void eDVBDB::loadBouquet(const char *path)
 {
 	std::vector<std::string> userbouquetsfiles;
@@ -1728,7 +1635,6 @@ eDVBDB::eDVBDB()
 	}
 	iptv_services_store_file.close();
 	reloadServicelist();
-	loadIPTVCachefile(eEnv::resolve("${sysconfdir}/enigma2/iptvcache").c_str());
 }
 
 PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObject tp_dict)
@@ -3158,7 +3064,7 @@ int eDVBDBQueryBase::compareLessEqual(const eServiceReferenceDVB &a, const eServ
 			return aa < bb;
 		}
 	case eDVBChannelQuery::tProvider:
-		return a_service->m_provider_display_name < b_service->m_provider_display_name;
+		return a_service->m_provider_name < b_service->m_provider_name;
 	case eDVBChannelQuery::tType:
 		return a.getServiceType() < b.getServiceType();
 	case eDVBChannelQuery::tBouquet:
