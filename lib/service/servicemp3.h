@@ -129,6 +129,7 @@ class eServiceMP3: public iPlayableService, public iPauseableService,
 public:
 	virtual ~eServiceMP3();
 
+	void setCacheEntry(bool isAudio, int pid);
 		// iPlayableService
 	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
 	RESULT start();
@@ -144,13 +145,13 @@ public:
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
-	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; };
 
 		// not implemented (yet)
 	RESULT setTarget(int target, bool noaudio = false) { return -1; }
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = nullptr; return -1; }
 	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = nullptr; return -1; }
 	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = nullptr; return -1; }
+	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; };
 //	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = nullptr; return -1; }
 
 		// iCueSheet
@@ -222,18 +223,8 @@ public:
 			:pad(0), type(atUnknown)
 		{
 		}
-
-		bool operator == (const audioStream& rhs)
-		{
-			audioStream lhs = *this;
-			return (lhs.type == rhs.type) && (lhs.language_code == rhs.language_code) && (lhs.codec == rhs.codec);
-		}
-
-		bool operator != (const audioStream& rhs)
-		{
-			audioStream lhs = *this;
-			return !(lhs == rhs);
-		}
+		bool operator==(const audioStream &lhs) const { return (lhs.type == type) && (lhs.language_code == language_code) && (lhs.codec == codec); }
+		bool operator!=(const audioStream &lhs) const { return (lhs.type != type) || (lhs.language_code != language_code) || (lhs.codec != codec); }
 	};
 	struct subtitleStream
 	{
@@ -245,17 +236,8 @@ public:
 			:pad(0)
 		{
 		}
-		bool operator == (const subtitleStream& rhs)
-		{
-			subtitleStream lhs = *this;
-			return (lhs.type == rhs.type) && (lhs.language_code == rhs.language_code);
-		}
-
-		bool operator != (const subtitleStream& rhs)
-		{
-			subtitleStream lhs = *this;
-			return !(lhs == rhs);
-		}
+		bool operator==(const subtitleStream &lhs) const { return (lhs.type == type) && (lhs.language_code == language_code) && (lhs.title == title); }
+		bool operator!=(const subtitleStream &lhs) const { return (lhs.type != type) || (lhs.language_code != language_code) || (lhs.title != title); }
 	};
 	struct sourceStream
 	{
