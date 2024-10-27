@@ -1,5 +1,4 @@
-from Screens.Wizard import WizardSummary
-from Screens.WizardLanguage import WizardLanguage
+from Screens.Wizard import Wizard, WizardSummary
 from Screens.HelpMenu import ShowRemoteControl
 from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 from Components.config import config, configfile
@@ -16,10 +15,10 @@ has_rca = BoxInfo.getItem("rca")
 has_avjack = BoxInfo.getItem("avjack")
 
 
-class VideoWizard(WizardLanguage, ShowRemoteControl):
+class VideoWizard(Wizard, ShowRemoteControl):
 	def __init__(self, session):
 		self.xmlfile = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/Videomode/videowizard.xml")
-		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
+		Wizard.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.setTitle(_("Video Wizard"))
 		self.avSwitch = video_hw
@@ -158,7 +157,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 				self.avSwitch.saveMode("Scart", "Multi", "multi")
 			self.avSwitch.setConfiguredMode()
 			self.close()
-		WizardLanguage.keyNumberGlobal(self, number)
+		Wizard.keyNumberGlobal(self, number)
 
 	def saveWizardChanges(self):  # Called by videowizard.xml.
 		self.avSwitch.saveMode(self.port, self.mode, self.rate)
