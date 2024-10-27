@@ -1345,7 +1345,7 @@ void eDVBServicePlay::goToNextPlaybackFile()
 {
 	if (m_timeshift_file_next.empty())
 	{
-		if (!eConfigManager::getConfigBoolValue("config.timeshift.skipreturntolive", false))
+		if (!eConfigManager::getConfigBoolValue("config.timeshift.skipReturnToLive", false))
 		{
 			eDebug("[eDVBServicePlay] timeshift EOF, so let's go live");
 			switchToLive();
