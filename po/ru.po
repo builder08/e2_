@@ -4078,11 +4078,11 @@ msgstr "Отменить выполнение?"
 msgid "Cancel the selection"
 msgstr "Отмена выбора"
 
-msgid "Cancel the scan and exit the scanner"
-msgstr "Отменить сканирование и выйти из сканера"
-
 msgid "Cancel the scan and exit all menus"
-msgstr "Отменить сканирование и выйти из всех меню"
+msgstr "Прервать поиск и закрыть все меню"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Прервать поиск и выйти из режима поиска"
 
 msgid "Cancel the service history zap"
 msgstr "Отменить запись истории обслуживания"
@@ -11580,7 +11580,7 @@ msgid "No channel"
 msgstr "Нет канала"
 
 msgid "No channel list"
-msgstr "Нет списка каналов"
+msgstr "Список каналов отсутствует"
 
 msgid "No config to start, please check /etc/openvpn/ and try again."
 msgstr "Нет конфигурации для запуска, пожалуйста, проверьте / etc / openvpn / и попробуйте снова."
@@ -11663,7 +11663,7 @@ msgid "No priority"
 msgstr "Приоритета нет"
 
 msgid "No resource manager"
-msgstr "Нет менеджера ресурсов"
+msgstr "Менеджер ресурсов отсутствует"
 
 msgid "No satellite frontend found!"
 msgstr "Не найден спутниковый интрефейс!"
@@ -13347,10 +13347,10 @@ msgid "Priority"
 msgstr "Очерёдность"
 
 msgid "Problem starting scan"
-msgstr "Проблема с запуском сканирования"
+msgstr "Ошибка запуска поиска"
 
 msgid "Problem while scanning"
-msgstr "Проблема при сканировании"
+msgstr "Ошибка поиска"
 
 msgid "Process"
 msgstr "Процесс"
