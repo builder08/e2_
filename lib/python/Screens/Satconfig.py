@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from enigma import eDVBDB, getLinkedSlotID, eDVBResourceManager
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -5,7 +6,6 @@ from Components.SystemInfo import BoxInfo
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
 from Components.Button import Button
-from Components.International import international
 from Components.Label import Label
 from Components.UsageConfig import showrotorpositionChoicesUpdate, preferredTunerChoicesUpdate
 from Components.SelectionList import SelectionList, SelectionEntryComponent
@@ -35,7 +35,7 @@ class NimSetup(Setup, ServiceStopScreen):
 
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
-
+		self.autodiseqc_enabled = nim.diseqcA.value == '3600'
 		if mode == "single":
 			self.singleSatEntry = (self.indent % _("Satellite"), nim.diseqcA, _("Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."))
 			list.append(self.singleSatEntry)
@@ -44,15 +44,18 @@ class NimSetup(Setup, ServiceStopScreen):
 			list.append((self.indent % _("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'.")))
 		else:
 			list.append((self.indent % _("Port A"), nim.diseqcA, _("Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'.")))
-
 		if mode in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 			list.append((self.indent % _("Port B"), nim.diseqcB, _("Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'.")))
+			self.autodiseqc_enabled = self.autodiseqc_enabled or (nim.diseqcB.value == '3600')
 			if mode == "diseqc_a_b_c_d":
 				list.append((self.indent % _("Port C"), nim.diseqcC, _("Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'.")))
 				list.append((self.indent % _("Port D"), nim.diseqcD, _("Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'.")))
+				self.autodiseqc_enabled = self.autodiseqc_enabled or (nim.diseqcC.value == '3600') or (nim.diseqcD.value == '3600')
 			if mode != "toneburst_a_b":
 				list.append((self.indent % _("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone, _("Leave this set to 'yes' unless you fully understand why you are adjusting it.")))
 				list.append((self.indent % _("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange, _("Select 'yes' to only send the DiSEqC command when changing from one satellite to another, or select 'no' for the DiSEqC command to be resent on every zap.")))
+		if self.autodiseqc_enabled:
+				list.append((self.indent % _("Set auto DiSEqC search order"), nim.autoDiSEqC_order, _("Finetune the auto DiSEqC order to in your situation the satellites could be found faster.")))
 
 	def createPositionerSetup(self, list):
 		nim = self.nimConfig
@@ -106,6 +109,7 @@ class NimSetup(Setup, ServiceStopScreen):
 
 	def createSetup(self):
 		self.adaptConfigModeChoices()
+		self.autodiseqc_enabled = False
 		self.list = []
 
 		self.multiType = self.configMode = self.diseqcModeEntry = self.advancedSatsEntry = self.advancedLnbsEntry = self.advancedDiseqcMode = self.advancedUsalsEntry = self.advancedLof =\
@@ -327,7 +331,7 @@ class NimSetup(Setup, ServiceStopScreen):
 			self.list.append((_("Force legacy signal stats"), self.nimConfig.force_legacy_signal_stats, _("If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded.")))
 
 		self["config"].list = self.list
-		self["key_yellow"].setText((self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value)) and _("Auto DiSEqC") or self.configMode and _("Configuration mode") or "")
+		self["key_yellow"].setText(self.autodiseqc_enabled and not self.nim.isCombined() and _("Auto DiSEqC") or self.configMode and _("Configuration mode") or "")
 		self["key_blue"].setText(self.isChanged() and _("Set default") or "")
 
 	def newConfig(self):
@@ -376,9 +380,9 @@ class NimSetup(Setup, ServiceStopScreen):
 		self.saveAll(reopen=True)
 		return True
 
-	def autoDiseqcRun(self, ports, order="all"):
+	def autoDiseqcRun(self, ports):
 		self.stopService()
-		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.simpleDiSEqCSetVoltageTone, self.nimConfig.simpleDiSEqCOnlyOnSatChange, order)
+		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.simpleDiSEqCSetVoltageTone, self.nimConfig.simpleDiSEqCOnlyOnSatChange)
 
 	def autoDiseqcCallback(self, result):
 		from Screens.Wizard import Wizard
@@ -710,15 +714,7 @@ class NimSetup(Setup, ServiceStopScreen):
 
 	def key_yellow(self):
 		if self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value):
-			east_order = self.nimConfig.diseqcMode.value == "single" and ("13/19.2/23.5/28.2/4.8/9/16/36/56 - °E", "east") or ("13/19.2/23.5/28.2/4.8/9/16 - °E", "east")
-			menu = [(_("All"), "all"), ("13/19.2/23.5/28.2 - °E", "astra"), east_order, ("0.8/5/30 - °W", "west")]
-			if self.nimConfig.diseqcMode.value == "single":
-				menu.append(("36/56 - °E" + _(" (circular LNB)"), "circular"))
-			menu.append((_("No"), "no"))
-			def cb(choice):
-				if choice and choice[1] != "no":
-					self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1, choice[1])
-			self.session.openWithCallback(cb, ChoiceBox, title=_("Select satellite list:"), list=menu)
+			self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1)
 		elif self.configMode:
 			self.nimConfig.configMode.selectNext()
 			self["config"].invalidate(self.configMode)
@@ -820,7 +816,7 @@ class NimSelection(Screen):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
 						if x.isFBCLink():
-							text = _("FBC automatic\nconnected to")
+							text = "%s %s" % (_("FBC automatic\nconnected to"), nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name)
 						else:
 							text = "%s %s" % ({"loopthrough": _("Loop through from"), "equal": _("Equal to"), "satposdepends": _("Second cable of motorized LNB")}[nimConfig.configMode.value],
 								nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name)
@@ -919,17 +915,17 @@ class NimSelection(Screen):
 class SelectSatsEntryScreen(Screen):
 	skin = """
 		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
-			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
-			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
-			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
-			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
-			<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
-			<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
-			<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
-			<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphaTest="on" />
+			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="buttons/green.png" transparent="1" alphaTest="on" />
+			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphaTest="on" />
+			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphaTest="on" />
+			<widget name="key_red" position="0,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_green" position="140,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_yellow" position="280,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_blue" position="420,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 			<widget name="list" position="10,40" size="540,330" scrollbarMode="showNever" />
-			<ePixmap pixmap="div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphatest="on" />
-			<widget name="hint" position="10,380" size="540,25" font="Regular;19" halign="center" transparent="1" />
+			<ePixmap pixmap="div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphaTest="on" />
+			<widget name="hint" position="10,380" size="540,25" font="Regular;19" horizontalAlignment="center" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session, userSatlist=""):
