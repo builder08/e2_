@@ -232,6 +232,10 @@ RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 		name = m_service_name;
 	else
 		name = "(...)";
+	if (m_provider_name.empty()) {
+		m_provider_name = ref.prov;
+	}
+	return 0;
 
 	std::string res_name = "";
 	std::string res_provider = "";
@@ -1435,7 +1439,12 @@ void eDVBDB::loadBouquet(const char *path)
 			else if (read_descr && !strncmp(line, "#DESCRIPTION", 12))
 			{
 				int offs = line[12] == ':' ? 14 : 13;
-				e->name = line+offs;
+				std::string name_temp = line+offs;
+				std::string res_name = "";
+				std::string res_provider = "";
+				eServiceReference::parseNameAndProviderFromName(name_temp, res_name, res_provider);
+				e->name = res_name;
+				e->prov = res_provider;
 				read_descr=false;
 			}
 			else if (!strncmp(line, "#NAME ", 6))
