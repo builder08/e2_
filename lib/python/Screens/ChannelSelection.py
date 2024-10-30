@@ -12,7 +12,7 @@ from Components.ServiceList import ServiceList, ServiceListLegacy, refreshServic
 from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap, HelpableNumberActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from enigma import eDBoxLCD, eServiceReference, eServiceReferenceDVB, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, loadPNG, eProfileWrite
+from enigma import eDBoxLCD, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, loadPNG, eProfileWrite
 eProfileWrite("ChannelSelection.py 1")
 from Screens.EpgSelection import EPGSelection
 from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo, ConfigSelection, ConfigText
@@ -38,7 +38,7 @@ from Screens.Hotkey import InfoBarHotkey, hotkeyActionMap, hotkey
 eProfileWrite("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
-from ServiceReference import ServiceReference, getStreamRelayRef
+from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import RemovePopup
 from Tools.Alternatives import GetWithAlternative, CompareWithAlternatives
@@ -106,6 +106,18 @@ class InsertService(Setup):
 	def channelSelectionCallback(self, *args):
 		if len(args):
 			self.close(args[0])
+
+def getStreamRelayRef(sref):
+	try:
+		if "http" in sref:
+			sr_port = config.misc.softcam_streamrelay_port.value
+			sr_ip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
+			sr_url = f"http%3a//{sr_ip}%3a{sr_port}/"
+			if sr_url in sref:
+				return sref.split(sr_url)[1].split(":")[0].replace("%3a", ":")
+	except Exception:
+		pass
+	return sref
 
 
 class BouquetSelector(Screen):
@@ -2252,12 +2264,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				info = service.info()
 				if info:
 					refstr = info.getInfoString(iServiceInformation.sServiceref)
-					refstr, isStreamRelay = getStreamRelayRef(refstr)
-					ref = eServiceReference(refstr)
-					if isStreamRelay:
-						if not [timer for timer in self.session.nav.RecordTimer.timer_list if timer.state == 2 and refstr == timer.service_ref]:
-							ref.setAlternativeUrl(refstr)
-					self.servicelist.setPlayableIgnoreService(ref)
+					refstr = getStreamRelayRef(refstr)
+					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
