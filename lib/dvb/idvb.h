@@ -83,8 +83,6 @@ struct eBouquet
 	'explicit' doesn't here - eTransportStreamID(eOriginalNetworkID(n))
 	would still work. */
 
-#endif // SWIG
-
 struct eTransportStreamID
 {
 private:
@@ -199,45 +197,6 @@ public:
 
 	};
 
-	// Service types (data[ref_service_type])
-	enum {
-		invalid             = -1,
-				      //0x00, //  0             reserved for future use
-		dTv                 = 0x01, //  1             digital television service (see note 1)
-		dRadio              = 0x02, //  2             digital radio sound service (see note 2)
-		tText               = 0x03, //  3             Teletext service
-		nvod                = 0x04, //  4             NVOD reference service (see note 1)
-		nvodTs              = 0x05, //  5             NVOD time - shifted service (see note 1)
-		mosaic              = 0x06, //  6             mosaic service
-		radioFm             = 0x07, //  7             FM radio service
-		dvbSrm              = 0x08, //  8             DVB SRM service
-				      //0x09, //  9             reserved for future use
-		dRadioAvc           = 0x0A, // 10             advanced codec digital radio sound service
-		mosaicAvc           = 0x0B, // 11             H.264/AVC mosaic service
-		datacast            = 0x0C, // 12             data broadcast service
-		ci                  = 0x0D, // 13             reserved for Common Interface Usage (EN 50221)
-		rcsMap              = 0x0E, // 14             RCS Map (see EN 301 790)
-		rcsFls              = 0x0F, // 15             RCS FLS (see EN 301 790)
-		dvbMhp              = 0x10, // 16             DVB MHP service
-		mpeg2HdTv           = 0x11, // 17             MPEG-2 HD digital television service
-				      //0x12, 18 to 0x15, 21   reserved for future use
-		avcSdTv             = 0x16, // 22             H.264/AVC SD digital television service
-		nvodAvcSdTs         = 0x17, // 23             H.264/AVC SD NVOD time - shifted service
-		nvodAvcSdRef        = 0x18, // 24             H.264/AVC SD NVOD reference service
-		avcHdTv             = 0x19, // 25             H.264/AVC HD digital television service
-		nvodAvcHdTs         = 0x1A, // 26             H.264/AVC HD NVOD time - shifted service
-		nvodAvcHdRef        = 0x1B, // 27             H.264/AVC HD NVOD reference service
-		avcHdStereo         = 0x1C, // 28             H.264/AVC frame compatible plano - stereoscopic HD digital television service (see note 3)
-		nvodAvcHdStereoTs   = 0x1D, // 29             H.264/AVC frame compatible plano - stereoscopic HD NVOD time - shifted service (see note 3)
-		nvodAvcHdStereoRef  = 0x1E, // 30             H.264/AVC frame compatible plano - stereoscopic HD NVOD reference service (see note 3)
-		nvecTv              = 0x1F, // 31             HEVC digital television service
-				    //0x20, // 32 to 0x7F/127 reserved for future use
-				    //0x80, //128 to 0xFE/254 user defined
-		user134             = 0x86, //134             ???
-		user195             = 0xC3, //195             ???
-				    //0xFF, //255            reserved for future use
-	};
-
 	int getServiceType() const { return data[ref_service_type]; }
 	void setServiceType(int service_type) { data[ref_service_type]=service_type; }
 
@@ -277,7 +236,7 @@ public:
 	}
 
 	eServiceReferenceDVB(eDVBNamespace dvbnamespace, eTransportStreamID transport_stream_id, eOriginalNetworkID original_network_id, eServiceID service_id, int service_type, int source_id = 0)
-		:eServiceReference(eServiceReference::idDVB, eServiceReference::noFlags)
+		:eServiceReference(eServiceReference::idDVB, 0)
 	{
 		setTransportStreamID(transport_stream_id);
 		setOriginalNetworkID(original_network_id);
@@ -318,7 +277,7 @@ public:
 	}
 
 	eServiceReferenceDVB()
-		:eServiceReference(eServiceReference::idDVB, eServiceReference::noFlags)
+		:eServiceReference(eServiceReference::idDVB, 0)
 	{
 	}
 
@@ -328,7 +287,6 @@ public:
 	}
 };
 
-#ifndef SWIG
 
 ////////////////// TODO: we need an interface here, but what exactly?
 
@@ -349,19 +307,15 @@ public:
 		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
 		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
 		cSUBTITLE, cAACHEAPID=12, cDDPPID, cAACAPID,
-		cLPCMPID, cDTSHDPID, cDTSPID,
 		cDATAPID, cPMTPID, cDRAAPID, cAC4PID, cacheMax
 	};
 
-	static const cacheID audioCacheTags[];
-	static const int nAudioCacheTags;
 	std::string m_reference_str;
 	int getCacheEntry(cacheID);
 	void setCacheEntry(cacheID, int);
 	void setServiceRef(std::string sref) { m_reference_str = sref; }
 
 	bool cacheEmpty();
-	bool cacheAudioEmpty();
 
 	eDVBService();
 	/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
