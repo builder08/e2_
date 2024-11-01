@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from enigma import eDVBDB, getLinkedSlotID, eDVBResourceManager
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -350,12 +349,12 @@ class NimSetup(Setup, ServiceStopScreen):
 				self.createSetup()
 
 	def run(self):
-		if self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value):
+		if self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value):
 			autodiseqc_ports = 0
 			if self.nimConfig.diseqcMode.value == "single":
 				if self.nimConfig.diseqcA.orbital_position == 3600:
 					autodiseqc_ports = 1
-			elif self.nimConfig.diseqcMode.value == "diseqc_a_b":
+			elif self.nimConfig.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b"):
 				if self.nimConfig.diseqcA.orbital_position == 3600 or self.nimConfig.diseqcB.orbital_position == 3600:
 					autodiseqc_ports = 2
 			elif self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
@@ -715,8 +714,8 @@ class NimSetup(Setup, ServiceStopScreen):
 		self.restartPrevService()
 
 	def key_yellow(self):
-		if self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value):
-			self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1)
+		if self.autodiseqc_enabled and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value):
+			self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b") and 2 or 1)
 		elif self.configMode:
 			self.nimConfig.configMode.selectNext()
 			self["config"].invalidate(self.configMode)
@@ -818,7 +817,7 @@ class NimSelection(Screen):
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
 						if x.isFBCLink():
-							text = "%s %s" % (_("FBC automatic\nconnected to"), nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name)
+							text = _("FBC automatic\nconnected to")
 						else:
 							text = "%s %s" % ({"loopthrough": _("Loop through from"), "equal": _("Equal to"), "satposdepends": _("Second cable of motorized LNB")}[nimConfig.configMode.value],
 								nimmanager.getNim(int(nimConfig.connectedTo.value)).slot_name)
@@ -917,17 +916,17 @@ class NimSelection(Screen):
 class SelectSatsEntryScreen(Screen):
 	skin = """
 		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
-			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphaTest="on" />
-			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="buttons/green.png" transparent="1" alphaTest="on" />
-			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphaTest="on" />
-			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphaTest="on" />
-			<widget name="key_red" position="0,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
-			<widget name="key_green" position="140,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
-			<widget name="key_yellow" position="280,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
-			<widget name="key_blue" position="420,0" size="140,40" verticalAlignment="center" horizontalAlignment="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<ePixmap name="red" position="0,0"   zPosition="2" size="140,40" pixmap="buttons/red.png" transparent="1" alphatest="on" />
+			<ePixmap name="green" position="140,0" zPosition="2" size="140,40" pixmap="buttons/green.png" transparent="1" alphatest="on" />
+			<ePixmap name="yellow" position="280,0" zPosition="2" size="140,40" pixmap="buttons/yellow.png" transparent="1" alphatest="on" />
+			<ePixmap name="blue" position="420,0" zPosition="2" size="140,40" pixmap="buttons/blue.png" transparent="1" alphatest="on" />
+			<widget name="key_red" position="0,0" size="140,40" valign="center" halign="center" zPosition="4"  foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_green" position="140,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_yellow" position="280,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
+			<widget name="key_blue" position="420,0" size="140,40" valign="center" halign="center" zPosition="4" foregroundColor="white" font="Regular;17" transparent="1" shadowColor="background" shadowOffset="-2,-2" />
 			<widget name="list" position="10,40" size="540,330" scrollbarMode="showNever" />
-			<ePixmap pixmap="div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphaTest="on" />
-			<widget name="hint" position="10,380" size="540,25" font="Regular;19" horizontalAlignment="center" transparent="1" />
+			<ePixmap pixmap="div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphatest="on" />
+			<widget name="hint" position="10,380" size="540,25" font="Regular;19" halign="center" transparent="1" />
 		</screen>"""
 
 	def __init__(self, session, userSatlist=""):
