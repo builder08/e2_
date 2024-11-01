@@ -1058,7 +1058,6 @@ class ConfigSequence(ConfigElement):
 		self.hidden = censor != ""
 		self.endNotifier = None
 		self.markedPos = 0
-		self.zeroPad = True
 
 	def handleKey(self, key, callback=None):
 		if key == ACTIONKEY_FIRST:
@@ -2231,8 +2230,7 @@ class ConfigSubsection:
 	def __setattr__(self, name, value):
 		if name == "saved_value":
 			return self.setSavedValue(value)
-		if not isinstance(value, (ConfigSubsection, ConfigElement, ConfigSubList, ConfigSubDict)):
-			raise TypeError("[Config] Error: 'ConfigSubsection' can only store ConfigSubsections, ConfigSubLists, ConfigSubDicts or ConfigElements!")
+		assert isinstance(value, (ConfigSubsection, ConfigElement, ConfigSubList, ConfigSubDict)), "ConfigSubsections can only store ConfigSubsections, ConfigSubLists, ConfigSubDicts or ConfigElements"
 		content = self.content
 		content.items[name] = value
 		val = content.stored_values.get(name, None)

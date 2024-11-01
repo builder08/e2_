@@ -13,7 +13,7 @@ class eServiceFactoryHDMI: public iServiceHandler
 public:
 	eServiceFactoryHDMI();
 	virtual ~eServiceFactoryHDMI();
-	enum { id = eServiceReference::idServiceHDMIIn };
+	enum { id = 0x2000 };
 
 	RESULT play(const eServiceReference &, ePtr<iPlayableService> &ptr);
 	RESULT record(const eServiceReference &, ePtr<iRecordableService> &ptr);
@@ -72,7 +72,6 @@ public:
 	int getInfo(int w);
 	std::string getInfoString(int w);
 	ePtr<iServiceInfoContainer> getInfoObject(int w);
-
 	void setQpipMode(bool value, bool audio) { }
 
 private:

@@ -127,10 +127,8 @@ eServiceReference::eServiceReference(const std::string &string)
 		{
 			path=pathstr;
 		}
-
 		path = urlDecode(path);
 		name = urlDecode(name);
-
 		if(!name.empty())
 		{
 			std::string res_name = "";
