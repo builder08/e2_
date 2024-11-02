@@ -19,7 +19,7 @@ from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.SystemInfo import BoxInfo
 from Components.config import config, ConfigBoolean, configfile
-from Screens.LocaleSelection import LocaleSelection
+# from Screens.LocaleSelection import LocaleSelection
 from enigma import eConsoleAppContainer, eTimer, eActionMap
 
 import os

@@ -4,6 +4,7 @@
 #include <lib/python/swig.h>
 #include <lib/python/python.h>
 #include <lib/base/object.h>
+#include <lib/base/estring.h>
 #include <string>
 #include <connection.h>
 #include <list>
@@ -16,26 +17,17 @@ class eServiceReference
 public:
 	enum
 	{
-		idServiceIsScrambled  = 0x0100,				//  256  Added to normal id to indicate scrambling
-		idInvalid             = -1,
-		idStructure           = 0x0000,				//    0 service_id == 0 is root
-		idDVB                 = 0x0001,				//    1
-		idFile                = 0x0002,				//    2
-		idServiceM2TS         = 0x0003,				//    3
-		idDVBScrambled        = idDVB + idServiceIsScrambled,	//  257/0x0101
-		idUser                = 0x1000,				// 4096
-		idServiceMP3          = 0x1001,				// 4097
-		idServiceAirPlay      = 0x1009,				// 4105
-		idServiceXINE         = 0x1010,				// 4112
-		idServiceDVD          = 0x1111,				// 4369
-		idServiceAzBox        = 0x1112,                         // 4370
-		idServiceHDMIIn       = 0x2000,				// 8192
+		idInvalid=-1,
+		idStructure,	// service_id == 0 is root
+		idDVB,
+		idFile,
+		idUser=0x1000,
+		idServiceMP3=0x1001
 	};
 	int type;
 
 	enum
 	{
-		noFlags=0,
 		isDirectory=1,		// SHOULD enter  (implies mustDescent)
 		mustDescent=2,		// cannot be played directly - often used with "isDirectory" (implies canDescent)
 		/*
@@ -58,6 +50,7 @@ public:
 	int flags; // flags will NOT be compared.
 
 	inline int getSortKey() const { return (flags & hasSortKey) ? data[3] : ((flags & sort1) ? 1 : 0); }
+	static RESULT parseNameAndProviderFromName(std::string &sourceName, std::string& name, std::string& prov);
 
 #ifndef SWIG
 	int data[8];
@@ -100,10 +93,13 @@ public:
 // real existing service ( for dvb eServiceDVB )
 #ifndef SWIG
 	std::string name;
+	std::string prov;
 	int number;
 #endif
 	std::string getName() const { return name; }
-	void setName( const std::string &n ) { name=n; }
+	std::string getProvider() const { return prov; }
+	void setName( const std::string &s ) { name=s; }
+	void setProvider( const std::string &s ) { prov=s; }
 	int getChannelNum() const { return number; }
 	void setChannelNum(const int n) { number = n; }
 
@@ -113,6 +109,7 @@ public:
 		memset(data, 0, sizeof(data));
 		number = 0;
 	}
+#ifndef SWIG
 	eServiceReference(int type, int flags)
 		: type(type), flags(flags)
 	{
@@ -164,25 +161,22 @@ public:
 		data[4]=data4;
 		number = 0;
 	}
+	operator bool() const
+	{
+		return valid();
+	}
+#endif
 	eServiceReference(int type, int flags, const std::string &path)
 		: type(type), flags(flags), path(path)
 	{
 		memset(data, 0, sizeof(data));
 		number = 0;
 	}
-#ifdef SWIG
-	eServiceReference(const eServiceReference &ref);
-#endif
 	eServiceReference(const std::string &string);
 	std::string toString() const;
 	std::string toCompareString() const;
 	std::string toReferenceString() const;
-#ifndef SWIG
-	operator bool() const
-	{
-		return valid();
-	}
-#endif
+	std::string toLCNReferenceString(bool trailing=true) const;
 	bool operator==(const eServiceReference &c) const
 	{
 		if (!c || type != c.type)
@@ -331,7 +325,7 @@ public:
 
 		sDescription,
 		sServiceref,
-		sTimeCreate,
+		sTimeCreate, 		/* unix time or string */
 		sFileSize,
 
 		sCAIDs,
@@ -449,7 +443,7 @@ public:
 	virtual ePtr<iServiceInfoContainer> getInfoObject(int w);
 	virtual ePtr<iDVBTransponderData> getTransponderData();
 	virtual void getAITApplications(std::map<int, std::string> &aitlist) {};
-	virtual PyObject *getHbbTVApplications() { return 0; };
+	virtual PyObject *getHbbTVApplications() {return getHbbTVApplications();};  // NOSONAR
 	virtual void getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes);
 	virtual long long getFileSize();
 
@@ -664,7 +658,6 @@ public:
 	virtual RESULT startTimeshift()=0;
 	virtual RESULT stopTimeshift(bool swToLive=true)=0;
 	virtual RESULT setNextPlaybackFile(const char *fn)=0; // not needed by our internal timeshift.. but external plugin...
-	virtual void goToNextPlaybackFile()=0;
 
 	virtual int isTimeshiftActive()=0;
 	virtual int isTimeshiftEnabled()=0;
@@ -721,6 +714,7 @@ class PyList;
 struct eDVBTeletextSubtitlePage;
 struct eDVBSubtitlePage;
 struct ePangoSubtitlePage;
+struct eVobSubtitlePage;
 class eRect;
 class gRegion;
 class gPixmap;
@@ -732,6 +726,7 @@ public:
 	virtual void setPage(const eDVBTeletextSubtitlePage &p) = 0;
 	virtual void setPage(const eDVBSubtitlePage &p) = 0;
 	virtual void setPage(const ePangoSubtitlePage &p) = 0;
+	virtual void setPage(const eVobSubtitlePage &p) = 0;
 	virtual void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest) = 0;
 	virtual void destroy() = 0;
 };

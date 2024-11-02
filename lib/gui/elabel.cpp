@@ -59,6 +59,9 @@ int eLabel::event(int event, void *data, void *data2)
 		else if (m_wrap == 2)
 			flags |= gPainter::RT_ELLIPSIS;
 
+		if (m_underline)
+			flags |= gPainter::RT_UNDERLINE;
+
 		if (isGradientSet() || m_blend)
 			flags |= gPainter::RT_BLEND;
 
@@ -69,6 +72,10 @@ int eLabel::event(int event, void *data, void *data2)
 		int h = size().height() - m_padding.bottom();
 
 		auto position = eRect(x, y, w, h);
+
+		if (m_blend)
+			flags |= gPainter::RT_BLEND;
+
 		/* if we don't have shadow, m_shadow_offset will be 0,0 */
 		auto shadowposition = eRect(position.x() - m_shadow_offset.x(), position.y() - m_shadow_offset.y(), position.width() - m_shadow_offset.x(), position.height() - m_shadow_offset.y());
 		painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
@@ -184,6 +191,15 @@ void eLabel::setWrap(int wrap)
 	if (m_wrap != wrap)
 	{
 		m_wrap = wrap;
+		invalidate();
+	}
+}
+
+void eLabel::setUnderline(bool underline)
+{
+	if (m_underline != underline)
+	{
+		m_underline = underline;
 		invalidate();
 	}
 }

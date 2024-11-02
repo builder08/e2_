@@ -58,13 +58,13 @@ DEFINE_REF(eServiceFactoryFS)
 	// iServiceHandler
 RESULT eServiceFactoryFS::play(const eServiceReference &ref, ePtr<iPlayableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryFS::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -185,12 +185,12 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 		if (S_ISDIR(s.st_mode) || S_ISLNK(s.st_mode))
 		{
 			filename += "/";
-			eServiceReferenceFS service(eServiceFactoryFS::id,
-				eServiceReferenceFS::isDirectory|
-				eServiceReferenceFS::canDescent|eServiceReference::mustDescent|
-				eServiceReferenceFS::shouldSort|eServiceReference::sort1,
+			eServiceReference service(eServiceFactoryFS::id,
+				eServiceReference::isDirectory|
+				eServiceReference::canDescent|eServiceReference::mustDescent|
+				eServiceReference::shouldSort|eServiceReference::sort1,
 				filename);
-			service.data[0] = eServiceReferenceFS::directory;
+			service.data[0] = 1;
 			list.push_back(service);
 		} else
 		{
@@ -208,10 +208,10 @@ RESULT eServiceFS::getContent(std::list<eServiceReference> &list, bool sorted)
 
 				if (type != -1)
 				{
-					eServiceReferenceFS service(type,
-						eServiceReferenceFS::noFlags,
+					eServiceReference service(type,
+						0,
 						filename);
-					service.data[0] = eServiceReferenceFS::file;
+					service.data[0] = 0;
 					list.push_back(service);
 				}
 			}

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from xml.etree.ElementTree import parse
 
-from skin import findSkinScreen, menus, parameters, menuicons
+from skin import findSkinScreen, parameters, menuicons
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
@@ -141,7 +141,7 @@ class Menu(Screen, ProtectedScreen):
 		#	string (as we want to reference
 		#	stuff which is just imported)
 		if arg[0] != "":
-			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]))
+			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]), globals())
 			self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy

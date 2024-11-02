@@ -1,13 +1,13 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
 from os import mkdir, makedirs, remove
-from os.path import exists, isfile, join as pathjoin, normpath
+from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from time import mktime
-from skin import parameters
+from skin import getcomponentTemplateNames, parameters, domScreens
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.Console import Console
-from Components.config import ConfigSubsection, ConfigDirectory, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigSelectionInteger, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigSequence, ConfigPassword, ConfigIP, NoSave, ConfigBoolean
+from Components.config import ConfigSubsection, ConfigDirectory, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigSelectionInteger, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigSequence, ConfigPassword, ConfigIP, NoSave, ConfigBoolean, configfile
 from Tools.Directories import SCOPE_HDD, SCOPE_TIMESHIFT, defaultRecordingLocation, resolveFilename, fileWriteLine, fileReadXML, SCOPE_SKIN
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent, eSubtitleSettings, eSettings, eDVBLocalTimeHandler, eEPGCache
 from Components.About import GetIPsFromNetworkInterfaces
@@ -17,10 +17,11 @@ from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
 
 
-originalAudioTracks = "orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth"
+originalAudioTracks = "orj dos ory org esl qaa qaf und qae mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
 
 MODULE_NAME = __name__.split(".")[-1]
+DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 
 MODEL = BoxInfo.getItem("model")
 PLATFORM = BoxInfo.getItem("platform")
@@ -28,6 +29,16 @@ DISPLAYTYPE = BoxInfo.getItem("displaytype")
 
 def InitUsageConfig():
 	config.usage = ConfigSubsection()
+	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
+	RemoteChoices = []
+	DefaultRemote = BoxInfo.getItem("rcname")
+
+	remoteSelectable = False
+	if AvailRemotes is not None:
+		for remote in AvailRemotes:
+			pngfile = "%s.png" % remote
+			if isfile(pngfile):
+				RemoteChoices.append(remote.split("/")[-1])
 
 	showrotorpositionChoicesUpdate()
 
@@ -60,6 +71,7 @@ def InitUsageConfig():
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
+	config.usage.use_pig = ConfigYesNo(default=False)
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default="0", choices=[
 		("0", _("None")),
@@ -105,6 +117,12 @@ def InitUsageConfig():
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
 	config.usage.showdish = ConfigYesNo(default=True)
 	config.usage.multibouquet = ConfigYesNo(default=True)
+	config.usage.show_servicelist = ConfigYesNo(default=True)
+	config.usage.servicelist_mode = ConfigSelection(default="standard", choices=[
+		("standard", _("Standard")),
+		("simple", _("Simple"))
+	])
+	config.usage.servicelistpreview_mode = ConfigYesNo(default=False)
 
 	# Just merge note, config.usage.servicelist_column was already there.
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=[
@@ -178,6 +196,44 @@ def InitUsageConfig():
 
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
 	config.usage.showpicon = ConfigYesNo(default=True)
+	config.usage.maxchannelnumlen = ConfigSelection(default="4", choices=[(str(x), ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 6)])
+
+	# New ServiceList
+	config.channelSelection = ConfigSubsection()
+	config.channelSelection.showNumber = ConfigYesNo(default=True)
+	config.channelSelection.showPicon = ConfigYesNo(default=False)
+	config.channelSelection.showServiceTypeIcon = ConfigYesNo(default=False)
+	config.channelSelection.showCryptoIcon = ConfigYesNo(default=False)
+	config.channelSelection.recordIndicatorMode = ConfigSelection(default=2, choices=[
+		(0, _("None")),
+		(1, _("Record Icon")),
+		(2, _("Colored Text"))
+	])
+	config.channelSelection.piconRatio = ConfigSelection(default=167, choices=[
+		(167, _("XPicon, ZZZPicon")),
+		(235, _("ZZPicon")),
+		(250, _("ZPicon"))
+	])
+
+	config.channelSelection.showTimers = ConfigYesNo(default=False)
+
+	screenChoiceList = [("", _("Legacy mode"))]
+	widgetChoiceList = []
+	styles = getcomponentTemplateNames("serviceList")
+	default = ""
+	if styles:
+		for screen in domScreens:
+			element, path = domScreens.get(screen, (None, None))
+			if element.get("base") == "ChannelSelection":
+				label = element.get("label", screen)
+				screenChoiceList.append((screen, label))
+
+		default = styles[0]
+		for style in styles:
+			widgetChoiceList.append((style, style))
+
+	config.channelSelection.screenStyle = ConfigSelection(default="", choices=screenChoiceList)
+	config.channelSelection.widgetStyle = ConfigSelection(default=default, choices=widgetChoiceList)
 
 	# ########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
@@ -376,6 +432,7 @@ def InitUsageConfig():
 		defaultPath = config.usage.timeshift_path.value
 		config.usage.timeshift_path.value = config.usage.timeshift_path.default
 		config.usage.timeshift_path.save()
+		configfile.save()  # This needs to be done once here to reset the legacy value.
 	config.timeshift.path = ConfigSelection(default=defaultPath, choices=[(defaultPath, defaultPath)])
 	config.timeshift.path.load()
 	savedPath = config.timeshift.path.saved_value
@@ -401,11 +458,12 @@ def InitUsageConfig():
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
 
-	def updateOldTimeshiftPath(configElement):
+	def setTimeshiftPath(configElement):
 		config.usage.timeshift_path.value = configElement.value
+		eSettings.setTimeshiftPath(configElement.value)
 
-	config.timeshift.path.addNotifier(updateOldTimeshiftPath, immediate_feedback=False)
-	config.usage.timeshift_skipreturntolive = ConfigYesNo(default=False)
+	config.timeshift.path.addNotifier(setTimeshiftPath)
+	config.timeshift.skipReturnToLive = ConfigYesNo(default=False)
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
@@ -646,7 +704,6 @@ def InitUsageConfig():
 
 	config.misc.use_ci_assignment = ConfigYesNo(default=True)
 	config.misc.use_ci_assignment.addNotifier(setUseCIAssignment)
-
 
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-10, max=10, wraparound=True)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-10, max=10, wraparound=True)
@@ -1181,6 +1238,23 @@ def InitUsageConfig():
 	config.epg.eventNamePrefixes = ConfigText(default="")
 	config.epg.eventNamePrefixMode = ConfigSelection(choices=[(0, _("Off")), (1, _("Remove")), (2, _("Move to description"))])
 
+	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
+
+	def EpgmaxdaysChanged(configElement):
+		eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
+	config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
+
+	config.misc.epgratingcountry = ConfigSelection(default="", choices=[
+		("", _("Auto detect")),
+		("ETSI", _("Generic")),
+		("AUS", _("Australia"))
+	])
+	config.misc.epggenrecountry = ConfigSelection(default="", choices=[
+		("", _("Auto detect")),
+		("ETSI", _("Generic")),
+		("AUS", _("Australia"))
+	])
+
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
@@ -1207,21 +1281,28 @@ def InitUsageConfig():
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
-	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
-
-	def EpgmaxdaysChanged(configElement):
-		from enigma import eEPGCache
-		eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
-	config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
-
-	config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
+	def wdhm(number):
+		units = (7 * 24 * 60, 24 * 60, 60, 1)
+		for i, d in enumerate(units):
+			if unit := int(number / d):
+				if i == 3:
+					return "%s" % (ngettext("%d minute", "%d minuts", unit) % unit)
+				elif i == 2:
+					return "%s" % (ngettext("%d hour", "%d hours", unit) % unit)
+				elif i == 1:
+					return "%s" % (ngettext("%d day", "%d days", unit) % unit)
+				else:
+					return "%s" % (ngettext("%d week", "%d weeks", unit) % unit)
+		return _("0 minutes")
+	choices = [(i, wdhm(i)) for i in [i * 15 for i in range(0, 4)] + [i * 60 for i in range(1, 9)] + [i * 120 for i in range(5, 12)] + [i * 24 * 60 for i in range(1, 8)]]
+	config.epg.histminutes = ConfigSelection(default=0, choices=choices)
 
 	def EpgHistorySecondsChanged(configElement):
-		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value * 60)
+		eEPGCache.getInstance().setEpgHistorySeconds(int(configElement.value) * 60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
-	config.epg.cacheloadsched = ConfigYesNo(default=False)
-	config.epg.cachesavesched = ConfigYesNo(default=False)
+	config.epg.cacheloadsched = ConfigYesNo(default = False)
+	config.epg.cachesavesched = ConfigYesNo(default = False)
 
 	def EpgCacheLoadSchedChanged(configElement):
 		import Components.EpgLoadSave
@@ -1230,15 +1311,14 @@ def InitUsageConfig():
 	def EpgCacheSaveSchedChanged(configElement):
 		import Components.EpgLoadSave
 		Components.EpgLoadSave.EpgCacheSaveCheck()
-	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback=False)
-	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback=False)
-	config.epg.cacheloadtimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
-	config.epg.cachesavetimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
+	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
+	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
+	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
+	config.epg.cachesavetimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
 
 	def debugEPGhanged(configElement):
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setDebug(configElement.value)
-
 	hddChoices = [("/etc/enigma2/", _("Internal Flash"))]
 	for partition in harddiskmanager.getMountedPartitions():
 		if exists(partition.mountpoint):
@@ -1337,7 +1417,23 @@ def InitUsageConfig():
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
-	config.usage.keymap = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap.xml"))
+	KM = {
+		"xml": _("Default  (keymap.xml)"),
+		"usr": _("User  (keymap.usr)"),
+		"ntr": _("Neutrino  (keymap.ntr)")
+	}
+
+	keymapchoices = []
+	for kmap in KM.keys():
+		kmfile = eEnv.resolve("${datadir}/enigma2/keymap.%s" % kmap)
+		if isfile(kmfile):
+			keymapchoices.append((kmfile, KM.get(kmap)))
+
+	if not isfile(DEFAULTKEYMAP):  # BIG PROBLEM
+		keymapchoices.append((DEFAULTKEYMAP, KM.get("xml")))
+
+	config.usage.keymap = ConfigSelection(default=DEFAULTKEYMAP, choices=keymapchoices)
+	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
 
 	# This is already in StartEniga.py.
 	# config.crash = ConfigSubsection()
@@ -1350,6 +1446,18 @@ def InitUsageConfig():
 	config.crash.bsodmax = ConfigSelection(default="3", choices=choiceList)
 
 	config.crash.enabledebug = ConfigYesNo(default=False)
+	config.crash.debugLevel = ConfigSelection(default=0, choices=[
+		(0, _("Disabled")),
+		(4, _("Enabled")),
+		(5, _("Verbose"))
+	])
+
+	# Migrate old debug
+	if config.crash.enabledebug.value:
+		config.crash.debugLevel.value = 4
+		config.crash.enabledebug.value = False
+		config.crash.enabledebug.save()
+
 	config.crash.debugloglimit = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=4, wraparound=True)
 	config.crash.daysloglimit = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=8, wraparound=True)
 	config.crash.sizeloglimit = ConfigSelectionNumber(min=1, max=250, stepwidth=1, default=10, wraparound=True)
@@ -1864,9 +1972,22 @@ def InitUsageConfig():
 
 	config.subtitles.ai_subtitle_colors = ConfigSelection(default=1, choices=[
 		(1, _("White")),
-		(2, _("Yellow"))
+		(2, _("Yellow")),
+		(3, _("Red")),
+		(4, _("Green")),
+		(5, _("Blue"))
 	])
 	config.subtitles.ai_subtitle_colors.addNotifier(setAiSubtitleColors)
+
+	def setAiConnectionSpeed(configElement):
+		eSubtitleSettings.setAiConnectionSpeed(configElement.value)
+
+	config.subtitles.ai_connection_speed = ConfigSelection(default=1, choices=[
+		(1, _("Up to 50 Mbps")),
+		(2, _("50-200 Mbps")),
+		(3, _("Above 200 Mbps"))
+	])
+	config.subtitles.ai_connection_speed.addNotifier(setAiConnectionSpeed)
 
 	langsAI = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 'zh', 'co', 'hr', 'cs', 'da', 'nl', 'en', 'eo', 'fr', 'fi', 'fy', 'gl', 'ka', 'de', 'el', 'ht', 'ha', 'hu', 'is', 'ig', 'ga', 'it', 'ja', 'jv', 'kn', 'kk', 'km', 'rw', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 'mk', 'mg', 'ms', 'mt', 'mi', 'mr', 'mn', 'no', 'ny', 'or', 'ps', 'fa', 'pl', 'pt', 'ro', 'ru', 'sm', 'gd', 'sr', 'st', 'sn', 'sk', 'sl', 'so', 'es', 'su', 'sw', 'sv', 'tl', 'tg', 'te', 'th', 'tr', 'tk', 'uk', 'ur', 'ug', 'uz', 'cy', 'xh', 'yi', 'yo', 'zu']
 	langsAI = [(x, international.LANGUAGE_DATA[x][1]) for x in langsAI]
@@ -1875,7 +1996,10 @@ def InitUsageConfig():
 	langsAI.append(("haw", _("Hawaiian")))
 	langsAI.append(("iw", _("Hebrew")))
 	langsAI.append(("hmn", _("Hmong")))
-	langsAI.append(("ckb", _("Kurdish (Sorani)")))
+	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
+	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
+	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
 	langsAI.sort(key=lambda x: x[1])
 
 	default = config.misc.locale.value
@@ -1932,7 +2056,7 @@ def InitUsageConfig():
 		("tha", _("Thai")),
 		("tur Audio_TUR", _("Turkish")),
 		("ukr Ukr", _("Ukrainian")),
-		(visuallyImpairedCommentary, _("Audio description for the visually impaired"))
+		(visuallyImpairedCommentary, _("Visual impaired commentary"))
 	]
 
 	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]

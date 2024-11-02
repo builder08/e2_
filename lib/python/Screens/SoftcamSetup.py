@@ -118,7 +118,7 @@ class SoftcamSetup(Setup):
 		if self.mbox:
 			self.mbox.close()
 		self.close()
-		self.session.nav.playService(self.oldref, adjust=False)
+		self.session.nav.playService(self.oldref)
 
 	def saveAll(self):
 		what = ''

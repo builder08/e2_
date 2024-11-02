@@ -385,7 +385,11 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 #define VIDEO_STREAMTYPE_MPEG4_Part2 4
 #define VIDEO_STREAMTYPE_VC1_SM 5
 #define VIDEO_STREAMTYPE_MPEG1 6
+#ifdef DREAMBOX
+#define VIDEO_STREAMTYPE_H265_HEVC 22
+#else
 #define VIDEO_STREAMTYPE_H265_HEVC 7
+#endif
 #define VIDEO_STREAMTYPE_AVS 16
 #define VIDEO_STREAMTYPE_AVS2 40
 
@@ -1047,7 +1051,7 @@ int eTSMPEGDecoder::setState()
 			m_audio->stop();
 		m_audio = 0;
 	}
-	if (m_changed & changeText)
+	if ((m_changed & changeText) || m_state == 1)
 	{
 		if (m_text)
 		{
@@ -1148,7 +1152,8 @@ int eTSMPEGDecoder::setState()
 }
 
 int eTSMPEGDecoder::m_pcm_delay=-1,
-	eTSMPEGDecoder::m_ac3_delay=-1;
+	eTSMPEGDecoder::m_ac3_delay=-1,
+	eTSMPEGDecoder::m_debugTXT=-1;
 
 RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
@@ -1204,8 +1209,12 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", m_demux ? m_demux->adapter : 0, m_decoder);
 	m_has_audio = !access(filename, W_OK);
 
+	if (eTSMPEGDecoder::m_debugTXT < 0)
+		eTSMPEGDecoder::m_debugTXT = eSimpleConfig::getBool("config.crash.debugTeletext", false) ? 1 : 0;
+
+
 	if (m_demux && m_decoder == 0)	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->initCache();
+		eTuxtxtApp::getInstance()->initCache(eTSMPEGDecoder::m_debugTXT == 1);
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()
@@ -1433,6 +1442,10 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 		{
 			struct stat s = {};
 			fstat(f, &s);
+#if HAVE_HISILICON
+			if (m_video_clip_fd >= 0)
+				finishShowSinglePic();
+#endif
 			if (m_video_clip_fd == -1)
 				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY);
 			if (m_video_clip_fd >= 0)
@@ -1451,9 +1464,13 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
 				else
 					streamtype = VIDEO_STREAMTYPE_MPEG2;
-
+#if HAVE_HISILICON
+				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, 0xff) < 0)
+					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed: %m");
+#else
 				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
 					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed: %m");
+#endif
 				if (ioctl(m_video_clip_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
 					eDebug("[eTSMPEGDecoder] VIDEO_SET_STREAMTYPE failed: %m");
 				if (ioctl(m_video_clip_fd, VIDEO_PLAY) < 0)
@@ -1475,7 +1492,11 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					if (ret < 0) eDebug("[eTSMPEGDecoder] write failed: %m");
 				}
 				writeAll(m_video_clip_fd, stuffing, 8192);
+#if HAVE_HISILICON
+				;
+#else
 				m_showSinglePicTimer->start(150, true);
+#endif
 			}
 			close(f);
 		}

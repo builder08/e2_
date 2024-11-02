@@ -1,4 +1,4 @@
-from os.path import isdir, islink, join
+from os.path import isdir, islink, join, exists
 import sys  # This is needed for the twisted redirection access to stderr and stdout.
 from time import time
 import Tools.RedirectOutput
@@ -51,6 +51,7 @@ class Session:
 		self.current_dialog = None
 		self.dialog_stack = []
 		self.summary_stack = []
+		self.onShutdown = []
 		self.summary = None
 		self.in_exec = False
 		self.screen = SessionGlobals(self)
@@ -207,6 +208,11 @@ class Session:
 			self.summary = self.summary_stack.pop()
 		if self.summary is not None:
 			self.summary.show()
+
+	def doShutdown(self):
+		for function in self.onShutdown:
+			if callable(function):
+				function()
 
 
 class PowerKey:
@@ -372,14 +378,11 @@ def runScreenTest():
 	config.misc.prev_wakeup_time.save()
 	session.nav.stopService()
 	session.nav.shutdown()
+	session.doShutdown()
+	VolumeControl.instance.saveVolumeState()
 	configfile.save()
-	from Screens.InfoBarGenerics import saveResumePoints
-	saveResumePoints()
+
 	return 0
-
-
-def setLoadUnlinkedUserbouquets(configElement):
-	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
 
 
 def dump(dir, p=""):
@@ -475,6 +478,13 @@ try:  # Configure the twisted logging.
 except ImportError:
 	print("[StartEnigma] Error: Twisted not available!")
 
+def localeNotifier(configElement):
+	international.activateLocale(configElement.value)
+
+# Initialize the country, language and locale data.
+#
+enigma.eProfileWrite("International")
+from Components.International import international
 
 enigma.eProfileWrite("BoxInfo")
 from Components.SystemInfo import BoxInfo
@@ -498,6 +508,10 @@ if BoxInfo.getItem("architecture") in ("aarch64"):
 from traceback import print_exc
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, ConfigSubsection, NoSave
 
+config.misc.locale = ConfigText(default="en_US")
+config.misc.locale.addNotifier(localeNotifier)
+config.misc.language = ConfigText(default=international.getLanguage("en_US"))
+config.misc.country = ConfigText(default=international.getCountry("en_US"))
 
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma.py.
 #
@@ -513,6 +527,7 @@ config.crash.debugSkin = ConfigYesNo(default=False)
 config.crash.debugDVBScan = ConfigYesNo(default=False)
 config.crash.debugDVBTime = ConfigYesNo(default=False)
 config.crash.debugDVB = ConfigYesNo(default=False)
+config.crash.debugTeletext = ConfigYesNo(default=False)
 
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar
@@ -537,21 +552,15 @@ enigma.eProfileWrite("ScreenSummary")
 from Screens.Screen import ScreenSummary
 
 enigma.eProfileWrite("LoadBouquets")
-config.misc.load_unlinked_userbouquets = ConfigYesNo(default=True)
+config.misc.load_unlinked_userbouquets = ConfigSelection(default="1", choices=[("0", _("Off")), ("1", _("Top")), ("2", _("Bottom"))])
+if config.misc.load_unlinked_userbouquets.value.lower() in ("true", "false"):
+	config.misc.load_unlinked_userbouquets.value = "1" if config.misc.load_unlinked_userbouquets.value.lower() == "true" else "0"
+
+def setLoadUnlinkedUserbouquets(configElement):
+	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(int(configElement.value))
+
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
-
-def localeNotifier(configElement):
-	international.activateLocale(configElement.value)
-
-
-enigma.eProfileWrite("International")
-from Components.International import international
-
-config.misc.locale = ConfigText(default="en_US")
-config.misc.locale.addNotifier(localeNotifier)
-config.misc.language = ConfigText(default=international.getLanguage("en_US"))
-config.misc.country = ConfigText(default=international.getCountry("en_US"))
 
 enigma.eProfileWrite("ParentalControl")
 import Components.ParentalControl
@@ -631,10 +640,6 @@ enigma.eProfileWrite("InitSkins")
 from skin import InitSkins
 InitSkins()
 
-enigma.eProfileWrite("InitServiceList")
-from Components.ServiceList import InitServiceListSettings
-InitServiceListSettings()
-
 enigma.eProfileWrite("InitInputDevices")
 from Components.InputDevice import InitInputDevices
 InitInputDevices()
@@ -653,7 +658,7 @@ from Components.RecordingConfig import InitRecordingConfig
 InitRecordingConfig()
 
 enigma.eProfileWrite("InitUsageConfig")
-from Components.UsageConfig import InitUsageConfig
+from Components.UsageConfig import InitUsageConfig, DEFAULTKEYMAP
 InitUsageConfig()
 
 enigma.eProfileWrite("InitTimeZones")
@@ -670,7 +675,12 @@ ntpSyncPoller.startTimer()
 
 enigma.eProfileWrite("KeymapParser")
 from Components.ActionMap import loadKeymap
-loadKeymap(config.usage.keymap.value)
+loadKeymap(DEFAULTKEYMAP)
+if config.usage.keymap.value != DEFAULTKEYMAP:
+	if exists(config.usage.keymap.value):
+		loadKeymap(config.usage.keymap.value, replace=True)
+if exists(config.usage.keymap_usermod.value):
+	loadKeymap(config.usage.keymap_usermod.value)
 
 enigma.eProfileWrite("InitNetwork")
 from Components.Network import InitNetwork
@@ -682,9 +692,6 @@ InitLcd()
 IconCheck()
 
 enigma.eAVControl.getInstance().disableHDMIIn()
-
-enigma.eProfileWrite("RcModel")
-import Components.RcModel
 
 enigma.eProfileWrite("PowerOffTimer")
 from Components.PowerOffTimer import powerOffTimer

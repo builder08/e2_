@@ -18,6 +18,7 @@ private:
 	int LCN_BROADCAST;
 	int LCN_GUI;
 	int LCN_SCANNED;
+	int NS;
 	std::string PROVIDER;
 	std::string PROVIDER_GUI;
 	std::string SERVICENAME;
@@ -46,11 +47,11 @@ public:
 		SERVICENAME = "";
 		SERVICENAME_GUI = "";
 		FOUND = true;
+		NS = 0;
 	}
 
 	eServiceReferenceDVB parse(const char *line, int version)
 	{
-		int ns;
 		int onid;
 		int tsid;
 		int sid;
@@ -60,24 +61,27 @@ public:
 		// will be removed
 		if (version == 1)
 		{
-			if (sscanf(line, "%x:%x:%x:%x:%d:%d", &ns, &onid, &tsid, &sid, &LCN_BROADCAST, &SIGNAL) == 6)
-				return eServiceReferenceDVB(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
+			if (sscanf(line, "%x:%x:%x:%x:%d:%d", &NS, &onid, &tsid, &sid, &LCN_BROADCAST, &SIGNAL) == 6)
+				return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
 			else
 				return eServiceReferenceDVB();
 		}
 
-		if (sscanf(line, "%x:%x:%x:%x:%d:%d:%d:%d:%[^\n]", &sid, &tsid, &onid, &ns, &SIGNAL, &LCN_BROADCAST, &LCN_SCANNED, &LCN_GUI, buffer) == 9)
+		if (sscanf(line, "%x:%x:%x:%x:%d:%d:%d:%d:%[^\n]", &sid, &tsid, &onid, &NS, &SIGNAL, &LCN_BROADCAST, &LCN_SCANNED, &LCN_GUI, buffer) == 9)
 		{
 			// eDebug("[eDVBDB] LCNData parse %X:%X:%X:%X: LCN_BROADCAST %d LCN_SCANNED %d LCN_GUI %d", sid, tsid, onid, ns, LCN_BROADCAST, LCN_SCANNED, LCN_GUI);
 			auto Data = split_str(buffer);
-			if (Data.size() == 4)
+			if (Data.size() > 2)
 			{
 				PROVIDER = Data[0];
 				PROVIDER_GUI = Data[1];
-				SERVICENAME = Data[2];
-				SERVICENAME_GUI = Data[3];
+				if (Data.size() == 4)
+				{
+					SERVICENAME = Data[2];
+					SERVICENAME_GUI = Data[3];
+				}
 			}
-			return eServiceReferenceDVB(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
+			return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
 		}
 		return eServiceReferenceDVB();
 	}
@@ -92,7 +96,7 @@ public:
 		return SERVICENAME_GUI;
 	}
 
-	std::string geProviderNameGui()
+	std::string getProviderNameGui()
 	{
 		return PROVIDER_GUI;
 	}
@@ -117,9 +121,10 @@ public:
 		}
 	}
 
-	void resetFound()
+	void resetFound(int dvb_namespace)
 	{
-		FOUND = false;
+		if(dvb_namespace == 0 || NS == dvb_namespace)
+			FOUND = false;
 	}
 
 };
@@ -173,8 +178,8 @@ class eDVBDB: public iDVBChannelList
 
 	std::map<std::string, eBouquet> m_bouquets;
 
-	bool m_load_unlinked_userbouquets;
-	int m_numbering_mode;
+	bool m_numbering_mode;
+	int m_load_unlinked_userbouquets;
 	int m_max_number;
 #ifdef SWIG
 	eDVBDB();
@@ -196,6 +201,11 @@ public:
 	RESULT addCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
 	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);
+	RESULT addOrUpdateBouquet(const std::string &name, const std::string &filename, SWIG_PYOBJECT(ePyObject) services, bool isAddedFirst = false);
+	RESULT addOrUpdateBouquet(const std::string &name, SWIG_PYOBJECT(ePyObject) services, const int type, bool isAddedFirst = false);
+	RESULT appendServicesToBouquet(const std::string &filename, SWIG_PYOBJECT(ePyObject) services);
+	RESULT removeBouquet(const std::string &filename);
+	RESULT addChannelToDB(const eServiceReference &service, const eDVBFrontendParameters &feparam, SWIG_PYOBJECT(ePyObject) cachedPids, SWIG_PYOBJECT(ePyObject) caPids, const int serviceFlags);
 	void removeServicesFlag(unsigned int flagmask);
 	PyObject *readSatellites(SWIG_PYOBJECT(ePyObject) sat_list, SWIG_PYOBJECT(ePyObject) sat_dict, SWIG_PYOBJECT(ePyObject) tp_dict);
 	PyObject *readTerrestrials(SWIG_PYOBJECT(ePyObject) ter_list, SWIG_PYOBJECT(ePyObject) tp_dict);
@@ -212,6 +222,7 @@ public:
 	RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm);
 
 	RESULT addService(const eServiceReferenceDVB &referenc, eDVBService *service);
+	RESULT addOrUpdateService(const eServiceReferenceDVB &referenc, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
 	RESULT flush();
 
@@ -220,17 +231,18 @@ public:
 	RESULT getBouquet(const eServiceReference &ref, eBouquet* &bouquet);
 //////
 	void loadBouquet(const char *path);
+	void deleteBouquet(const std::string filename);
 	eServiceReference searchReference(int tsid, int onid, int sid);
 	void searchAllReferences(std::vector<eServiceReference> &result, int tsid, int onid, int sid);
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
 	void addLcnToDB(int ns, int onid, int tsid, int sid, uint16_t lcn, uint32_t signal);
-	void resetLcnDB();
 	void saveLcnDB();
 #endif
+	void resetLcnDB(int dvb_namespace=0);
 	void setNumberingMode(int numberingMode);
-	void setLoadUnlinkedUserbouquets(bool value) { m_load_unlinked_userbouquets=value; }
+	void setLoadUnlinkedUserbouquets(int value) { m_load_unlinked_userbouquets=value; }
 	void renumberBouquet();
 	void loadServicelist(const char *filename);
 	static eDVBDB *getInstance() { return instance; }
@@ -242,6 +254,7 @@ public:
 	bool isValidService(int tsid, int onid, int sid);
 	void parseServiceData(ePtr<eDVBService> s, std::string str);
 	int getMaxNumber() const { return m_max_number; }
+	PyObject *getAllServicesRaw(int type=0);
 };
 
 #ifndef SWIG

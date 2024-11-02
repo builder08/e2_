@@ -15,11 +15,6 @@ from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWrit
 
 MODULE_NAME = __name__.split(".")[-1]
 
-REMOTE_MODEL = 0
-REMOTE_RCTYPE = 1
-REMOTE_NAME = 2
-REMOTE_DISPLAY_NAME = 3
-
 config.inputDevices = ConfigSubsection()
 
 
@@ -146,6 +141,11 @@ class InputDevices:
 
 
 class Keyboard:
+	KEYBOARD_KMAP = 0
+	KEYBOARD_PATH = 1
+	KEYBOARD_NAME = 2
+	KEYBOARD_DISPLAY_NAME = 3
+
 	def __init__(self):
 		self.keyboardMaps = []
 		for keyboardMapInfo in sorted(listdir(resolveFilename(SCOPE_KEYMAPS))):
@@ -189,6 +189,11 @@ class Keyboard:
 
 
 class RemoteControl:
+	REMOTE_MODEL = 0
+	REMOTE_RCTYPE = 1
+	REMOTE_NAME = 2
+	REMOTE_DISPLAY_NAME = 3
+
 	knownCompatibleRemotes = [
 		("gb0", "gb1", "gb2", "gb3", "gb4"),
 		("ini0", "ini1", "ini2", "ini3", "ini4", "ini5", "ini6", "ini7", "ini8"),
@@ -219,9 +224,9 @@ class RemoteControl:
 		default = "0"
 		for index, remote in enumerate(self.remotes):
 			index = str(index)
-			rcChoices.append((index, remote[REMOTE_DISPLAY_NAME]))
-			if self.model == remote[REMOTE_MODEL] and self.rcType == remote[REMOTE_RCTYPE] and self.rcName in [x.strip() for x in remote[REMOTE_NAME].split(",")]:
-				print(f"[InputDevice] Default remote control identified as '{remote[REMOTE_DISPLAY_NAME]}'.  (model='{self.model}', rcName='{self.rcName}', rcType='{self.rcType}')")
+			rcChoices.append((index, remote[self.REMOTE_DISPLAY_NAME]))
+			if self.model == remote[self.REMOTE_MODEL] and self.rcType == remote[self.REMOTE_RCTYPE] and self.rcName in [x.strip() for x in remote[self.REMOTE_NAME].split(",")]:
+				print(f"[InputDevice] Default remote control identified as '{remote[self.REMOTE_DISPLAY_NAME]}'.  (model='{self.model}', rcName='{self.rcName}', rcType='{self.rcType}')")
 				default = index
 		config.inputDevices.remotesIndex = ConfigSelection(choices=rcChoices, default=default)
 		self.remote = self.loadRemoteControl(BoxInfo.getItem("RCMapping"))
@@ -276,6 +281,9 @@ class RemoteControl:
 							}.get(result, "Error: Unknown error!")
 							print(f"[InputDevice] Remote remap evdev='{evdev}', name='{evdevinfo['name']}': {resStr}")
 		return rcButtons
+
+	def getRemoteControlPixmap(self):
+		return BoxInfo.getItem("RCImage")
 
 	def getRemoteControlKeyList(self):
 		return self.remote["keyIds"]

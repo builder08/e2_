@@ -1,10 +1,8 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Screens.Setup import Setup
 from Screens.InfoBar import InfoBar
-from Screens.InfoBarGenerics import streamrelay
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigSelection
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
@@ -12,6 +10,7 @@ from enigma import iPlayableService, eTimer, eServiceReference, iRecordableServi
 import os
 import glob
 from enigma import eFCCServiceManager
+from Screens.InfoBarGenerics import streamrelay
 
 g_max_fcc = len(glob.glob('/dev/fcc?'))
 g_default_fcc = (g_max_fcc) > 5 and 5 or g_max_fcc
@@ -84,7 +83,7 @@ class FCCSupport:
 		self.__event_tracker = None
 		self.onClose = []
 		self.changeEventTracker()
-		BoxInfo.setItem("FCCactive", self.fccSetupActivate)
+		BoxInfo.setMutableItem("FCCactive", self.fccSetupActivate)
 #		from Screens.PictureInPicture import on_pip_start_stop
 #		on_pip_start_stop.append(self.FCCForceStopforPIP)
 
@@ -176,7 +175,7 @@ class FCCSupport:
 
 		if fcc_changed:
 			self.fccmgr.setFCCEnable(int(self.fccSetupActivate))
-			BoxInfo.setItem("FCCactive", self.fccSetupActivate)
+			BoxInfo.setMutableItem("FCCactive", self.fccSetupActivate)
 			curPlaying = self.session.nav.getCurrentlyPlayingServiceReference()
 			if curPlaying:
 				self.session.nav.stopService()
@@ -249,8 +248,7 @@ class FCCSupport:
 		elif int(sref.getData(0)) in (2, 10): # is RADIO?
 			playable = False
 
-		elif sref.toString() in streamrelay.data:
-			playable = False
+		playable = playable and not streamrelay.checkService(sref)
 
 		return playable
 
@@ -509,7 +507,7 @@ def FCCStart(session, **kwargs):
 
 def main(menuid, **kwargs):
 	if menuid == "scan":
-		return [(_("Fast Channel Change"), FCCStart, "FCCSetup", 0)]
+		return [(_("Fast Channel Change"), FCCStart, "FCCSetup", 5)]
 	else:
 		return []
 

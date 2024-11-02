@@ -25,6 +25,18 @@ static std::string encode(const std::string s)
 	return res;
 }
 
+RESULT eServiceReference::parseNameAndProviderFromName(std::string &sourceName, std::string& name, std::string& prov) {
+	prov = "";
+	if (!sourceName.empty()) {
+		std::vector<std::string> name_split = split(sourceName, "•");
+		name = name_split[0];
+		if (name_split.size() > 1) {
+			prov = name_split[1];
+		}
+	}
+	return 0;
+}
+
 eServiceReference::eServiceReference(const std::string &string)
 {
 	const char *c = string.c_str();
@@ -58,6 +70,13 @@ eServiceReference::eServiceReference(const std::string &string)
 				path = string;
 				name = string;
 			}
+
+			std::string res_name = "";
+			std::string res_provider = "";
+			eServiceReference::parseNameAndProviderFromName(name, res_name, res_provider);
+			name = res_name;
+			prov = res_provider;
+
 			eDebug("[eServiceReference] URL=%s name=%s", path.c_str(), name.c_str());
 			return;
 		}
@@ -108,10 +127,17 @@ eServiceReference::eServiceReference(const std::string &string)
 		{
 			path=pathstr;
 		}
+		path = urlDecode(path);
+		name = urlDecode(name);
+		if(!name.empty())
+		{
+			std::string res_name = "";
+			std::string res_provider = "";
+			eServiceReference::parseNameAndProviderFromName(name, res_name, res_provider);
+			name = res_name;
+			prov = res_provider;
+		}
 	}
-
-	path = urlDecode(path);
-	name = urlDecode(name);
 }
 
 std::string eServiceReference::toString() const
@@ -121,7 +147,7 @@ std::string eServiceReference::toString() const
 
 	ret += getNum(type);
 	ret += ':';
-	ret += getNum(flags & ~8192); // ignore 8192 because this is only for internal use
+	ret += getNum(flags & ~eDVBService::dxIntIsinBouquet); // ignore dxIntIsinBouquet because this is only for internal use
 	for (unsigned int i = 0; i < sizeof(data) / sizeof(*data); ++i)
 	{
 		ret += ':';
@@ -133,6 +159,14 @@ std::string eServiceReference::toString() const
 	{
 		ret += ':';
 		ret += encode(name);
+	}
+	std::string fullName = ret;
+	std::string provPart = "•";
+	if (!prov.empty())
+	{
+		provPart += prov;
+		if (fullName.find(provPart) == std::string::npos)
+			fullName += provPart;
 	}
 	return ret;
 }
@@ -170,6 +204,18 @@ std::string eServiceReference::toReferenceString() const
 	return ret;
 }
 
+std::string eServiceReference::toLCNReferenceString(bool trailing) const
+{
+    std::string ret;
+    ret.reserve(24); /* Estimate required space */
+    char buf[24];
+    if(trailing)
+        snprintf(buf, 24, "%X:%X:%X:%X:", data[1], data[2], data[3], data[4]);
+    else
+        snprintf(buf, 24, "%X:%X:%X:%X", data[1], data[2], data[3], data[4]);
+    ret.assign(buf);
+	return ret;
+}
 
 eServiceCenter *eServiceCenter::instance;
 

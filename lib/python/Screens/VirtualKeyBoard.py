@@ -11,7 +11,7 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
-from Screens.Screen import Screen
+from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
@@ -1217,6 +1217,23 @@ class VirtualKeyboard(Screen):
 						return True
 					selKey += 1
 		return False
+
+	def createSummary(self):
+		return VirtualKeyBoardSummary
+class VirtualKeyBoardSummary(ScreenSummary):
+	def __init__(self, session, parent):
+		ScreenSummary.__init__(self, session, parent=parent)
+		self.skinName = ["VirtualKeyBoardSummary", "PluginBrowserSummary"]
+		self["entry"] = StaticText()
+		self.onShow.append(self.addWatcher)
+		self.onHide.append(self.removeWatcher)
+	def addWatcher(self):
+		self.parent["text"].onChangedEntry.append(self.selectionChanged)
+		self.selectionChanged()
+	def removeWatcher(self):
+		self.parent["text"].onChangedEntry.remove(self.selectionChanged)
+	def selectionChanged(self):
+		self["entry"].text = self.parent["text"].getText()
 
 
 class VirtualKeyBoard(VirtualKeyboard):

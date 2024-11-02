@@ -16,7 +16,6 @@ MODULE_NAME = __name__.split(".")[-1]
 MODEL = BoxInfo.getItem("model")
 AMLOGIC = BoxInfo.getItem("AmlogicFamily")
 
-
 class AVSwitch:
 	def setAspect(self, configElement):
 		eAVControl.getInstance().setAspect(configElement.value, 1)
@@ -753,7 +752,6 @@ def InitAVSwitch():
 		config.av.scaler_sharpness.addNotifier(setScalerSharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
-
 
 	config.av.force = ConfigSelection(default=None, choices=[
 		(None, _("Do not force")),

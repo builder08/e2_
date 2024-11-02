@@ -17,7 +17,7 @@ from Components.config import config
 from Components.Console import Console
 from Components.Sources.StaticText import StaticText
 from Components.Harddisk import harddiskmanager
-from Components.InputDevice import REMOTE_DISPLAY_NAME, REMOTE_NAME, REMOTE_RCTYPE, remoteControl
+from Components.InputDevice import remoteControl
 from Components.Label import Label
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
@@ -76,6 +76,14 @@ def getBoxProcTypeName():
 	if procType == "unknown":
 		return _("Unknown")
 	return f"{procType}  -  {boxProcTypes.get(procType, _('Unknown'))}"
+
+
+welcome = [
+	_("Welcome to %s") % BoxInfo.getItem("displaydistro", "Enigma2")
+]
+BoxInfo.setItem("InformationDistributionWelcome", welcome)
+#
+# End of marked code.
 
 
 class InformationBase(Screen):
@@ -183,6 +191,32 @@ def formatLine(style, left, right=None):
 		colon = "" if styleLen > 0 and style[0] in ("M", "P", "V") else ":"
 		return f"{leftIndent}{leftStartColor}{left}{colon}{leftEndColor}"
 	return f"{leftIndent}{leftStartColor}{left}:{leftEndColor}|{rightIndent}{rightStartColor}{right}{rightEndColor}"
+
+
+class BuildInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Build Information"))
+		self.skinName.insert(0, "BuildInformation")
+
+	def displayInformation(self):
+		info = []
+		info.append(formatLine("H", _("Build information for %s %s") % getBoxDisplayName()))
+		info.append("")
+		checksum = BoxInfo.getItem("checksumerror", False)
+		if checksum:
+			info.append(formatLine("M1", _("Error: Checksum is invalid!")))
+		override = BoxInfo.getItem("overrideactive", False)
+		if override:
+			info.append(formatLine("M1", _("Warning: Overrides are currently active!")))
+		if checksum or override:
+			info.append("")
+		for item in BoxInfo.getEnigmaInfoList():
+			info.append(formatLine("P1", item, BoxInfo.getItem(item)))
+		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Build Information"
 
 
 class CommitInformation(InformationBase):
@@ -463,17 +497,20 @@ class DebugInformation(InformationBase):
 		return "Debug Log Information"
 
 
-class ImageInformation(InformationBase):
+class DistributionInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
-		self.setTitle(_("OpenPli Information"))
-		self.skinName.insert(0, "ImageInformation")
+		self.displayDistro = BoxInfo.getItem("displaydistro", "Enigma2")
+		self.setTitle(_("%s Information") % self.displayDistro)
+		self.skinName.insert(0, "DistributionInformation")
+		self["key_info"] = StaticText(_("INFO"))
 		self["key_yellow"] = StaticText(_("Commit Logs"))
 		self["key_blue"] = StaticText(_("Translation"))
-		self["receiverActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.showCommitLogs, _("Show latest commit log information")),
+		self["receiverActions"] = HelpableActionMap(self, ["InfoActions", "ColorActions"], {
+			"info": (self.showBuild, _("Show build information")),
+			"yellow": (self.showCommitLogs, _("Show commit log information")),
 			"blue": (self.showTranslation, _("Show translation information"))
-		}, prio=0, description=_("OpenPli Information Actions"))
+		}, prio=0, description=_("%s Information Actions") % self.displayDistro)
 		self.resolutions = {
 			480: "NTSC",
 			576: "PAL",
@@ -483,7 +520,10 @@ class ImageInformation(InformationBase):
 			4320: "8K",
 			8640: "16K"
 		}
-		self.imageMessage = BoxInfo.getItem("InformationImageWelcome", "")
+		self.imageMessage = BoxInfo.getItem("InformationDistributionWelcome", "")
+
+	def showBuild(self):
+		self.session.openWithCallback(self.informationWindowClosed, BuildInformation)
 
 	def showCommitLogs(self):
 		self.session.openWithCallback(self.informationWindowClosed, CommitInformation)
@@ -493,7 +533,7 @@ class ImageInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Image information for %s %s") % (DISPLAY_BRAND, DISPLAY_MODEL)))
+		info.append(formatLine("H", _("Distribution '%s' information for %s %s") % (self.displayDistro, DISPLAY_BRAND, DISPLAY_MODEL)))
 		info.append("")
 		if self.imageMessage:
 			for line in self.imageMessage:
@@ -550,16 +590,9 @@ class ImageInformation(InformationBase):
 		info.append(formatLine("P1", _("Last update"), formatDate(f"{compileDate[:4]}{compileDate[4:6]}{compileDate[6:]}")))
 		info.append(formatLine("P1", _("Enigma2 (re)starts"), config.misc.startCounter.value))
 		info.append(formatLine("P1", _("Enigma2 debug level"), eGetEnigmaDebugLvl()))
-		if isPluginInstalled("ServiceHisilicon") and not isPluginInstalled("ServiceMP3"):
-			mediaService = "ServiceHisilicon"
-		elif isPluginInstalled("ServiceMP3") and not isPluginInstalled("ServiceHisilicon"):
-			mediaService = "ServiceMP3"
-		else:
-			mediaService = _("Unknown")
-		info.append(formatLine("P1", _("Media service player"), "%s") % mediaService)
-		if isPluginInstalled("ServiceApp"):
-			extraService = "ServiceApp"
-			info.append(formatLine("P1", _("Extra service player"), "%s") % extraService)
+		mediaService = BoxInfo.getItem("mediaservice")
+		if mediaService:
+			info.append(formatLine("P1", _("Media service"), mediaService.replace("enigma2-plugin-systemplugins-", "")))
 		info.append("")
 		info.append(formatLine("S", _("Build information")))
 		if self.extraSpacing:
@@ -584,58 +617,11 @@ class ImageInformation(InformationBase):
 		info.append(formatLine("P1", _("Python version"), about.getPythonVersionString()))
 		info.append(formatLine("P1", _("GStreamer version"), about.getGStreamerVersionString().replace("GStreamer ", "")))
 		info.append(formatLine("P1", _("FFmpeg version"), about.getFFmpegVersionString()))
-		if self.extraSpacing:
-			info.append("")
-		if BoxInfo.getItem("HiSilicon"):
-			info.append("")
-			info.append(formatLine("H", _("HiSilicon specific information")))
-			info.append("")
-			process = Popen(("/usr/bin/opkg", "list-installed"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-			stdout, stderr = process.communicate()
-			if process.returncode == 0:
-				missing = True
-				packageList = stdout.split("\n")
-				revision = self.findPackageRevision("grab", packageList)
-				if revision and revision != "r0":
-					info.append(formatLine("P1", _("Grab"), revision))
-					missing = False
-				revision = self.findPackageRevision("hihalt", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Halt"), revision))
-					missing = False
-				revision = self.findPackageRevision("libs", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Libs"), revision))
-					missing = False
-				revision = self.findPackageRevision("partitions", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Partitions"), revision))
-					missing = False
-				revision = self.findPackageRevision("reader", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Reader"), revision))
-					missing = False
-				revision = self.findPackageRevision("showiframe", packageList)
-				if revision:
-					info.append(formatLine("P1", _("Showiframe"), revision))
-					missing = False
-				if missing:
-					info.append(formatLine("P1", _("HiSilicon specific information not found.")))
-			else:
-				info.append(formatLine("P1", _("Package information currently not available!")))
+
 		self["information"].setText("\n".join(info))
 
-	def findPackageRevision(self, package, packageList):
-		revision = None
-		data = [x for x in packageList if "-%s" % package in x]
-		if data:
-			data = data[0].split("-")
-			if len(data) >= 4:
-				revision = data[3]
-		return revision
-
 	def getSummaryInformation(self):
-		return "OpenPli Information"
+		return f"{self.displayDistro} Information"
 
 
 class GeolocationInformation(InformationBase):
@@ -1225,13 +1211,13 @@ class ReceiverInformation(InformationBase):
 		if self.extraSpacing:
 			info.append("")
 		rcIndex = int(config.inputDevices.remotesIndex.value)
-		info.append(formatLine("P1", _("RC identification"), f"{remoteControl.remotes[rcIndex][REMOTE_DISPLAY_NAME]}  (Index: {rcIndex})"))
-		rcName = remoteControl.remotes[rcIndex][REMOTE_NAME]
+		info.append(formatLine("P1", _("RC identification"), f"{remoteControl.remotes[rcIndex][remoteControl.REMOTE_DISPLAY_NAME]}  (Index: {rcIndex})"))
+		rcName = remoteControl.remotes[rcIndex][remoteControl.REMOTE_NAME]
 		info.append(formatLine("P1", _("RC selected name"), rcName))
 		boxName = BoxInfo.getItem("rcname")
 		if boxName != rcName:
 			info.append(formatLine("P1", _("RC default name"), boxName))
-		rcType = remoteControl.remotes[rcIndex][REMOTE_RCTYPE]
+		rcType = remoteControl.remotes[rcIndex][remoteControl.REMOTE_RCTYPE]
 		info.append(formatLine("P1", _("RC selected type"), rcType))
 		boxType = BoxInfo.getItem("rctype")
 		if boxType != rcType:
@@ -1264,6 +1250,44 @@ class ReceiverInformation(InformationBase):
 		givenId = fileReadLine("/proc/device-tree/le-dt-id", source=MODULE_NAME)
 		if givenId:
 			info.append(formatLine("P1", _("Given device id"), givenId))
+		if BoxInfo.getItem("HiSilicon"):
+			info.append("")
+			info.append(formatLine("S", _("HiSilicon specific information")))
+			if self.extraSpacing:
+				info.append("")
+			process = Popen(("/usr/bin/opkg", "list-installed"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
+			stdout, stderr = process.communicate()
+			if process.returncode == 0:
+				missing = True
+				packageList = stdout.split("\n")
+				revision = findPackageRevision("grab", packageList)
+				if revision and revision != "r0":
+					info.append(formatLine("P1", _("Grab"), revision))
+					missing = False
+				revision = findPackageRevision("hihalt", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Halt"), revision))
+					missing = False
+				revision = findPackageRevision("libs", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Libs"), revision))
+					missing = False
+				revision = findPackageRevision("partitions", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Partitions"), revision))
+					missing = False
+				revision = findPackageRevision("reader", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Reader"), revision))
+					missing = False
+				revision = findPackageRevision("showiframe", packageList)
+				if revision:
+					info.append(formatLine("P1", _("Showiframe"), revision))
+					missing = False
+				if missing:
+					info.append(formatLine("P1", _("HiSilicon specific information not found.")))
+			else:
+				info.append(formatLine("P1", _("Package information currently not available!")))
 		info.append("")
 		info.append(formatLine("S", _("Tuner information")))
 		if self.extraSpacing:
@@ -1283,8 +1307,8 @@ class ReceiverInformation(InformationBase):
 		if hddList:
 			for hdd in hddList:
 				hdd = hdd[1]
-				capacity = hdd.diskSize() * 1000000
-				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(capacity)}  ({scaleNumber(capacity, 'Iec')})"))
+				diskSize = hdd.diskSize() * 1000000
+				info.append(formatLine("P1", hdd.model(), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 		else:
 			info.append(formatLine("H", _("No hard disks detected.")))
 		info.append("")
@@ -1728,8 +1752,8 @@ class StorageInformation(InformationBase):
 				diskSize = stat.f_blocks * stat.f_frsize
 				diskFree = stat.f_bfree * stat.f_frsize
 				diskUsed = diskSize - diskFree
-				info.append(formatLine("P2", _("Mountpoint"), partition.mountpoint))
-				info.append(formatLine("P2", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P2", _("Mount"), partition.mountpoint))
+				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 				info.append(formatLine("P2", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 				info.append(formatLine("P2", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 				break
@@ -1742,7 +1766,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("S1", hdd.getDeviceName(), hdd.bus()))
 				info.append(formatLine("P2", _("Model"), hdd.model()))
 				diskSize = hdd.diskSize() * 1000000
-				info.append(formatLine("P2", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 				info.append(formatLine("P2", _("Sleeping"), (_("Yes") if hdd.isSleeping() else _("No"))))
 				for partition in partitions:
 					if partition.device and join("/dev", partition.device).startswith(hdd.getDeviceName()):
@@ -1751,8 +1775,8 @@ class StorageInformation(InformationBase):
 						diskSize = stat.f_blocks * stat.f_frsize
 						diskFree = stat.f_bfree * stat.f_frsize
 						diskUsed = diskSize - diskFree
-						info.append(formatLine("P3", _("Mountpoint"), partition.mountpoint))
-						info.append(formatLine("P3", _("Capacity"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
+						info.append(formatLine("P3", _("Mount"), partition.mountpoint))
+						info.append(formatLine("P3", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 						info.append(formatLine("P3", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 						info.append(formatLine("P3", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
 		else:
@@ -1769,7 +1793,7 @@ class StorageInformation(InformationBase):
 				info.append(formatLine("S1", data[5]))
 				if data[0]:
 					info.append(formatLine("P2", _("Network address"), data[0]))
-					info.append(formatLine("P2", _("Capacity"), data[1]))
+					info.append(formatLine("P2", _("Size"), data[1]))
 					info.append(formatLine("P2", _("Used"), f"{data[2]}  ({data[4]})"))
 					info.append(formatLine("P2", _("Free"), data[3]))
 				else:

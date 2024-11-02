@@ -1,15 +1,17 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+from mimetypes import guess_type, add_type
+from os import walk
+from os.path import join
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
-
-import os
-from mimetypes import guess_type, add_type
 
 
 def getType(file):
 	add_type("audio/dts", ".dts")
 	add_type("audio/x-wav", ".wave")
 	add_type("audio/x-wav", ".wv")
+	add_type("audio/wavpack", ".wv")
 	add_type("audio/mpeg", ".m2a")
 	add_type("audio/x-matroska", ".mka")
 	add_type("audio/x-aac", ".aac")
@@ -20,23 +22,42 @@ def getType(file):
 	add_type("video/x-dvd-iso", ".iso")
 	add_type("video/x-dvd-iso", ".img")
 	add_type("video/x-dvd-iso", ".nrg")
+	add_type("application/dash+xml", ".mpd")
+	add_type("application/ttml+xml", ".mpd")
+	add_type("application/vnd.rn-realmedia", ".rm")
+	add_type("application/vnd.rn-realmedia-vbr", ".rmvb")
+	add_type("application/x-hls", ".mpd")
+	add_type("application/x-mpegurl", ".mpd")
+	add_type("application/x-cenc", ".mpd")
+	add_type("application/x-webm-enc", ".mpd")
+	add_type("video/x-av1", ".webm")
+	add_type("video/x-av1", ".mp4")
 	add_type("video/dvd", ".vob")
 	add_type("video/avi", ".avi")
 	add_type("video/divx", ".divx")
+	add_type("video/x-matroska", ".mkv")
+	add_type("video/x-matroska", ".webm")
 	add_type("video/x-mpeg", ".dat")
 	add_type("video/x-ms-asf", ".asf")
 	add_type("video/3gpp", ".3gp")
 	add_type("video/3gpp2", ".3g2")
-	add_type("application/vnd.rn-realmedia", ".rm")
-	add_type("application/vnd.rn-realmedia-vbr", ".rmvb")
+	add_type("video/mp4", ".av1")
+	add_type("video/mpeg", ".pva")
+	add_type("video/mpeg", ".wtv")
+	add_type("video/webm", ".av1")
+	add_type("video/webm", ".mp4")
 	add_type("video/ogg", ".ogm")
 	add_type("video/mp2t", ".m2ts")
 	add_type("video/mts", ".mts")
 	add_type("video/mp2t", ".ts")
+	add_type("video/quicktime", ".mov")
+	add_type("video/webm", ".webm")
+	add_type("video/x-h264", ".mp4")
+	add_type("video/x-raw", ".mp4")
+	add_type("video/x-vp8", ".mp4")
+	add_type("video/x-vp9", ".mp4")
 	add_type("application/x-debian-package", ".ipk")
 	add_type("application/x-dream-image", ".nfi")
-	add_type("video/mpeg", ".pva")
-	add_type("video/mpeg", ".wtv")
 
 	(type, _) = guess_type(file)
 	if type is None:
@@ -120,13 +141,13 @@ def execute(option):
 def scanDevice(mountpoint):
 	scanner = []
 
-	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
-		l = p.__call__()
-		if not isinstance(l, list):
-			l = [l]
-		scanner += l
+	for pluginObj in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
+		func = pluginObj()
+		if not isinstance(func, list):
+			func = [func]
+		scanner += func
 
-	print("scanner:", scanner)
+	print("[Scanner] ", scanner)
 
 	res = {}
 
@@ -151,11 +172,11 @@ def scanDevice(mountpoint):
 
 	# now scan the paths
 	for p in paths_to_scan:
-		path = os.path.join(mountpoint, p.path)
+		path = join(mountpoint, p.path)
 
-		for root, dirs, files in os.walk(path):
+		for root, dirs, files in walk(path):
 			for f in files:
-				path = os.path.join(root, f)
+				path = join(root, f)
 				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
 					sfile = ScanFile(path, "audio/x-cda")
 				else:
@@ -177,20 +198,20 @@ def openList(session, files):
 
 	scanner = []
 
-	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
-		l = p.__call__()
-		if not isinstance(l, list):
-			scanner.append(l)
+	for pluginObj in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
+		func = pluginObj()
+		if not isinstance(func, list):
+			scanner.append(func)
 		else:
-			scanner += l
+			scanner += func
 
-	print("scanner:", scanner)
+	print("[Scanner] ", scanner)
 
 	res = {}
 
 	for file in files:
-		for s in scanner:
-			s.handleFile(res, file)
+		for item in scanner:
+			item.handleFile(res, file)
 
 	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)

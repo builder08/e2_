@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/ioctl.h>
+#include <shadow.h>
+#include <crypt.h>
+#include <pwd.h>
 #include <libsig_comp.h>
 #include <linux/dvb/version.h>
 
@@ -36,6 +39,8 @@
 
 #include "bsod.h"
 #include "version_info.h"
+
+#include <gst/gst.h>
 
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
@@ -240,6 +245,8 @@ int main(int argc, char **argv)
 	atexit(object_dump);
 #endif
 
+	gst_init(&argc, &argv);
+
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
 
@@ -265,8 +272,8 @@ int main(int argc, char **argv)
 	ePtr<gLCDDC> my_lcd_dc;
 	gLCDDC::getInstance(my_lcd_dc);
 
-		/* ok, this is currently hardcoded for arabic. */
-			/* some characters are wrong in the regular font, force them to use the replacement font */
+	/* ok, this is currently hardcoded for arabic. */
+	/* some characters are wrong in the regular font, force them to use the replacement font */
 	for (int i = 0x60c; i <= 0x66d; ++i)
 		eTextPara::forceReplacementGlyph(i);
 	eTextPara::forceReplacementGlyph(0xfdf2);
@@ -321,7 +328,7 @@ int main(int argc, char **argv)
 		snprintf(filename, sizeof(filename), "%s/wait%d.png", userpath.c_str(), i + 1);
 		rfilename = eEnv::resolve(filename);
 
-		struct stat st;
+		struct stat st = {};
 		if (::stat(rfilename.c_str(), &st) == 0)
 		{
 			def = true;
@@ -440,9 +447,52 @@ int getVFDSymbolsPoll()
 	return VFDSymbolsPoll;
 }
 
+const char *getGStreamerVersionString()
+{
+	return gst_version_string();
+}
+
 int getE2Flags()
 {
 	return 1;
+}
+
+bool checkLogin(const char *user, const char *password)
+{
+	bool authenticated = false;
+
+	if (user && password)
+	{
+		char *buffer = (char *)malloc(4096);
+		if (buffer)
+		{
+			struct passwd pwd = {};
+			struct passwd *pwdresult = NULL;
+			std::string crypt;
+			getpwnam_r(user, &pwd, buffer, 4096, &pwdresult);
+			if (pwdresult)
+			{
+				struct crypt_data cryptdata = {};
+				char *cryptresult = NULL;
+				cryptdata.initialized = 0;
+				crypt = pwd.pw_passwd;
+				if (crypt == "*" || crypt == "x")
+				{
+					struct spwd spwd = {};
+					struct spwd *spwdresult = NULL;
+					getspnam_r(user, &spwd, buffer, 4096, &spwdresult);
+					if (spwdresult)
+					{
+						crypt = spwd.sp_pwdp;
+					}
+				}
+				cryptresult = crypt_r(password, crypt.c_str(), &cryptdata);
+				authenticated = cryptresult && cryptresult == crypt;
+			}
+			free(buffer);
+		}
+	}
+	return authenticated;
 }
 
 #include <malloc.h>
