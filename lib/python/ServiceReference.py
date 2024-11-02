@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from enigma import eServiceReference, eServiceCenter, getBestPlayableServiceReference
+from Components.config import config
 import NavigationInstance
 
 # Global helper functions
@@ -24,8 +26,20 @@ def resolveAlternate(serviceref):
 			nref = getBestPlayableServiceReference(serviceref, eServiceReference(), True)
 	return nref
 
-# Extensions to eServiceReference
 
+def getStreamRelayRef(sref):
+	try:
+		if "http" in sref:
+			icamport = config.misc.softcam_streamrelay_port.value
+			icamip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
+			icam = f"http%3a//{icamip}%3a{icamport}/"
+			if icam in sref:
+				return sref.split(icam)[1].split(":")[0].replace("%3a", ":"), True
+	except Exception:
+		pass
+	return sref, False
+
+# Extensions to eServiceReference
 
 @staticmethod
 def __fromDirectory(path):
@@ -49,72 +63,35 @@ def __repr(serviceref):
 	chnum = serviceref.getChannelNum()
 	chnum = ", ChannelNum=" + str(chnum) if chnum else ""
 	return "eServiceReference(Name=%s%s, String=%s)" % (serviceref.getServiceName(), chnum, serviceref.toString())
-
-
 eServiceReference.__repr__ = __repr
-
-
 def __toString(serviceref):
 	return serviceref.toString()
-
-
 eServiceReference.__str__ = __toString
-
-
 def __getServiceName(serviceref):
 	info = eServiceCenter.getInstance().info(serviceref)
 	return info and info.getName(serviceref) or ""
-
-
 eServiceReference.getServiceName = __getServiceName
-
-
 def __info(serviceref):
 	return eServiceCenter.getInstance().info(serviceref)
-
-
 eServiceReference.info = __info
-
-
 def __list(serviceref):
 	return eServiceCenter.getInstance().list(serviceref)
-
-
 eServiceReference.list = __list
-
 # ref is obsolete but kept for compatibility.
 # A ServiceReference *is* an eServiceReference now, so you no longer need to use .ref
-
-
 def __getRef(serviceref):
 	return serviceref
-
-
 def __setRef(self, serviceref):
 	eServiceReference.__init__(self, serviceref)
-
-
 eServiceReference.ref = property(__getRef, __setRef,)
-
 # getType is obsolete but kept for compatibility. Use "serviceref.type" instead
-
-
 def __getType(serviceref):
 	return serviceref.type
-
-
 eServiceReference.getType = __getType
-
 # getFlags is obsolete but kept for compatibility. Use "serviceref.flags" instead
-
-
 def __getFlags(serviceref):
 	return serviceref.flags
-
-
 eServiceReference.getFlags = __getFlags
-
-
 # Compatibility class that exposes eServiceReference as ServiceReference
 # Don't use this for new code. eServiceReference now supports everything in one single type
 class ServiceReference(eServiceReference):
@@ -125,7 +102,6 @@ class ServiceReference(eServiceReference):
 			new.__class__ = ServiceReference
 			return new
 		return eServiceReference.__new__(cls)
-
 	def __init__(self, ref, reftype=eServiceReference.idInvalid, flags=0, path=''):
 		if reftype != eServiceReference.idInvalid:
 			eServiceReference.__init__(self, reftype, flags, path)

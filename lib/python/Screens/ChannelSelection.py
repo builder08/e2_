@@ -37,7 +37,7 @@ from Screens.Hotkey import InfoBarHotkey, hotkeyActionMap, hotkey
 eProfileWrite("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
-from ServiceReference import ServiceReference
+from ServiceReference import ServiceReference, getStreamRelayRef
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import RemovePopup
 from Tools.Alternatives import GetWithAlternative, CompareWithAlternatives
@@ -105,18 +105,6 @@ class InsertService(Setup):
 	def channelSelectionCallback(self, *args):
 		if len(args):
 			self.close(args[0])
-
-def getStreamRelayRef(sref):
-	try:
-		if "http" in sref:
-			sr_port = config.misc.softcam_streamrelay_port.value
-			sr_ip = ".".join("%d" % d for d in config.misc.softcam_streamrelay_url.value)
-			sr_url = f"http%3a//{sr_ip}%3a{sr_port}/"
-			if sr_url in sref:
-				return sref.split(sr_url)[1].split(":")[0].replace("%3a", ":")
-	except Exception:
-		pass
-	return sref
 
 
 class BouquetSelector(Screen):
@@ -1624,7 +1612,6 @@ class ChannelSelectionBase(Screen):
 				"next": (self.nextMarker, _("Move to next marker")),
 				"pageDown": (self.servicelist.goPageDown, _("Move down a screen"))
 			}, prio=0, description=_("Channel Selection Navigation Actions"))
-
 		self.maintitle = _("Channel selection")
 		self.modetitle = ""
 		self.servicetitle = ""
@@ -2264,8 +2251,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				info = service.info()
 				if info:
 					refstr = info.getInfoString(iServiceInformation.sServiceref)
-					refstr = getStreamRelayRef(refstr)
-					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+					refstr, isStreamRelay = getStreamRelayRef(refstr)
+					ref = eServiceReference(refstr)
+					if isStreamRelay:
+						if not [timer for timer in self.session.nav.RecordTimer.timer_list if timer.state == 2 and refstr == timer.service_ref]:
+							ref.setAlternativeUrl(refstr)
+					self.servicelist.setPlayableIgnoreService(ref)
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
@@ -2450,7 +2441,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def zapCheckTimeshiftCallback(self, preview_zap, nref, answer):
 		if answer:
 			self.new_service_played = True
-			self.session.nav.playService(nref, adjust=preview_zap and [0, self.session] or True)
+			self.session.nav.playService(nref)
 			if not preview_zap:
 				self.saveRoot()
 				self.saveChannel(nref)
