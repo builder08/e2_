@@ -1,17 +1,20 @@
-from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
+from os.path import exists
+from os import W_OK, access, system
+from time import sleep
+
 from enigma import eAVSwitch, eAVControl, getDesktop
+
+from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, ConfigOnOff, NoSave
 from Components.SystemInfo import BoxInfo
-from os.path import isfile
 from Tools.AVHelper import pChoice, readChoices
-from Tools.Directories import fileWriteLine
+from Tools.Directories import fileReadLine, fileWriteLine
 
 iAVSwitch = None # will be initialized later, allows to import name 'iAVSwitch' from 'Components.AVSwitch'
 
 MODULE_NAME = __name__.split(".")[-1]
 
 MODEL = BoxInfo.getItem("model")
-PLATFORM = BoxInfo.getItem("platform")
-
+AMLOGIC = BoxInfo.getItem("AmlogicFamily")
 
 class AVSwitch:
 	def setAspect(self, configElement):
@@ -49,13 +52,13 @@ class AVSwitch:
 		if valstr in ("4_3_letterbox", "4_3_panscan"):  # 4:3
 			return (4, 3)
 		elif valstr == "16_9":  # auto ... 4:3 or 16:9
-			if isfile("/proc/stb/vmpeg/0/aspect"):
+			if exists("/proc/stb/vmpeg/0/aspect"):
 				try:
 					if "1" in open("/proc/stb/vmpeg/0/aspect", "r").read().split('\n', 1)[0]: # 4:3
 						return (4, 3)
 				except IOError:
 					print("[AVSwitch] Read /proc/stb/vmpeg/0/aspect failed!")
-			elif isfile("/sys/class/video/screen_mode"):
+			elif exists("/sys/class/video/screen_mode"):
 				try:
 					if "1" in open("/sys/class/video/screen_mode", "r").read().split('\n', 1)[0]: # 4:3
 						return (4, 3)
@@ -133,11 +136,11 @@ def InitAVSwitch():
 			"auto": _("Automatic")},
 			default="auto")
 
-	if isfile("/proc/stb/video/policy2"):
-		if isfile("/proc/stb/video/policy2_choices"):
+	if exists("/proc/stb/video/policy2"):
+		if exists("/proc/stb/video/policy2_choices"):
 			policy2_choices_proc = "/proc/stb/video/policy2_choices"
 		else:
-			if isfile("/proc/stb/video/policy_choices"):
+			if exists("/proc/stb/video/policy_choices"):
 				policy2_choices_proc = "/proc/stb/video/policy_choices"
 			else:
 				policy2_choices_proc = None
@@ -167,7 +170,7 @@ def InitAVSwitch():
 				policy2_choices.update({"bestfit": _("Stretch linear")})
 		config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
 
-	if isfile("/proc/stb/video/policy_choices"):
+	if exists("/proc/stb/video/policy_choices"):
 		policy_choices_proc = "/proc/stb/video/policy_choices"
 	else:
 		policy_choices_proc = None
@@ -235,444 +238,462 @@ def InitAVSwitch():
 
 	BoxInfo.setItem("ScartSwitch", eAVControl.getInstance().hasScartSwitch())
 
-	if BoxInfo.getItem("HasBypassEdidChecking"):
-		choices = [
-			("00000000", _("Off")),
-			("00000001", _("On"))
-		]
-		default = "00000000"
-
+	bypassEDID = fileReadLine("/proc/stb/hdmi/bypass_edid_checking", default=None, source=MODULE_NAME)
+	bypassEDID = bypassEDID.split() if bypassEDID else False
+	BoxInfo.setItem("Canedidchecking", bypassEDID)
+	if bypassEDID:
 		def setEDIDBypass(configElement):
-			try:
-				open("/proc/stb/hdmi/bypass_edid_checking", "w").write("00000001" if configElement.value else "00000000")
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/hdmi/bypass_edid_checking failed!")
-		config.av.bypass_edid_checking = ConfigSelection(choices=choices, default=default)
+			if configElement.value:
+				value = "00000001" if configElement.value else "00000000"
+				fileWriteLine("/proc/stb/hdmi/bypass_edid_checking", value, source=MODULE_NAME)
+
+		config.av.bypass_edid_checking = ConfigYesNo(default=True)
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
-
-	if BoxInfo.getItem("HasColorspace"):
-		if BoxInfo.getItem("HasColorspaceSimple"):
-			choices = [
-				(pChoice("Edid(Auto)")),
-				(pChoice("Hdmi_Rgb")),
-				("444", _("YCbCr 444")),
-				("422", _("YCbCr 422")),
-				("420", _("YCbCr 420"))
-			]
-			default = "Edid(Auto)"
-		else:
-			if MODEL in ("vuzero4k", "dm900", "dm920"):
-				choices = [
-					(pChoice("Edid(Auto)")),
-					(pChoice("Hdmi_Rgb")),
-					("Itu_R_BT_709", _("BT709")),
-					("DVI_Full_Range_RGB", _("Full Range RGB")),
-					("FCC", _("FCC 1953")),
-					("Itu_R_BT_470_2_BG", _("BT470 BG")),
-					("Smpte_170M", _("SMPTE 170M")),
-					("Smpte_240M", _("SMPTE 240M")),
-					("Itu_R_BT_2020_NCL", _("BT2020 NCL")),
-					("Itu_R_BT_2020_CL", _("BT2020 CL")),
-					("XvYCC_709", _("BT709 XvYCC")),
-					("XvYCC_601", _("BT601 XvYCC"))
-				]
-				default = "Edid(Auto)"
-			else:
-				choices = [
-					(pChoice("auto")),
-					(pChoice("rgb")),
-					("420", "420"),
-					("422", "422"),
-					("444", "444")
-				]
-				default = "auto"
-
+	colorspace = fileReadLine("/proc/stb/video/hdmi_colorspace", default=None, source=MODULE_NAME)
+	colorspace = colorspace.split() if colorspace else False
+	BoxInfo.setItem("havecolorspace", colorspace)
+	if colorspace:
 		def setHDMIColorspace(configElement):
-			try:
-				open("/proc/stb/video/hdmi_colorspace", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/video/hdmi_colorspace failed!")
-		if isfile("/proc/stb/video/hdmi_colorspace_choices"):
-			procfile = "/proc/stb/video/hdmi_colorspace_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.hdmicolorspace = ConfigSelection(choices=choices, default=default)
+			fileWriteLine("/proc/stb/video/hdmi_colorspace", configElement.value, source=MODULE_NAME)
+
+		if MODEL in ("vusolo4k", "vuuno4k", "vuuno4kse", "vuultimo4k", "vuduo4k", "vuduo4kse"):
+			default = "Edid(Auto)"
+			choiceList = [
+				("Edid(Auto)", _("Auto")),
+				("Hdmi_Rgb", "RGB"),
+				("444", "YCbCr 444"),
+				("422", "YCbCr 422"),
+				("420", "YCbCr 420")
+			]
+		elif MODEL in ("dm900", "dm920", "vuzero4k"):
+			default = "Edid(Auto)"
+			choiceList = [
+				("Edid(Auto)", _("Auto")),
+				("Hdmi_Rgb", "RGB"),
+				("Itu_R_BT_709", "BT.709"),
+				("DVI_Full_Range_RGB", _("Full Range RGB")),
+				("FCC", "FCC 1953"),
+				("Itu_R_BT_470_2_BG", "BT.470 BG"),
+				("Smpte_170M", "SMPTE 170M"),
+				("Smpte_240M", "SMPTE 240M"),
+				("Itu_R_BT_2020_NCL", "BT.2020 NCL"),
+				("Itu_R_BT_2020_CL", "BT.2020 CL"),
+				("XvYCC_709", "BT.709 XvYCC"),
+				("XvYCC_601", "BT.601 XvYCC")
+			]
+		else:
+			default = "auto"
+			choiceList = [
+				("auto", _("Auto")),
+				("rgb", "RGB"),
+				("420", "YCbCr 420"),
+				("422", "YCbCr 422"),
+				("444", "YCbCr 444")
+			]
+		config.av.hdmicolorspace = ConfigSelection(default=default, choices=choiceList)
 		config.av.hdmicolorspace.addNotifier(setHDMIColorspace)
 	else:
 		config.av.hdmicolorspace = ConfigNothing()
-
-	if BoxInfo.getItem("HasColorimetry"):
-		choices = [
-			(pChoice("auto")),
-			("bt2020ncl", _("BT2020 NCL")),
-			("bt2020cl", _("BT2020 CL")),
-			("bt709", _("BT709"))
-		]
-		default = "auto"
-
+	colorimetry = fileReadLine("/proc/stb/video/hdmi_colorimetry", default=None, source=MODULE_NAME)
+	colorimetry = colorimetry.split() if colorimetry else False
+	BoxInfo.setItem("havecolorimetry", colorimetry)
+	if colorimetry:
 		def setHDMIColorimetry(configElement):
-			try:
-				open("/proc/stb/video/hdmi_colorimetry", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/video/hdmi_colorimetry failed!")
-		if isfile("/proc/stb/video/hdmi_colorimetry_choices"):
-			procfile = "/proc/stb/video/hdmi_colorimetry_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.hdmicolorimetry = ConfigSelection(choices=choices, default=default)
+			sleep(0.1)
+			fileWriteLine("/proc/stb/video/hdmi_colorimetry", configElement.value, source=MODULE_NAME)
+
+		config.av.hdmicolorimetry = ConfigSelection(default="auto", choices=[
+			("auto", _("Auto")),
+			("bt2020ncl", "BT.2020 NCL"),
+			("bt2020cl", "BT.2020 CL"),
+			("bt709", "BT.709")
+		])
 		config.av.hdmicolorimetry.addNotifier(setHDMIColorimetry)
 	else:
 		config.av.hdmicolorimetry = ConfigNothing()
+	boxMode = fileReadLine("/proc/stb/info/boxmode", default=None, source=MODULE_NAME)
+	boxMode = boxMode.split() if boxMode else False
+	BoxInfo.setItem("haveboxmode", boxMode)
+	if boxMode:
+		def setBoxMode(configElement):
+			fileWriteLine("/proc/stb/info/boxmode", configElement.value, source=MODULE_NAME)
 
-	if BoxInfo.getItem("HasColordepth"):
-		choices = [
-			(pChoice("auto")),
-			("8bit", _("8 bit")),
-			("10bit", _("10 bit")),
-			("12bit", _("12 bit"))
-		]
-		default = "auto"
+		config.av.boxmode = ConfigSelection(default="12", choices=[
+			("12", _("Enable PiP no HDR")),
+			("1", _("12bit 4:2:0/4:2:2 no PiP"))
+		])
+		config.av.boxmode.addNotifier(setBoxMode)
+	else:
+		config.av.boxmode = ConfigNothing()
+	colorDepth = fileReadLine("/proc/stb/video/hdmi_colordepth", default=None, source=MODULE_NAME)
+	colorDepth = colorDepth.split() if colorDepth else False
+	BoxInfo.setItem("havehdmicolordepth", colorDepth)
+	if colorDepth:
+		def setColorDepth(configElement):
+			fileWriteLine("/proc/stb/video/hdmi_colordepth", configElement.value, source=MODULE_NAME)
 
-		def setHdmiColordepth(configElement):
-			try:
-				open("/proc/stb/video/hdmi_colordepth", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/video/hdmi_colordepth failed!")
-		if isfile("/proc/stb/video/hdmi_colordepth_choices"):
-			procfile = "/proc/stb/video/hdmi_colordepth_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.hdmicolordepth = ConfigSelection(choices=choices, default=default)
-		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
+		config.av.hdmicolordepth = ConfigSelection(default="auto", choices=[
+			("auto", _("Auto")),
+			("8bit", _("8bit")),
+			("10bit", _("10bit")),
+			("12bit", _("12bit"))
+		])
+		config.av.hdmicolordepth.addNotifier(setColorDepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 
-	if BoxInfo.getItem("AmlHDRSupport"):
+	syncMode = fileReadLine("/proc/stb/video/sync_mode_choices", default=None, source=MODULE_NAME)
+	syncMode = syncMode.split() if syncMode else False
+	BoxInfo.setItem("havesyncmode", syncMode)
+	if syncMode:
+		def setSyncMode(configElement):
+			fileWriteLine("/proc/stb/video/sync_mode", configElement.value, source=MODULE_NAME)
+
+		config.av.sync_mode = ConfigSelection(default="slow", choices=[
+			("slow", _("Slow Motion")),
+			("hold", _("Hold First Frame")),
+			("black", _("Black Screen")),
+		])
+		config.av.sync_mode.addNotifier(setSyncMode)
+	else:
+		config.av.sync_mode = ConfigNothing()
+	AMLHDRSupport = exists("/sys/class/amhdmitx/amhdmitx0/config")
+	BoxInfo.setItem("haveamlhdrsupport", AMLHDRSupport)
+	if AMLHDRSupport:
 		def setAMLHDR10(configElement):
-			try:
-				open("/sys/class/amhdmitx/amhdmitx0/config", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /sys/class/amhdmitx/amhdmitx0/config failed!")
-		config.av.amlhdr10_support = ConfigSelection(choices={
-			"hdr10-0": _("Force enabled"),
-			"hdr10-1": _("Force disabled"),
-			"hdr10-2": _("Controlled by HDMI")
-		}, default="hdr10-2")
-		config.av.amlhdr10_support.addNotifier(setAMLHDR10)
+			fileWriteLine("/sys/class/amhdmitx/amhdmitx0/config", configElement.value, source=MODULE_NAME)
 
 		def setAMLHLG(configElement):
-			try:
-				open("/sys/class/amhdmitx/amhdmitx0/config", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /sys/class/amhdmitx/amhdmitx0/config failed!")
-		config.av.amlhlg_support = ConfigSelection(choices={
-			"hlg-0": _("Force enabled"),
-			"hlg-1": _("Force disabled"),
-			"hlg-2": _("Controlled by HDMI")
-		}, default="hlg-2")
+			fileWriteLine("/sys/class/amhdmitx/amhdmitx0/config", configElement.value, source=MODULE_NAME)
+
+		config.av.amlhdr10_support = ConfigSelection(default="hdr10-2", choices=[
+			("hdr10-0", _("Force enabled")),
+			("hdr10-1", _("Force disabled")),
+			("hdr10-2", _("Controlled by HDMI"))
+		])
+		config.av.amlhdr10_support.addNotifier(setAMLHDR10)
+		config.av.amlhlg_support = ConfigSelection(default="hlg-2", choices=[
+			("hlg-0", _("Force enabled")),
+			("hlg-1", _("Force disabled")),
+			("hlg-2", _("Controlled by HDMI"))
+		])
 		config.av.amlhlg_support.addNotifier(setAMLHLG)
 	else:
 		config.av.amlhdr10_support = ConfigNothing()
 		config.av.amlhlg_support = ConfigNothing()
+	hdrType = fileReadLine("/proc/stb/video/hdmi_hdrtype", default=None, source=MODULE_NAME)
+	hdrType = hdrType.split() if hdrType else False
+	BoxInfo.setItem("havehdmihdrtype", hdrType)
+	if hdrType:
+		def setHDRType(configElement):
+			fileWriteLine("/proc/stb/video/hdmi_hdrtype", configElement.value, source=MODULE_NAME)
 
-	if BoxInfo.getItem("HasHdrType"):
-		def setHdmiHdrType(configElement):
-			try:
-				open("/proc/stb/video/hdmi_hdrtype", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/video/hdmi_hdrtype failed!")
-		config.av.hdmihdrtype = ConfigSelection(choices=[
-			(pChoice("auto")),
-			(pChoice("dolby")),
-			("none", _("SDR")),
-			(pChoice("hdr10")),
-			(pChoice("hlg"))
-		], default="auto")
-		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
+		config.av.hdmihdrtype = ConfigSelection(default="auto", choices=[
+			("auto", _("Auto")),
+			("dolby", "Dolby Vision"),
+			("none", "SDR"),
+			("hdr10", "HDR10"),
+			# ("hdr10+", "HDR10+"),
+			("hlg", "HLG")
+		])
+		config.av.hdmihdrtype.addNotifier(setHDRType)
 	else:
 		config.av.hdmihdrtype = ConfigNothing()
-
-	if BoxInfo.getItem("HasHDMIpreemphasis"):
-		def setHDMIpreemphasis(configElement):
-			try:
-				open("/proc/stb/hdmi/preemphasis", "w").write("on" if configElement.value else "off")
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/hdmi/preemphasis failed!")
-		config.av.hdmipreemphasis = ConfigYesNo(default=False)
-		config.av.hdmipreemphasis.addNotifier(setHDMIpreemphasis)
-
-	if BoxInfo.getItem("HDRSupport"):
-		config.av.hlg_support = ConfigSelection(default="auto(EDID)", choices=[
-			(pChoice("auto(EDID)")),
-			("yes", _("Force enabled")),
-			("no", _("Force disabled"))
-		])
-
+	hdrSupport = fileReadLine("/proc/stb/hdmi/hlg_support_choices", default=None, source=MODULE_NAME)
+	hdrSupport = hdrSupport.split() if hdrSupport else False
+	BoxInfo.setItem("HDRSupport", hdrSupport)
+	if hdrSupport:
 		def setHlgSupport(configElement):
-			try:
-				open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/hdmi/hlg_support failed!")
-		config.av.hlg_support.addNotifier(setHlgSupport)
-
-		config.av.hdr10_support = ConfigSelection(default="auto(EDID)", choices=[
-			(pChoice("auto(EDID)")),
-			("yes", _("Force enabled")),
-			("no", _("Force disabled"))
-		])
+			fileWriteLine("/proc/stb/hdmi/hlg_support", configElement.value, source=MODULE_NAME)
 
 		def setHdr10Support(configElement):
-			try:
-				open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/hdmi/hdr10_support failed!")
-		config.av.hdr10_support.addNotifier(setHdr10Support)
+			fileWriteLine("/proc/stb/hdmi/hdr10_support", configElement.value, source=MODULE_NAME)
 
 		def setDisable12Bit(configElement):
-			try:
-				open("/proc/stb/video/disable_12bit", "w").write("1" if configElement.value else "0")
-			except:
-				print("[AVSwitch] Write to /proc/stb/video/disable_12bit failed!")
-		config.av.allow_12bit = ConfigYesNo(default=False)
-		config.av.allow_12bit.addNotifier(setDisable12Bit)
+			fileWriteLine("/proc/stb/video/disable_12bit", "1" if configElement.value else "0", source=MODULE_NAME)
 
 		def setDisable10Bit(configElement):
-			try:
-				open("/proc/stb/video/disable_10bit", "w").write("1" if configElement.value else "0")
-			except:
-				print("[AVSwitch] Write to /proc/stb/video/disable_10bit failed!")
+			fileWriteLine("/proc/stb/video/disable_10bit", "1" if configElement.value else "0", source=MODULE_NAME)
+
+		config.av.hlg_support = ConfigSelection(default="auto(EDID)", choices=[
+			("auto(EDID)", _("Controlled by HDMI")),
+			("yes", _("Force enabled")),
+			("no", _("Force disabled"))
+		])
+		config.av.hlg_support.addNotifier(setHlgSupport)
+		config.av.hdr10_support = ConfigSelection(default="auto(EDID)", choices=[
+			("auto(EDID)", _("Controlled by HDMI")),
+			("yes", _("Force enabled")),
+			("no", _("Force disabled"))
+		])
+		config.av.hdr10_support.addNotifier(setHdr10Support)
+		config.av.allow_12bit = ConfigYesNo(default=False)
+		config.av.allow_12bit.addNotifier(setDisable12Bit)
 		config.av.allow_10bit = ConfigYesNo(default=False)
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
-
-	if BoxInfo.getItem("HDMIAudioSource"):
-		choices = [
-			(pChoice("pcm")),
-			(pChoice("spdif"))
-		]
-		default = "pcm"
-
+	audioSource = fileReadLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source" if AMLOGIC else "/proc/stb/hdmi/audio_source", default=None, source=MODULE_NAME)
+	audioSource = audioSource.split() if audioSource else False
+	BoxInfo.setItem("Canaudiosource", audioSource)
+	if audioSource:
 		def setAudioSource(configElement):
-			try:
-				open("/proc/stb/hdmi/audio_source", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/hdmi/audio_source failed!")
-		config.av.hdmi_audio_source = ConfigSelection(choices=choices, default=default)
-		config.av.hdmi_audio_source.addNotifier(setAudioSource)
+			fileWriteLine("/sys/devices/virtual/amhdmitx/amhdmitx0/audio_source" if AMLOGIC else "/proc/stb/hdmi/audio_source", configElement.value, source=MODULE_NAME)
+
+		if AMLOGIC:
+			config.av.audio_source = ConfigSelection(default="0", choices=[
+				("0", "PCM"),
+				("1", "S/PDIF"),
+				("2", _("Bluetooth"))
+			])
+		else:
+			config.av.audio_source = ConfigSelection(default="pcm", choices=[
+				("pcm", "PCM"),
+				("spdif", "S/PDIF")
+			])
+		config.av.audio_source.addNotifier(setAudioSource)
 	else:
-		config.av.hdmi_audio_source = ConfigNothing()
+		config.av.audio_source = ConfigNothing()
+	surround = fileReadLine("/proc/stb/audio/3d_surround_choices", default=None, source=MODULE_NAME)
+	surround = surround.split() if surround else False
+	BoxInfo.setItem("Can3DSurround", surround)
+	if surround:
+		def set3DSurround(configElement):
+			fileWriteLine("/proc/stb/audio/3d_surround", configElement.value, source=MODULE_NAME)
 
-	if BoxInfo.getItem("CanSyncMode"):
-		config.av.sync_mode = ConfigSelection(default="slow", choices={
-			"slow": _("Slow motion"),
-			"hold": _("Hold first frame"),
-			"black": _("Black screen")
-		})
-
-		def setSyncMode(configElement):
-			try:
-				open("/proc/stb/video/sync_mode_choices", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/video/sync_mode_choices failed!")
-		config.av.sync_mode.addNotifier(setSyncMode)
+		config.av.surround_3d = ConfigSelection(default="none", choices=[
+			("none", _("Off")),
+			("hdmi", "HDMI"),
+			("spdif", "S/PDIF"),
+			("dac", "DAC")
+		])
+		config.av.surround_3d.addNotifier(set3DSurround)
 	else:
-		config.av.sync_mode = ConfigNothing()
+		config.av.surround_3d = ConfigNothing()
+	surroundSpeaker = fileReadLine("/proc/stb/audio/3d_surround_speaker_position_choices", default=None, source=MODULE_NAME)
+	surroundSpeaker = surroundSpeaker.split() if surroundSpeaker else False
+	BoxInfo.setItem("Can3DSpeaker", surroundSpeaker)
+	if surroundSpeaker:
+		def set3DSurroundSpeaker(configElement):
+			fileWriteLine("/proc/stb/audio/3d_surround_speaker_position", configElement.value, source=MODULE_NAME)
 
-	if BoxInfo.getItem("HasMultichannelPCM"):
+		config.av.surround_3d_speaker = ConfigSelection(default="center", choices=[
+			("center", _("Center")),
+			("wide", _("Wide")),
+			("extrawide", _("Extra wide"))
+		])
+		config.av.surround_3d_speaker.addNotifier(set3DSurroundSpeaker)
+	else:
+		config.av.surround_3d_speaker = ConfigNothing()
+	autoVolume = fileReadLine("/proc/stb/audio/avl_choices", default=None, source=MODULE_NAME)
+	autoVolume = autoVolume.split() if autoVolume else False
+	BoxInfo.setItem("CanAutoVolume", autoVolume)
+	if autoVolume:
+		def setAutoVolume(configElement):
+			fileWriteLine("/proc/stb/audio/avl", configElement.value, source=MODULE_NAME)
+
+		config.av.autovolume = ConfigSelection(default="none", choices=[
+			("none", _("Off")),
+			("hdmi", "HDMI"),
+			("spdif", "S/PDIF"),
+			("dac", "DAC")
+		])
+		config.av.autovolume.addNotifier(setAutoVolume)
+	else:
+		config.av.autovolume = ConfigNothing()
+	multiChannel = access("/proc/stb/audio/multichannel_pcm", W_OK)
+	BoxInfo.setItem("HasMultichannelPCM", multiChannel)
+	if multiChannel:
 		def setPCMMultichannel(configElement):
-			try:
-				open("/proc/stb/audio/multichannel_pcm", "w").write(configElement.value and "enable" or "disable")
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/audio/multichannel_pcm failed!")
-		config.av.multichannel_pcm = ConfigYesNo(default=False)
-		config.av.multichannel_pcm.addNotifier(setPCMMultichannel)
+			fileWriteLine("/proc/stb/audio/multichannel_pcm", configElement.value and "enable" or "disable", source=MODULE_NAME)
 
-	if BoxInfo.getItem("CanDownmixAC3"):
-		default = "downmix"
-		choices = [
-			(pChoice("downmix")),
-			(pChoice("passthrough"))
-		]
+		config.av.pcm_multichannel = ConfigYesNo(default=False)
+		config.av.pcm_multichannel.addNotifier(setPCMMultichannel)
 
-		def setAC3Downmix(configElement):
-			with open("/proc/stb/audio/ac3", "w") as trackac3:
-				trackac3.write(configElement.value)
-				trackac3.close()
-			if BoxInfo.getItem("HasMultichannelPCM", False) and configElement.value == "passthrough":
-				BoxInfo.getItem("CanPcmMultichannel", True)
-			else:
-				BoxInfo.getItem("CanPcmMultichannel", False)
-				if BoxInfo.getItem("HasMultichannelPCM"):
-					config.av.multichannel_pcm.setValue(False)
-		if isfile("/proc/stb/audio/ac3_choices"):
-			procfile = "/proc/stb/audio/ac3_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.downmix_ac3 = ConfigSelection(choices=choices, default=default)
-		config.av.downmix_ac3.addNotifier(setAC3Downmix)
-
-	if BoxInfo.getItem("CanDownmixAAC"):
-		choices = [
-			(pChoice("downmix")),
-			(pChoice("passthrough"))
-		]
-		default = "downmix"
-
-		def setAACDownmix(configElement):
-			try:
-				open("/proc/stb/audio/aac", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/aac failed!")
-		if isfile("/proc/stb/audio/aac_choices"):
-			procfile = "/proc/stb/audio/aac_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.downmix_aac = ConfigSelection(choices=choices, default=default)
-		config.av.downmix_aac.addNotifier(setAACDownmix)
-
-	if BoxInfo.getItem("CanDownmixAACPlus"):
-		choices = [
-			(pChoice("downmix")),
-			(pChoice("passthrough")),
-			(pChoice("multichannel")),
-			(pChoice("force_ac3")),
-			(pChoice("force_dts")),
-			(pChoice("use_hdmi_cacenter")),
-			(pChoice("wide")),
-			(pChoice("extrawide"))
-		]
-		default = "downmix"
-
-		def setAACDownmixPlus(configElement):
-			try:
-				open("/proc/stb/audio/aacplus", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/aacplus failed!")
-		if isfile("/proc/stb/audio/aacplus_choices"):
-			procfile = "/proc/stb/audio/aacplus_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.downmix_aacplus = ConfigSelection(choices=choices, default=default)
-		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
-
-	if BoxInfo.getItem("CanDownmixDTS"):
-		choices = [
-			(pChoice("downmix")),
-			(pChoice("passthrough"))
-		]
-		default = "downmix"
-
-		def setDTSDownmix(configElement):
-			try:
-				open("/proc/stb/audio/dts", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/dts failed!")
-		if isfile("/proc/stb/audio/dts_choices"):
-			procfile = "/proc/stb/audio/dts_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.downmix_dts = ConfigSelection(choices=choices, default=default)
-		config.av.downmix_dts.addNotifier(setDTSDownmix)
-
-	if BoxInfo.getItem("CanDTSHD"):
-		if MODEL not in ("dm7080", "dm820"):
-			choices = [
-				(pChoice("downmix")),
-				(pChoice("force_dts")),
-				(pChoice("use_hdmi_caps")),
-				(pChoice("multichannel")),
-				(pChoice("hdmi_best"))
-			]
-			default = "downmix"
-		else:
-			choices = [
-				(pChoice("use_hdmi_caps")),
-				(pChoice("force_dts"))
-			]
-			default = "use_hdmi_caps"
-
-		def setDTSHD(configElement):
-			try:
-				open("/proc/stb/audio/dtshd", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/dtshd failed!")
-		if isfile("/proc/stb/audio/dtshd_choices"):
-			procfile = "/proc/stb/audio/dtshd_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.dtshd = ConfigSelection(choices=choices, default=default)
-		config.av.dtshd.addNotifier(setDTSHD)
-
-	if BoxInfo.getItem("CanAACTranscode"):
-		choices = [
-			(pChoice("off")),
-			(pChoice("ac3")),
-			(pChoice("dts"))
-		]
-		default = "off"
-
-		def setAACTranscode(configElement):
-			try:
-				open("/proc/stb/audio/aac_transcode", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/aac_transcode failed!")
-		if isfile("/proc/stb/audio/aac_transcode_choices"):
-			procfile = "/proc/stb/audio/aac_transcode_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.transcodeaac = ConfigSelection(choices=choices, default=default)
-		config.av.transcodeaac.addNotifier(setAACTranscode)
+	if AMLOGIC:
+		downmixAC3 = True
+		BoxInfo.setItem("CanPcmMultichannel", True)
 	else:
-		config.av.transcodeaac = ConfigNothing()
+		downmixAC3 = fileReadLine("/proc/stb/audio/ac3_choices", default=None, source=MODULE_NAME)
+		if downmixAC3:
+			downmixAC3 = "downmix" in downmixAC3
+		else:
+			downmixAC3 = False
+			BoxInfo.setItem("CanPcmMultichannel", False)
+	BoxInfo.setItem("CanDownmixAC3", downmixAC3)
+	if downmixAC3:
+		def setAC3Downmix(configElement):
+			if AMLOGIC:
+				fileWriteLine("/sys/class/audiodsp/digital_raw", configElement.value, source=MODULE_NAME)
+			else:
+				value = configElement.value and "downmix" or "passthrough"
+				if MODEL in ("dm900", "dm920", "dm7080", "dm800"):
+					value = configElement.value
+				fileWriteLine("/proc/stb/audio/ac3", value, source=MODULE_NAME)
 
-	if BoxInfo.getItem("CanAC3PlusTranscode"):
-		default = "force_ac3"
-		DreamBoxAudio = BoxInfo.getItem("DreamBoxAudio")
-		if not DreamBoxAudio and PLATFORM not in ("gb7252", "gb72604"):
-			choices = [
-				(pChoice("use_hdmi_caps")),
-				(pChoice("force_ac3"))
-			]
-		elif DreamBoxAudio:
-			choices = [
-				(pChoice("use_hdmi_caps")),
-				(pChoice("force_ac3")),
-				(pChoice("multichannel")),
-				(pChoice("hdmi_best")),
-				(pChoice("force_ddp"))
+			if BoxInfo.getItem("supportPcmMultichannel", False) and not configElement.value:
+				BoxInfo.setItem("CanPcmMultichannel", True)
+			else:
+				BoxInfo.setItem("CanPcmMultichannel", False)
+				if multiChannel:
+					config.av.pcm_multichannel.setValue(False)
+
+		if MODEL in ("dm900", "dm920", "dm7080", "dm800"):
+			config.av.downmix_ac3 = ConfigSelection(default="downmix", choices=[
+				("downmix", _("Downmix")),
+				("passthrough", _("Pass-through")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("hdmi_best", _("Use best / Controlled by HDMI"))
+			])
+		elif MODEL in ("dreamone", "dreamtwo"):
+			config.av.downmix_ac3 = ConfigSelection(default="0", choices=[
+				("0", _("Downmix")),
+				("1", _("Pass-through")),
+				("2", _("Use best / Controlled by HDMI"))
+			])
+		else:
+			config.av.downmix_ac3 = ConfigYesNo(default=True)
+		config.av.downmix_ac3.addNotifier(setAC3Downmix)
+	else:
+		config.av.downmix_ac3 = ConfigNothing()
+	AC3plusTranscode = fileReadLine("/proc/stb/audio/ac3plus_choices", default=None, source=MODULE_NAME)
+	AC3plusTranscode = AC3plusTranscode.split() if AC3plusTranscode else False
+	BoxInfo.setItem("CanAC3plusTranscode", AC3plusTranscode)
+	if AC3plusTranscode:
+		def setAC3plusTranscode(configElement):
+			fileWriteLine("/proc/stb/audio/ac3plus", configElement.value, source=MODULE_NAME)
+
+		if MODEL in ("dm900", "dm920", "dm7080", "dm800"):
+			choiceList = [
+					("use_hdmi_caps", _("Controlled by HDMI")),
+					("force_ac3", _("Convert to AC3")),
+					("multichannel", _("Convert to multi-channel PCM")),
+					("hdmi_best", _("Use best / Controlled by HDMI")),
+					("force_ddp", _("Force AC3plus"))
+				]
+		elif MODEL in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
+			choiceList = [
+					("downmix", _("Downmix")),
+					("passthrough", _("Pass-through")),
+					("force_ac3", _("Convert to AC3")),
+					("multichannel", _("Convert to multi-channel PCM")),
+					("force_dts", _("Convert to DTS"))
+				]
+		else:
+			choiceList = [
+					("use_hdmi_caps", _("Controlled by HDMI")),
+					("force_ac3", _("Convert to AC3"))
+				]
+		config.av.transcodeac3plus = ConfigSelection(default="force_ac3", choices=choiceList)
+		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
+	dtsHD = fileReadLine("/proc/stb/audio/dtshd_choices", default=None, source=MODULE_NAME)
+	dtsHD = dtsHD.split() if dtsHD else False
+	BoxInfo.setItem("CanDTSHD", dtsHD)
+	if dtsHD:
+		def setDTSHD(configElement):
+			fileWriteLine("/proc/stb/audio/dtshd", configElement.value, source=MODULE_NAME)
+
+		if MODEL in ("dm7080", "dm820"):
+			default = "use_hdmi_caps"
+			choiceList = [
+				("use_hdmi_caps", _("Controlled by HDMI")),
+				("force_dts", _("Convert to DTS"))
 			]
 		else:
-			choices = [
-				(pChoice("downmix")),
-				(pChoice("passthrough")),
-				(pChoice("force_ac3")),
-				(pChoice("multichannel")),
-				(pChoice("force_dts"))
+			default = "downmix"
+			choiceList = [
+				("downmix", _("Downmix")),
+				("force_dts", _("Convert to DTS")),
+				("use_hdmi_caps", _("Controlled by HDMI")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("hdmi_best", _("Use best / Controlled by HDMI"))
 			]
+		config.av.dtshd = ConfigSelection(default=default, choices=choiceList)
+		config.av.dtshd.addNotifier(setDTSHD)
+	wmaPro = fileReadLine("/proc/stb/audio/wmapro_choices", default=None, source=MODULE_NAME)
+	wmaPro = wmaPro.split() if wmaPro else False
+	BoxInfo.setItem("CanWMAPRO", wmaPro)
+	if wmaPro:
+		def setWMAPro(configElement):
+			fileWriteLine("/proc/stb/audio/wmapro", configElement.value, source=MODULE_NAME)
 
-		def setAC3plusTranscode(configElement):
-			try:
-				open("/proc/stb/audio/ac3plus", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/ac3plus failed!")
-		if isfile("/proc/stb/audio/ac3plus_choices"):
-			procfile = "/proc/stb/audio/ac3plus_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.transcodeac3plus = ConfigSelection(choices=choices, default=default)
-		config.av.transcodeac3plus.addNotifier(setAC3plusTranscode)
+		config.av.wmapro = ConfigSelection(default="downmix", choices=[
+			("downmix", _("Downmix")),
+			("passthrough", _("Pass-through")),
+			("multichannel", _("Convert to multi-channel PCM")),
+			("hdmi_best", _("Use best / Controlled by HDMI"))
+		])
+		config.av.wmapro.addNotifier(setWMAPro)
+	dtsDownmix = fileReadLine("/proc/stb/audio/dts_choices", default=None, source=MODULE_NAME)
+	dtsDownmix = "downmix" in dtsDownmix if dtsDownmix else False
+	BoxInfo.setItem("CanDownmixDTS", dtsDownmix)
+	if dtsDownmix:
+		def setDTSDownmix(configElement):
+			fileWriteLine("/proc/stb/audio/dts", configElement.value and "downmix" or "passthrough", source=MODULE_NAME)
 
-	if BoxInfo.getItem("CanWMAPRO"):
-		choices = [
-			(pChoice("downmix")),
-			(pChoice("passthrough")),
-			(pChoice("multichannel")),
-			(pChoice("hdmi_best"))
+		config.av.downmix_dts = ConfigYesNo(default=True)
+		config.av.downmix_dts.addNotifier(setDTSDownmix)
+	aacDownmix = fileReadLine("/proc/stb/audio/aac_choices", default=None, source=MODULE_NAME)
+	aacDownmix = "downmix" in aacDownmix if aacDownmix else False
+	BoxInfo.setItem("CanDownmixAAC", aacDownmix)
+	if aacDownmix:
+		def setAACDownmix(configElement):
+			value = configElement.value if MODEL in ("dm900", "dm920", "dm7080", "dm800", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k") else configElement.value and "downmix" or "passthrough"
+			fileWriteLine("/proc/stb/audio/aac", value, source=MODULE_NAME)
+
+		if MODEL in ("dm900", "dm920", "dm7080", "dm800"):
+			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
+				("downmix", _("Downmix")),
+				("passthrough", _("Pass-through")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("hdmi_best", _("Use best / Controlled by HDMI"))
+			])
+		elif MODEL in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
+			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
+				("downmix", _("Downmix")),
+				("passthrough", _("Pass-through")),
+				("multichannel", _("Convert to multi-channel PCM")),
+				("force_ac3", _("Convert to AC3")),
+				("force_dts", _("Convert to DTS")),
+				("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
+				("wide", _("Wide")),
+				("extrawide", _("Extra wide"))
+			])
+		else:
+			config.av.downmix_aac = ConfigYesNo(default=True)
+		config.av.downmix_aac.addNotifier(setAACDownmix)
+	aacplusDownmix = fileReadLine("/proc/stb/audio/aacplus_choices", default=None, source=MODULE_NAME)
+	aacplusDownmix = "downmix" in aacplusDownmix if aacplusDownmix else False
+	BoxInfo.setItem("CanDownmixAACPlus", aacplusDownmix)
+	if aacplusDownmix:
+		def setAACDownmixPlus(configElement):
+			fileWriteLine("/proc/stb/audio/aacplus", configElement.value, source=MODULE_NAME)
+
+		config.av.downmix_aacplus = ConfigSelection(default="downmix", choices=[
+			("downmix", _("Downmix")),
+			("passthrough", _("Pass-through")),
+			("multichannel", _("Convert to multi-channel PCM")),
+			("force_ac3", _("Convert to AC3")),
+			("force_dts", _("Convert to DTS")),
+			("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
+			("wide", _("Wide")),
+			("extrawide", _("Extra wide"))
+		])
+		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
+	if exists("/proc/stb/audio/aac_transcode_choices"):
+		aacTranscodeAll = [
+			("off", _("Off")),
+			("ac3", "AC3"),
+			("dts", "DTS")
 		]
-		default = "downmix"
-
-		def setWMAPRO(configElement):
-			try:
-				open("/proc/stb/audio/wmapro", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/audio/wmapro failed!")
-		if isfile("/proc/stb/audio/wmapro_choices"):
-			procfile = "/proc/stb/audio/wmapro_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.wmapro = ConfigSelection(choices=choices, default=default)
-		config.av.wmapro.addNotifier(setWMAPRO)
-
+		# The translation text must look exactly like the read value. It is then adjusted with the PO file.
+		aactranscodeChoices = fileReadLine("/proc/stb/audio/aac_transcode_choices", default=None, source=MODULE_NAME)
+		aactranscodeChoices = aactranscodeChoices.split() if aactranscodeChoices else []
+		aacTranscode = [(x[0], x[1]) for x in aacTranscodeAll if x[0] in aactranscodeChoices]
+		default = aacTranscode[0][0] if aacTranscode else "off"
+		print(f"[AVSwitch] aactranscodeChoices choices={aactranscodeChoices}, default={default}.")
+	else:
+		aacTranscode = False
 	if BoxInfo.getItem("CanAudioDelay"):
 		def setAudioDelay(configElement):
 			try:
@@ -683,159 +704,54 @@ def InitAVSwitch():
 		config.av.audiodelay.addNotifier(setAudioDelay)
 	else:
 		config.av.audiodelay = ConfigNothing()
+	BoxInfo.setItem("CanAACTranscode", aacTranscode)
+	if aacTranscode:
+		def setAACTranscode(configElement):
+			fileWriteLine("/proc/stb/audio/aac_transcode", configElement.value, source=MODULE_NAME)
 
-	if BoxInfo.getItem("CanBTAudio"):
-		choices = [
-			(pChoice("off")),
-			(pChoice("on"))
-		]
-		default = "off"
-
+		config.av.transcodeaac = ConfigSelection(default=default, choices=aacTranscode)
+		config.av.transcodeaac.addNotifier(setAACTranscode)
+	else:
+		config.av.transcodeaac = ConfigNothing()
+	btAudio = fileReadLine("/proc/stb/audio/btaudio", default=None, source=MODULE_NAME)
+	btAudio = btAudio.split() if btAudio else False
+	BoxInfo.setItem("CanBTAudio", btAudio)
+	if btAudio:
 		def setBTAudio(configElement):
-			try:
-				open("/proc/stb/audio/btaudio", "w").write(configElement.value)
-			except (IOError, OSError):
-				print("[AVSwitch] Write to /proc/stb/audio/btaudio failed!")
-		config.av.btaudio = ConfigSelection(choices=choices, default="off")
+			fileWriteLine("/proc/stb/audio/btaudio", "on" if configElement.value else "off", source=MODULE_NAME)
+
+		config.av.btaudio = ConfigOnOff(default=False)
 		config.av.btaudio.addNotifier(setBTAudio)
 	else:
 		config.av.btaudio = ConfigNothing()
-
-	if BoxInfo.getItem("CanBTAudioDelay"):
+	btAudioDelay = fileReadLine("/proc/stb/audio/btaudio_delay", default=None, source=MODULE_NAME)
+	btAudioDelay = btAudioDelay.split() if btAudioDelay else False
+	BoxInfo.setItem("CanBTAudioDelay", btAudioDelay)
+	if btAudioDelay:
 		def setBTAudioDelay(configElement):
-			try:
-				open("/proc/stb/audio/btaudio_delay", "w").write(format(configElement.value * 90, "x"))
-			except:
-				open("/proc/stb/audio/btaudio_delay_pcm", "w").write(format(configElement.value * 90, "x"))
-		config.av.btaudiodelay = ConfigSelectionNumber(-1000, 1000, 5, default=0)
+			fileWriteLine("/proc/stb/audio/btaudio_delay", format(configElement.value * 90, "x"), source=MODULE_NAME)
+
+		config.av.btaudiodelay = ConfigSelectionNumber(min=-1000, max=1000, stepwidth=5, default=0)
 		config.av.btaudiodelay.addNotifier(setBTAudioDelay)
 	else:
 		config.av.btaudiodelay = ConfigNothing()
+	if exists("/proc/stb/vmpeg/0/pep_scaler_sharpness"):
+		def setScalerSharpness(configElement):
+			error = False
+			if not fileWriteLine("/proc/stb/vmpeg/0/pep_scaler_sharpness", f"{configElement.value:08X}\n", source=MODULE_NAME):
+				error = True
+			if not error and not fileWriteLine("/proc/stb/vmpeg/0/pep_apply", "1", source=MODULE_NAME):
+				error = True
+			if error:
+				print(f"[AVSwitch] Setting scaler sharpness to '{configElement.value:08X}' failed!")
+			else:
+				print(f"[AVSwitch] Setting scaler sharpness to '{configElement.value:08X}'.")
 
-	if BoxInfo.getItem("Has3DSurround"):
-		choices = [
-			(pChoice("none")),
-			(pChoice("hdmi")),
-			(pChoice("spdif")),
-			(pChoice("dac"))
-		]
-		default = "none"
-
-		def set3DSurround(configElement):
-			try:
-				open("/proc/stb/audio/3d_surround", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/3d_surround failed!")
-		if isfile("/proc/stb/audio/3d_surround_choices"):
-			procfile = "/proc/stb/audio/3d_surround_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.surround_3d = ConfigSelection(choices=choices, default=default)
-		config.av.surround_3d.addNotifier(set3DSurround)
-	else:
-		config.av.surround_3d = ConfigNothing()
-
-	if BoxInfo.getItem("Has3DSpeaker"):
-		choices = [
-			(pChoice("center")),
-			(pChoice("wide")),
-			(pChoice("extrawide"))
-		]
-		default = "center"
-
-		def set3DPosition(configElement):
-			try:
-				open("/proc/stb/audio/3d_surround_speaker_position", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/3d_surround_speaker_position failed!")
-		if isfile("/proc/stb/audio/3d_surround_speaker_position_choices"):
-			procfile = "/proc/stb/audio/3d_surround_speaker_position_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.speaker_3d = ConfigSelection(choices=choices, default=default)
-		config.av.speaker_3d.addNotifier(set3DPosition)
-	else:
-		config.av.speaker_3d = ConfigNothing()
-
-	if BoxInfo.getItem("Has3DSurroundSpeaker"):
-		choices = [
-			(pChoice("disabled")),
-			(pChoice("center")),
-			(pChoice("wide")),
-			(pChoice("extrawide"))
-		]
-		default = "disabled"
-
-		def set3DPositionDisable(configElement):
-			try:
-				open("/proc/stb/audio/3dsurround", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/3dsurround failed!")
-		if isfile("/proc/stb/audio/3dsurround_choices"):
-			procfile = "/proc/stb/audio/3dsurround_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.surround_3d_speaker = ConfigSelection(choices=choices, default=default)
-		config.av.surround_3d_speaker.addNotifier(set3DPositionDisable)
-	else:
-		config.av.surround_3d_speaker = ConfigNothing()
-
-	if BoxInfo.getItem("HasAutoVolume"):
-		choices = [
-			(pChoice("none")),
-			(pChoice("hdmi")),
-			(pChoice("spdif")),
-			(pChoice("dac"))
-		]
-		default = "none"
-
-		def setAutoVolume(configElement):
-			try:
-				open("/proc/stb/audio/avl", "w").write(configElement.value)
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/avl failed!")
-		if isfile("/proc/stb/audio/avl_choices"):
-			procfile = "/proc/stb/audio/avl_choices"
-			(choices, default) = readChoices(procfile, choices, default)
-		config.av.autovolume = ConfigSelection(choices=choices, default=default)
-		config.av.autovolume.addNotifier(setAutoVolume)
-	else:
-		config.av.autovolume = ConfigNothing()
-
-	if BoxInfo.getItem("HasAutoVolumeLevel"):
-		def setAutoVolumeLevel(configElement):
-			try:
-				open("/proc/stb/audio/autovolumelevel_choices", "w").write("enabled" if configElement.value else "disabled")
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/autovolumelevel_choices failed!")
-		config.av.autovolumelevel = ConfigYesNo(default=False)
-		config.av.autovolumelevel.addNotifier(setAutoVolumeLevel)
-
-	if BoxInfo.getItem("ScalerSharpness"):
-		def setScaler_sharpness(config):
-			myval = int(config.value)
-			try:
-				print("--> setting scaler_sharpness to: %0.8X" % myval)
-				print("[AVSwitch] Write to /proc/stb/vmpeg/0/pep_scaler_sharpness")
-				open("/proc/stb/vmpeg/0/pep_scaler_sharpness", "w").write("%0.8X" % myval)
-				print("[AVSwitch] Write to /proc/stb/vmpeg/0/pep_apply")
-				open("/proc/stb/vmpeg/0/pep_apply", "w").write("1")
-			except IOError:
-				print("[AVSwitch] Couldn't write pep_scaler_sharpness or pep_apply")
-
-		if PLATFORM == "gb7356":
-			config.av.scaler_sharpness = ConfigSlider(default=5, limits=(0, 26))
-		else:
-			config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0, 26))
-		config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
+		default = 5 if MODEL in ("gbquad", "gbquadplus") else 13
+		config.av.scaler_sharpness = ConfigSlider(default=default, limits=(0, 26))
+		config.av.scaler_sharpness.addNotifier(setScalerSharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
-
-	if BoxInfo.getItem("Has3DSurroundSoftLimiter"):
-		def set3DSurroundSoftLimiter(configElement):
-			try:
-				open("/proc/stb/audio/3dsurround_softlimiter", "w").write(configElement.value and "enabled" or "disabled")
-			except:
-				print("[AVSwitch] Write to /proc/stb/audio/3dsurround_softlimiter failed!")
-		config.av.surround_softlimiter_3d = ConfigYesNo(default=False)
-		config.av.surround_softlimiter_3d.addNotifier(set3DSurroundSoftLimiter)
 
 	config.av.force = ConfigSelection(default=None, choices=[
 		(None, _("Do not force")),
@@ -844,4 +760,5 @@ def InitAVSwitch():
 	])
 
 
-iAVSwitch = AVSwitch()
+avSwitch = AVSwitch()
+iAVSwitch = avSwitch
