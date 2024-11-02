@@ -112,7 +112,9 @@ class VideoSetup(ConfigListScreen, Screen):
 					self.list.append((_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
 		if level >= 1:
-			self.list.append((_("Audio volume step size"), config.av.volume_stepsize, _("Configure the general audio volume step size (limit 1-10).")))
+			self.list.append((_("Volume steps"), config.volumeControl.pressStep, _("Select the size of the volume step when the VOLUME buttons are pressed.")))
+			self.list.append((_("Long press volume steps"), config.volumeControl.longStep, _("Select the size of the volume steps when the VOLUME buttons are held down.")))
+			self.list.append((_("Volume/Mute display timer"), config.volumeControl.hideTimer, _("Select how long, in seconds, that the volume and mute displays are shown before they automatically hide.")))
 			if BoxInfo.getItem("CanDownmixAC3"):
 				self.list.append((_("AC3 downmix"), config.av.downmix_ac3, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 			if BoxInfo.getItem("CanAC3PlusTranscode"):
@@ -136,23 +138,54 @@ class VideoSetup(ConfigListScreen, Screen):
 				(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
 			if BoxInfo.getItem("HasMultichannelPCM"):
-				self.list.append((_("Multichannel PCM"), config.av.multichannel_pcm, _("Configure whether multi channel PCM sound should be enabled.")))
+				self.list.append((_("Multichannel PCM"), config.av.pcm_multichannel, _("Configure whether multi channel PCM sound should be enabled.")))
 			if BoxInfo.getItem("HasAutoVolumeLevel"):
 				self.list.append((_("Audio auto volume level"), config.av.autovolumelevel, _("This option allows you can to set the auto volume level.")))
 			if BoxInfo.getItem("Has3DSurround"):
 				self.list.append((_("3D surround"), config.av.surround_3d, _("This option allows you to enable 3D surround sound.")))
-				if BoxInfo.getItem("Has3DSpeaker") and config.av.surround_3d.value != "none":
-					self.list.append((_("3D surround speaker position"), config.av.speaker_3d, _("This option allows you to change the virtuell loadspeaker position.")))
-				elif BoxInfo.getItem("Has3DSurroundSpeaker"):
-					self.list.append((_("3D surround speaker position on or off"), config.av.surround_3d_speaker, _("This option allows you to disable or change the virtuell loadspeaker position.")))
-				elif BoxInfo.getItem("Has3DSurroundSoftLimiter") and config.av.surround_3d_speaker.value != "disabled":
-					self.list.append((_("3D surround softlimiter"), config.av.surround_softlimiter_3d, _("This option allows you to enable 3D surround softlimiter.")))
+			if BoxInfo.getItem("Has3DSpeaker") and config.av.surround_3d.value != "none":
+				self.list.append((_("3D surround speaker position"), config.av.speaker_3d, _("This option allows you to change the virtuell loadspeaker position.")))
+			elif BoxInfo.getItem("Has3DSurroundSpeaker"):
+				self.list.append((_("3D surround speaker position on or off"), config.av.surround_3d_speaker, _("This option allows you to disable or change the virtuell loadspeaker position.")))
+			elif BoxInfo.getItem("Has3DSurroundSoftLimiter") and config.av.surround_3d_speaker.value != "disabled":
+				self.list.append((_("3D surround softlimiter"), config.av.surround_softlimiter_3d, _("This option allows you to enable 3D surround softlimiter.")))
 			if BoxInfo.getItem("CanAudioDelay"):
 				self.list.append((_("General audio delay"), config.av.audiodelay, _("This option configures the general audio delay.")))
 			if BoxInfo.getItem("CanBTAudio"):
 				self.list.append((_("Enable BT audio"), config.av.btaudio, _("This option allows you to switch audio to bluetooth speakers.")))
-				if BoxInfo.getItem("CanBTAudioDelay") and config.av.btaudio.value != "off":
-					self.list.append(getConfigListEntry(_("General bluetooth audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for bluetooth speakers.")))
+			if BoxInfo.getItem("CanBTAudioDelay") and config.av.btaudio.value != "off":
+				self.list.append((_("General bluetooth audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for bluetooth speakers.")))
+
+		if BoxInfo.getItem("havecolorspace"):
+			self.list.append((_("HDMI color space"), config.av.hdmicolorspace, _("This option allows you can config the Colorspace from Auto to RGB")))
+
+		if BoxInfo.getItem("havecolorimetry"):
+			self.list.append((_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("This option allows you can config the Colorimetry for HDR")))
+
+		if BoxInfo.getItem("havehdmicolordepth"):
+			self.list.append((_("HDMI color depth"), config.av.hdmicolordepth, _("This option allows you can config the Colordepth for UHD")))
+
+		if BoxInfo.getItem("havehdmihdrtype"):
+			self.list.append((_("HDMI HDR Type"), config.av.hdmihdrtype, _("This option allows you can force the HDR Modes for UHD")))
+
+		if BoxInfo.getItem("Canedidchecking"):
+			self.list.append((_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking, _("This option allows you to bypass HDMI EDID check")))
+
+		if BoxInfo.getItem("haveboxmode"):
+			self.list.append((_("Change Boxmode to control Hardware Chip Modes*"), config.av.boxmode, _("Switch Mode to enable HDR Modes or PiP Functions")))
+
+		if BoxInfo.getItem("HDRSupport"):
+			self.list.append((_("HLG Support"), config.av.hlg_support, _("This option allows you can force the HLG Modes for UHD")))
+			self.list.append((_("HDR10 Support"), config.av.hdr10_support, _("This option allows you can force the HDR10 Modes for UHD")))
+			self.list.append((_("Allow 12bit"), config.av.allow_12bit, _("This option allows you can enable or disable the 12 Bit Color Mode")))
+			self.list.append((_("Allow 10bit"), config.av.allow_10bit, _("This option allows you can enable or disable the 10 Bit Color Mode")))
+
+		if BoxInfo.getItem("havesyncmode"):
+			self.list.append((_("Sync mode"), config.av.sync_mode, _("Setup how to control the channel changing.")))
+
+		if BoxInfo.getItem("haveamlhdrsupport"):
+			self.list.append((_("HLG Support"), config.av.amlhlg_support, _("This option allows you can force the HLG Modes for UHD")))
+			self.list.append((_("HDR10 Support"), config.av.amlhdr10_support, _("This option allows you can force the HDR10 Modes for UHD")))
 
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not isPluginInstalled("VideoEnhancement"):
 			self.list.append((_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))

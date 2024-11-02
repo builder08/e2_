@@ -53,8 +53,7 @@ from re import match
 
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
-from Components.AVSwitch import AVSwitch
-iAVSwitch = AVSwitch()
+from Components.AVSwitch import avSwitch
 
 # hack alert!
 from Screens.Menu import MainMenu, mdom
@@ -3366,8 +3365,7 @@ class InfoBarAspectSelection:
 		]
 
 		keys = ["green", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-		iAVSwitch = AVSwitch()
-		aspect = iAVSwitch.getAspectRatioSetting()
+		aspect = avSwitch.getAspectRatioSetting()
 		selection = 0
 		for item in range(len(aspectList)):
 			if aspectList[item][1] == aspect:
@@ -3400,8 +3398,7 @@ class InfoBarAspectSelection:
 				elif aspect[1] == "resolution":
 					self.ExGreen_toggleGreen()
 				else:
-					iAVSwitch = AVSwitch()
-					iAVSwitch.setAspectRatio(int(aspect[1]))
+					avSwitch.setAspectRatio(int(aspect[1]))
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
