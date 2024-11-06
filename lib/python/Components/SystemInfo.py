@@ -272,18 +272,17 @@ BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
 BoxInfo.setItem("ModuleLayout", getModuleLayout())
 
-BoxInfo.setMutableItem("RCImage", getRCFile("png"))
-BoxInfo.setMutableItem("RCMapping", getRCFile("xml"))
-BoxInfo.setMutableItem("RemoteEnable", MODEL in ("dm800"))
-BoxInfo.setMutableItem("RemoteEnable", MODEL in ("dm800",))
+BoxInfo.setItem("RCImage", getRCFile("png"))
+BoxInfo.setItem("RCMapping", getRCFile("xml"))
+BoxInfo.setItem("RemoteEnable", MODEL in ("dm800"))
+BoxInfo.setItem("RemoteEnable", MODEL in ("dm800",))
 repeat = 400 if MODEL in ("maram9", "classm", "axodin", "axodinc", "starsatlx", "genius", "evo", "galaxym6") else 100
-BoxInfo.setMutableItem("RemoteRepeat", repeat)
-BoxInfo.setMutableItem("RemoteDelay", 200 if repeat == 400 else 700)
-BoxInfo.setMutableItem("have24hz", eAVControl.getInstance().has24hz())
+BoxInfo.setItem("RemoteRepeat", repeat)
+BoxInfo.setItem("RemoteDelay", 200 if repeat == 400 else 700)
 BoxInfo.setItem("hashdmiin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))
 BoxInfo.setItem("MiniTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/proc/stb/lcd/live_enable"))
 BoxInfo.setItem("AISubs", fileExists("/etc/init.d/aisocket"))
-BoxInfo.setMutableItem("HDMI-PreEmphasis", fileExists("/proc/stb/hdmi/preemphasis"))
+BoxInfo.setItem("HDMI-PreEmphasis", fileExists("/proc/stb/hdmi/preemphasis"))
 
 try:
 	branch = "?sha=" + "-".join(about.getEnigmaVersionString().split("-")[3:])
@@ -469,6 +468,7 @@ BoxInfo.setMutableItem("SeekStatePlay", False)
 BoxInfo.setMutableItem("StatePlayPause", False)
 BoxInfo.setMutableItem("StandbyState", False)
 BoxInfo.setMutableItem("FastChannelChange", False)
+BoxInfo.setMutableItem("FCCactive", False)
 
 BoxInfo.setItem("CommonInterface", eDVBCIInterfaces.getInstance().getNumOfSlots())
 BoxInfo.setItem("CommonInterfaceCIDelay", fileCheck("/proc/stb/tsmux/rmx_delay"))
@@ -476,3 +476,6 @@ BoxInfo.setItem("CiAlternativeCaHandling", MODEL in ("pulse4k",  "pulse4kmini"))
 for ciSlot in range(BoxInfo.getItem("CommonInterface")):
 	BoxInfo.setItem(f"CI{ciSlot}SupportsHighBitrates", fileCheck(f"/proc/stb/tsmux/ci{ciSlot}_tsclk"))
 	BoxInfo.setItem(f"CI{ciSlot}RelevantPidsRoutingSupport", fileCheck(f"/proc/stb/tsmux/ci{ciSlot}_relevant_pids_routing"))
+
+# AI
+BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
