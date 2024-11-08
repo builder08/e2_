@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1-En-Th\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -82,6 +82,10 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr ""
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "วนไปทางซ้าย"
 
 msgid " (disabled)"
 msgstr ""
@@ -271,6 +275,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "/var โฟล์เดอร์"
 msgstr[1] "/var โฟล์เดอร์"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "รายสัปดาห์"
+msgstr[1] "รายสัปดาห์"
 
 #, fuzzy, python-format
 msgid "%d wireless network found!"
@@ -3982,6 +3992,9 @@ msgstr ""
 msgid "Finetune"
 msgstr "ปรับแบบละเอียด"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "จบการทำงาน"
 
@@ -5049,6 +5062,9 @@ msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "ภาษา"
@@ -8413,6 +8429,9 @@ msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Set as startup service"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set blocktimes by weekday"
@@ -11990,9 +12009,6 @@ msgstr "รายวัน"
 msgid "day"
 msgstr "วัน"
 
-msgid "days"
-msgstr ""
-
 #, fuzzy
 msgid "default"
 msgstr "ค่าเริ่มต้น"
@@ -12202,12 +12218,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "แนวนอน (H)"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #, fuzzy
 msgid "in menu and plugins"
 msgstr "ดาวน์โหลด Plugins"
@@ -12320,12 +12330,6 @@ msgstr "%d นาที"
 
 msgid "mins"
 msgstr "น."
-
-msgid "minute"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
 
 #, fuzzy
 msgid "module disabled"
@@ -12827,15 +12831,7 @@ msgstr "กำลังรอ"
 msgid "water sport"
 msgstr ""
 
-#, fuzzy
-msgid "week"
-msgstr "รายสัปดาห์"
-
 msgid "weekly"
-msgstr "รายสัปดาห์"
-
-#, fuzzy
-msgid "weeks"
 msgstr "รายสัปดาห์"
 
 msgid "west"

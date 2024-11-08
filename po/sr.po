@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -86,6 +86,11 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr ""
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "leva cirkularna"
 
 msgid " (disabled)"
 msgstr ""
@@ -296,6 +301,14 @@ msgid_plural "%d subdirectories"
 msgstr[0] "/var direktorijum"
 msgstr[1] "/var direktorijum"
 msgstr[2] "/var direktorijum"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "nedeljno"
+msgstr[1] "nedeljno"
+msgstr[2] "nedeljno"
 
 #
 #, fuzzy, python-format
@@ -4479,6 +4492,9 @@ msgstr ""
 msgid "Finetune"
 msgstr "Fino podešavanje"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Završeno"
@@ -5664,6 +5680,9 @@ msgstr "LAN veza"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9523,6 +9542,9 @@ msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Set as startup service"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set blocktimes by weekday"
@@ -13522,9 +13544,6 @@ msgstr "dnevno"
 msgid "day"
 msgstr "Dan"
 
-msgid "days"
-msgstr ""
-
 #, fuzzy
 msgid "default"
 msgstr "Standardno"
@@ -13760,12 +13779,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontalno"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #
 #, fuzzy
 msgid "in menu and plugins"
@@ -13899,12 +13912,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "mins"
-
-msgid "minute"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
 
 #
 #, fuzzy
@@ -14478,17 +14485,7 @@ msgid "water sport"
 msgstr ""
 
 #
-#, fuzzy
-msgid "week"
-msgstr "nedeljno"
-
-#
 msgid "weekly"
-msgstr "nedeljno"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "nedeljno"
 
 msgid "west"

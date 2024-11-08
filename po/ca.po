@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2024-03-09 11:25+0100\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: angelodos angelo2807@hotmail.com\n"
@@ -91,6 +91,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (detecció automàtica)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Utilitzar LNB circular"
 
 msgid " (disabled)"
 msgstr " (desactivat)"
@@ -286,6 +290,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d subdirectori"
 msgstr[1] "%d subdirectoris"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "setmanalment"
+msgstr[1] "setmanalment"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -4288,6 +4299,9 @@ msgstr "Moviment precís"
 msgid "Finetune"
 msgstr "Sintonització fina"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Finialitzat"
@@ -5406,6 +5420,9 @@ msgstr "Connexió de xarxa local"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9054,6 +9071,9 @@ msgstr "Establir sintonitzadors de reserva alternatius per a DVB-T / C o ATSC"
 
 msgid "Set as startup service"
 msgstr "Establir com a servei d’inici"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Establir horaris de bloqueig per dies feiners"
@@ -12882,9 +12902,6 @@ msgstr "diàriament"
 msgid "day"
 msgstr "dia"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "per defecte"
 
@@ -13113,14 +13130,6 @@ msgstr "alt"
 msgid "horizontal"
 msgstr "horitzontal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d hora"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d hora"
-
 #
 msgid "in menu and plugins"
 msgstr "al menú i plugins"
@@ -13248,14 +13257,6 @@ msgstr "min"
 #
 msgid "mins"
 msgstr "minuts"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minut"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minuts"
 
 #
 msgid "module disabled"
@@ -13814,17 +13815,7 @@ msgid "water sport"
 msgstr "esport d’aigua"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "setmanalment"
-
-#
 msgid "weekly"
-msgstr "setmanalment"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "setmanalment"
 
 msgid "west"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -81,6 +81,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (auto detectie)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Gebruik de circulaire LNB"
 
 msgid " (disabled)"
 msgstr " (uitgeschakeld)"
@@ -267,6 +271,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d subdirectory"
 msgstr[1] "%d subdirectories"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "wekelijks"
+msgstr[1] "wekelijks"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -4060,6 +4070,9 @@ msgstr "Exact positioneren"
 msgid "Finetune"
 msgstr "Fijn afst."
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Voltooid"
 
@@ -5086,6 +5099,9 @@ msgstr "LAN verbinding"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Taal"
@@ -8334,6 +8350,9 @@ msgstr "Indien geactiveerd, dan kunt u alternatieve Fallback tuners ingeven t.b.
 
 msgid "Set as startup service"
 msgstr "Kanaal kiezen bij opstarten"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Stel bloktijden in als wekelijks"
@@ -11919,9 +11938,6 @@ msgstr "dagelijks"
 msgid "day"
 msgstr "dag"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "standaard"
 
@@ -12126,14 +12142,6 @@ msgstr "hoog"
 msgid "horizontal"
 msgstr "horizontaal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d uur"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d uur"
-
 msgid "in menu and plugins"
 msgstr "In zowel menu als plugins"
 
@@ -12241,14 +12249,6 @@ msgstr "min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuut"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minuten"
 
 msgid "module disabled"
 msgstr "module uitgeschakeld"
@@ -12739,15 +12739,7 @@ msgstr "ingepland"
 msgid "water sport"
 msgstr "Watersport"
 
-#, fuzzy
-msgid "week"
-msgstr "wekelijks"
-
 msgid "weekly"
-msgstr "wekelijks"
-
-#, fuzzy
-msgid "weeks"
 msgstr "wekelijks"
 
 msgid "west"

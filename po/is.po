@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2020-05-16 18:44+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -83,6 +83,11 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr ""
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "hringpólun vinstri"
 
 msgid " (disabled)"
 msgstr ""
@@ -282,6 +287,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "/var mappa"
 msgstr[1] "/var mappa"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "vikulega"
+msgstr[1] "vikulega"
 
 #
 #, fuzzy, python-format
@@ -4246,6 +4258,9 @@ msgstr ""
 msgid "Finetune"
 msgstr "Fínstilla"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Búið"
@@ -5417,6 +5432,9 @@ msgstr "LAN tenging"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9217,6 +9235,9 @@ msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Set as startup service"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set blocktimes by weekday"
@@ -13160,9 +13181,6 @@ msgstr "daglega"
 msgid "day"
 msgstr "dagur"
 
-msgid "days"
-msgstr ""
-
 #
 #, fuzzy
 msgid "default"
@@ -13399,12 +13417,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "lárétt"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #, fuzzy
 msgid "in menu and plugins"
 msgstr "Hala niður íforritum"
@@ -13535,12 +13547,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "mín"
-
-msgid "minute"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
 
 #
 #, fuzzy
@@ -14110,17 +14116,7 @@ msgid "water sport"
 msgstr ""
 
 #
-#, fuzzy
-msgid "week"
-msgstr "vikulega"
-
-#
 msgid "weekly"
-msgstr "vikulega"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "vikulega"
 
 msgid "west"

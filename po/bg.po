@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2024-06-02 10:31+0300\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -81,6 +81,10 @@ msgstr " (ТВ)"
 
 msgid " (auto detection)"
 msgstr " (авто откриване)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Използвай LNB за кръгова поляризация"
 
 msgid " (disabled)"
 msgstr " (деактивиран)"
@@ -267,6 +271,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d поддиректория"
 msgstr[1] "%d поддиректории"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "седмично"
+msgstr[1] "седмично"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3864,6 +3874,9 @@ msgstr "Фино движение"
 msgid "Finetune"
 msgstr "Фина Настройка"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Завърши"
 
@@ -4871,6 +4884,9 @@ msgstr "LAN свързване"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Език"
@@ -8062,6 +8078,9 @@ msgstr "Задаване на допълнителни резервни туне
 
 msgid "Set as startup service"
 msgstr "Задаване като стартиращ канал"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Задаване на забранени часове по дни"
@@ -11549,9 +11568,6 @@ msgstr "дневно"
 msgid "day"
 msgstr "ден"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "по подразбиране"
 
@@ -11756,14 +11772,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "хоризонтална"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d час"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d час"
-
 msgid "in menu and plugins"
 msgstr "менюто и плъгините"
 
@@ -11872,14 +11880,6 @@ msgstr " мин"
 
 msgid "mins"
 msgstr "мин"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d минута"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d минути"
 
 msgid "module disabled"
 msgstr "модула е спрян"
@@ -12369,15 +12369,7 @@ msgstr "изчаквам"
 msgid "water sport"
 msgstr "водни спортове"
 
-#, fuzzy
-msgid "week"
-msgstr "седмично"
-
 msgid "weekly"
-msgstr "седмично"
-
-#, fuzzy
-msgid "weeks"
 msgstr "седмично"
 
 msgid "west"

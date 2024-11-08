@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2021-11-03 15:10+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -80,6 +80,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr "(automata detektálás)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Körpoláros fej használata"
 
 msgid " (disabled)"
 msgstr " (kikapcsolva)"
@@ -267,6 +271,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d al-mappa"
 msgstr[1] "%d al-mappa"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "hetente"
+msgstr[1] "hetente"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3894,6 +3904,9 @@ msgstr "Finom mozgatás"
 msgid "Finetune"
 msgstr "Finomhangolás"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Kész"
 
@@ -4918,6 +4931,9 @@ msgstr "Helyi privát"
 
 msgid "LNB"
 msgstr "Fej"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Kezelőfelület nyelve"
@@ -8135,6 +8151,9 @@ msgstr "Alternatív tartalék tuner beállítása DVB-T/C vagy ATSC vételhez"
 
 msgid "Set as startup service"
 msgstr "Beállítás indítási csatornának"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Blokkidők megadása a hét napjai alapján"
@@ -11661,9 +11680,6 @@ msgstr "naponta"
 msgid "day"
 msgstr "nap"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "alapértelmezett"
 
@@ -11871,14 +11887,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontális"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d óra"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d óra"
-
 msgid "in menu and plugins"
 msgstr "menüben és bővítményeknél"
 
@@ -11988,14 +11996,6 @@ msgstr " perc"
 
 msgid "mins"
 msgstr "perc"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d perc"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d perc"
 
 #, fuzzy
 msgid "module disabled"
@@ -12496,15 +12496,7 @@ msgstr "várakozás"
 msgid "water sport"
 msgstr "vizi sport"
 
-#, fuzzy
-msgid "week"
-msgstr "hetente"
-
 msgid "weekly"
-msgstr "hetente"
-
-#, fuzzy
-msgid "weeks"
 msgstr "hetente"
 
 msgid "west"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2017-01-18 16:38+0100\n"
 "Last-Translator: lupine <a_ecklon@hotmail.com>\n"
 "Language-Team: \n"
@@ -88,6 +88,10 @@ msgstr "(TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Til lyd valg"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Brug cirkuler LNB"
 
 msgid " (disabled)"
 msgstr "(afbrudt)"
@@ -284,6 +288,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d underbibliotek"
 msgstr[1] "%d underbiblioteker"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "ugentlig"
+msgstr[1] "ugentlig"
 
 #
 #, python-format
@@ -4408,6 +4419,9 @@ msgstr "Fin bevægelse"
 msgid "Finetune"
 msgstr "Fintuning"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Færdig"
@@ -5565,6 +5579,9 @@ msgstr "LAN Forbindelse"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9322,6 +9339,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Sæt som startkanal"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr ""
@@ -13292,9 +13312,6 @@ msgstr "daglig"
 msgid "day"
 msgstr "dag"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "standard"
@@ -13531,14 +13548,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horisontal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d time"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d time"
-
 #
 #, fuzzy
 msgid "in menu and plugins"
@@ -13673,14 +13682,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minut"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minutter"
 
 #
 #, fuzzy
@@ -14259,17 +14260,7 @@ msgid "water sport"
 msgstr "vandsport"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "ugentlig"
-
-#
 msgid "weekly"
-msgstr "ugentlig"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "ugentlig"
 
 msgid "west"

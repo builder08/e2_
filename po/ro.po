@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2010-03-09 21:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -80,6 +80,10 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr ""
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "circular stanga"
 
 msgid " (disabled)"
 msgstr ""
@@ -267,6 +271,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "/var director"
 msgstr[1] "/var director"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "saptamanal"
+msgstr[1] "saptamanal"
 
 #, fuzzy, python-format
 msgid "%d wireless network found!"
@@ -3963,6 +3973,9 @@ msgstr ""
 msgid "Finetune"
 msgstr "Reglaj fin"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Finalizat"
 
@@ -5024,6 +5037,9 @@ msgstr ""
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr ""
@@ -8375,6 +8391,9 @@ msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Set as startup service"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set blocktimes by weekday"
@@ -11937,9 +11956,6 @@ msgstr "zilnic"
 msgid "day"
 msgstr "ziua"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr ""
 
@@ -12148,12 +12164,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "orizontal"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #, fuzzy
 msgid "in menu and plugins"
 msgstr "Descarca Pluginuri"
@@ -12265,12 +12275,6 @@ msgstr "min"
 
 msgid "mins"
 msgstr "min"
-
-msgid "minute"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
 
 #, fuzzy
 msgid "module disabled"
@@ -12772,15 +12776,7 @@ msgstr "in asteptare"
 msgid "water sport"
 msgstr ""
 
-#, fuzzy
-msgid "week"
-msgstr "saptamanal"
-
 msgid "weekly"
-msgstr "saptamanal"
-
-#, fuzzy
-msgid "weeks"
 msgstr "saptamanal"
 
 msgid "west"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2013-10-23 19:15+0100\n"
 "Last-Translator: andy1 <dmmm8000pvr@gmail.com>\n"
 "Language-Team: none\n"
@@ -85,6 +85,11 @@ msgstr ""
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Til lyd utvalg"
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "sirkulær venstre"
 
 msgid " (disabled)"
 msgstr ""
@@ -276,6 +281,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d rotkatalog"
 msgstr[1] "%d rotkataloger"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "ukentlig"
+msgstr[1] "ukentlig"
 
 #
 #, python-format
@@ -4259,6 +4271,9 @@ msgstr "Sakte bevegelse"
 msgid "Finetune"
 msgstr "Fininnstilling"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Ferdig"
@@ -5385,6 +5400,9 @@ msgstr "LAN oppkobling"
 
 #
 msgid "LNB"
+msgstr ""
+
+msgid "LOSTLOCK"
 msgstr ""
 
 #
@@ -8987,6 +9005,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Sett som oppstartskanal"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr ""
@@ -12818,9 +12839,6 @@ msgstr "daglig"
 msgid "day"
 msgstr "dag"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "standard"
@@ -13055,14 +13073,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horisontal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d time"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d time"
-
 #
 #, fuzzy
 msgid "in menu and plugins"
@@ -13192,14 +13202,6 @@ msgstr "%d minutt"
 #
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minutt"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minutter"
 
 #
 #, fuzzy
@@ -13766,17 +13768,7 @@ msgid "water sport"
 msgstr "Vannsport"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "ukentlig"
-
-#
 msgid "weekly"
-msgstr "ukentlig"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "ukentlig"
 
 msgid "west"

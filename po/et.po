@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Openpli\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -82,6 +82,10 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Heli valik"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Kasuta ringpolarisatsiooni LNB"
 
 msgid " (disabled)"
 msgstr " (keelatud)"
@@ -270,6 +274,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d alamkataloog"
 msgstr[1] "%d alamkataloogid"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "iga nädal"
+msgstr[1] "iga nädal"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3927,6 +3937,9 @@ msgstr "Täppisliigutamine"
 msgid "Finetune"
 msgstr "Peenhäälestus"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Lõppenud"
 
@@ -4954,6 +4967,9 @@ msgstr "LAN ühendus"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Keel"
@@ -8214,6 +8230,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Käivita vastuvõtja sellel kanalil"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Sea keeluajad nädalapäeviti"
@@ -11803,9 +11822,6 @@ msgstr "iga päev"
 msgid "day"
 msgstr "päev"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "vaikimisi"
 
@@ -12016,14 +12032,6 @@ msgid "horizontal"
 msgstr "horisontaal"
 
 #, fuzzy
-msgid "hour"
-msgstr "%d tund"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d tund"
-
-#, fuzzy
 msgid "in menu and plugins"
 msgstr "Paigalda laiendusi"
 
@@ -12137,14 +12145,6 @@ msgstr "%d min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minut"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minutit"
 
 #, fuzzy
 msgid "module disabled"
@@ -12650,15 +12650,7 @@ msgstr "ootan"
 msgid "water sport"
 msgstr "veesport"
 
-#, fuzzy
-msgid "week"
-msgstr "iga nädal"
-
 msgid "weekly"
-msgstr "iga nädal"
-
-#, fuzzy
-msgid "weeks"
 msgstr "iga nädal"
 
 msgid "west"

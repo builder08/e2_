@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2020-05-16 18:41+0200\n"
 "Last-Translator: jamu\n"
 "Language-Team: BoxFreak/jamu\n"
@@ -89,6 +89,11 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Avaa äänivalinta"
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Kiertopolarisaatio"
 
 #
 msgid " (disabled)"
@@ -285,6 +290,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d alihakemisto"
 msgstr[1] "%d alihakemistoa"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "Viikoittain"
+msgstr[1] "Viikoittain"
 
 #
 #, python-format
@@ -4312,6 +4324,9 @@ msgstr "Moottorin hienosäätö"
 msgid "Finetune"
 msgstr "Hienosäät."
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Päättyi"
@@ -5443,6 +5458,9 @@ msgstr "LAN-yhteys"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9158,6 +9176,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Aseta käynnistyskanavaksi"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Aseta aikaväli päiväkohtaisesti"
@@ -13057,9 +13078,6 @@ msgstr "Päivittäin"
 msgid "day"
 msgstr "päivä"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "Oletus"
@@ -13293,14 +13311,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "Horisontaali"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d tunti"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d tunti"
-
 msgid "in menu and plugins"
 msgstr "Valikoissa ja lisäosissa"
 
@@ -13430,14 +13440,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "minuuttia"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuutti"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minuuttia"
 
 #, fuzzy
 msgid "module disabled"
@@ -14018,17 +14020,7 @@ msgid "water sport"
 msgstr "vesiurheilu"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "Viikoittain"
-
-#
 msgid "weekly"
-msgstr "Viikoittain"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "Viikoittain"
 
 #

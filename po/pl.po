@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2024-01-17 10:49+0100\n"
 "Last-Translator: hasiok\n"
 "Language-Team: \n"
@@ -81,6 +81,10 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr " (autowykrywanie)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Użyj konwertera kołowego"
 
 msgid " (disabled)"
 msgstr " (wyłączony)"
@@ -278,6 +282,13 @@ msgid_plural "%d subdirectories"
 msgstr[0] "%d podkatalog"
 msgstr[1] "%d podkatalogi"
 msgstr[2] "%d podkatalogów"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "Co tydzień"
+msgstr[1] "Co tydzień"
+msgstr[2] "Co tydzień"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3884,6 +3895,9 @@ msgstr "Precyzyjne ruchy"
 msgid "Finetune"
 msgstr "Dostrajanie"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Skończone"
 
@@ -4906,6 +4920,9 @@ msgstr "Połączenie LAN"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Język"
@@ -8146,6 +8163,9 @@ msgstr "Ustaw alternatywny tuner rezerwowy dla DVB-T/C lub ATSC"
 
 msgid "Set as startup service"
 msgstr "Ustaw jako kanał startowy"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Ustaw czas blokady wg dni tygodnia"
@@ -11681,9 +11701,6 @@ msgstr "Codziennie"
 msgid "day"
 msgstr "Dzień"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "Domyślny"
 
@@ -11889,14 +11906,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "Pozioma (H)"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d godzina"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d godzina"
-
 msgid "in menu and plugins"
 msgstr "w menu i wtyczkach"
 
@@ -12005,14 +12014,6 @@ msgstr "min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuta"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minuty"
 
 #, fuzzy
 msgid "module disabled"
@@ -12504,15 +12505,7 @@ msgstr "Oczekiwanie"
 msgid "water sport"
 msgstr "Sporty wodne"
 
-#, fuzzy
-msgid "week"
-msgstr "Co tydzień"
-
 msgid "weekly"
-msgstr "Co tydzień"
-
-#, fuzzy
-msgid "weeks"
 msgstr "Co tydzień"
 
 msgid "west"
