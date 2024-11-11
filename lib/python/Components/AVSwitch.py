@@ -6,15 +6,13 @@ from enigma import eAVSwitch, eAVControl, getDesktop
 
 from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, ConfigOnOff, NoSave, ConfigText, ConfigSelectionInteger
 from Components.SystemInfo import BoxInfo
-from Tools.AVHelper import pChoice, readChoices
 from Tools.Directories import fileReadLine, fileWriteLine
-
-iAVSwitch = None # will be initialized later, allows to import name 'iAVSwitch' from 'Components.AVSwitch'
 
 MODULE_NAME = __name__.split(".")[-1]
 
 MODEL = BoxInfo.getItem("model")
 AMLOGIC = BoxInfo.getItem("AmlogicFamily")
+
 
 class AVSwitch:
 	def setAspect(self, configElement):
@@ -23,20 +21,29 @@ class AVSwitch:
 	def setAspectRatio(self, value):
 		if value < 100:
 			eAVControl.getInstance().setAspectRatio(value)
-		else:  # Aspect Switcher
+		else:  # Aspect switcher.
 			value -= 100
 			offset = config.av.aspectswitch.offsets[str(value)].value
-			newheight = 576 - offset
-			newtop = offset // 2
+			newTop = offset // 2
+			newHeight = 576 - offset
 			if value:
-				newwidth = 720
+				newWidth = 720
 			else:
-				newtop = 0
-				newwidth = 0
-				newheight = 0
+				newTop = 0
+				newWidth = 0
+				newHeight = 0
+			eAVControl.getInstance().setAspectRatio(2)  # 16:9.
+			eAVControl.getInstance().setVideoSize(newTop, 0, newWidth, newHeight)
 
-			eAVControl.getInstance().setAspectRatio(2)  # 16:9
-			eAVControl.getInstance().setVideoSize(newtop, 0, newwidth, newheight)
+	def setColorFormat(self, value):
+		if not self.current_port:
+			self.current_port = config.av.videoport.value
+		if self.current_port in ("YPbPr", "Scart-YPbPr"):
+			eAVControl.getInstance().setColorFormat("yuv")
+		elif self.current_port == "RCA":
+			eAVControl.getInstance().setColorFormat("cvbs")
+		else:
+			eAVControl.getInstance().setColorFormat(value)
 
 	def setColorFormat(self, value):
 		eAVSwitch.getInstance().setColorFormat(value)
@@ -75,23 +82,16 @@ class AVSwitch:
 		fb_size = getDesktop(0).size()
 		return (aspect[0] * fb_size.height(), aspect[1] * fb_size.width())
 
-	def getAspectRatioSetting(self):
-		valstr = config.av.aspectratio.value
-		if valstr == "4_3_letterbox":
-			val = 0
-		elif valstr == "4_3_panscan":
-			val = 1
-		elif valstr == "16_9":
-			val = 2
-		elif valstr == "16_9_always":
-			val = 3
-		elif valstr == "16_10_letterbox":
-			val = 4
-		elif valstr == "16_10_panscan":
-			val = 5
-		elif valstr == "16_9_letterbox":
-			val = 6
-		return val
+	def getAspectRatioSetting(self):  # TODO AML.  What needs to be done here?
+		return {
+			"4_3_letterbox": 0,
+			"4_3_panscan": 1,
+			"16_9": 2,
+			"16_9_always": 3,
+			"16_10_letterbox": 4,
+			"16_10_panscan": 5,
+			"16_9_letterbox": 6
+		}.get(config.av.aspectratio.value, config.av.aspectratio.value)
 
 	def setAspectWSS(self, aspect=None):
 		if not config.av.wss.value:
@@ -103,110 +103,113 @@ class AVSwitch:
 
 def InitAVSwitch():
 	config.av = ConfigSubsection()
-	if MODEL == "vuduo":
-		config.av.yuvenabled = ConfigBoolean(default=False)
-	else:
-		config.av.yuvenabled = ConfigBoolean(default=True)
-	colorformat_choices = {"cvbs": "CVBS"}
+	config.av.yuvenabled = ConfigBoolean(default=MODEL != "vuduo")
+	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))
 
-	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make Openpli compatible with some plugins who still use config.av.osd_alpha.
-
-	# when YUV, Scart or S-Video is not support by HW, don't let the user select it
-	if BoxInfo.getItem("HasYPbPr"):
-		colorformat_choices["yuv"] = "YPbPr"
-	if BoxInfo.getItem("HasScart"):
-		colorformat_choices["rgb"] = "RGB"
-	if BoxInfo.getItem("HasSVideo"):
-		colorformat_choices["svideo"] = "S-Video"
-
-	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
-	config.av.aspectratio = ConfigSelection(choices={
-			"4_3_letterbox": _("4:3 letterbox"),
-			"4_3_panscan": _("4:3 panscan"),
-			"16_9": _("16:9"),
-			"16_9_always": _("16:9 always"),
-			"16_10_letterbox": _("16:10 letterbox"),
-			"16_10_panscan": _("16:10 panscan"),
-			"16_9_letterbox": _("16:9 letterbox")},
-			default="16_9")
-	config.av.aspect = ConfigSelection(choices={
-			"4_3": _("4:3"),
-			"16_9": _("16:9"),
-			"16_10": _("16:10"),
-			"auto": _("Automatic")},
-			default="auto")
-
-	if exists("/proc/stb/video/policy2"):
-		if exists("/proc/stb/video/policy2_choices"):
-			policy2_choices_proc = "/proc/stb/video/policy2_choices"
-		else:
-			if exists("/proc/stb/video/policy_choices"):
-				policy2_choices_proc = "/proc/stb/video/policy_choices"
-			else:
-				policy2_choices_proc = None
-		try:
-			policy2_choices_raw = open(policy2_choices_proc, "r").read()
-		except:
-			policy2_choices_raw = "letterbox"
-
-		policy2_choices = {}
-
-		if policy2_choices_raw and policy2_choices_raw is not None:
-			if "letterbox" in policy2_choices_raw:
-				policy2_choices.update({"letterbox": _("Letterbox")})
-			if "panscan" in policy2_choices_raw:
-				policy2_choices.update({"panscan": _("Pan&scan")})
-			if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
-				policy2_choices.update({"nonliner": _("Stretch nonlinear")})
-			if "nonlinear" in policy2_choices_raw:
-				policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
-			if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-				policy2_choices.update({"scale": _("Stretch linear")})
-			if "full" in policy2_choices_raw:
-				policy2_choices.update({"full": _("Stretch full")})
-			if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-				policy2_choices.update({"auto": _("Stretch linear")})
-			if "bestfit" in policy2_choices_raw:
-				policy2_choices.update({"bestfit": _("Stretch linear")})
-		config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
-
-	if exists("/proc/stb/video/policy_choices"):
-		policy_choices_proc = "/proc/stb/video/policy_choices"
-	else:
-		policy_choices_proc = None
-	try:
-		policy_choices_raw = open(policy_choices_proc, "r").read()
-	except:
-		policy_choices_raw = "panscan"
-
-	policy_choices = {}
-
-	if policy_choices_raw and policy_choices_raw is not None:
-		if "pillarbox" in policy_choices_raw and not "panscan" in policy_choices_raw:
-			policy_choices.update({"pillarbox": _("Pillarbox")})
-		if "panscan" in policy_choices_raw:
-			policy_choices.update({"panscan": _("Pillarbox")})
-		if "letterbox" in policy_choices_raw:
-			policy_choices.update({"letterbox": _("Pan&scan")})
-		if "nonliner" in policy_choices_raw and not "nonlinear" in policy_choices_raw:
-			policy_choices.update({"nonliner": _("Stretch nonlinear")})
-		if "nonlinear" in policy_choices_raw:
-			policy_choices.update({"nonlinear": _("Stretch nonlinear")})
-		if "scale" in policy_choices_raw and not "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
-			policy_choices.update({"scale": _("Stretch linear")})
-		if "full" in policy_choices_raw:
-			policy_choices.update({"full": _("Stretch full")})
-		if "auto" in policy_choices_raw and not "bestfit" in policy_choices_raw:
-			policy_choices.update({"auto": _("Stretch linear")})
-		if "bestfit" in policy_choices_raw:
-			policy_choices.update({"bestfit": _("Stretch linear")})
-	config.av.policy_43 = ConfigSelection(choices=policy_choices, default="panscan")
-
-	config.av.tvsystem = ConfigSelection(choices={"pal": "PAL", "ntsc": "NTSC", "multinorm": "multinorm"}, default="pal")
+	# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
+	policy2ChoicesProc = "/proc/stb/video/policy2_choices"
+	if not exists(policy2ChoicesProc):
+		policy2ChoicesProc = "/proc/stb/video/policy_choices"
+	policy2ChoicesRaw = fileReadLine(policy2ChoicesProc, default="letterbox", source=MODULE_NAME)
+	choiceList = {}
+	if "letterbox" in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
+		choiceList.update({"letterbox": _("Letterbox")})
+	if "panscan" in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+		choiceList.update({"panscan": _("Pan&scan")})  # Should be "PanScan" or "Pan & Scan".
+	if "nonliner" in policy2ChoicesRaw and "nonlinear" not in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+		choiceList.update({"nonliner": _("Stretch nonlinear")})
+	if "nonlinear" in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+		choiceList.update({"nonlinear": _("Stretch nonlinear")})
+	if "scale" in policy2ChoicesRaw and "auto" not in policy2ChoicesRaw and "bestfit" not in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
+		choiceList.update({"scale": _("Stretch linear")})
+	if "auto" in policy2ChoicesRaw and "bestfit" not in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
+		choiceList.update({"auto": _("Stretch linear")})  # IanSav: This is duplicated!
+	if "bestfit" in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
+		choiceList.update({"bestfit": _("Stretch linear")})
+	if "full" in policy2ChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
+		choiceList.update({"full": _("Stretch full")})
+	config.av.policy_169 = ConfigSelection(default="letterbox", choices=choiceList)
+	policyChoicesRaw = fileReadLine("/proc/stb/video/policy_choices", default="panscan", source=MODULE_NAME)
+	choiceList = {}
+	if "pillarbox" in policyChoicesRaw and "panscan" not in policyChoicesRaw:
+		# Very few boxes support "pillarbox" as an alias for "panscan" (Which in fact does pillarbox) so only add "pillarbox" if "panscan" is not listed in choices.
+		#
+		# TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
+		choiceList.update({"pillarbox": _("Pillarbox")})
+	if "panscan" in policyChoicesRaw:
+		# DRIVER BUG:	"panscan" in /proc actually does "pillarbox" (That's probably why an alias to it named "pillarbox" existed)!
+		#		Interpret "panscan" setting with a "Pillarbox" text in order to show the correct value in GUI.
+		#
+		# TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
+		choiceList.update({"panscan": _("Pillarbox")})
+	if "letterbox" in policyChoicesRaw:
+		# DRIVER BUG:	"letterbox" in /proc actually does pan&scan.
+		#		"letterbox" and 4:3 content on 16:9 TVs is mutually exclusive, as "letterbox" is the method to show wide content on narrow TVs.
+		#		Probably the bug arose as the driver actually does the same here as it would for wide content on narrow TVs (it stretches the picture to fit width).
+		#
+		# TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
+		choiceList.update({"letterbox": _("Pan&scan")})  # Should be "PanScan" or "Pan & Scan".
+	if "nonliner" in policyChoicesRaw and "nonlinear" not in policyChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
+		choiceList.update({"nonliner": _("Stretch nonlinear")})
+	if "nonlinear" in policyChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
+		choiceList.update({"nonlinear": _("Stretch nonlinear")})
+	# "auto", "bestfit" and "scale" are aliases for the same "Stretch linear".
+	if "scale" in policyChoicesRaw and "auto" not in policyChoicesRaw and "bestfit" not in policyChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
+		choiceList.update({"scale": _("Stretch linear")})
+	if "auto" in policyChoicesRaw and "bestfit" not in policyChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
+		choiceList.update({"auto": _("Stretch linear")})
+	if "bestfit" in policyChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
+		choiceList.update({"bestfit": _("Stretch linear")})
+	if "full" in policyChoicesRaw:
+		# TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
+		choiceList.update({"full": _("Stretch full")})
+	config.av.policy_43 = ConfigSelection(default="panscan", choices=choiceList)
+	choiceList = [
+		("cvbs", "CVBS"),
+		("rgb", "RGB"),
+		("svideo", "S-Video")
+	]
+	if config.av.yuvenabled.value:  # When YUV is not enabled, don't let the user select it.
+		choiceList.append(("yuv", "YPbPr"))
+	config.av.colorformat = ConfigSelection(default="rgb", choices=choiceList)
+	config.av.aspectratio = ConfigSelection(default="16_9", choices=[
+		("4_3_letterbox", _("4:3 Letterbox")),
+		("4_3_panscan", _("4:3 PanScan")),
+		("16_9", "16:9"),
+		("16_9_always", _("16:9 Always")),
+		("16_10_letterbox", _("16:10 Letterbox")),
+		("16_10_panscan", _("16:10 PanScan")),
+		("16_9_letterbox", _("16:9 Letterbox"))
+	])
+	config.av.aspect = ConfigSelection(default="16:9", choices=[
+		("4:3", "4:3"),
+		("16:9", "16:9"),
+		("16:10", "16:10"),
+		("auto", _("Automatic"))
+	])
+	config.av.tvsystem = ConfigSelection(default="pal", choices=[
+		("pal", "PAL"),
+		("ntsc", "NTSC"),
+		("multinorm", _("Multi"))
+	])
 	config.av.wss = ConfigEnableDisable(default=True)
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default=0)
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 5, default=0)
 	config.av.vcrswitch = ConfigEnableDisable(default=False)
+	config.av.aspect.addNotifier(avSwitch.setAspect)
 	config.osd = ConfigSubsection()
 	config.osd.language = ConfigText(default=config.misc.locale.value)
 	if BoxInfo.getItem("AmlogicFamily"):
@@ -232,34 +235,22 @@ def InitAVSwitch():
 	config.osd.threeDznorm = ConfigSlider(default=0, increment=1, limits=(-50, 50))
 	config.osd.show3dextensions = ConfigYesNo(default=False)
 
-	def setColorFormat(configElement):
-		if MODEL == "et6x00":
-			map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
-		elif MODEL == "gb7356" or MODEL.startswith('et'):
-			map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
-		else:
-			map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
-		iAVSwitch.setColorFormat(map[configElement.value])
-	config.av.colorformat.addNotifier(setColorFormat)
+	def setAspectRatio(self, value):
+		return avSwitch.setAspectRatio(value)
 
-	def setAspectRatio(configElement):
-		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
-		iAVSwitch.setAspectRatio(map[configElement.value])
+	def setSystem(self, value):
+		return avSwitch.setSystem(value)
 
-	def setSystem(configElement):
-		map = {"pal": 0, "ntsc": 1, "multinorm": 2}
-		iAVSwitch.setSystem(map[configElement.value])
+	def setPolicy43(self, configElement):
+		eAVControl.getInstance().setPolicy43(configElement.value, 1)
+
+	def setPolicy169(self, configElement):
+		eAVControl.getInstance().setPolicy169(configElement.value, 1)
 
 	def setWSS(configElement):
-		iAVSwitch.setAspectWSS()
+		avSwitch.setAspectWSS()
 
-	# this will call the "setup-val" initial
-	config.av.aspectratio.addNotifier(setAspectRatio)
-	config.av.tvsystem.addNotifier(setSystem)
-	config.av.wss.addNotifier(setWSS)
-
-	iAVSwitch.setInput("ENCODER")  # init on startup
-
+	avSwitch.setInput("ENCODER")  # init on startup
 	BoxInfo.setItem("ScartSwitch", eAVControl.getInstance().hasScartSwitch())
 
 	bypassEDID = fileReadLine("/proc/stb/hdmi/bypass_edid_checking", default=None, source=MODULE_NAME)
