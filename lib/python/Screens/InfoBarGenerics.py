@@ -633,7 +633,13 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		return service and service.toString() in whitelist.vbi
 
 	def checkBouquets(self, bouquet):
-		return bouquet in whitelist.bouquets
+		try:
+			return bouquet.toString().split('"')[1] in whitelist.bouquets
+		except:
+			return
+
+	def checkStreamrelay(self, service):
+		return streamrelay.checkService(service)
 
 	def showHideVBI(self):
 		if self.checkHideVBI():
@@ -658,12 +664,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		else:
 			whitelist.bouquets.append(bouquet)
 		open(whitelist.FILENAME_BOUQUETS, 'w').write('\n'.join(whitelist.bouquets))
-
-	def checkStreamrelay(self, service=None):
-		return streamrelay.check(self.session.nav, service)
-
-	def ToggleStreamrelay(self, service=None):
-		streamrelay.toggle(self.session.nav, service)
 
 
 class BufferIndicator(Screen):
