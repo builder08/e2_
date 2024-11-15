@@ -2,7 +2,6 @@ from os.path import isfile
 
 from enigma import eRCInput, eTimer, eWindow, getDesktop
 
-from skin import GUI_SKIN_ID, applyAllAttributes
 from skin import GUI_SKIN_ID, applyAllAttributes, menus, screens, setups
 from Components.ActionMap import ActionMap
 from Components.config import config
@@ -28,15 +27,15 @@ class Screen(dict):
 
 	def __init__(self, session, parent=None, mandatoryWidgets=None, enableHelp=False):
 		dict.__init__(self)
-		className = self.__class__.__name__
-		self.skinName = className
 		self.session = session
 		self.parent = parent
 		self.mandatoryWidgets = mandatoryWidgets
-		self.onClose = []
+		className = self.__class__.__name__
+		self.skinName = className
 		self.onFirstExecBegin = []
 		self.onExecBegin = []
 		self.onExecEnd = []
+		self.onClose = []
 		self.onLayoutFinish = []
 		self.onContentChanged = []
 		self.onShown = []
@@ -212,17 +211,17 @@ class Screen(dict):
 	def setFocus(self, o):
 		self.instance.setFocus(o.instance)
 
-	def showHelp(self):
-		def callHelpAction(*args):
-			if args:
-				(actionMap, context, action) = args
-				actionMap.action(context, action)
+	def callHelpAction(self, *args):
+		if args:
+			(actionMap, context, action) = args
+			actionMap.action(context, action)
 
+	def showHelp(self):
 		from Screens.HelpMenu import HelpMenu  # Import needs to be here because of a circular import.
 		if hasattr(self, "secondInfoBarScreen"):
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-		self.session.openWithCallback(callHelpAction, HelpMenu, self.helpList)
+		self.session.openWithCallback(self.callHelpAction, HelpMenu, self.helpList)
 
 	def setKeyboardModeNone(self):
 		rcinput = eRCInput.getInstance()
@@ -232,14 +231,14 @@ class Screen(dict):
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
 
+	def saveKeyboardMode(self):
+		rcinput = eRCInput.getInstance()
+		self.keyboardMode = rcinput.getKeyboardMode()
+
 	def restoreKeyboardMode(self):
 		rcinput = eRCInput.getInstance()
 		if self.keyboardMode is not None:
 			rcinput.setKeyboardMode(self.keyboardMode)
-
-	def saveKeyboardMode(self):
-		rcinput = eRCInput.getInstance()
-		self.keyboardMode = rcinput.getKeyboardMode()
 
 	def setDesktop(self, desktop):
 		self.desktop = desktop
@@ -346,22 +345,26 @@ class Screen(dict):
 
 class ScreenSummary(Screen):
 	skin = """
-	<screen position="fill" flags="wfNoBorder">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="e,20" font="Regular;16" horizontalAlignment="center" verticalAlignment="center">
+	<screen name="ScreenSummary" position="fill" flags="wfNoBorder">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="e,20" font="Regular;16" halign="center" valign="center">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
-		<widget source="Title" render="Label" position="0,25" size="e,45" font="Regular;18" horizontalAlignment="center" verticalAlignment="center" />
+		<widget source="Title" render="Label" position="0,25" size="e,45" font="Regular;18" halign="center" valign="center" />
 	</screen>"""
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
 		self["Title"] = StaticText(parent.getTitle())
-		names = parent.skinName
-		if not isinstance(names, list):
-			names = [names]
-		self.skinName = ["%sSummary" % x for x in names]
+		skinName = parent.skinName
+		if not isinstance(skinName, list):
+			skinName = [skinName]
+		self.skinName = [f"{x}Summary" for x in skinName]
 		className = self.__class__.__name__
-		if className != "ScreenSummary" and className not in self.skinName:  # e.g. if a module uses Screens.Setup.SetupSummary the skin needs to be available directly
+		if className != "ScreenSummary" and className not in self.skinName:  # When a summary screen does not have the same name as the parent then add it to the list.
 			self.skinName.append(className)
+		self.skinName += [f"{x}_summary" for x in skinName]  # DEBUG: Old summary screens currently kept for compatibility.
 		self.skinName.append("ScreenSummary")
 		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.
+		# skins = "', '".join(self.skinName)
+		# print(f"[Screen] DEBUG: Skin names: '{skins}'.")
+		# print(f"[Screen] DEBUG: Skin:\n{self.skin}")
