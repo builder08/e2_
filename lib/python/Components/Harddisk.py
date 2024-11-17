@@ -20,7 +20,7 @@ def readFile(filename):
 
 def getProcMounts():
 	try:
-		mounts = open("/proc/mounts")
+		mounts = open("/proc/mounts", 'r')
 	except IOError as ex:
 		print("[Harddisk] Failed to open /proc/mounts", ex)
 		return []
@@ -33,7 +33,7 @@ def getProcMounts():
 
 def isFileSystemSupported(filesystem):
 	try:
-		for fs in open('/proc/filesystems'):
+		for fs in open('/proc/filesystems', 'r'):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
@@ -117,7 +117,7 @@ class Harddisk:
 		self.removable = removable
 		self.internal = "pci" in self.phys_path or "ahci" in self.phys_path or "sata" in self.phys_path
 		try:
-			data = open("/sys/block/%s/queue/rotational" % device).read().strip()
+			data = open("/sys/block/%s/queue/rotational" % device, "r").read().strip()
 			self.rotational = int(data)
 		except:
 			self.rotational = True
@@ -439,7 +439,7 @@ class Harddisk:
 			task.setTool("mkfs.ext4")
 			if size > 20000:
 				try:
-					version = list(map(int, open("/proc/version").read().split(' ', 4)[2].split('.', 2)[:2]))
+					version = list(map(int, open("/proc/version", "r").read().split(' ', 4)[2].split('.', 2)[:2]))
 					if (version[0] > 3) or (version[0] > 2 and version[1] >= 2):
 						# Linux version 3.2 supports bigalloc and -C option, use 256k blocks
 						task.args += ["-C", "262144"]
@@ -524,10 +524,10 @@ class Harddisk:
 		from enigma import eTimer
 
 		# disable HDD standby timer
+		Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
+		# some external USB bridges require the SCSI protocol
 		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--set=SCT=0", self.disk_path))
-		else:
-			Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
 		self.timer = eTimer()
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
@@ -554,10 +554,10 @@ class Harddisk:
 			self.is_sleeping = True
 
 	def setSleep(self):
+		Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
+		# some external USB bridges require the SCSI protocol
 		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--flexible", "--readonly", "--command=stop", self.disk_path))
-		else:
-			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
 
 	def setIdleTime(self, idle):
 		self.max_idle_time = idle
