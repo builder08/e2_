@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-10-17 15:49+0300\n"
+"PO-Revision-Date: 2024-11-20 11:57+0200\n"
 "Last-Translator: kvinto\n"
 "Language-Team: kvinto\n"
 "Language: uk_UA\n"
@@ -159,6 +159,9 @@ msgstr "%.3f МГц"
 
 msgid "%02d:%02d"
 msgstr "%02d:%02d"
+
+msgid "%03d MB"
+msgstr "%03d Мб"
 
 msgid "%2.1f Seconds"
 msgstr "%2.1f сек"
@@ -1370,6 +1373,9 @@ msgstr "Звукова доріжка (%s) формат"
 msgid "Audio track (%s) language"
 msgstr "Звукова доріжка (%s) мова"
 
+msgid "Auto video mode selected for the TV."
+msgstr "Для телевізора вибрано автоматичний режим відео."
+
 msgid "Audio volume step size"
 msgstr "Розмір величини кроку звуку"
 
@@ -1580,8 +1586,8 @@ msgstr "Основна інформація"
 msgid "Basque"
 msgstr "Баскська"
 
-msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
-msgstr "Перш ніж відправити команду перевести телевізор у режим очікування, приймач перевіряє, чи всі інші пристрої, підключені до телевізора, перебувають у режимі очікування. Якщо це не так, команда 'sourceinactive' буде надіслана на телевізор замість команди 'standby'."
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr "Перш ніж змінити ці параметри, спробуйте вимкнути будь-які параметри надмірного сканування на екрані телевізора чи дисплея. Щоб відкалібрувати екранне меню (OSD), відрегулюйте положення та значення розміру, доки червоне поле *не стане* видимим і торкнеться країв екрана."
 
 msgid "Begin time"
 msgstr "Початок"
@@ -1679,7 +1685,7 @@ msgstr "Інформація про слот завантажування для
 msgid "Boot time"
 msgstr "Час завантаження"
 
-msgid "Boot time and local data/time"
+msgid "Boot time and local date/time"
 msgstr "Час завантаження та місцева дата/час"
 
 msgid "Boot time and local time"
@@ -2190,6 +2196,9 @@ msgstr "Виберіть оформлення, яке буде використ�
 msgid "Choose the target location for the expanded '/usr' directory."
 msgstr "Виберіть цільове розташування для розгорнутого каталогу '/usr'."
 
+msgid "Choose where to mount your devices to:"
+msgstr "Виберіть точку монтування для пристрою:"
+
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Вкажіть, чи потрібно перекодувати звук AAC."
 
@@ -2249,6 +2258,9 @@ msgstr "Очистити лог"
 
 msgid "Clear playlist"
 msgstr "Очистити список відтворення"
+
+msgid "Clear the virtual memory caches"
+msgstr "Очистити віртуальну пам’ять"
 
 msgid "Client is streaming from this box!"
 msgstr "Клієнт транслюється з цього пристрою!"
@@ -2457,6 +2469,9 @@ msgstr "Вкажіть, чи потрібно назву каналів в се�
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Налаштуйте, чи відображати іконку кодування у списку вибору каналів."
 
+msgid "Configure if epg.dat should be saved at all."
+msgstr "Налаштуйте, чи потрібно взагалі зберігати epg.dat."
+
 msgid "Configure if and how wide columns will be shown in the channel selection list."
 msgstr "Налаштування відображення списку каналів стовпчиком, де номер, назва і опис каналу будуть мати відповідну ширину."
 
@@ -2514,8 +2529,8 @@ msgstr "Вкажіть, що робити при закінченні відтв
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Налаштуйте ширину меж субтитрів. При темній межі легше читати субтитри на світлому фоні."
 
-msgid "Configure the brightness level of the front panel display for dimmed operation."
-msgstr "Встановлення рівня дисплея на передній панелі для роботи з затемненням."
+msgid "Configure the brightness level of the front panel display."
+msgstr "Встановлення рівня яскравості дисплея на передній панелі."
 
 msgid "Configure the brightness level of the front panel display during standby."
 msgstr "Встановлення рівня яскравості дисплея передньої панелі в режимі очікування."
@@ -2567,6 +2582,9 @@ msgstr "Налаштування функції кнопки '0 'коли вік
 
 msgid "Configure the function of the <> buttons."
 msgstr "Налаштуйте функцію кнопок < >."
+
+msgid "Configure the function of the < > buttons."
+msgstr "Налаштування функцій кнопок < >."
 
 msgid "Configure the gateway."
 msgstr "Налаштування шлюза."
@@ -3154,6 +3172,9 @@ msgstr "LED в стані повного виключення"
 msgid "Debug Log Information"
 msgstr "Інформація логу налагодження"
 
+msgid "Debug Log Information Actions"
+msgstr "Дії кнопок у Інформації логу налагодження"
+
 msgid "Debug Logs"
 msgstr "Логи налагодження"
 
@@ -3307,11 +3328,23 @@ msgstr "Видалити таймер"
 msgid "Delete all"
 msgstr "Видалити все"
 
+msgid "Delete all log files"
+msgstr "Видалити всі файли журналу збоїв"
+
 msgid "Delete all logs"
 msgstr "Видалити всі логи"
 
+msgid "Delete character to left of cursor or select AM times"
+msgstr "Видаліть символ ліворуч від курсору, або виберіть AM знасення"
+
+msgid "Delete character under cursor or select PM times"
+msgstr "Видаліть символ ліворуч від курсору або виберіть PM знасення"
+
 msgid "Delete log"
 msgstr "Видалити лог"
+
+msgid "Delete the currently displayed log file"
+msgstr "Видалити поточний файл журналу помилок"
 
 msgid "Delete the selected locally stored image"
 msgstr "Видалити вибраний локально збереженей імідж"
@@ -3415,8 +3448,8 @@ msgstr "Видалення цифрового контуру"
 msgid "Dim delay"
 msgstr "Затримка затемнення"
 
-msgid "Dim the front panel after specified time."
-msgstr "Зменшити яскравість передньої панелі після вказаного часу."
+msgid "Dim the LCD after specified time."
+msgstr "Зменшити яскравість LCD після вказаного часу."
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Пряме відтворення зв'язаних епізодів без меню"
@@ -3659,8 +3692,8 @@ msgstr "Ви хочете перезавантажити Ваш %s %s?"
 msgid "Do you want to remove all the crash logfiles"
 msgstr "Ви хочете видалити всі журнали збоїв"
 
-msgid "Do you want to remove the package:\n"
-msgstr "Ви хочете видалити пакет:\n"
+msgid "Do you want to remove:"
+msgstr "Ви хочете видалити:"
 
 msgid "Do you want to restore your settings?"
 msgstr "Ви хочете відновити свої налаштування?"
@@ -3682,6 +3715,19 @@ msgstr "Бажаєте оновити приймач від %s?"
 
 msgid "Do you want to update your receiver?"
 msgstr "Бажаєте оновити ваш приймач?"
+
+msgid ""
+"Do you want to use auto mode detection?\n"
+"\n"
+"This option reads all supported modes and automatically sets the highest resolution supported by your TV. Choose 'No' if you want to customize your settings.\n"
+"\n"
+"WARNING: If on the next screen you lose signal on your video mode, long press EXIT button to return to the list of video modes."
+msgstr ""
+"Бажаєте використати автоматичне визначення режиму?\n"
+"\n"
+"Цей параметр читає всі підтримувані режими та автоматично встановлює найвищу роздільну здатність, яку підтримує Ваш телевізор. Виберіть 'Ні', якщо ви хочете налаштувати свої параметри.\n"
+"\n"
+"ПОПЕРЕДЖЕННЯ: якщо на наступному екрані ви втратите сигнал у відеорежимі, утримуйте кнопку EXIT, щоб повернутися до списку відеорежимів."
 
 msgid "Dominica"
 msgstr "Домініка"
@@ -3969,8 +4015,8 @@ msgstr "Увімкнути блимання"
 msgid "Enable blinking REC symbol on the LCD Display"
 msgstr "Ввімкнути символ REC на LCD Дисплеї"
 
-msgid "Enable blink functionality for some areas like record icon."
-msgstr "Увімкніть функцію блимання для деяких областей, як-от значок запису."
+msgid "Enable blinking REC symbol on the LCD display."
+msgstr "Включити блимаючий символ запису на LCD дисплеї."
 
 msgid "Enable bluetooth audio"
 msgstr "Включити аудіо Bluetooth"
@@ -4743,6 +4789,9 @@ msgstr "Запис Іміджа"
 
 msgid "Flash type"
 msgstr "Тип запису"
+
+msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
+msgstr "Розширювач Flash при завантаженні '%s'.  Статус '%s'."
 
 msgid "Flashing Image"
 msgstr "Прошивка Іміджа"
@@ -5560,6 +5609,9 @@ msgstr "В процесі"
 msgid "Inactivity Sleeptimer"
 msgstr "Таймер сну не активний"
 
+msgid "Inactive"
+msgstr "Неактивний"
+
 msgid "Include AIT in http streams"
 msgstr "Додати AIT до http потоку"
 
@@ -5567,7 +5619,7 @@ msgid "Include CI assignment"
 msgstr "Додати призначення CI"
 
 msgid "Include DVB details"
-msgstr "Включити деталі DVB"
+msgstr "Додати деталі DVB"
 
 msgid "Include DVB scan data"
 msgstr "Включити дані сканування DVB"
@@ -6558,8 +6610,8 @@ msgstr "Затримка роботи для двигуна"
 msgid "Mount"
 msgstr "Підключення"
 
-msgid "Mounted Volumes"
-msgstr "Змонтовані томи"
+msgid "Mount Manager"
+msgstr "Помічник монтування"
 
 msgid "Mount root file system."
 msgstr "Монтування кореневої файлової системи."
@@ -7205,6 +7257,9 @@ msgstr "Не протестовано:"
 msgid "Nothing"
 msgstr "Нічого"
 
+msgid "Nothing connected and/or no files available!"
+msgstr "Нічого не підключено та/або немає доступних файлів!"
+
 msgid ""
 "NOTE: This feature is intended for people who cannot disable overscan on their television / display.  Please first try to disable overscan before using this feature.\n"
 "\n"
@@ -7323,6 +7378,9 @@ msgstr "Онлайн оновлення ПЗ Вашого приймача."
 
 msgid "Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."
 msgstr "Змінюйте це налаштування лише у тому випадку, якщо ви використовуєте пристрій SCR, який було перепрограмовано за допомогою спеціального програміста. Для отримання додаткової інформації зверніться до особи, яка перепрограмувала пристрій."
+
+msgid "Only Flash Backup Image"
+msgstr "Тільки флеш-резервний імідж"
 
 msgid "Only extensions."
 msgstr "Тільки розширення."
@@ -7458,6 +7516,9 @@ msgstr "Перезаписати файли конфігурації під ча
 
 msgid "Overwrite configuration files?"
 msgstr "Перезаписати файли конфігурації?"
+
+msgid "Overwrite driver files during software upgrade?"
+msgstr "Переписати файли драйверів при оновленні?"
 
 msgid "PAL"
 msgstr "PAL"
@@ -7829,47 +7890,14 @@ msgstr ""
 msgid "Please select what to do after flash of the following image:"
 msgstr "Будь ласка, виберіть, що робити після прошивки наступного іміджу:"
 
-msgid "Please set up tuner A"
-msgstr "Будь ласка, налаштуйте тюнер A"
-
-msgid "Please set up tuner B"
-msgstr "Будь ласка, налаштуйте тюнер B"
-
-msgid "Please set up tuner C"
-msgstr "Будь ласка, налаштуйте тюнер C"
-
-msgid "Please set up tuner D"
-msgstr "Будь ласка, налаштуйте тюнер D"
-
-msgid "Please set up tuner E"
-msgstr "Будь ласка, налаштуйте тюнер E"
-
-msgid "Please set up tuner F"
-msgstr "Будь ласка, налаштуйте тюнер F"
-
-msgid "Please set up tuner G"
-msgstr "Будь ласка, налаштуйте тюнер G"
-
-msgid "Please set up tuner H"
-msgstr "Будь ласка, налаштуйте тюнер H"
-
-msgid "Please set up tuner I"
-msgstr "Будь ласка, налаштуйте тюнер I"
-
-msgid "Please set up tuner J"
-msgstr "Будь ласка, налаштуйте тюнер J"
-
-msgid "Please set up tuner Q"
-msgstr "Будь ласка, налаштуйте тюнер Q"
-
-msgid "Please set up tuner R"
-msgstr "Будь ласка, налаштуйте тюнер R"
+msgid "Please set up tuner [TUNER]"
+msgstr "Налаштуйте тюнер [TUNER]"
 
 msgid "Please set your time zone"
 msgstr "Будь-ласка, встановіть Ваш часовий пояс"
 
-msgid "Please setup the following basic configs!"
-msgstr "Будь ласка, налаштуйте наступні основні конфігурації!"
+msgid "Please setup the following basic configs."
+msgstr "Будь ласка, налаштуйте наступні основні конфігурації."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -7894,6 +7922,18 @@ msgstr "Зачекайте (оновлюємо пакети)"
 
 msgid "Please wait for activation of your network configuration..."
 msgstr "Будь ласка, почекайте на активацію налаштувань мережі..."
+
+msgid "Please wait while the plugin is installed."
+msgid_plural "Please wait while the plugins are installed."
+msgstr[0] "Зачекайте, поки плагін буде встановлено."
+msgstr[1] "Зачекайте, поки плагіни буде встановлено."
+msgstr[2] "Зачекайте, поки плагінів буде встановлено."
+
+msgid "Please wait while the plugin is removed."
+msgid_plural "Please wait while the plugins are removed."
+msgstr[0] "Зачекайте, поки плагін буде видалено."
+msgstr[1] "Зачекайте, поки плагіни буде видалено."
+msgstr[2] "Зачекайте, поки плагінів буде видалено."
 
 msgid "Please wait while the plugin is updated."
 msgstr "Будь ласка, почекайте поки плагін оновиться."
@@ -8208,6 +8248,12 @@ msgstr "Натисніть OK для зміни вибору"
 msgid "Press OK to toggle the selection."
 msgstr "Натисніть OK для зміни вибору."
 
+msgid "Press OK to use this language.  [%s]"
+msgstr "Натисніть OK, щоб використовувати цю мову.  [%s]"
+
+msgid "Press OK to use this locale.  [%s]"
+msgstr "Натисніть OK, щоб використовувати цей регіон.  [%s]"
+
 msgid "Press OK, save and exit..."
 msgstr "Натисніть OK, щоб зберегти і вийти..."
 
@@ -8219,6 +8265,9 @@ msgstr "Натисніть, або виберіть кнопку і потім �
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "Натисніть кнопки ВГОРУ/ВНИЗ, щоб вибрати слот і натисніть OK, або ЗЕЛЕНУ, щоб 'Перезавантажити' це зображення. Якщо доступний, ЖОВТА буде 'Видалити', або 'Стерти' імідж. 'Видалений' імідж можна 'відновити' за допомогою СИНЬОЇ кнопки. Повністю вилучений імідж НЕМОЖЛИВО відновити!"
+
+msgid "Press YELLOW button if your time zone is not set or press \"OK\" to continue wizard."
+msgstr "Натисніть ЖОВТУ кнопку, якщо ваш часовий пояс не встановлено, або натисніть 'ОК', щоб продовжити роботу майстра."
 
 msgid "Press yellow button to set CEC address again"
 msgstr "Натисніть жовту кнопку, щоб знову встановити CEC адресу"
@@ -8756,6 +8805,9 @@ msgstr "Зарезервовано"
 msgid "Reset"
 msgstr "Скидання"
 
+msgid "Reset (clear and reload) the feeds"
+msgstr "Скинути (очистити та перезавантажити) фід"
+
 msgid "Reset Feeds"
 msgstr "Скинути Feeds"
 
@@ -8788,6 +8840,9 @@ msgstr "Перезавантажити"
 
 msgid "Restart GUI after x crashes"
 msgstr "Перезавантажте графічний інтерфейс після х збоїв"
+
+msgid "Restart GUI now to start using the new locale/language?"
+msgstr "Перезапустити GUI зараз, щоб почати використовувати нову локаль/мову?"
 
 msgid "Restart GUI now?"
 msgstr "Перезавантажити Графічний інтерфейс зараз?"
@@ -9044,6 +9099,9 @@ msgstr "Зберегти/Ввести текст і вийти"
 
 msgid "Save EPG Cache"
 msgstr "Зберегти кеш EPG"
+
+msgid "Save EPG data"
+msgstr "Зберегти дані ЕПГ"
 
 msgid "Save, Load & Delete EPG Cache"
 msgstr "Зберегти, Завантажити, Видалити Кеш EPG"
@@ -9588,6 +9646,9 @@ msgstr "Виберіть попередній елемент у списку, а
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Виберіть протокол, який використовується Вашим пристроєм SCR. Виберіть 'SCR Unicable' (Unicable), або 'SCR JESS' (JESS, також відомий як Unicable II)."
 
+msgid "Select the refresh rate to be used on the TV."
+msgstr "Виберіть частоту оновлення, яка буде використовуватися на телевізорі."
+
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
 msgstr "Виберіть супутник, який підключений до Порт-A вашого комутатора. Якщо ви не впевнені, виберіть 'автоматично' і приймач спробує визначити це сам. Якщо до цього порту не підключено нічого, виберіть 'нічого не підключено'."
 
@@ -9648,6 +9709,19 @@ msgstr "Виберіть тип LNB/пристрій (зазвичай 'Universa
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Виберіть тип пристрою прийому, який ви використовуєте."
 
+msgid ""
+"Select the video mode to be used on the TV.\n"
+"\n"
+"The following video modes will automatically change in 20 seconds.\n"
+"\n"
+"WARNING: If a video mode causes signal loss, hold the EXIT button to return to the mode video list."
+msgstr ""
+"Виберіть режим відео для використання на телевізорі.\n"
+"\n"
+"Наступні режими відео автоматично зміняться через 20 секунд.\n"
+"\n"
+"ПОПЕРЕДЖЕННЯ: Якщо відеорежим спричиняє втрату сигналу, утримуйте кнопку EXIT, щоб повернутися до списку відео режиму."
+
 msgid "Select update source"
 msgstr "Виберіть джерело оновлення"
 
@@ -9702,6 +9776,15 @@ msgstr "Виберіть часовий пояс Вашої області аб�
 
 msgid "Select, toggle, process or edit the current entry"
 msgstr "Вибір, перемикання, або редагування поточного запису"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
+"Якщо вибрати 'Так', поточні вибрані дані користувача буде видалено. Цю дію не можна скасувати. Ви можете створити резервну копію, перш ніж продовжити.\n"
+"\n"
+"Ви впевнені, що хочете зробити скидання до заводських налаштувань?"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Вибір супутників 1 (USALS)"
@@ -9904,6 +9987,9 @@ msgstr "Встановити інтерфейс як дефолтний"
 msgid "Set limits"
 msgstr "Встановити обмеження"
 
+msgid "Set local time"
+msgstr "Встановити місцевий час"
+
 msgid "Set movielist type."
 msgstr "Встановити тип списку фільмів."
 
@@ -9955,8 +10041,8 @@ msgstr "Встановіть порт OpenWebif із резервного тюн
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
 msgstr "Вкажіть швидкість прокрутки тексту на дисплеї, використовується програмний рендеринг в деяких скінах."
 
-msgid "Set the style of the channel list."
-msgstr "Встановити стиль списку каналів."
+msgid "Set the scrolling speed of text on the front display."
+msgstr "Вкажіть швидкість прокрутки тексту на дисплеї."
 
 msgid "Set the type of the progress indication in the channel selection screen (right alignment only available in single line mode)."
 msgstr "Встановіть тип індикації прогресу на екрані вибору каналу (вирівнювання по правому краю доступне лише в однорядковому режимі)."
@@ -10008,6 +10094,9 @@ msgstr "Налаштування"
 
 msgid "Setup hard disk"
 msgstr "Налаштування Жорсткого диску"
+
+msgid "Setup Mounts"
+msgstr "Налаштування монтування"
 
 msgid "Setup menu"
 msgstr "Налаштування меню"
@@ -10201,6 +10290,9 @@ msgstr "Показати значок кодування"
 msgid "Show crypto info in infobar"
 msgstr "Показати інфо кодування в Інфобарі"
 
+msgid "Show debug log information"
+msgstr "Показати інформацію журналу відлагодження"
+
 msgid "Show default after description"
 msgstr "Показати опис за замовчуванням"
 
@@ -10297,8 +10389,14 @@ msgstr "Показати записи"
 msgid "Show multi channel EPG"
 msgstr "Показати мульти телегід"
 
+msgid "Show next debug log file"
+msgstr "Показати наступний файл журналу налагодження"
+
 msgid "Show next service information screen"
 msgstr "Показати наступну інформацію про канал"
+
+msgid "Show next system information screen"
+msgstr "Показати наступний екран інформації про систему"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
 msgstr "Показати сповіщення, коли імпорт каналів та/або EPG з URL-адреси не завершено"
@@ -10333,8 +10431,14 @@ msgstr "Показати розташування позиціонера"
 msgid "Show record clock icons"
 msgstr "Показати запис значком годинника"
 
+msgid "Show previous debug log file"
+msgstr "Показати попередній файл журналу налагодження"
+
 msgid "Show previous service information screen"
 msgstr "Показати попередню інформацію каналу"
+
+msgid "Show previous system information screen"
+msgstr "Показати екран попередньої інформації про систему"
 
 msgid "Show record indicator"
 msgstr "Показати індикатор запису"
@@ -10356,6 +10460,12 @@ msgstr "Показати другий інфобар"
 
 msgid "Show selection for service information screen"
 msgstr "Показати вибір для вибору інформації про канал"
+
+msgid "Show selection for system information screen"
+msgstr "Показати вибір на екрані системної інформації"
+
+msgid "Show selection menu for debug log files"
+msgstr "Показати меню вибору для файлів журналу налагодження"
 
 msgid "Show service list"
 msgstr "Показати список каналів"
@@ -10401,6 +10511,9 @@ msgstr "Показати вибір субтитрів"
 
 msgid "Show symbols on display"
 msgstr "Показати символи на дисплеї"
+
+msgid "Show system information"
+msgstr "Показати Інформацію про систему"
 
 msgid "Show the radio player..."
 msgstr "Показати Радіо-Програвач..."
@@ -11084,6 +11197,9 @@ msgstr "Потік"
 msgid "Stream Relay Setup"
 msgstr "Налаштування Stream Relay"
 
+msgid "Stream Relay Setup Actions"
+msgstr "Дії кнопок у меню Налаштувань Stream Relay"
+
 msgid "Stream Relay delay"
 msgstr "Затримка ретрансляції потоку"
 
@@ -11340,6 +11456,9 @@ msgstr "Система & Модуляція"
 msgid "System Information"
 msgstr "Системна інфо"
 
+msgid "System Information Actions"
+msgstr "Дії кнопок в Системній інформації"
+
 msgid "System Plugin Packages"
 msgstr "Пакети плагінів системи"
 
@@ -11360,7 +11479,7 @@ msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 18.10.2024\n"
+"Переклад:  kvinto - 20.11.2024\n"
 "Пошта:  badsystem@ukr.net"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -11460,11 +11579,13 @@ msgid "Thailand"
 msgstr "Тайланд"
 
 msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
+"Thank you for using and completing the wizard. The %s %s is now ready to use.\n"
+"\n"
+"Please press OK to start using the %s %s."
 msgstr ""
-"Дякуємо за використання помічника.\n"
-"Натисніть OK для продовження."
+"Дякуємо за використання та завершення майстра. %s %s тепер готовий до використання.\n"
+"\n"
+"Натисніть OK, щоб почати використовувати %s %s."
 
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
@@ -11604,8 +11725,8 @@ msgstr "Файл таймера (timers.xml) є пошкодженим і не �
 msgid "The user interface of the receiver will now restart to select the selected skin"
 msgstr "Виконується перезавантаження графічного інтерфейсу приймача для застосування вибраного скіну"
 
-msgid "The user interface of your receiver is restarting"
-msgstr "Графічний інтерфейс користувача приймача перезавантажується"
+msgid "The user interface of your %s %s is restarting"
+msgstr "Графічний інтерфейс користувача перезавантажується"
 
 msgid "The user interface of your receiver is restarting in debug mode"
 msgstr "Графічний інтерфейс Вашого приймача перезавантажується в режим налагодження"
@@ -11694,17 +11815,26 @@ msgstr "Ця опція дозволяє встановити значення �
 msgid "This option allows you can to set the auto volume level."
 msgstr "Цей параметр дозволяє Вам налаштувати рівень автозвуку."
 
+msgid "This option allows you can config the Colorimetry for HDR"
+msgstr "Цей параметр дозволяє Вам можливість конфігурувати колориметрії для HDR"
+
 msgid "This option allows you choose how to display elapsed time as * or -"
 msgstr "Ця опція дозволяє вибрати, як відображати час, що минув, як * або -"
+
+msgid "This option allows you can force the HDR Modes for UHD"
+msgstr "Ця опція дозволяє застосувати режими HDR для UHD"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Цей параметр дозволяє Вам вибрати, як показати час що залишився або час що минув, або обидва."
 
-msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
+msgid "This option allows you choose how to display the remaining/elapsed time for live TV."
 msgstr "Цей параметр дозволяє Вам вибрати, як показати час що залишився або минув для каналу, що переглядається."
 
-msgid "This option allows you choose how to display elapsed time as + or -"
+msgid "This option allows you choose how to display elapsed time As + or -"
 msgstr "Ця опція дозволяє вибрати, як відображати час, що минув, як + або -"
+
+msgid "This option allows you choose how to display the remaining/elapsed time for Media playback."
+msgstr "Цей параметр дозволяє Вам вибрати спосіб відображення часу залишилось/минуло для відтворення мультимедіа."
 
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Цей параметр дозволяє Вам активувати згладжує фільтр, щоб контролювати процес відбору."
@@ -11946,6 +12076,9 @@ msgstr "Час"
 
 msgid "Time Setup"
 msgstr "Налаштування часу"
+
+msgid "Time Setup Actions"
+msgstr "Дії кнопок у меню Налаштування часу"
 
 msgid "Time scale"
 msgstr "Шкала часу"
@@ -12557,6 +12690,9 @@ msgstr "Використати альтернативний DNS GitHub"
 msgid "Use as PiP if possible"
 msgstr "Використовуйте як PiP, якщо це можливо"
 
+msgid "Use as HDD"
+msgstr "Використовувати як HDD"
+
 msgid "Use circular LNB"
 msgstr "Використовувати круговий LNB"
 
@@ -12574,6 +12710,9 @@ msgstr "Використовувати частоту або канал"
 
 msgid "Use geolocation to get WAN information"
 msgstr "Використовуйте геолокацію для отримання інформації WAN"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr "За допомогою геолокації встановіть поточне місце розташування часового поясу"
 
 msgid "Use individual settings for each directory"
 msgstr "Використовуйте окремі налаштування для кожного каталогу"
@@ -12611,6 +12750,18 @@ msgstr "Використовуйте роздільні лінії, щоб за�
 msgid "Use the alternative screen"
 msgstr "Використати альтернативний екран"
 
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
+msgstr "Використовуйте кнопки ВЛІВО/ВПРАВО на пульті, щоб відрегулювати висоту екранного меню. Кнопка ВЛІВО зменшує висоту, ВПРАВО збільшує висоту."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
+msgstr "Використовуйте кнопки ВЛІВО/ВПРАВО на пульті, щоб відрегулювати ширину екранного меню. Кнопка ВЛІВО зменшує ширину, ВПРАВО збільшує ширину."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
+msgstr "Використовуйте кнопки Вліво/Вправо для переміщення OSD вліво/вправо."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
+msgstr "Використовуйте кнопки Вліво/Вправо для переміщення OSD вгору/вниз."
+
 msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
 msgstr "Використовуйте кнопки ВГОРУ/ВНИЗ, щоб вибрати необхідний імідж для копіювання. Натисніть кнопку 'Пуск' (ЗЕЛЕНУ) для запуску копіювання."
 
@@ -12620,7 +12771,7 @@ msgstr "Використати Майстер мережі для налашту
 msgid "Use the network wizard to configure your network\n"
 msgstr "Використати Майстер для налаштувань Вашої мережі\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgid "Use the up/down keys on your remote control to select an option. After, press OK."
 msgstr "Для зміни параметрів використовуйте кнопки вверх/вниз. Після цього, натисніть OK."
 
 msgid "Use the wizard to set up basic features"
@@ -12783,6 +12934,19 @@ msgstr "Налаштування відео"
 
 msgid "Video wizard"
 msgstr "Майстер відеоналаштувань"
+
+msgid ""
+"Video output port selection.\n"
+"\n"
+"Press OK to select the video port.\n"
+"\n"
+"The next output port will be automatically tried in 20 seconds."
+msgstr ""
+"Вибір порту відео-виходу.\n"
+"\n"
+"Натисніть OK, щоб вибрати необхідний відео вихід.\n"
+"\n"
+"Наступний відео вихід буде автоматично змінений через 20 секунд."
 
 msgid "Video: %s fps"
 msgstr "Відео: %s fps"
@@ -13023,28 +13187,39 @@ msgstr ""
 "Перейдіть до місця, котре слугуватиме кінцем файлу. Натисніть ОК,вибравши 'кінець вирізання'. Це все."
 
 msgid ""
-"Welcome.\n"
+"Welcome to the cutlist editor.\n"
 "\n"
-"If you want to connect your receiver to the Internet, this wizard will guide you through the basic network setup of your receiver.\n"
+"Seek to the start of the stuff you want to cut away, press RED.\n"
 "\n"
-"Press OK to start configuring your network"
+"Then seek to the end, press GREEN. That's it."
 msgstr ""
-"Ласкаво просимо.\n"
+"Ласкаво просимо до редактора.\n"
 "\n"
-"Якщо ви хочете підключити Ваш приймач до мережі інтернет, цей майстер проведе Вас через основні налаштування мережі приймача.\n"
+"Перейдіть до початку матеріалу, який потрібно вирізати, і натисніть ЧЕРВОНУ кнопку.\n"
 "\n"
-"Натисніть ОК для початку налаштування мережі"
+"Потім перейдіть до кінця, натисніть ЗЕЛЕНУ. Ось і все."
 
 msgid ""
 "Welcome.\n"
 "\n"
-"This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup.\n"
+"\n"
+"Press OK to start configuring your network."
 msgstr ""
 "Ласкаво просимо.\n"
 "\n"
-"Майстер запуску проведе вас через основні налаштування вашого приймача.\n"
-"Натисніть кнопку ОК, щоб перейти до наступного кроку."
+"Якщо ви хочете підключити %s %s до Інтернету, цей майстер проведе вас через основні налаштування мережі.\n"
+"\n"
+"Натисніть OK, щоб почати налаштування мережі."
+
+msgid ""
+"Welcome to your assistant %s %s.\n"
+"This start wizard will guide you through the basic setup of your %s %s.\n"
+"Press the OK button on your remote control to move to the next step."
+msgstr ""
+"Ласкаво просимо до вашого помічника %s %s.\n"
+"Цей майстер запуску проведе вас через основні налаштування вашого %s %s.\n"
+"Натисніть кнопку OK на пульті дистанційного керування, щоб перейти до наступного кроку."
 
 msgid "Welcome..."
 msgstr "Ласкаво просимо..."
@@ -13545,6 +13720,15 @@ msgstr ""
 
 msgid "Your internet connection is working (IP address: %s)"
 msgstr "Ваше інтернет з'єднання працює (IP: %s)"
+
+msgid ""
+"Your local time has been set successfully. Settings has been saved.\n"
+"\n"
+"Press \"OK\" to continue wizard."
+msgstr ""
+"Ваш місцевий час успішно встановлено. Налаштування збережено.\n"
+"\n"
+"Натисніть 'OK', щоб продовжити роботу майстра."
 
 msgid "Your network configuration has been activated."
 msgstr "Конфігурація мережі активована."
