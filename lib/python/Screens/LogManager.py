@@ -173,6 +173,24 @@ class LogManager(Screen):
 		if not self.selectionChanged in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
 
+	def deleteAllLogs(self):
+		if self.logs:
+			allfiles = ",".join(self.logs).replace(",", "\n")
+			message = _("You want to delete all files?\n\n") + str(allfiles)
+			self.session.openWithCallback(self.doDeleteAllLogs, MessageBox, message, MessageBox.TYPE_YESNO)
+
+	def doDeleteAllLogs(self, answer):
+		if answer:
+			from enigma import eConsoleAppContainer
+			eConsoleAppContainer().execute("rm -f " + config.crash.debug_path.value + "*")
+			sleep(0.3)
+			self["list"].changeDir(self.defaultDir)
+			self["LogsSize"].update(config.crash.debug_path.value)
+			self["key_red"].setText("")
+			self["key_green"].setText("")
+			self["key_yellow"].setText("")
+			self["key_blue"].setText("")
+
 	def createSummary(self):
 		from Screens.PluginBrowser import PluginBrowserSummary
 		return PluginBrowserSummary
@@ -273,24 +291,6 @@ class LogManager(Screen):
 			else:
 				self.session.open(MessageBox, _("You have not selected any logs to delete."), MessageBox.TYPE_INFO, timeout=10)
 
-	def deleteAllLogs(self):
-		if self.logs:
-			allfiles = ",".join(self.logs).replace(",", "\n")
-			message = _("You want to delete all files?\n\n") + str(allfiles)
-			self.session.openWithCallback(self.doDeleteAllLogs, MessageBox, message, MessageBox.TYPE_YESNO)
-
-	def doDeleteAllLogs(self, answer):
-		if answer:
-			from enigma import eConsoleAppContainer
-			eConsoleAppContainer().execute("rm -f " + config.crash.debug_path.value + "*")
-			sleep(0.3)
-			self["list"].changeDir(self.defaultDir)
-			self["LogsSize"].update(config.crash.debug_path.value)
-			self["key_red"].setText("")
-			self["key_green"].setText("")
-			self["key_yellow"].setText("")
-			self["key_blue"].setText("")
-
 	def doDelete1(self, answer):
 		self.selectedFiles = self["list"].getSelectedList()
 		self.selectedFiles = ",".join(self.selectedFiles).replace(",", "\n").replace(config.crash.debug_path.value, "")
@@ -364,8 +364,8 @@ class LogManagerViewLog(Screen):
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth) - 2
-		if exists(self.logfile):
-			try:
+		if hasattr(self, "logfile"):
+			if exists(self.logfile):
 				for line in open(self.logfile).readlines():
 					line = line.replace("\t", " " * 9)
 					if len(line) > listwidth:
@@ -377,31 +377,14 @@ class LogManagerViewLog(Screen):
 							self.log.append(a)
 							if len(line[pos + listwidth - offset:]):
 								pos += listwidth - offset
-								offset = 19
+								offset = 20
 							else:
 								readyline = False
 					else:
 						self.log.append(line)
-			except UnicodeDecodeError:
-				for line in open(self.logfile, encoding="ISO 8859-1").readlines():
-					line = line.replace("\t", " " * 9)
-					if len(line) > listwidth:
-						pos = 0
-						offset = 0
-						readyline = True
-						while readyline:
-							a = " " * offset + line[pos:pos + listwidth - offset]
-							self.log.append(a)
-							if len(line[pos + listwidth - offset:]):
-								pos += listwidth - offset
-								offset = 19
-							else:
-								readyline = False
-					else:
-						self.log.append(line)
-		else:
-			self.log = [_("File can not displayed - File not found")]
-		self["list"].setList(self.log)
+			else:
+				self.log = [_("file can not displayed - file not found")]
+			self["list"].setList(self.log)
 
 	def gotoFirstPage(self):
 		self["list"].moveToIndex(0)
@@ -441,7 +424,10 @@ class LogInfo(VariableText, GUIComponent):
 					total_size = _("%d MB") % (total_size >> 20)
 				else:
 					total_size = _("%d GB") % (total_size >> 30)
-				self.setText(_("Exist are debug or crash files.\nSpace used:") + " " + total_size) if self.logs and get_size(path) > 0 else self.setText(_("Exist are no debug files or crash."))
+				if self.logs and get_size(path) > 0:
+					self.setText(_("Exist are debug files. Space used:") + " " + total_size) if not glob(config.crash.debug_path.value + '*crash*') and glob(config.crash.debug_path.value + '*enigma-debug*') else self.setText(_("Space used:") + " " + total_size)
+				else:
+					self.setText(_("Exist are no debug files or crash."))
 			except:
 				# occurs when f_blocks is 0 or a similar error
 				self.setText("-?-")
