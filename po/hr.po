@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2022-03-28 16:33+0200\n"
 "Last-Translator: Željko <zdezmar2@gmail.com>\n"
 "Language-Team: Željko\n"
@@ -81,6 +81,10 @@ msgstr " (ТV)"
 
 msgid " (auto detection)"
 msgstr " (auto detekcija)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Koristite kružni LNB"
 
 msgid " (disabled)"
 msgstr " (onemogućeno)"
@@ -279,6 +283,13 @@ msgid_plural "%d subdirectories"
 msgstr[0] "%d poddirektorij"
 msgstr[1] "%d poddirektorije"
 msgstr[2] "%d poddirektoriji"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "tjedni"
+msgstr[1] "tjedni"
+msgstr[2] "tjedni"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3916,6 +3927,9 @@ msgstr "Precizno kretanje"
 msgid "Finetune"
 msgstr "Fino podešavanje"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Završeno"
 
@@ -4935,6 +4949,9 @@ msgstr "LAN veza"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Jezik"
@@ -8150,6 +8167,9 @@ msgstr "Postavite alternativne rezervne prijamnike za DVB-T/C ili ATSC"
 
 msgid "Set as startup service"
 msgstr "Postavi kao početni kanal"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Postavljanje se ignorira iz dana u dan"
@@ -11660,9 +11680,6 @@ msgstr "dnevno"
 msgid "day"
 msgstr "dan"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "zadano"
 
@@ -11868,14 +11885,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontalno"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d sat"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d sat"
-
 msgid "in menu and plugins"
 msgstr "u izborniku i dodacima"
 
@@ -11984,14 +11993,6 @@ msgstr " min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuta"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minute"
 
 #, fuzzy
 msgid "module disabled"
@@ -12484,15 +12485,7 @@ msgstr "čekanje"
 msgid "water sport"
 msgstr "vodeni sport"
 
-#, fuzzy
-msgid "week"
-msgstr "tjedni"
-
 msgid "weekly"
-msgstr "tjedni"
-
-#, fuzzy
-msgid "weeks"
 msgstr "tjedni"
 
 msgid "west"

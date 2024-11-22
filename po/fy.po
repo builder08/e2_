@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -84,6 +84,11 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr ""
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "circular links"
 
 msgid " (disabled)"
 msgstr ""
@@ -282,6 +287,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "/var map"
 msgstr[1] "/var map"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "wikeliks"
+msgstr[1] "wikeliks"
 
 #
 #, fuzzy, python-format
@@ -4415,6 +4427,9 @@ msgstr ""
 msgid "Finetune"
 msgstr "Fyn ôfstemme"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Ofrûn"
@@ -5588,6 +5603,9 @@ msgstr ""
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9407,6 +9425,9 @@ msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Set as startup service"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set blocktimes by weekday"
@@ -13347,9 +13368,6 @@ msgstr "eltse dei"
 msgid "day"
 msgstr "dei"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr ""
 
@@ -13584,12 +13602,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontal"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #
 #, fuzzy
 msgid "in menu and plugins"
@@ -13721,12 +13733,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "min"
-
-msgid "minute"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
 
 #
 #, fuzzy
@@ -14297,17 +14303,7 @@ msgid "water sport"
 msgstr ""
 
 #
-#, fuzzy
-msgid "week"
-msgstr "wikeliks"
-
-#
 msgid "weekly"
-msgstr "wikeliks"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "wikeliks"
 
 msgid "west"

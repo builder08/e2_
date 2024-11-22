@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
-"PO-Revision-Date: 2024-10-19 15:06+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
+"PO-Revision-Date: 2024-11-08 13:20+0100\n"
 "Last-Translator: Pr2\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -81,6 +81,9 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (détection automatique)"
+
+msgid " (circular LNB)"
+msgstr "(LNB circulaire)"
 
 msgid " (disabled)"
 msgstr " (Désactivé)"
@@ -267,6 +270,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d sous-répertoire"
 msgstr[1] "%d sous-répertoires"
+
+#, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "%d semaine"
+msgstr[1] "%d semaines"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3853,6 +3862,9 @@ msgstr "Contrôle fin"
 msgid "Finetune"
 msgstr "Syntonisation fine"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr "Ajustez l'ordre automatique DiSEqC pour que, dans votre situation, les satellites puissent être trouvés plus rapidement."
+
 msgid "Finished"
 msgstr "Terminé"
 
@@ -4863,6 +4875,9 @@ msgstr "Connexion LAN"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr "LOCK PERDU"
 
 msgid "Language"
 msgstr "Langue"
@@ -8048,6 +8063,9 @@ msgstr "Définir d'autres tuners de repli pour DVB-T/C ou ATSC"
 msgid "Set as startup service"
 msgstr "Choisir comme service de démarrage"
 
+msgid "Set auto DiSEqC search order"
+msgstr "Définir l'ordre de recherche auto DiSEqC"
+
 msgid "Set blocktimes by weekday"
 msgstr "Définir les périodes de blocage par semaine"
 
@@ -9203,7 +9221,7 @@ msgstr ""
 "\n"
 "Support: https://www.openpli.org/\n"
 "Traducteur: Pr2\n"
-"Dernière MÀJ: 01-08-2024"
+"Dernière MÀJ: 08-11-2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Fichier TS trop grand pour le niveau 1 ISO9660!"
@@ -11530,9 +11548,6 @@ msgstr "Quotidien"
 msgid "day"
 msgstr "Jour"
 
-msgid "days"
-msgstr "jours"
-
 msgid "default"
 msgstr "par défaut"
 
@@ -11737,12 +11752,6 @@ msgstr "élevé"
 msgid "horizontal"
 msgstr "Horizontale"
 
-msgid "hour"
-msgstr "heure"
-
-msgid "hours"
-msgstr "heures"
-
 msgid "in menu and plugins"
 msgstr "dans le menu et les plugins"
 
@@ -11850,12 +11859,6 @@ msgstr "min"
 
 msgid "mins"
 msgstr "Mins"
-
-msgid "minute"
-msgstr "minute"
-
-msgid "minutes"
-msgstr "minutes"
 
 msgid "module disabled"
 msgstr "module désactivé"
@@ -12345,14 +12348,8 @@ msgstr "En attente"
 msgid "water sport"
 msgstr "Sport nautique"
 
-msgid "week"
-msgstr "semaine"
-
 msgid "weekly"
 msgstr "Hebdomadaire"
-
-msgid "weeks"
-msgstr "semaines"
 
 msgid "west"
 msgstr "Ouest"

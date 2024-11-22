@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -88,6 +88,10 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Till ljudval"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Använd cirkulär LNB"
 
 msgid " (disabled)"
 msgstr "(avaktiverad)"
@@ -282,6 +286,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d underkatalog"
 msgstr[1] "%d underkataloger"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "veckovis"
+msgstr[1] "veckovis"
 
 #
 #, python-format
@@ -4394,6 +4405,9 @@ msgstr "Finjustering"
 msgid "Finetune"
 msgstr "Fininställning"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Klart"
@@ -5548,6 +5562,9 @@ msgstr "LAN anslutning"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9281,6 +9298,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Använd som startkanal"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Sätt blocktider med veckodag"
@@ -13268,9 +13288,6 @@ msgstr "daglig"
 msgid "day"
 msgstr "dag"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "grund"
@@ -13505,14 +13522,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horisontal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d timme"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d timme"
-
 #
 #, fuzzy
 msgid "in menu and plugins"
@@ -13646,14 +13655,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minut"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minuter"
 
 #
 #, fuzzy
@@ -14234,17 +14235,7 @@ msgid "water sport"
 msgstr "vattensport"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "veckovis"
-
-#
 msgid "weekly"
-msgstr "veckovis"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "veckovis"
 
 msgid "west"

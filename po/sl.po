@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Project Slovenia\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2020-05-16 18:48+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -87,6 +87,11 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Izbira jezika zvočne sledi"
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Cirkularna - levo"
 
 #
 msgid " (disabled)"
@@ -310,6 +315,15 @@ msgstr[0] "%d pod-mapa"
 msgstr[1] "%d pod-mapi"
 msgstr[2] "%d pod-mape"
 msgstr[3] "%d pod-map"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "vsak teden"
+msgstr[1] "vsak teden"
+msgstr[2] "vsak teden"
+msgstr[3] "vsak teden"
 
 #
 #, python-format
@@ -4503,6 +4517,9 @@ msgstr "Natančni premiki"
 msgid "Finetune"
 msgstr "Podrobne nastavitve"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Zaključeno"
@@ -5671,6 +5688,9 @@ msgstr "Žična omrežna povezava"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9498,6 +9518,9 @@ msgstr ""
 #
 msgid "Set as startup service"
 msgstr "Izbira zagonskega kanala"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr ""
@@ -13494,9 +13517,6 @@ msgstr "vsak dan"
 msgid "day"
 msgstr "dan"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "Privzeto"
@@ -13733,16 +13753,6 @@ msgstr "Horizontalna"
 
 #
 #, fuzzy
-msgid "hour"
-msgstr "%d ura"
-
-#
-#, fuzzy
-msgid "hours"
-msgstr "%d ura"
-
-#
-#, fuzzy
 msgid "in menu and plugins"
 msgstr "Prenos"
 
@@ -13876,16 +13886,6 @@ msgstr "%d min"
 #
 msgid "mins"
 msgstr "mins"
-
-#
-#, fuzzy
-msgid "minute"
-msgstr "%d minuta"
-
-#
-#, fuzzy
-msgid "minutes"
-msgstr "%d minut"
 
 #
 #, fuzzy
@@ -14462,17 +14462,7 @@ msgid "water sport"
 msgstr "vodni športi"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "vsak teden"
-
-#
 msgid "weekly"
-msgstr "vsak teden"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "vsak teden"
 
 msgid "west"

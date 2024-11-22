@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.4.3\n"
+"X-Generator: Poedit 3.5\n"
 
 #
 msgid ""
@@ -88,6 +88,9 @@ msgstr " (TV)"
 #
 msgid " (auto detection)"
 msgstr " (automatická detekce)"
+
+msgid " (circular LNB)"
+msgstr " (circular LNB)"
 
 #
 msgid " (disabled)"
@@ -298,6 +301,14 @@ msgstr[2] "%d podadresářů"
 
 #
 #, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "%d týden"
+msgstr[1] "%d týdny"
+msgstr[2] "%d týdnů"
+
+#
+#, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
 msgstr[0] "nalezena %d bezdrátová síť!"
@@ -451,9 +462,8 @@ msgstr "/s"
 msgid "0"
 msgstr "0"
 
-#, fuzzy
 msgid "0 minutes"
-msgstr "%d minut"
+msgstr "0 minut"
 
 #
 msgid "1"
@@ -1503,7 +1513,7 @@ msgid "Basque"
 msgstr "Baskicky"
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
-msgstr "Před odesláním příkazu pro přepnutí TV do pohotovostního režimu satelitní příkaz testuje, zda ostatní přijímače zapojené do TV jsou také v pohotovostním režimu. Jestliže ne, odesílá se příkaz 'sourceinactive' místo 'standby'."
+msgstr "Před odesláním příkazu pro přepnutí TV do pohotovostního režimu přijímač testuje, zda ostatní přijímače zapojené do TV jsou též v pohotovostním režimu. Jestliže ne, odesílá se příkaz 'sourceinactive' místo 'standby'."
 
 #
 msgid "Begin time"
@@ -1615,7 +1625,6 @@ msgstr "Bosna a Hercegovina"
 msgid "Botswana"
 msgstr "Botswana"
 
-#, fuzzy
 msgid "Bottom"
 msgstr "Dole"
 
@@ -2049,7 +2058,7 @@ msgid "Christmas Island"
 msgstr "Vánoční ostrov"
 
 msgid "Circular LNB"
-msgstr "Kruhový LNB"
+msgstr "Circular LNB"
 
 #
 msgid "Circular left"
@@ -2241,9 +2250,8 @@ msgstr "Nastavuje výchozí typ pro nové časovače."
 msgid "Configure for how long the infobar will remain visible after activation."
 msgstr "Nastavuje, jak dlouho po zobrazení bude viditelný infobar."
 
-#, fuzzy
 msgid "Configure how long finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed (or for plugins that support catchup)."
-msgstr "Nastavuje, kolik minut může zůstat ukončená událost viditelná v EPG. Užitečné, když potřebujete informace o události, která právě skončila nebo byla zpožděná."
+msgstr "Nastavuje, jak dlouho může zůstat viditelná ukončená událost v EPG. Užitečné, když potřebujete informace o události, která právě skončila, nebo byla zpožděna (nebo pro pluginy, které podporují dohledávání)."
 
 #
 msgid "Configure how many channels are shown in the selection list."
@@ -2682,10 +2690,10 @@ msgid "Could not record due to invalid service %s"
 msgstr "Nelze nahrávat z důvodu neplatného programu %s"
 
 msgid "Could not retrieve basic bouquets files"
-msgstr ""
+msgstr "Nelze načíst základní přehledy."
 
 msgid "Could not retrieve the remote support files"
-msgstr ""
+msgstr "Nelze načíst soubory vzdálené podpory."
 
 msgid "Country"
 msgstr "Země"
@@ -4422,6 +4430,9 @@ msgstr "Jemné natáčení"
 msgid "Finetune"
 msgstr "Jemné ladění"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr "Zvolte nastavení pro autoDiSEqC, aby byly satelity ve vašem případě nalezeny rychleji."
+
 #
 msgid "Finished"
 msgstr "Dokončeno"
@@ -5562,6 +5573,9 @@ msgstr "LAN připojení"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9276,6 +9290,9 @@ msgstr "Nastavení záložních tunerů pro DVB-T/C nebo ATSC"
 msgid "Set as startup service"
 msgstr "Nastavit jako program po spuštění"
 
+msgid "Set auto DiSEqC search order"
+msgstr "Nastavení pořadí vyhledávání pro autoDiSEqC"
+
 msgid "Set blocktimes by weekday"
 msgstr "Nastavit časy blokování podle dnů"
 
@@ -10600,7 +10617,7 @@ msgstr ""
 "Pro případné korekce můžete kontaktovat autora\n"
 "na výše uvedené adrese.\n"
 "\n"
-"®2.8.2024"
+"®8.11.2024"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -11378,9 +11395,8 @@ msgid "Tonga"
 msgstr "Tonga"
 
 #
-#, fuzzy
 msgid "Top"
-msgstr "Dva"
+msgstr "Nahoře"
 
 msgid "Top and bottom"
 msgstr "Nahoru a dolů"
@@ -11801,7 +11817,7 @@ msgid "Use as PiP if possible"
 msgstr "Použít jako PiP"
 
 msgid "Use circular LNB"
-msgstr "Použít kruhový LNB"
+msgstr "Použít circular LNB"
 
 msgid "Use fastscan channel names"
 msgstr "Použít fastscan jména kanálů"
@@ -13181,9 +13197,6 @@ msgstr "Denně"
 msgid "day"
 msgstr "den"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "Výchozí"
@@ -13419,14 +13432,6 @@ msgstr "vysoký"
 msgid "horizontal"
 msgstr "Horizontální"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d hodina"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d hodina"
-
 msgid "in menu and plugins"
 msgstr "V menu a pluginech"
 
@@ -13552,14 +13557,6 @@ msgstr " min"
 #
 msgid "mins"
 msgstr "minut"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuta"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minut"
 
 #
 msgid "module disabled"
@@ -14134,17 +14131,7 @@ msgid "water sport"
 msgstr "vodní sporty"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "Týdně"
-
-#
 msgid "weekly"
-msgstr "Týdně"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "Týdně"
 
 msgid "west"

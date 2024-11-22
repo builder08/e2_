@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2023-11-10 14:18+0100\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -83,6 +83,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (auto detekcia)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Použiť kruhový LNB"
 
 msgid " (disabled)"
 msgstr " (zakázané)"
@@ -280,6 +284,13 @@ msgid_plural "%d subdirectories"
 msgstr[0] "%d podzložka"
 msgstr[1] "%d podzložky"
 msgstr[2] "%d podzložiek"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "týždenne"
+msgstr[1] "týždenne"
+msgstr[2] "týždenne"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3889,6 +3900,9 @@ msgstr "Jemný pohyb"
 msgid "Finetune"
 msgstr "Jemné nastavenie"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Ukončené"
 
@@ -4906,6 +4920,9 @@ msgstr "Pripojenie LAN"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Jazyk"
@@ -8118,6 +8135,9 @@ msgstr "Nastaviť alternatívne záložné tunery pre DVB-T/C alebo ATSC"
 
 msgid "Set as startup service"
 msgstr "Nastaviť ako stanicu po spustení"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Nastaviť časy blokovania na víkend"
@@ -11622,9 +11642,6 @@ msgstr "denne"
 msgid "day"
 msgstr "deň"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "predvolené"
 
@@ -11829,14 +11846,6 @@ msgstr "vysoké"
 msgid "horizontal"
 msgstr "horizontálna"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d hodine"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d hodine"
-
 msgid "in menu and plugins"
 msgstr "v menu a doplnkoch"
 
@@ -11945,14 +11954,6 @@ msgstr " min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minúta"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minút"
 
 msgid "module disabled"
 msgstr "modul vypnutý"
@@ -12442,15 +12443,7 @@ msgstr "čakám"
 msgid "water sport"
 msgstr "vodné športy"
 
-#, fuzzy
-msgid "week"
-msgstr "týždenne"
-
 msgid "weekly"
-msgstr "týždenne"
-
-#, fuzzy
-msgid "weeks"
 msgstr "týždenne"
 
 msgid "west"

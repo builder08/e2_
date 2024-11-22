@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2021-02-19 14:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Muzoss-VELEBRDO\n"
@@ -82,6 +82,10 @@ msgstr " (ТВ)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "До избор на аудио"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Користете кружен LNB"
 
 msgid " (disabled)"
 msgstr " Деактивирано"
@@ -269,6 +273,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d поддиректориум"
 msgstr[1] "%d поддиректориуми"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "неделно"
+msgstr[1] "неделно"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3905,6 +3915,9 @@ msgstr "Прецизно движење"
 msgid "Finetune"
 msgstr "Фино подесување"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Завршено"
 
@@ -4925,6 +4938,9 @@ msgstr "LAN врска"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Jазик"
@@ -8142,6 +8158,9 @@ msgstr "Поставете дополнителни резервни прием�
 
 msgid "Set as startup service"
 msgstr "Поставете како почетен канал"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Поставете блок-часови според работниот ден"
@@ -11652,9 +11671,6 @@ msgstr "дневно"
 msgid "day"
 msgstr "ден"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "стандардно"
 
@@ -11862,14 +11878,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "хоризонтално"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d час"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d час"
-
 msgid "in menu and plugins"
 msgstr "во менито и плагини"
 
@@ -11980,14 +11988,6 @@ msgstr " мин"
 
 msgid "mins"
 msgstr "мин"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d минута"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d минути"
 
 #, fuzzy
 msgid "module disabled"
@@ -12492,15 +12492,7 @@ msgstr "чекам"
 msgid "water sport"
 msgstr "спортови на вода"
 
-#, fuzzy
-msgid "week"
-msgstr "неделно"
-
 msgid "weekly"
-msgstr "неделно"
-
-#, fuzzy
-msgid "weeks"
 msgstr "неделно"
 
 msgid "west"

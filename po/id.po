@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2021-03-06\n"
 "Last-Translator: LinuxSTV\n"
 "Language-Team: \n"
@@ -83,6 +83,10 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Ke pemilihan audio"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Gunakan LNB sirkular"
 
 msgid " (disabled)"
 msgstr " (dimatikan)"
@@ -272,6 +276,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d subdirektori"
 msgstr[1] "%d subdirektori"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "per pekan"
+msgstr[1] "per pekan"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -4025,6 +4035,9 @@ msgstr "Pergerakan halus"
 msgid "Finetune"
 msgstr "Penyelarasan"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Selesai"
 
@@ -5078,6 +5091,9 @@ msgstr "Koneksi LAN"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Bahasa"
@@ -8389,6 +8405,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Atur sbg layanan saat mulai"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Atur waktu blokir berdasarkan hari kerja"
@@ -12002,9 +12021,6 @@ msgstr "harian"
 msgid "day"
 msgstr "hari"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "bawaan"
 
@@ -12215,14 +12231,6 @@ msgid "horizontal"
 msgstr "horizontal"
 
 #, fuzzy
-msgid "hour"
-msgstr "%d jam"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d jam"
-
-#, fuzzy
 msgid "in menu and plugins"
 msgstr "Unduh plugin"
 
@@ -12336,14 +12344,6 @@ msgstr "%d mnt"
 
 msgid "mins"
 msgstr "mnt"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d menit"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d menit"
 
 #, fuzzy
 msgid "module disabled"
@@ -12855,15 +12855,7 @@ msgstr "menunggu"
 msgid "water sport"
 msgstr "olahraga air"
 
-#, fuzzy
-msgid "week"
-msgstr "per pekan"
-
 msgid "weekly"
-msgstr "per pekan"
-
-#, fuzzy
-msgid "weeks"
 msgstr "per pekan"
 
 msgid "west"

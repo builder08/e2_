@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2021-10-16 21:21+0200\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
@@ -88,6 +88,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (autodetección)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Usar LNB circular"
 
 msgid " (disabled)"
 msgstr " (desactivado)"
@@ -284,6 +288,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d subdirectorio"
 msgstr[1] "%d subdirectorios"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "semanalmente"
+msgstr[1] "semanalmente"
 
 #
 #, python-format
@@ -4329,6 +4340,9 @@ msgstr "Movemento fino"
 msgid "Finetune"
 msgstr "Axuste fino"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Rematado"
@@ -5450,6 +5464,9 @@ msgstr "Conexión LAN"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -9088,6 +9105,9 @@ msgstr "Establecer sintonizadores alternativos de reserva para DVB-T/C ou ATSC"
 
 msgid "Set as startup service"
 msgstr "Establecer como servizo de inicio"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Establecer bloques de tempo por día da semana"
@@ -12955,9 +12975,6 @@ msgstr "diariamente"
 msgid "day"
 msgstr "día"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "por defecto"
@@ -13192,14 +13209,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d hora"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d hora"
-
 #
 msgid "in menu and plugins"
 msgstr "no menú e complementos"
@@ -13329,14 +13338,6 @@ msgstr " min"
 #
 msgid "mins"
 msgstr "mins"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuto"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minutos"
 
 #
 #, fuzzy
@@ -13903,17 +13904,7 @@ msgid "water sport"
 msgstr "deporte acuático"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "semanalmente"
-
-#
 msgid "weekly"
-msgstr "semanalmente"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "semanalmente"
 
 msgid "west"

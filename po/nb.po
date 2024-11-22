@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2023-01-01 16:49+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -91,6 +91,11 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (automatisk gjenkjenning)"
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Bruk sirkulær LNB"
 
 #
 msgid " (disabled)"
@@ -283,6 +288,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d underkatalog"
 msgstr[1] "%d underkataloger"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "ukentlig"
+msgstr[1] "ukentlig"
 
 #
 #, python-format
@@ -4287,6 +4299,9 @@ msgstr "Sakte bevegelse"
 msgid "Finetune"
 msgstr "Fininnstilling"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 #
 msgid "Finished"
 msgstr "Ferdig"
@@ -5406,6 +5421,9 @@ msgstr "LAN tilkoblet"
 #
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 #
 msgid "Language"
@@ -8996,6 +9014,9 @@ msgstr "Angi alternative reserve mottakere for DVB-T/C eller ATSC"
 
 msgid "Set as startup service"
 msgstr "Bruk denne som oppstartskanal"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Still inn blokkeringstid med ukedager"
@@ -12837,9 +12858,6 @@ msgstr "daglig"
 msgid "day"
 msgstr "dag"
 
-msgid "days"
-msgstr ""
-
 #
 msgid "default"
 msgstr "standard"
@@ -13072,14 +13090,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horisontal"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d time"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d time"
-
 #
 msgid "in menu and plugins"
 msgstr "i meny og utvidelser"
@@ -13207,14 +13217,6 @@ msgstr " min"
 #
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minutt"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minutter"
 
 #
 msgid "module disabled"
@@ -13768,17 +13770,7 @@ msgid "water sport"
 msgstr "vannsport"
 
 #
-#, fuzzy
-msgid "week"
-msgstr "ukentlig"
-
-#
 msgid "weekly"
-msgstr "ukentlig"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "ukentlig"
 
 msgid "west"

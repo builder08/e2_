@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2012-03-08 10:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -86,6 +86,11 @@ msgstr ""
 
 msgid " (auto detection)"
 msgstr ""
+
+#
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "circular left"
 
 msgid " (disabled)"
 msgstr ""
@@ -281,6 +286,13 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "התחל תיקיה"
 msgstr[1] "התחל תיקיה"
+
+#
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "שבועי"
+msgstr[1] "שבועי"
 
 #
 #, fuzzy, python-format
@@ -4155,6 +4167,9 @@ msgstr ""
 msgid "Finetune"
 msgstr "כיוונון עדין"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "הסתיים"
 
@@ -5267,6 +5282,9 @@ msgstr "חיבור רשת"
 
 #
 msgid "LNB"
+msgstr ""
+
+msgid "LOSTLOCK"
 msgstr ""
 
 #
@@ -8835,6 +8853,9 @@ msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr ""
 
 msgid "Set as startup service"
+msgstr ""
+
+msgid "Set auto DiSEqC search order"
 msgstr ""
 
 msgid "Set blocktimes by weekday"
@@ -12611,9 +12632,6 @@ msgstr "יומי"
 msgid "day"
 msgstr "יום"
 
-msgid "days"
-msgstr ""
-
 #, fuzzy
 msgid "default"
 msgstr "ברירת מחדל"
@@ -12827,12 +12845,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontal"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #, fuzzy
 msgid "in menu and plugins"
 msgstr "הורד פלאגינים"
@@ -12956,12 +12968,6 @@ msgstr "דקות %d"
 
 msgid "mins"
 msgstr "דקות"
-
-msgid "minute"
-msgstr ""
-
-msgid "minutes"
-msgstr ""
 
 #, fuzzy
 msgid "module disabled"
@@ -13493,17 +13499,7 @@ msgid "water sport"
 msgstr ""
 
 #
-#, fuzzy
-msgid "week"
-msgstr "שבועי"
-
-#
 msgid "weekly"
-msgstr "שבועי"
-
-#
-#, fuzzy
-msgid "weeks"
 msgstr "שבועי"
 
 msgid "west"

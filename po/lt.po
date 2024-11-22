@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2022-10-23 15:37+0300\n"
 "Last-Translator: Audronis <adga45@gmail.com>\n"
 "Language-Team: Adga (C) <adga45@gmail.com>\n"
@@ -82,6 +82,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (automatinis aptikimas)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Naudoti apskritiminę LNB"
 
 msgid " (disabled)"
 msgstr " (išjungta)"
@@ -279,6 +283,13 @@ msgid_plural "%d subdirectories"
 msgstr[0] "%d pakatalogis"
 msgstr[1] "%d pakatalogiai"
 msgstr[2] "%d pakatalogių"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "kas savaitę"
+msgstr[1] "kas savaitę"
+msgstr[2] "kas savaitę"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3889,6 +3900,9 @@ msgstr "Tikslus judėjimas"
 msgid "Finetune"
 msgstr "Tikslus nustatymas"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Baigta"
 
@@ -4905,6 +4919,9 @@ msgstr "LAN ryšys"
 
 msgid "LNB"
 msgstr "LNB konverteris"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Kalba"
@@ -8115,6 +8132,9 @@ msgstr "Nustatykite alternatyvius DVB-T/C arba ATSC atsarginius imtuvus"
 
 msgid "Set as startup service"
 msgstr "Nustatyti kaip pradinį kanalą"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Nustatykite blokavimo kartus pagal savaitės dieną"
@@ -11624,9 +11644,6 @@ msgstr "kasdien"
 msgid "day"
 msgstr "diena"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "numatytasis"
 
@@ -11832,14 +11849,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "horizontali"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d valanda"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d valanda"
-
 msgid "in menu and plugins"
 msgstr "meniu ir prieduose"
 
@@ -11948,14 +11957,6 @@ msgstr " min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minutė"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minutės"
 
 msgid "module disabled"
 msgstr "modulis išjungtas"
@@ -12445,15 +12446,7 @@ msgstr "laukiama"
 msgid "water sport"
 msgstr "vandens sportas"
 
-#, fuzzy
-msgid "week"
-msgstr "kas savaitę"
-
 msgid "weekly"
-msgstr "kas savaitę"
-
-#, fuzzy
-msgid "weeks"
 msgstr "kas savaitę"
 
 msgid "west"

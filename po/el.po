@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLI Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -82,6 +82,10 @@ msgstr " (Τηλεόραση)"
 
 msgid " (auto detection)"
 msgstr " (αυτόματη ανίχνευση)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Χρήση LNB κυκλικής πόλωσης"
 
 msgid " (disabled)"
 msgstr " (ανενεργό)"
@@ -268,6 +272,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d υποφάκελο"
 msgstr[1] "%d υποφακέλους"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "εβδομαδιαία"
+msgstr[1] "εβδομαδιαία"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3865,6 +3875,9 @@ msgstr "Μικροκίνηση"
 msgid "Finetune"
 msgstr "Μικρορύθμιση"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Ολοκληρώθηκε"
 
@@ -4882,6 +4895,9 @@ msgstr "Σύνδεση δικτύου"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Γλώσσα"
@@ -8090,6 +8106,9 @@ msgstr "Ορισμός εναλλακτικών εφεδρικών tuner για 
 
 msgid "Set as startup service"
 msgstr "Ορισμός ως υπηρεσία εκκίνησης"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Ορισμός χρονοπλαισίων ανά"
@@ -11592,9 +11611,6 @@ msgstr "καθημερινά"
 msgid "day"
 msgstr "ημέρα"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "προεπιλογή"
 
@@ -11800,14 +11816,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "οριζόντια"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d ώρα"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d ώρα"
-
 msgid "in menu and plugins"
 msgstr "στα μενού και τα πρόσθετα"
 
@@ -11916,14 +11924,6 @@ msgstr " λεπτά"
 
 msgid "mins"
 msgstr "λεπτά"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d λεπτό"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d λεπτά"
 
 msgid "module disabled"
 msgstr "άρθρωμα ανενεργό"
@@ -12413,15 +12413,7 @@ msgstr "αναμονή"
 msgid "water sport"
 msgstr "θαλάσσια σπορ"
 
-#, fuzzy
-msgid "week"
-msgstr "εβδομαδιαία"
-
 msgid "weekly"
-msgstr "εβδομαδιαία"
-
-#, fuzzy
-msgid "weeks"
 msgstr "εβδομαδιαία"
 
 msgid "west"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLi-enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2024-05-21 12:56+0200\n"
 "Last-Translator: Gringo <openpli@tiscali.it>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -89,6 +89,10 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Rilevamento automatico"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Utilizzare un LNB circolare"
 
 msgid " (disabled)"
 msgstr " (disabilitato)"
@@ -276,6 +280,12 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d sottocartella"
 msgstr[1] "%d sottocartelle"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "Settimanale"
+msgstr[1] "Settimanale"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3941,6 +3951,9 @@ msgstr "Spostamento di precisione"
 msgid "Finetune"
 msgstr "Sintonia fine"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Completato"
 
@@ -4967,6 +4980,9 @@ msgstr "Connessione di rete LAN"
 
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Lingua di sistema"
@@ -8207,6 +8223,9 @@ msgstr "Impostare sintonizzatori di fallback alternativi per DVB-T/C o ATSC"
 
 msgid "Set as startup service"
 msgstr "Utilizzare come canale di avvio"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "Impostare i blocchi di orario per i giorni della settimana"
@@ -11753,9 +11772,6 @@ msgstr "Giornaliera"
 msgid "day"
 msgstr "Giorno"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "Predefinito"
 
@@ -11965,14 +11981,6 @@ msgstr "alto"
 msgid "horizontal"
 msgstr "Orizzontale"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d ora"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d ora"
-
 msgid "in menu and plugins"
 msgstr "nel menu e plugin"
 
@@ -12082,14 +12090,6 @@ msgstr " min"
 
 msgid "mins"
 msgstr "min"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d minuto"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d minuti"
 
 msgid "module disabled"
 msgstr "modulo disabilitato"
@@ -12592,15 +12592,7 @@ msgstr "In attesa"
 msgid "water sport"
 msgstr "Sport acquatici"
 
-#, fuzzy
-msgid "week"
-msgstr "Settimanale"
-
 msgid "weekly"
-msgstr "Settimanale"
-
-#, fuzzy
-msgid "weeks"
 msgstr "Settimanale"
 
 msgid "west"

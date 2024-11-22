@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OBH enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2019-04-12 12:36+0300\n"
 "Last-Translator: mosad - مساعد الجعيد <abo-mishal@hotmail.com>\n"
 "Language-Team: mosad - مساعد الجعيد\n"
@@ -83,6 +83,10 @@ msgstr " (القنوات التلفزيونية)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "أختيار الأفلام"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "استخدام لاقط دائري"
 
 msgid " (disabled)"
 msgstr " (معطل)"
@@ -321,6 +325,16 @@ msgstr[2] "دليل الملفات"
 msgstr[3] "دليل الملفات"
 msgstr[4] "دليل الملفات"
 msgstr[5] "دليل الملفات"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "اسبوعى"
+msgstr[1] "اسبوعى"
+msgstr[2] "اسبوعى"
+msgstr[3] "اسبوعى"
+msgstr[4] "اسبوعى"
+msgstr[5] "اسبوعى"
 
 #, fuzzy, python-format
 msgid "%d wireless network found!"
@@ -4170,6 +4184,9 @@ msgstr "حركه جيده"
 msgid "Finetune"
 msgstr "الضبط الدقيق"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "تم الإنتهاء"
 
@@ -5254,6 +5271,9 @@ msgstr "إتصال شبكة عبر الكيبل"
 
 msgid "LNB"
 msgstr "اللاقط"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "اللغـة"
@@ -8699,6 +8719,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "تعيين قناة بدء التشغيل"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr ""
@@ -12419,9 +12442,6 @@ msgstr "يوميا"
 msgid "day"
 msgstr "يوم"
 
-msgid "days"
-msgstr ""
-
 #, fuzzy
 msgid "default"
 msgstr "الإفتراضي"
@@ -12637,12 +12657,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "أفقي"
 
-msgid "hour"
-msgstr ""
-
-msgid "hours"
-msgstr ""
-
 #, fuzzy
 msgid "in menu and plugins"
 msgstr "تحميل البلج إنز"
@@ -12761,14 +12775,6 @@ msgstr "%d دقيقة"
 
 msgid "mins"
 msgstr "دقائق"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d دقائق"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d دقائق"
 
 #, fuzzy
 msgid "module disabled"
@@ -13299,15 +13305,7 @@ msgstr "فى الانتظار"
 msgid "water sport"
 msgstr "الرياضة المائية"
 
-#, fuzzy
-msgid "week"
-msgstr "اسبوعى"
-
 msgid "weekly"
-msgstr "اسبوعى"
-
-#, fuzzy
-msgid "weeks"
 msgstr "اسبوعى"
 
 msgid "west"

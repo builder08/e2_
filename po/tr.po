@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OPENPLi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-11-08 13:16+0100\n"
 "PO-Revision-Date: 2015-12-18 21:05+0200\n"
 "Last-Translator: Yetkin AYDIN <yetkina@gmail.com>\n"
 "Language-Team: http://www.hurforum.com <yetkina@gmail.com>\n"
@@ -87,6 +87,10 @@ msgstr " (TV)"
 #, fuzzy
 msgid " (auto detection)"
 msgstr "Ses seçimi için"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Dairesel LNB kullan."
 
 msgid " (disabled)"
 msgstr " (Devre Dışı)"
@@ -265,6 +269,11 @@ msgstr[0] "%d saniye"
 msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d alt dizin"
+
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "Haftalık"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -3948,6 +3957,9 @@ msgstr "Ince hareket"
 msgid "Finetune"
 msgstr "İnce ayar"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Tamamlandı"
 
@@ -4992,6 +5004,9 @@ msgstr "LAN bağlantısı"
 
 msgid "LNB"
 msgstr "Unicable LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
 
 msgid "Language"
 msgstr "Dil"
@@ -8289,6 +8304,9 @@ msgstr ""
 
 msgid "Set as startup service"
 msgstr "Başlangıç kanalı yap."
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr ""
@@ -11870,9 +11888,6 @@ msgstr "Günlük"
 msgid "day"
 msgstr "Gün"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "Öntanımlı"
 
@@ -12084,14 +12099,6 @@ msgid "horizontal"
 msgstr "Yatay (H)"
 
 #, fuzzy
-msgid "hour"
-msgstr "%d saat"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d saat"
-
-#, fuzzy
 msgid "in menu and plugins"
 msgstr "Eklenti İndir"
 
@@ -12205,14 +12212,6 @@ msgstr "%d dk"
 
 msgid "mins"
 msgstr "Dakika"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d dakika"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d dakika"
 
 #, fuzzy
 msgid "module disabled"
@@ -12723,15 +12722,7 @@ msgstr "Bekleniyor"
 msgid "water sport"
 msgstr "Su Sporları"
 
-#, fuzzy
-msgid "week"
-msgstr "Haftalık"
-
 msgid "weekly"
-msgstr "Haftalık"
-
-#, fuzzy
-msgid "weeks"
 msgstr "Haftalık"
 
 msgid "west"
