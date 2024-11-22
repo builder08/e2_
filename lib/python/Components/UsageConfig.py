@@ -17,7 +17,7 @@ from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
 
 
-originalAudioTracks = "orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth"
+originalAudioTracks = "orj dos ory org esl qaa qaf und qae mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
 
 MODULE_NAME = __name__.split(".")[-1]
