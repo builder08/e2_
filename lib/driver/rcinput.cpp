@@ -19,6 +19,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 	if (ev->type != EV_KEY)
 		return;
+
 	eDebug("[eRCDeviceInputDev] %x %x %x", ev->value, ev->code, ev->type);
 
 	int km = iskeyboard ? input->getKeyboardMode() : eRCInput::kmNone;
@@ -119,6 +120,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->code == KEY_F6) {
 		ev->code = KEY_VIDEO;
 	}
+
 #endif
 
 #if KEY_EDIT_TO_KEY_TIME
@@ -126,6 +128,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->code == KEY_EDIT) {
 		ev->code = KEY_TIME;
 	}
+
 #endif
 
 #if KEY_HOME_TO_KEY_UNKNOWN
@@ -133,7 +136,9 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (ev->code == KEY_HOME) {
 		ev->code = KEY_UNKNOWN;
 	}
+
 #endif
+
 
 #if TIVIARRC
 	if (ev->code == KEY_EPG) {
@@ -206,6 +211,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 		ev->code = KEY_AUDIO;
 	}
 #endif
+
 
 #if KEY_WWW_TO_KEY_FILE
 	if (ev->code == KEY_WWW) {
@@ -483,6 +489,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+
 #if KEY_GUIDE_TO_KEY_EPG
 	if (ev->code == KEY_HELP)
 	{
@@ -575,6 +582,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 #endif
 
 	}
+
 	switch (ev->value)
 	{
 		case 0:
@@ -645,6 +653,9 @@ class eInputDeviceInit
 public:
 	eInputDeviceInit()
 	{
+#if WORKAROUND_KODI_INPUT
+		addAll();
+#else
 		int i = 0;
 		consoleFd = ::open("/dev/tty0", O_RDWR);
 		while (1)
@@ -657,6 +668,7 @@ public:
 			++i;
 		}
 		eDebug("[eInputDeviceInit] Found %d input devices.", i);
+#endif
 	}
 
 	~eInputDeviceInit()
@@ -688,6 +700,36 @@ public:
 		}
 		eDebug("[eInputDeviceInit] Remove '%s', not found", filename);
 	}
+
+	void addAll(void)
+	{
+		int i = 0;
+		if (consoleFd < 0)
+		{
+			consoleFd = ::open("/dev/tty0", O_RDWR);
+			printf("consoleFd %d\n", consoleFd);
+		}
+		while (1)
+		{
+			char filename[32];
+			sprintf(filename, "/dev/input/event%d", i);
+			if (::access(filename, R_OK) < 0)
+				break;
+			add(filename);
+			++i;
+		}
+		eDebug("[eInputDeviceInit] Found %d input devices.", i);
+	}
+
+	void removeAll(void)
+	{
+		[[maybe_unused]] size_t size = items.size();
+		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
+		{
+			delete *it;
+		}
+		items.clear();
+	}
 };
 
 eAutoInitP0<eInputDeviceInit> init_rcinputdev(eAutoInitNumbers::rc+1, "input device driver");
@@ -700,4 +742,14 @@ void addInputDevice(const char* filename)
 void removeInputDevice(const char* filename)
 {
 	init_rcinputdev->remove(filename);
+}
+
+void addAllInputDevices(void)
+{
+	init_rcinputdev->addAll();
+}
+
+void removeAllInputDevices(void)
+{
+	init_rcinputdev->removeAll();
 }
