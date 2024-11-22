@@ -11,11 +11,9 @@ profile_start = time.time()
 profile_data = {}
 total_time = 1
 profile_file = None
-# model = BoxInfo.get("machinebuild")  # For when we can use BoxInfo.
-model = None
 
 try:
-	profile_old = open(resolveFilename(SCOPE_CONFIG, "profile")).readlines()
+	profile_old = open(resolveFilename(SCOPE_CONFIG, "profile"), "r").readlines()
 
 	t = None
 	for line in profile_old:
@@ -44,18 +42,9 @@ def profile(id):
 			else:
 				perc = PERCENTAGE_START
 			try:
-				if model == "axodin":
-					open("/dev/dbox/oled0", "w").write("%d" % perc)
-				elif model in ("gb800solo", "gb800se", "gb800seplus", "gbultrase"):
-					open("/dev/mcu", "w").write("%d  \n" % perc)
-				elif model in ("ebox5000", "osmini", "spycatmini", "osminiplus", "spycatminiplus"):
-					open("/proc/progress", "w").write("%d" % perc)
-				elif model in ("sezammarvel", "xpeedlx3", "atemionemesis"):
-					open("/proc/vfd", "w").write("Loading %d %%" % perc)
-				elif model == "beyonwizu4":
-					open("/dev/dbox/oled0", "w").write("Loading %d%%\n" % perc)
-				else:
-					open("/proc/progress", "w").write("%d \n" % perc)
+				f = open("/proc/progress", "w")
+				f.write("%d \n" % perc)
+				f.close()
 			except IOError:
 				pass
 
