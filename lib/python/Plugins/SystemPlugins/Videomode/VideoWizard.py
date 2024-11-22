@@ -1,10 +1,10 @@
-from Screens.Wizard import Wizard, WizardSummary
-from Screens.HelpMenu import ShowRemoteControl
-from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 from Components.config import config, configfile
+from Components.SystemInfo import BoxInfo
+from Screens.HelpMenu import ShowRemoteControl
+from Screens.Wizard import WizardSummary, Wizard
+from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_PLUGINS, resolveFilename
 
 MODEL = BoxInfo.getItem("model")
@@ -35,13 +35,11 @@ class VideoWizard(Wizard, ShowRemoteControl):
 				descr = port
 				if descr == "HDMI" and has_dvi:
 					descr = "DVI"
-				if descr == 'HDMI-PC' and has_dvi:
-					descr = 'DVI-PC'
 				if descr == "Scart" and BoxInfo.getItem("rca") and not has_scart:
 					descr = "RCA"
 				if descr == "Scart" and BoxInfo.getItem("avjack") and not has_scart:
 					descr = "Jack"
-				if port != "HDMI-PC":
+				if port != "DVI-PC":
 					ports.append((descr, port))
 		ports.sort(key=lambda x: x[0])
 		# print("[WizardVideo] listPorts DEBUG: Ports=%s." % ports)
@@ -62,6 +60,19 @@ class VideoWizard(Wizard, ShowRemoteControl):
 			"smpte": 20
 		}
 
+		# preferred = avSwitch.readPreferredModes(saveMode=True)
+		preferred = []  # Don't resort because some TV sends wrong edid info
+		if preferred:
+			if "2160p" in preferred:
+				sortKeys["2160p"] = 1
+				sortKeys["2160p30"] = 2
+				sortKeys["1080p"] = 3
+				sortKeys["1080i"] = 4
+				sortKeys["720p"] = 5
+			elif "1080p" in preferred:
+				sortKeys["1080p"] = 1
+				sortKeys["720p"] = 3
+
 		modes.sort(key=sortKey)
 		# print("[WizardVideo] listModes DEBUG: port='%s', modes=%s." % (self.port, modes))
 		return modes
@@ -69,8 +80,8 @@ class VideoWizard(Wizard, ShowRemoteControl):
 	def listRates(self, mode=None):  # Called by videowizard.xml.
 		def sortKey(name):
 			return {
-				"50Hz": 1,
-				"60Hz": 2
+				"multi": 1,
+				"auto": 2
 			}.get(name[0], 3)
 
 		if mode is None:
@@ -81,7 +92,7 @@ class VideoWizard(Wizard, ShowRemoteControl):
 				for rate in modes[1]:
 					if rate == "auto" and not BoxInfo.getItem("Has24hz"):
 						continue
-					if self.port == "HDMI-PC":
+					if self.port == "DVI-PC":
 						# print("[WizardVideo] listModes DEBUG: rate='%s'." % rate)
 						if rate == "640x480":
 							rates.insert(0, (rate, rate))
