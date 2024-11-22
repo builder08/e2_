@@ -4,7 +4,7 @@ from time import sleep
 
 from enigma import eAVSwitch, eAVControl, getDesktop
 
-from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, ConfigOnOff, NoSave
+from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, ConfigOnOff, NoSave, ConfigText, ConfigSelectionInteger
 from Components.SystemInfo import BoxInfo
 from Tools.AVHelper import pChoice, readChoices
 from Tools.Directories import fileReadLine, fileWriteLine
@@ -15,7 +15,6 @@ MODULE_NAME = __name__.split(".")[-1]
 
 MODEL = BoxInfo.getItem("model")
 AMLOGIC = BoxInfo.getItem("AmlogicFamily")
-
 
 class AVSwitch:
 	def setAspect(self, configElement):
@@ -208,6 +207,30 @@ def InitAVSwitch():
 	config.av.generalAC3delay = ConfigSelectionNumber(-1000, 1000, 5, default=0)
 	config.av.generalPCMdelay = ConfigSelectionNumber(-1000, 1000, 5, default=0)
 	config.av.vcrswitch = ConfigEnableDisable(default=False)
+	config.osd = ConfigSubsection()
+	config.osd.language = ConfigText(default=config.misc.locale.value)
+	if BoxInfo.getItem("AmlogicFamily"):
+		limits = [int(x) for x in avSwitch.getWindowsAxis().split()]
+		config.osd.dst_left = ConfigSelectionInteger(default=limits[0], first=limits[0] - 255, last=limits[0] + 255, step=1, wrap=False)
+		config.osd.dst_top = ConfigSelectionInteger(default=limits[1], first=limits[1] - 255, last=limits[1] + 255, step=1, wrap=False)
+		config.osd.dst_width = ConfigSelectionInteger(default=limits[2], first=limits[2] - 255, last=limits[2] + 255, step=1, wrap=False)
+		config.osd.dst_height = ConfigSelectionInteger(default=limits[3], first=limits[3] - 255, last=limits[3] + 255, step=1, wrap=False)
+	else:
+		config.osd.dst_left = ConfigSelectionInteger(default=0, first=0, last=720, step=1, wrap=False)
+		config.osd.dst_top = ConfigSelectionInteger(default=0, first=0, last=576, step=1, wrap=False)
+		config.osd.dst_width = ConfigSelectionInteger(default=720, first=0, last=720, step=1, wrap=False)
+		config.osd.dst_height = ConfigSelectionInteger(default=576, first=0, last=576, step=1, wrap=False)
+	config.osd.alpha = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
+	config.osd.alpha_teletext = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
+	config.osd.alpha_webbrowser = ConfigSelectionInteger(default=255, first=0, last=255, step=1, wrap=False)
+	config.osd.threeDmode = ConfigSelection(default="auto", choices=[
+		("off", _("Off")),
+		("auto", _("Auto")),
+		("sidebyside", _("Side by Side")),
+		("topandbottom", _("Top and Bottom"))
+	])
+	config.osd.threeDznorm = ConfigSlider(default=0, increment=1, limits=(-50, 50))
+	config.osd.show3dextensions = ConfigYesNo(default=False)
 
 	def setColorFormat(configElement):
 		if MODEL == "et6x00":
@@ -753,7 +776,6 @@ def InitAVSwitch():
 		config.av.scaler_sharpness.addNotifier(setScalerSharpness)
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
-
 
 	config.av.force = ConfigSelection(default=None, choices=[
 		(None, _("Do not force")),
