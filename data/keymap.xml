@@ -52,7 +52,7 @@
 	<map context="HelpActions">
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_OK" mapto="select" flags="m" />
-		<!-- <key id="KEY_HELP" mapto="displayHelp" flags="b" /> -->
+		<!-- <key id="KEY_HELP" mapto="displayHelp" flags="m" /> -->
 		<!-- <key id="KEY_HELP" mapto="DISPLAYHELP" flags="b" /> -->
 		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
 		<key id="KEY_HELP" mapto="displayHelpLong" flags="l" />
@@ -92,6 +92,7 @@
 	</map>
 
 	<map context="NavigationActions">
+		<key id="KEY_REWIND" mapto="first" flags="m" />
 		<key id="KEY_REWIND" mapto="top" flags="m" />
 		<key id="KEY_CHANNELUP" mapto="pageUp" flags="mr" />
 		<key id="KEY_UP" mapto="up" flags="mr" />
@@ -106,6 +107,9 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_CHANNELDOWN" mapto="pageDown" flags="mr" />
 		<key id="KEY_FASTFORWARD" mapto="bottom" flags="m" />
+		<!--
+		<key id="KEY_FASTFORWARD" mapto="bottom" flags="m" />
+		-->
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_HOME" mapto="top" flags="m" />
 		<key id="KEY_PAGEUP" mapto="pageUp" flags="mr" />
@@ -818,6 +822,14 @@
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
 		<key id="KEY_LEFT" mapto="left" flags="mr" />
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
+		<key id="KEY_UP" mapto="upRepeated" flags="r" />
+		<key id="KEY_DOWN" mapto="downRepeated" flags="r" />
+		<key id="KEY_LEFT" mapto="leftRepeated" flags="r" />
+		<key id="KEY_RIGHT" mapto="rightRepeated" flags="r" />
+		<key id="KEY_LEFT" mapto="leftUp" flags="b" />
+		<key id="KEY_RIGHT" mapto="rightUp" flags="b" />
+		<key id="KEY_UP" mapto="upUp" flags="b" />
+		<key id="KEY_DOWN" mapto="downUp" flags="b" />
 		<key id="KEY_CHANNELUP" mapto="chplus" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="chminus" flags="m" />
 		<key id="KEY_PREVIOUS" mapto="moveUp" flags="m" />
@@ -896,14 +908,12 @@
 	</map>
 
 	<map context="MsgBoxActions">
-		<!-- Also uses NavigationActions -->
-		<key id="KEY_EXIT" mapto="cancel" flags="m" />
-		<key id="KEY_OK" mapto="select" flags="m" />
+		<key id="KEY_GREEN" mapto="alwaysOK" flags="m" />
+		<key id="KEY_OK" mapto="ok" flags="m" />
+		<key id="KEY_ENTER" mapto="ok" flags="m" />
 		<key id="KEY_RED" mapto="cancel" flags="m" />
-		<key id="KEY_GREEN" mapto="selectOk" flags="m" />
-		<!-- Keyboard specific buttons -->
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
-		<key id="KEY_ENTER" mapto="select" flags="m" />
 	</map>
 
 	<map context="WindowActions">
