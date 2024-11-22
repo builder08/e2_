@@ -452,8 +452,8 @@ class ConfigAction(ConfigElement):
 		if (key == KEY_OK):
 			self.action(*self.actionargs)
 
-	def getMulti(self, dummy):
-		pass
+	def getMulti(self, selected):
+		return ("text", _("<Press OK to perform action>") if selected else "")
 
 	def getText(self):
 		pass
