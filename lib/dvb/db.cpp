@@ -21,6 +21,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <exception>
+#include <regex>
 
 /*
  * Copyright (C) 2017 Marcus Metzler <mocm@metzlerbros.de>
@@ -235,17 +236,6 @@ RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 	if (m_provider_name.empty()) {
 		m_provider_name = ref.prov;
 	}
-	return 0;
-
-	std::string res_name = "";
-	std::string res_provider = "";
-	eServiceReference::parseNameAndProviderFromName(name, res_name, res_provider);
-	name = res_name;
-
-	if (!res_provider.empty() && m_provider_name.empty()) {
-		m_provider_name = res_provider;
-	}
-
 	return 0;
 }
 
@@ -2725,11 +2715,11 @@ RESULT eDVBDB::appendServicesToBouquet(const std::string &filename, ePyObject se
 	return 0;
 }
 
-RESULT eDVBDB::removeBouquet(const std::string &filename)
+RESULT eDVBDB::removeBouquet(const std::string &filename_regex)
 {
 	std::string ext = ".tv";
 	int type = 1;
-	if (filename.find(".radio") != std::string::npos) {
+	if (filename_regex.find(".radio") != std::string::npos) {
 		ext = ".radio";
 		type = 2;
 	}
@@ -2737,24 +2727,50 @@ RESULT eDVBDB::removeBouquet(const std::string &filename)
 	ePtr<eDVBResourceManager> res;
 	eDVBResourceManager::getInstance(res);
 	res->getChannelList(db);
-	std::string bouquetquery = "FROM BOUQUET \"" + filename + "\" ORDER BY bouquet";
-	eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
-	bouquetref.setData(0, type);
-	eBouquet *bouquet = NULL;
-	eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets" + ext + "\" ORDER BY bouquet");
-	if (!db->getBouquet(bouquetref, bouquet) && bouquet)
+	std::string p = eEnv::resolve("${sysconfdir}/enigma2/");
+	DIR *dir = opendir(p.c_str());
+	if (!dir)
 	{
-		if (!db->getBouquet(rootref, bouquet) && bouquet)
-		{
-			bouquet->m_services.remove(bouquetref);
-			bouquet->flushChanges();
-			deleteBouquet(filename);
-		}
-	}
-	else
-	{
+		eDebug("[eDVBDB] Cannot open directory where the userbouquets should be expected..");
 		return -1;
 	}
+	dirent *entry;
+	while((entry = readdir(dir)) != NULL)
+		if (entry->d_type == DT_REG)
+		{
+			std::string path = entry->d_name;
+			if (std::regex_search(path, std::regex(filename_regex)))
+			{
+				std::string bouquetquery = "FROM BOUQUET \"" + path + "\" ORDER BY bouquet";
+				eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
+				bouquetref.setData(0, type);
+				eBouquet *bouquet = NULL;
+				eServiceReference rootref(eServiceReference::idDVB, eServiceReference::flagDirectory, "FROM BOUQUET \"bouquets" + ext + "\" ORDER BY bouquet");
+				if (!db->getBouquet(bouquetref, bouquet) && bouquet)
+				{
+					if (!db->getBouquet(rootref, bouquet) && bouquet)
+					{
+						int status = std::remove((p+path).c_str());
+						if (status != 0) {
+							eDebug("[eDVBDB] ERROR DELETING FILE %s", path.c_str());
+						}
+						m_bouquets.erase(path);
+						bouquet->m_services.remove(bouquetref);
+						bouquet->flushChanges();
+					}
+					else
+					{
+						return -1;
+					}
+				}
+				else
+				{
+					return -1;
+				}
+			}
+		}
+	closedir(dir);
+
 	return 0;
 }
 
