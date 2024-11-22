@@ -248,6 +248,7 @@ def getHotkeyFunctions():
 	hotkey.functions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", "Setup"))
 	hotkey.functions.append((_("OScam Information"), "Module/Screens.OScamInfo/OSCamInfo", "Plugins"))
 	hotkey.functions.append((_("Memory Info"), "Module/Screens.About/MemoryInfo", "Setup"))
+	hotkey.functions.append((_("Reload Skin"), "ReloadSkin/", "Setup"))
 	if BoxInfo.getItem("canMultiBoot"):
 		hotkey.functions.append((_("Multiboot image selector"), "Module/Screens.FlashImage/MultibootSelection", "Setup"))
 		hotkey.functions.append((_("MultiBoot Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "Setup"))
@@ -726,6 +727,10 @@ class InfoBarHotkey:
 					else:
 						from Screens.Console import Console
 						self.session.open(Console, selected[1] + " pythonscript", "python %s" % command, closeOnSuccess=selected[1].startswith('!'), showStartStopText=False)
+			elif selected[0] == "ReloadSkin":
+				from skin import reloadSkins
+				reloadSkins()
+				self.session.reloadDialogs()
 			elif selected[0] == "Menu":
 				from Screens.Menu import MainMenu, mdom
 				root = mdom.getroot()
