@@ -48,6 +48,12 @@ to generate HTML."""
 
 	list = property(getList, setList)
 
+	def removeEntry(self, index):
+		if 0 <= index < len(self.__list):
+			self.__list.pop(index)
+			self.changed((self.CHANGED_ALL,))
+			self.listUpdated()
+
 	def count(self):
 		return len(self.listData)
 
