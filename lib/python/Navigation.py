@@ -116,9 +116,6 @@ class Navigation:
 				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
 		return nref, wrappererror
 
-	def restartService(self):
-		self.playService(self.currentlyPlayingServiceOrGroup, forceRestart=True)
-
 	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True, ignoreStreamRelay=False):
 		session = None
 		startPlayingServiceOrGroup = None
@@ -189,7 +186,7 @@ class Navigation:
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
 				if not ignoreStreamRelay:
-					playref = streamrelay.streamrelayChecker(playref)
+					playref, isStreamRelay = streamrelay.streamrelayChecker(playref)
 				if not isStreamRelay:
 					playref, wrappererror = self.serviceHook(playref)
 					if wrappererror:

@@ -33,6 +33,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.InputBox import PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
+from Screens.ServiceInfo import ServiceInfo
 from Screens.Hotkey import InfoBarHotkey, hotkeyActionMap, hotkey
 eProfileWrite("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
@@ -560,9 +561,7 @@ class ChannelContextMenu(Screen):
 				current = self.session.nav.getCurrentlyPlayingServiceReference()
 			else:
 				current = eServiceReference(GetWithAlternative(current.toString()))
-		from Screens.About import ServiceInformation  # The import needs to be here
-		self.session.open(ServiceInformation, self.csel.getCurrentSelection())
-		self.close()
+		self.session.openWithCallback(self.close, ServiceInfo, current)
 
 	def setStartupService(self):
 		self.session.openWithCallback(self.setStartupServiceCallback, MessageBox, _("Set startup service"), list=[(_("Only on startup"), "startup"), (_("Also on standby"), "standby")])
@@ -1208,14 +1207,11 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
-			if self.mode == MODE_TV:
-				bName += _(" (TV)")
-				new_bouquet_ref = eServiceReference(service_types_tv_ref)
-				new_bouquet_ref.setPath('FROM BOUQUET "userbouquet.%s.tv" ORDER BY bouquet' % self.buildBouquetID(bName))
-			else:
-				bName += _(" (Radio)")
-				new_bouquet_ref = eServiceReference(service_types_radio_ref)
-				new_bouquet_ref.setPath('FROM BOUQUET "userbouquet.%s.radio" ORDER BY bouquet' % self.buildBouquetID(bName))
+			name = sanitizeFilename(bName)
+			while os.path.isfile((self.mode == MODE_TV and '/etc/enigma2/userbouquet.%s.tv' or '/etc/enigma2/userbouquet.%s.radio') % name):
+				name = name.rsplit('_', 1)
+				name = ('_').join((name[0], len(name) == 2 and name[1].isdigit() and str(int(name[1]) + 1) or '1'))
+			new_bouquet_ref = eServiceReference((self.mode == MODE_TV and '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.%s.tv" ORDER BY bouquet' or '1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.%s.radio" ORDER BY bouquet') % name)
 			if not mutableBouquetList.addService(new_bouquet_ref):
 				mutableBouquetList.flushChanges()
 				eDVBDB.getInstance().reloadBouquets()
@@ -1499,15 +1495,15 @@ class ChannelSelectionEdit:
 		l = self["list"]
 		l.setFontsize()
 		l.setItemsPerPage()
-		l.setMode("MODE_TV")
+		# l.setMode("MODE_TV") # disabled because there is something wrong
 		# l.setMode("MODE_TV") automatically sets "hide number marker" to
 		# the config.usage.hide_number_markers.value so when we are in "move mode"
 		# we need to force display of the markers here after l.setMode("MODE_TV")
 		# has run. If l.setMode("MODE_TV") were ever removed above,
-		# "self.servicelist.l.setHideNumberMarker(False)" could be moved
+		# "self.servicelist.setHideNumberMarker(False)" could be moved
 		# directly to the "else" clause of "def toggleMoveMode".
 		if self.movemode:
-			self.servicelist.l.setHideNumberMarker(False)
+			self.servicelist.setHideNumberMarker(False)
 		if close:
 			self.cancel()
 
@@ -2450,7 +2446,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def zapCheckTimeshiftCallback(self, preview_zap, nref, answer):
 		if answer:
 			self.new_service_played = True
-			self.session.nav.playService(nref)
+			self.session.nav.playService(nref, adjust=preview_zap and [0, self.session] or True)
 			if not preview_zap:
 				self.saveRoot()
 				self.saveChannel(nref)
