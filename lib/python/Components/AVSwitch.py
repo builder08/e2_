@@ -768,6 +768,15 @@ def InitAVSwitch():
 	else:
 		config.av.scaler_sharpness = NoSave(ConfigNothing())
 
+	if BoxInfo.getItem("HasAutoVolumeLevel"):
+		def setAutoVolumeLevel(configElement):
+			try:
+				open("/proc/stb/audio/autovolumelevel_choices", "w").write("enabled" if configElement.value else "disabled")
+			except:
+				print("[AVSwitch] Write to /proc/stb/audio/autovolumelevel_choices failed!")
+		config.av.autovolumelevel = ConfigYesNo(default=False)
+		config.av.autovolumelevel.addNotifier(setAutoVolumeLevel)
+
 	config.av.force = ConfigSelection(default=None, choices=[
 		(None, _("Do not force")),
 		("50", _("Force 50Hz")),
