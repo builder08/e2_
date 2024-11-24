@@ -90,16 +90,14 @@ class PiconLocator:
 			fields[2] = '1'
 			pngname = self.findPicon('_'.join(fields))
 		if not pngname: # picon by channel name
-			utf8_name = sanitizeFilename(ServiceReference(serviceName).getServiceName()).lower()
-			pngname = self.findPicon(utf8_name) or self.findPicon(re.sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8_name).strip())
-			if not pngname:  # legacy ascii service name picons
-				name = re.sub("[^a-z0-9]", "", utf8_name.replace("&", "and").replace("+", "plus").replace("*", "star"))
-				pngname = self.findPicon(name) or self.findPicon(re.sub(r"(fhd|uhd|hd|sd|4k)$", "", name).strip())
-				if not pngname and len(name) > 6:
-					series = re.sub(r's[0-9]*e[0-9]*$', '', name)
+			if (sname := ServiceReference(serviceName).getServiceName()) and "SID 0x" not in sname and (utf8_name := sanitizeFilename(sname).lower()) and utf8_name != "__":  # avoid lookups on zero length service names
+				legacy_name = re.sub("[^a-z0-9]", "", utf8_name.replace("&", "and").replace("+", "plus").replace("*", "star"))  # legacy ascii service name picons
+				pngname = self.findPicon(utf8_name) or legacy_name and self.findPicon(legacy_name) or self.findPicon(re.sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8_name).strip()) or legacy_name and self.findPicon(re.sub(r"(fhd|uhd|hd|sd|4k)$", "", legacy_name).strip())
+				if not pngname and len(legacy_name) > 6:
+					series = re.sub(r"s[0-9]*e[0-9]*$", "", legacy_name)
 					pngname = self.findPicon(series)
 		if not pngname: # picon default
-			tmp = resolveFilename(SCOPE_CURRENT_SKIN, 'picon_default.png') # picon_default in current active skin
+			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png") # picon_default in current active skin
 			tmp2 = self.findPicon("picon_default") # picon_default in picon folder
 			if pathExists(tmp2):
 				pngname = tmp2
@@ -107,7 +105,7 @@ class PiconLocator:
 				if pathExists(tmp):
 					pngname = tmp
 				else:
-					pngname = resolveFilename(SCOPE_CURRENT_SKIN, 'picon_default.png')
+					pngname = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
 		return pngname
 
 
