@@ -2244,16 +2244,16 @@ msgstr "Добавить маркер"
 msgid "Add provider"
 msgstr "Добавить оператора"
 
-msgid "Add recording (enter recording duration)"
+msgid "Add recording (Enter recording duration)"
 msgstr "Начать запись (Введите длительность записи)"
 
-msgid "Add recording (enter recording end time)"
+msgid "Add recording (Enter recording end time)"
 msgstr "Начать запись (Введите время окончания)"
 
-msgid "Add recording (indefinitely)"
+msgid "Add recording (Indefinitely)"
 msgstr "Начать запись (Конец не определён)"
 
-msgid "Add recording (stop after current event)"
+msgid "Add recording (Stop after current event)"
 msgstr "Начать запись (Стоп после окончания передачи)"
 
 msgid "Add service"
