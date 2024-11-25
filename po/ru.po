@@ -20957,9 +20957,6 @@ msgstr ""
 "\n"
 "Пожалуйста, нажмите ОК для продолжения."
 
-msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
-msgstr "В Вашем ресивере обнаружена проблема с ПО. С момента последней перезагрузки это произошло %d раз.\n"
-
 msgid "Your %s %s is rebooting"
 msgstr "Ваш %s %s перезагружается"
 
