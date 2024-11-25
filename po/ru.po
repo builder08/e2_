@@ -2895,6 +2895,9 @@ msgstr ""
 msgid "Attention, this is repeated timer!\n"
 msgstr "Внимание, это повторный таймер!\n"
 
+msgid "Attention: There will be a restart after %d crashes."
+msgstr "Внимание: после %d сбоев будет произведен перезапуск."
+
 msgid ""
 "Attention, this is repeated timer!\n"
 "What do you want to do?"
@@ -20113,12 +20116,8 @@ msgstr ""
 msgid "Warning"
 msgstr "Внимание"
 
-msgid ""
-"Warning! This is the last crash before an automatic restart is performed.\n"
-"Should the crash counter be reset to prevent a restart?"
-msgstr ""
-"Внимание! Это последний сбой перед автоматическим перезапуском.\n"
-"Нужно ли сбросить счетчик сбоев,чтобы предотвратить перезапуск?"
+msgid "Warning: This is the last crash before an automatic restart is performed.\n"
+msgstr "Предупреждение: это последний сбой перед выполнением автоматического перезапуска.\n"
 
 msgid ""
 "Warning!\n"
@@ -20988,6 +20987,10 @@ msgid ""
 msgstr ""
 "Ваш ресивер будет перезагружен после нажатия кнопки OK на Вашем пульте Д/У.\n"
 "Вы готовы установить \"%s\"?"
+
+#, python-format
+msgid "Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n"
+msgstr "В Вашем ресивере обнаружена проблема с ПО. С момента последней перезагрузки это произошло %d раз.\n"
 
 msgid ""
 "Your receiver will be restarted after the removal of the service\n"

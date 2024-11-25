@@ -5,8 +5,8 @@ exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
 if [ -d /home/root ]; then
-	cd /home/root
 	export HOME=/home/root
+	cd
 fi
 
 # workaround for corrupt ssl files
@@ -21,14 +21,21 @@ if [ -e /usr/bin/ciplushelper ]; then
 	sleep 3
 fi
 
+# LC_ALL available?
+if [ -z $LC_ALL ]; then
+	export LC_ALL=en_GB.utf8
+fi
+
+LIBS=@libdir@/libopen.so.0.0.0
+
 #Workaround for aspect ratio issue
 if [ -e /proc/stb/video/avshutdown ]; then
 	echo "down" > /proc/stb/video/avshutdown && echo "up" > /proc/stb/video/avshutdown
 fi
 
-if [ -f "/proc/stb/fp/led_color" ]; then
+if [ -f /proc/stb/fp/led_color ]; then
 	echo "00ffffff" > /proc/stb/fp/led_color
-elif [ -f "/proc/stb/fp/led_brightness" ]; then
+elif [ -f /proc/stb/fp/led_brightness ]; then
 	echo "000000ff" > /proc/stb/fp/led_brightness
 fi
 
@@ -39,12 +46,15 @@ else
 	DEBUG_LVL=$ENIGMA_DEBUG_LVL
 fi
 
-# LC_ALL available?
-if [ -z $LC_ALL ]; then
-	export LC_ALL=en_GB.utf8
+# hook to execute dhcp wait script
+if [ -x /usr/bin/enigma2_dhcp_wait.sh ]; then
+	/usr/bin/enigma2_dhcp_wait.sh
 fi
 
-LIBS=@libdir@/libopen.so.0.0.0
+# hook to execute scripts always before enigma2 start
+if [ -x /usr/bin/enigma2_pre_start.sh ]; then
+	/usr/bin/enigma2_pre_start.sh
+fi
 
 # enigma main loop
 while : ; do
@@ -57,16 +67,6 @@ while : ; do
 		elif [ -f @datadir@/bootlogo.mvi ]; then
 			@bindir@/showiframe @datadir@/bootlogo.mvi
 		fi
-	fi
-
-	# hook to execute dhcp wait script
-	if [ -x @bindir@/enigma2_dhcp_wait.sh ]; then
-		@bindir@/enigma2_dhcp_wait.sh
-	fi
-
-	# hook to execute scripts always before enigma2 start
-	if [ -x @bindir@/enigma2_pre_start.sh ]; then
-		@bindir@/enigma2_pre_start.sh
 	fi
 
 if [ ! -e /etc/enigma2/settings ]; then

@@ -173,11 +173,11 @@ void bsodFatal(const char *component)
 
 	char dated[22];
 	time_t now_time = time(0);
-	struct tm loctime;
+	struct tm loctime = {};
 	localtime_r(&now_time, &loctime);
 	strftime (dated, 21, "%Y%m%d-%H%M%S", &loctime);
 
-	os << getConfigString("config.crash.debugpath", "/home/root/logs/");
+	os << getConfigString("config.crash.debug_path", "/home/root/logs/");
 	os << dated;
 	os << "-enigma2-crash.log";
 	crashlog_name = os.str();
@@ -205,7 +205,7 @@ void bsodFatal(const char *component)
 	{
 		time_t t = time(0);
 		struct tm tm = {};
-		char tm_str[32] = {};
+		char tm_str[32];
 
 		localtime_r(&t, &tm);
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
@@ -230,6 +230,7 @@ void bsodFatal(const char *component)
 
 		const std::list<std::string> enigmainfovalues {
 			"model",
+			"machinebuild",
 			"imageversion",
 			"imagebuild"
 		};
