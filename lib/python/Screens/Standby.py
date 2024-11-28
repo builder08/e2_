@@ -285,7 +285,7 @@ class Standby(StandbyScreen):
 class StandbySummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
-		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" horizontalAlignment="center">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="132,64" font="Regular;40" halign="center">
 			<convert type="ClockToText" />
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" text=" " position="0,0" size="132,64" zPosition="1" >
@@ -299,7 +299,7 @@ class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
 				<ePixmap pixmap="icons/input_info.png" position="c-27,c-60" size="53,53" alphaTest="on" />
-				<widget name="text" position="center,c+5" size="720,100" font="Regular;22" horizontalAlignment="center" />
+				<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 			</screen>"""
 		Screen.__init__(self, session)
 		from Components.Label import Label
@@ -393,9 +393,10 @@ class TryQuitMainloop(MessageBox):
 				if not inStandby:
 					if isfile("/usr/script/standby_enter.sh"):
 						Console().ePopen("/usr/script/standby_enter.sh")
-					if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value and config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value:
-						import Components.HdmiCec
-						Components.HdmiCec.hdmi_cec.secondBoxActive()
+					if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value and ((config.hdmicec.control_tv_standby.value and (config.hdmicec.next_boxes_detect.value or config.hdmicec.ethernet_pc_used.value)) or config.hdmicec.handle_deepstandby_events.value != "no"):
+						if config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value:
+							import Components.HdmiCec
+							Components.HdmiCec.hdmi_cec.secondBoxActive()
 						if not hasattr(self, "quitScreen"):
 							self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen)
 							self.quitScreen.show()
