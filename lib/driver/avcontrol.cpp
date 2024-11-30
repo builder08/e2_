@@ -75,7 +75,7 @@ eAVControl *eAVControl::m_instance = nullptr;
 
 eAVControl::eAVControl()
 {
-	struct stat buffer;
+	struct stat buffer = {};
 
 #ifdef HAVE_HDMIIN_DM
 	m_b_has_proc_hdmi_rx_monitor = (stat(proc_hdmi_rx_monitor, &buffer) == 0);
@@ -703,6 +703,25 @@ void eAVControl::setOSDAlpha(int alpha, int flags) const
 #else
 	CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
 #endif
+}
+
+/// @brief getEDIDPath
+/// @return
+std::string eAVControl::getEDIDPath() const
+{
+	struct stat buffer = {};
+
+#ifdef DREAMNEXTGEN
+	const std::string proc = "/sys/class/amhdmitx/amhdmitx0/rawedid";
+#else
+	const std::string proc = "/proc/stb/hdmi/raw_edid";
+#endif
+
+	if (stat(proc.c_str(), &buffer) == 0 && stat("/usr/bin/edid-decode", &buffer) == 0)
+	{
+		return proc;
+	}
+	return "";
 }
 
 
