@@ -244,8 +244,8 @@
 		<item text="Nameserver" description="Configure the nameserver (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
-	<setup key="OSCamInfoSetup" title="OSCam Overview Setup">
-		<item level="0" text="Read Userdata from oscam.conf" description="Read Userdata from oscam.conf">config.oscaminfo.userDataFromConf</item>
+	<setup key="OSCamInfoSetup" title="OSCam/NCam Information Settings">
+		<item level="0" text="Read Userdata from oscam/ncam.conf" description="Read Userdata from oscam/ncam.conf">config.oscaminfo.userDataFromConf</item>
 		<if conditional="not config.oscaminfo.userDataFromConf.value">
 			<item level="0" text="Username (httpuser)" description="Username (httpuser)">config.oscaminfo.username</item>
 			<item level="0" text="Password (httpwd)" description="Password (httpuser)">config.oscaminfo.password</item>
@@ -519,7 +519,7 @@
 		<item level="0" text="Zap history sequence" description="Select the display sequence of previously visited services.">config.usage.zapHistorySort</item>
 		<item level="2" text="Hide zap errors" description="When enabled, error messages related to zapping will not be shown.">config.usage.hide_zap_errors</item>
 		<item level="2" text="Show crypto info in infobar" description="When enabled, encryption info will be shown in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
-		<item level="2" text="Hide softcam servername" description="Select 'Yes' to hide the server name and IP address of the server.">config.oscaminfo.hideServerName</item>
+		<item level="2" text="Hide softcam servername" description="Select 'Yes' to hide the server name and IP address of the server.">config.misc.softcam_hideServerName</item>
 		<item level="2" text="Show picons in display" description="Configure if service picons will be shown in display (when supported by the skin)." requires="HasFrontDisplayPicon">config.usage.show_picon_in_display</item>
 		<item level="2" text="Infobar frontend data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Toggle the SNR values displayed" description="When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa.">config.usage.swap_snr_on_osd</item>

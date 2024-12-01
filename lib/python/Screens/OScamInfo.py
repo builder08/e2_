@@ -21,9 +21,24 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileExists
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
+
+NAMEBIN = ""
+NAMEBIN2 = ""
+def check_NAMEBIN():
+	NAMEBIN = "oscam"
+	if fileExists("/tmp/.ncam/ncam.version"):
+		NAMEBIN = "ncam"
+	return NAMEBIN
+
+def check_NAMEBIN2():
+	NAMEBIN2 = "OScam"
+	if fileExists("/tmp/.ncam/ncam.version"):
+		NAMEBIN2 = "Ncam"
+	return NAMEBIN2	
 
 
 class OSCamGlobals():
@@ -46,7 +61,7 @@ class OSCamGlobals():
 		if port.startswith('+'):
 			proto = "https"
 			port.replace("+", "")
-			ctx = SkipCertificateVerification()
+			ctx = SkipCertificateVerification() # NOSONAR silence S4830 + S5527
 		url = ""
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
@@ -78,7 +93,7 @@ class OSCamGlobals():
 
 	def confPath(self):
 		owebif, oport, opath, ipcompiled, conffile = False, None, None, False, ""
-		for file in ["/tmp/.ncam/ncam.version", "/tmp/.oscam/oscam.version"]:  # Find and parse running oscam
+		for file in ["/tmp/.ncam/ncam.version", "/tmp/.oscam/oscam.version"]:  # Find and parse running oscam/ncam
 			if exists(file):
 				with open(file) as data:
 					conffile = file.split('/')[-1].replace("version", "conf")
@@ -98,14 +113,16 @@ class OSCamGlobals():
 		return owebif, oport, opath, ipcompiled, conffile
 
 	def getUserData(self):
-		webif, port, conf, ipcompiled, conffile = self.confPath()  # (True, '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'oscam.conf')
-		conf = "%s%s" % ((conf or ""), (conffile or "oscam.conf"))
+		NAMEBIN = check_NAMEBIN()
+		NAMEBIN2 = check_NAMEBIN2()
+		webif, port, conf, ipcompiled, conffile = self.confPath()  # (True, '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'oscam/ncam.conf')
+		conf = "%s%s" % ((conf or ""), (conffile or "%s.conf" % NAMEBIN))
 		api = conffile.replace(".conf", "api")
-		blocked = False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
+		blocked = False  # Assume that oscam/ncam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 		ipconfigured = ipcompiled
 		user = pwd = None
-		ret = _("OSCam webif disabled")
-		if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
+		ret = _("%s webif disabled") % NAMEBIN2
+		if webif and port is not None:  # oscam/ncam reports it got webif support and webif is running (Port != 0)
 			if conf is not None and exists(conf):  # If we have a config file, we need to investigate it further
 				with open(conf) as data:
 					for i in data:
@@ -116,7 +133,7 @@ class OSCamGlobals():
 						elif "httpport" in i.lower():
 							port = i.split("=")[1].strip()
 						elif "httpallowed" in i.lower():
-							blocked = True  # Once we encounter a httpallowed statement, we have to assume oscam webif is blocking us ...
+							blocked = True  # Once we encounter a httpallowed statement, we have to assume oscam/ncam webif is blocking us ...
 							allowed = i.split("=")[1].strip()
 							if "::1" in allowed or "127.0.0.1" in allowed or "0.0.0.0-255.255.255.255" in allowed:
 								blocked = False  # ... until we find either 127.0.0.1 or ::1 in allowed list
@@ -137,10 +154,11 @@ class OSCamGlobals():
 
 
 class OSCamInfo(Screen, OSCamGlobals):
-	skin = """
-		<screen name="OSCamInfo" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OSCam Information" flags="wfNoBorder" resolution="1920,1080">
-			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
-			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+	if fileExists("/tmp/.ncam/ncam.version"):
+		skin = """
+		<screen name="OSCamInfo" position="center,center" size="1950,1080" backgroundColor="#10101010" title="NCam Information" flags="wfNoBorder" resolution="1920,1080">
+			<ePixmap pixmap="icons/NcamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Default</convert>
 			</widget>
@@ -151,19 +169,19 @@ class OSCamInfo(Screen, OSCamGlobals):
 				<convert type="ClockToText">Format:%e. %B</convert>
 			</widget>
 			<widget source="buildinfos" render="Label" position="480,66" size="990,40" font="Regular;30" halign="center" valign="center" foregroundColor="#092CBDF" backgroundColor="#10101010" />
-			<widget source="timerinfos" render="Label" position="15,99" size="1920,40" font="Regular;30" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+			<widget source="timerinfos" render="Label" position="15,99" size="1920,40" font="Regular;30" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
 			<!-- Server / Reader / Clients -->
-			<eLabel text="#" position="15,150" size="23,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Reader/User" position="40,150" size="173,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="AU" position="215,150" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Address" position="305,150" size="168,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Port" position="475,150" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Protocol" position="565,150" size="223,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="srvid:caid@provid" position="790,150" size="268,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Last Channel" position="1060,150" size="233,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="LB Value/Reader" position="1295,150" size="233,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Online\nIdle" position="1530,150" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Status" position="1695,150" size="210,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel text="#" position="15,150" size="23,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Reader/User" position="40,150" size="173,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="AU" position="215,150" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Address" position="305,150" size="168,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Port" position="475,150" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Protocol" position="565,150" size="223,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="srvid:caid@provid" position="790,150" size="268,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Last Channel" position="1060,150" size="233,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="LB Value/Reader" position="1295,150" size="233,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Online\nIdle" position="1530,150" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Status" position="1695,150" size="210,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
 			<widget source="outlist" render="Listbox" position="15,210" size="1890,600" backgroundColor="#10b3b3b3" enableWrapAround="1" scrollbarMode="showOnDemand" >
 				<convert type="TemplatedMultiContent">
 					{"template": [  # index 0 is backgroundcolor
@@ -182,36 +200,109 @@ class OSCamInfo(Screen, OSCamGlobals):
 					}
 				</convert>
 			</widget>
-			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
+			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="#00000000" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
 			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;27" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
-			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="OSCam" position="1108,964" size="125,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
-			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="NCam" position="1108,964" size="125,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
 			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
 			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
 			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
-			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
-			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
-			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
-			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
+			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" />
+			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" />
+			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" />
+			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_entitlements" render="Label" position="1260,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey">
+			<widget source="key_entitlements" render="Label" position="1260,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_menu" render="Label" position="1530,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
-			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
+			<widget source="key_menu" render="Label" position="1530,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
+			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
+		</screen>
+		"""
+	else:
+		skin = """
+		<screen name="OSCamInfo" position="center,center" size="1950,1080" backgroundColor="#10101010" title="OScam Information" flags="wfNoBorder" resolution="1920,1080">
+			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
+			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+				<convert type="ClockToText">Default</convert>
+			</widget>
+			<widget source="global.CurrentTime" render="Label" position="1470,15" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+				<convert type="ClockToText">Format:%A</convert>
+			</widget>
+			<widget source="global.CurrentTime" render="Label" position="1470,51" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+				<convert type="ClockToText">Format:%e. %B</convert>
+			</widget>
+			<widget source="buildinfos" render="Label" position="480,66" size="990,40" font="Regular;30" halign="center" valign="center" foregroundColor="#092CBDF" backgroundColor="#10101010" />
+			<widget source="timerinfos" render="Label" position="15,99" size="1920,40" font="Regular;30" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
+			<!-- Server / Reader / Clients -->
+			<eLabel text="#" position="15,150" size="23,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Reader/User" position="40,150" size="173,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="AU" position="215,150" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Address" position="305,150" size="168,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Port" position="475,150" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Protocol" position="565,150" size="223,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="srvid:caid@provid" position="790,150" size="268,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Last Channel" position="1060,150" size="233,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="LB Value/Reader" position="1295,150" size="233,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Online\nIdle" position="1530,150" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Status" position="1695,150" size="210,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="outlist" render="Listbox" position="15,210" size="1890,600" backgroundColor="#10b3b3b3" enableWrapAround="1" scrollbarMode="showOnDemand" >
+				<convert type="TemplatedMultiContent">
+					{"template": [  # index 0 is backgroundcolor
+					MultiContentEntryText(pos=(0,0), size=(23,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=1),  # type
+					MultiContentEntryText(pos=(25,0), size=(173,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=2),  # Reader/User
+					MultiContentEntryText(pos=(200,0), size=(88,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=3),  # AU
+					MultiContentEntryText(pos=(290,0), size=(168,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=4),  # Adress
+					MultiContentEntryText(pos=(460,0), size=(88,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=5),  # Port
+					MultiContentEntryText(pos=(550,0), size=(223,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=6),  # Protocol
+					MultiContentEntryText(pos=(775,0), size=(268,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=7),  # srvid:caid@provid
+					MultiContentEntryText(pos=(1045,0), size=(233,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=8),  # Last Channel
+					MultiContentEntryText(pos=(1280,0), size=(233,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=9),  # LB Value/Reader
+					MultiContentEntryText(pos=(1515,0), size=(163,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=10),  # Online+Idle
+					MultiContentEntryText(pos=(1680,0), size=(210,75), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=11)  # Status
+					], "fonts": [gFont("Regular",27)], "itemHeight":75
+					}
+				</convert>
+			</widget>
+			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="#00000000" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
+			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;27" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="free" render="Label" position="648,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="buffer" render="Label" position="878,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="OScam" position="1108,964" size="125,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
+			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
+			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
+			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
+			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" />
+			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" />
+			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" />
+			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
+				<convert type="ConditionalShowHide" />
+			</widget>
+			<widget source="key_entitlements" render="Label" position="1260,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff">
+				<convert type="ConditionalShowHide" />
+			</widget>
+			<widget source="key_menu" render="Label" position="1530,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
+			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
 		</screen>
 		"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		NAMEBIN = check_NAMEBIN()
+		NAMEBIN2 = check_NAMEBIN2()
 		self.skinName = "OSCamInfo"
-		self.setTitle(_("OSCamInfo: Information"))
+		self.setTitle(_("%sInfo: Information") % NAMEBIN2)
 		self.rulist = []
 		self["buildinfos"] = StaticText()
 		self["timerinfos"] = StaticText()
@@ -223,8 +314,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["buffer"] = StaticText()
 		self["virtuell"] = StaticText()
 		self["resident"] = StaticText()
-		self["key_red"] = StaticText(_("Shutdown OSCam"))
-		self["key_green"] = StaticText(_("Restart OSCam"))
+		self["key_red"] = StaticText(_("Shutdown %s") % NAMEBIN2)
+		self["key_green"] = StaticText(_("Restart %s") % NAMEBIN2)
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
 		self["key_entitlements"] = StaticText()
@@ -234,10 +325,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"menu": (self.keyMenu, _("Open Settings")),
-			"red": (self.keyShutdown, _("Shutdown OSCam")),
-			"green": (self.keyRestart, _("Restart OSCam")),
+			"red": (self.keyShutdown, _("Shutdown %s") % NAMEBIN2),
+			"green": (self.keyRestart, _("Restart %s") % NAMEBIN2),
 			"blue": (self.keyBlue, _("Open Log"))
-			}, prio=1, description=_("OSCamInfo Actions"))
+			}, prio=1, description=_("%sInfo Actions") % NAMEBIN2)
 		self.loop = eTimer()
 		self.loop.callback.append(self.updateOScamData)
 		self.onLayoutFinish.append(self.onLayoutFinished)
@@ -249,25 +340,29 @@ class OSCamInfo(Screen, OSCamGlobals):
 		if config.oscaminfo.userDataFromConf.value and self.confPath()[0] is None:
 			config.oscaminfo.userDataFromConf.value = False
 			config.oscaminfo.userDataFromConf.save()
-			self["buildinfos"].setText(_("File oscam.conf not found.\nPlease enter username/password manually."))
+			self["buildinfos"].setText(_("File %s.conf not found.\nPlease enter username/password manually.") % NAMEBIN)
 		else:
 			callInThread(self.updateOScamData)
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
 	def updateOScamData(self):
+		NAMEBIN2 = check_NAMEBIN2()
 		webifok, result = self.openWebIF()
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		na = _("n/a")
 		if webifok and result:
-			oscam = loads(result).get("oscam", {})
+			if fileExists("/tmp/.ncam/ncam.version"):
+				oscam = loads(result).get("ncam", {})
+			else:
+				oscam = loads(result).get("oscam", {})
 			sysinfo = oscam.get("sysinfo", {})
 			# GENERAL INFOS (timing, memory usage)
 			stime_iso = oscam.get("starttime", None)
 			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (na, na)
-			runtime = "OSCam Run Time: %s" % oscam.get("runtime", na)
-			version = "OSCam: %s" % (oscam.get("version", na))
+			runtime = "%s Run Time: %s" % (NAMEBIN2, oscam.get("runtime", na))
+			version = "%s: %s" % (NAMEBIN2, oscam.get("version", na))
 			srvidfile = "srvidfile: %s" % oscam.get("srvidfile", na)
 			rulist = []
 			# MAIN INFOS {'s': 'server', 'h': 'http', 'p': 'proxy', 'r': 'reader', 'c': 'cccam_ext', 'x': 'cache exchange', 'm': 'monitor'}
@@ -280,14 +375,14 @@ class OSCamInfo(Screen, OSCamGlobals):
 				readeruser = unquote({"s": "root", "h": "root", "p": client.get("rname_enc", ""), "r": client.get("rname_enc", ""), "c": client.get("name_enc", "")}.get(currtype, na))
 				au = {"-1": "ON", "0": "OFF", "1": "ACTIVE"}.get(client.get("au", na), na)
 				ip = connection.get("ip", "")
-				if ip and config.oscaminfo.hideServerName.value:
+				if ip and config.misc.softcam_hideServerName.value:
 					ip = "\u2022" * len(ip)
 				port = connection.get("port", na)
 				protocol = "\n".join(client.get("protocol", "").split(" "))
 				srinfo = "%s:%s@%s" % (request.get("srvid", na), request.get("caid", na), request.get("provid", na))
 				chinfo = "%s\n%s" % (request.get("chname", na), request.get("chprovider", na))
 				answered = request.get("answered", "")
-				if answered and config.oscaminfo.hideServerName.value:
+				if answered and config.misc.softcam_hideServerName.value:
 					answered = "\u2022" * len(answered)
 				ecmtime = request.get("ecmtime", na)
 				lbvaluereader = "%s (%s ms)" % (answered, ecmtime) if answered and ecmtime else request.get("lbvalue", na)
@@ -324,8 +419,12 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["used"].setText("Used: %s" % sysinfo.get("mem_cur_used", na))
 			self["free"].setText("Free: %s" % sysinfo.get("mem_cur_free", na))
 			self["buffer"].setText("Buffer: %s" % sysinfo.get("mem_cur_buff", na))
-			self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get("oscam_vmsize", na))
-			self["resident"].setText("Resident Set: %s" % sysinfo.get("oscam_rsssize", na))
+			if fileExists("/tmp/.ncam/ncam.version"):
+				self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get("ncam_vmsize", na))
+				self["resident"].setText("Resident Set: %s" % sysinfo.get("ncam_rsssize", na))
+			else:
+				self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get("oscam_vmsize", na))
+				self["resident"].setText("Resident Set: %s" % sysinfo.get("oscam_rsssize", na))
 			self["outlist"].updateList(outlist)
 			self.displayLog()
 		else:
@@ -375,10 +474,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
 	def keyShutdown(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\n\nATTENTION: To reactivate %s, a complete receiver restart must be carried out!" % (NAMEBIN2, NAMEBIN2)), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!" % NAMEBIN2), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyBlue(self):
 		self.loop.stop()
@@ -398,10 +497,11 @@ class OSCamInfo(Screen, OSCamGlobals):
 
 
 class OSCamEntitlements(Screen, OSCamGlobals):
-	skin = """
-		<screen name="OSCamEntitlements" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCam Entitlements" flags="wfNoBorder" resolution="1920,1080">
-			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
-			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+	if fileExists("/tmp/.ncam/ncam.version"):
+		skin = """
+		<screen name="OSCamEntitlements" position="center,center" size="1920,1080" backgroundColor="#10101010" title="NCam Entitlements" flags="wfNoBorder" resolution="1920,1080">
+			<ePixmap pixmap="icons/NcamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Default</convert>
 			</widget>
@@ -411,34 +511,34 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="global.CurrentTime" render="Label" position="1470,51" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
 				<convert type="ClockToText">Format:%e. %B</convert>
 			</widget>
-			<widget source="dheader0" render="Label" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Type
-			<widget source="dheader1" render="Label" position="105,105" size="103,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # CAID
-			<widget source="dheader2" render="Label" position="210,105" size="118,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Provid
-			<widget source="dheader3" render="Label" position="330,105" size="268,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # ID
-			<widget source="dheader4" render="Label" position="600,105" size="148,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Class
-			<widget source="dheader5" render="Label" position="750,105" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Start Date
-			<widget source="dheader6" render="Label" position="915,105" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Expire Date
-			<widget source="dheader7" render="Label" position="1080,105" size="825,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Name
-			<widget source="cheader0" render="Label" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # CAID
-			<widget source="cheader1" render="Label" position="105,105" size="208,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # System
+			<widget source="dheader0" render="Label" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Type
+			<widget source="dheader1" render="Label" position="105,105" size="103,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # CAID
+			<widget source="dheader2" render="Label" position="210,105" size="118,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Provid
+			<widget source="dheader3" render="Label" position="330,105" size="268,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # ID
+			<widget source="dheader4" render="Label" position="600,105" size="148,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Class
+			<widget source="dheader5" render="Label" position="750,105" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Start Date
+			<widget source="dheader6" render="Label" position="915,105" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Expire Date
+			<widget source="dheader7" render="Label" position="1080,105" size="825,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Name
+			<widget source="cheader0" render="Label" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # CAID
+			<widget source="cheader1" render="Label" position="105,105" size="208,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # System
 			<widget source="cheader2" render="Label" />  # Reshare (not used here)
 			<widget source="cheader3" render="Label" />  # Hop (not used here)
 			<widget source="cheader4" render="Label" />  # ShareID (not used here)
 			<widget source="cheader5" render="Label" />  # RemoteID (not used here)
-			<widget source="cheader6" render="Label" position="315,105" size="118,58" font="Regular;27" halign="left" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # ProvIDs
-			<widget source="cheader7" render="Label" position="435,105" size="313,58" font="Regular;27" halign="left" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Providers
-			<widget source="cheader8" render="Label" position="750,105" size="268,58" font="Regular;27" halign="left" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Nodes
-			<widget source="cheader9" render="Label" position="1020,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Locals
-			<widget source="cheader10" render="Label" position="1110,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Count
-			<widget source="cheader11" render="Label" position="1200,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Hop1
-			<widget source="cheader12" render="Label" position="1275,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Hop2
-			<widget source="cheader13" render="Label" position="1350,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Hopx
-			<widget source="cheader14" render="Label" position="1425,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Curr
-			<widget source="cheader15" render="Label" position="1500,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Res0
-			<widget source="cheader16" render="Label" position="1575,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Res1
-			<widget source="cheader17" render="Label" position="1650,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Res2
-			<widget source="cheader18" render="Label" position="1725,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Resx
-			<widget source="cheader19" render="Label" position="1800,105" size="105,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />  # Reshare
+			<widget source="cheader6" render="Label" position="315,105" size="118,58" font="Regular;27" halign="left" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # ProvIDs
+			<widget source="cheader7" render="Label" position="435,105" size="313,58" font="Regular;27" halign="left" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Providers
+			<widget source="cheader8" render="Label" position="750,105" size="268,58" font="Regular;27" halign="left" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Nodes
+			<widget source="cheader9" render="Label" position="1020,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Locals
+			<widget source="cheader10" render="Label" position="1110,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Count
+			<widget source="cheader11" render="Label" position="1200,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Hop1
+			<widget source="cheader12" render="Label" position="1275,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Hop2
+			<widget source="cheader13" render="Label" position="1350,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Hopx
+			<widget source="cheader14" render="Label" position="1425,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Curr
+			<widget source="cheader15" render="Label" position="1500,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Res0
+			<widget source="cheader16" render="Label" position="1575,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Res1
+			<widget source="cheader17" render="Label" position="1650,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Res2
+			<widget source="cheader18" render="Label" position="1725,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Resx
+			<widget source="cheader19" render="Label" position="1800,105" size="105,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Reshare
 			<parameters>
 				<parameter name="OSCamInfoBGcolors" value="0x10fef2e6, 0x10f0f4e5" />
 			</parameters>
@@ -481,23 +581,120 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="key_blue" render="Label" foregroundColor="blue" backgroundColor="blue" position="1150,1010" size="10,65" objectTypes="key_blue,StaticText">
                 <convert type="ConditionalShowHide" />
             </widget>
-            <widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" objectTypes="key_blue,StaticText">
+            <widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" objectTypes="key_blue,StaticText">
                 <convert type="ConditionalShowHide" />
             </widget>			
-			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
+			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
 				<convert type="ConditionalShowHide" />
             </widget>			
-			<widget source="key_detailed" render="Label" position="1470,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey">
+			<widget source="key_detailed" render="Label" position="1470,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff">
 				<convert type="ConditionalShowHide" />
             </widget>			
-			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
+			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
+		</screen>"""
+	else:
+		skin = """
+		<screen name="OSCamEntitlements" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCam Entitlements" flags="wfNoBorder" resolution="1920,1080">
+			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
+			<widget source="global.CurrentTime" render="Label" position="1710,15" size="210,90" font="Regular;75" noWrap="1" halign="center" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+				<convert type="ClockToText">Default</convert>
+			</widget>
+			<widget source="global.CurrentTime" render="Label" position="1470,15" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+				<convert type="ClockToText">Format:%A</convert>
+			</widget>
+			<widget source="global.CurrentTime" render="Label" position="1470,51" size="240,40" font="Regular;24" noWrap="1" halign="right" valign="bottom" foregroundColor="#00FFFFFF" backgroundColor="#1A0F0F0F" transparent="1">
+				<convert type="ClockToText">Format:%e. %B</convert>
+			</widget>
+			<widget source="dheader0" render="Label" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Type
+			<widget source="dheader1" render="Label" position="105,105" size="103,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # CAID
+			<widget source="dheader2" render="Label" position="210,105" size="118,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Provid
+			<widget source="dheader3" render="Label" position="330,105" size="268,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # ID
+			<widget source="dheader4" render="Label" position="600,105" size="148,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Class
+			<widget source="dheader5" render="Label" position="750,105" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Start Date
+			<widget source="dheader6" render="Label" position="915,105" size="163,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Expire Date
+			<widget source="dheader7" render="Label" position="1080,105" size="825,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Name
+			<widget source="cheader0" render="Label" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # CAID
+			<widget source="cheader1" render="Label" position="105,105" size="208,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # System
+			<widget source="cheader2" render="Label" />  # Reshare (not used here)
+			<widget source="cheader3" render="Label" />  # Hop (not used here)
+			<widget source="cheader4" render="Label" />  # ShareID (not used here)
+			<widget source="cheader5" render="Label" />  # RemoteID (not used here)
+			<widget source="cheader6" render="Label" position="315,105" size="118,58" font="Regular;27" halign="left" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # ProvIDs
+			<widget source="cheader7" render="Label" position="435,105" size="313,58" font="Regular;27" halign="left" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Providers
+			<widget source="cheader8" render="Label" position="750,105" size="268,58" font="Regular;27" halign="left" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Nodes
+			<widget source="cheader9" render="Label" position="1020,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Locals
+			<widget source="cheader10" render="Label" position="1110,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Count
+			<widget source="cheader11" render="Label" position="1200,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Hop1
+			<widget source="cheader12" render="Label" position="1275,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Hop2
+			<widget source="cheader13" render="Label" position="1350,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Hopx
+			<widget source="cheader14" render="Label" position="1425,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Curr
+			<widget source="cheader15" render="Label" position="1500,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Res0
+			<widget source="cheader16" render="Label" position="1575,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Res1
+			<widget source="cheader17" render="Label" position="1650,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Res2
+			<widget source="cheader18" render="Label" position="1725,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Resx
+			<widget source="cheader19" render="Label" position="1800,105" size="105,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />  # Reshare
+			<parameters>
+				<parameter name="OSCamInfoBGcolors" value="0x10fef2e6, 0x10f0f4e5" />
+			</parameters>
+			<widget source="entitleslist" render="Listbox" position="15,165" size="1890,828" backgroundColor="#10b3b3b3" enableWrapAround="1" scrollbarMode="showOnDemand" >
+	  			<convert type="TemplatedMultiContent">
+					{"templates":  # index 0 is backgroundcolor
+		  				{	"default": (36, [
+							MultiContentEntryText(pos=(0,0), size=(88,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=1),  # Type
+							MultiContentEntryText(pos=(90,0), size=(103,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=2),  # CAID
+							MultiContentEntryText(pos=(195,0), size=(118,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=3),  # Provid
+							MultiContentEntryText(pos=(315,0), size=(268,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=4),  # ID
+							MultiContentEntryText(pos=(585,0), size=(148,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=5),  # Class
+							MultiContentEntryText(pos=(735,0), size=(163,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=6),  # Start Date
+							MultiContentEntryText(pos=(900,0), size=(163,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=7),  # Expire Date
+							MultiContentEntryText(pos=(1065,0), size=(825,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER|RT_WRAP, color=0x000000, backcolor=MultiContentTemplateColor(0), text=8)  # Name
+							]),
+							"entitlements": (36, [  # index 3 to 6 (Reshare, Hop, ShareID, RemoteID) are not used here
+							MultiContentEntryText(pos=(0,0), size=(88,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=1),  # Caid
+							MultiContentEntryText(pos=(90,0), size=(208,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=2),  # System
+							MultiContentEntryText(pos=(300,0), size=(118,36), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_ELLIPSIS, color=0x000000, backcolor=MultiContentTemplateColor(0), text=7),  # ProvIDs
+							MultiContentEntryText(pos=(420,0), size=(313,36), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_ELLIPSIS, color=0x000000, backcolor=MultiContentTemplateColor(0), text=8),  # Providers
+							MultiContentEntryText(pos=(735,0), size=(268,36), font=0, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_ELLIPSIS, color=0x000000, backcolor=MultiContentTemplateColor(0), text=9),  # Nodes
+							MultiContentEntryText(pos=(1005,0), size=(88,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=10),  # Locals
+							MultiContentEntryText(pos=(1095,0), size=(88,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=11),  # Count
+							MultiContentEntryText(pos=(1185,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=12),  # Hop1
+							MultiContentEntryText(pos=(1260,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=13),  # Hop2
+							MultiContentEntryText(pos=(1335,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=14),  # Hopx
+							MultiContentEntryText(pos=(1410,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=15),  # Curr
+							MultiContentEntryText(pos=(1485,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=16),  # Res0
+							MultiContentEntryText(pos=(1560,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=17),  # Res1
+							MultiContentEntryText(pos=(1635,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=18),  # Res2
+							MultiContentEntryText(pos=(1710,0), size=(73,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=19),  # Resx
+							MultiContentEntryText(pos=(1785,0), size=(105,36), font=0, flags=RT_HALIGN_CENTER|RT_VALIGN_CENTER, color=0x000000, backcolor=MultiContentTemplateColor(0), text=20)  # Reshare
+							])
+	  					},
+						"fonts": [gFont("Regular",27)], "itemHeight":36
+					}
+				</convert>
+			</widget>
+			<widget source="key_blue" render="Label" foregroundColor="blue" backgroundColor="blue" position="1150,1010" size="10,65" objectTypes="key_blue,StaticText">
+                <convert type="ConditionalShowHide" />
+            </widget>
+            <widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" objectTypes="key_blue,StaticText">
+                <convert type="ConditionalShowHide" />
+            </widget>			
+			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
+				<convert type="ConditionalShowHide" />
+            </widget>			
+			<widget source="key_detailed" render="Label" position="1470,1020" size="250,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff">
+				<convert type="ConditionalShowHide" />
+            </widget>			
+			<widget source="key_exit" render="Label" position="1730,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
 		</screen>"""
 
 	def __init__(self, session, readeruser):
 		self.readeruser = readeruser
+		NAMEBIN = check_NAMEBIN()
+		NAMEBIN2 = check_NAMEBIN2()
 		Screen.__init__(self, session)
 		self.skinName = "OSCamEntitlements"
-		self.setTitle(_("OSCamInfo: Entitlements for '%s'") % self.readeruser)
+		self.setTitle(_("%sInfo: Entitlements for '%s'") % (NAMEBIN2, self.readeruser))
 		self.dheaders = ["type", "CAID", "Provid", "ID", "Class", "Start Date", "Expire Date", "Name"]
 		self.cheaders = ["CAID", "System", "Reshare", "Hop", "ShareID", "RemoteID", "ProvIDs", "Providers", "Nodes", "Locals", "Count", "Hop1", "Hop2", "Hopx", "Curr", "Res0", "Res1", "Res2", "Resx", "Reshare"]
 		self.showall = False
@@ -516,7 +713,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show all details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"blue": (self.keyBlue, _("Show all"))
-			}, prio=1, description=_("OSCamInfo Actions"))
+			}, prio=1, description=_("%sInfo Actions") % NAMEBIN2)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 		self.loop = eTimer()
@@ -550,7 +747,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 					self["entitleslist"].style = "entitlements"
 					self.show_cheaders()
 		self["entitleslist"].updateList(entitleslist)
-		self.setTitle(_("OSCamInfo: %s Entitlements for '%s'") % (len(entitleslist), self.readeruser))
+		self.setTitle(_("%sInfo: %s Entitlements for '%s'") % (NAMEBIN2, len(entitleslist), self.readeruser))
 		self.entitleslist = entitleslist
 		self.showHideBlue()
 		self.showHideKeyOk()
@@ -561,7 +758,10 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 		entitleslist = []
 		webifok, result = self.openWebIF(part="entitlement", label=self.readeruser)  # read JSON-entitlements
 		if webifok and result:
-			entitlements = loads(result).get("oscam", {}).get("entitlements", [])
+			if fileExists("/tmp/.ncam/ncam.version"):
+				entitlements = loads(result).get("ncam", {}).get("entitlements", [])
+			else:
+				entitlements = loads(result).get("oscam", {}).get("entitlements", [])
 			if entitlements:
 				bgcoloridx = 0
 				na = _("n/a")
@@ -583,7 +783,10 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 		entitleslist = []
 		webifok, result = self.openWebIF()  # read JSON-status
 		if webifok and result:
-			self.clients = loads(result).get("oscam", {}).get("status", {}).get("client", [])
+			if fileExists("/tmp/.ncam/ncam.version"):
+				self.clients = loads(result).get("ncam", {}).get("status", {}).get("client", [])
+			else:
+				self.clients = loads(result).get("oscam", {}).get("status", {}).get("client", [])
 			bgcoloridx = 0
 			na = _("n/a")
 			for client in self.clients:
@@ -694,35 +897,68 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 
 class OSCamEntitleDetails(Screen, OSCamGlobals):
-	skin = """
+	if fileExists("/tmp/.ncam/ncam.version"):
+		skin = """
+		<screen name="OSCamEntitleDetails" position="center,center" size="765,1080" backgroundColor="#10101010" title="Ncam EntitleDetails" flags="wfNoBorder" resolution="1920,1080">
+			<ePixmap pixmap="icons/NcamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
+			<widget source="Title" render="Label" position="105,15" size="660,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
+			<eLabel text="CAID" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="System" position="105,105" size="178,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Reshare" position="285,105" size="118,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Hop" position="405,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="ShareID" position="480,105" size="133,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="RemoteID" position="615,105" size="135,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="label0" render="Label" position="15,165" size="88,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # CAID
+			<widget source="label1" render="Label" position="105,165" size="178,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # System
+			<widget source="label2" render="Label" position="285,165" size="118,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # Reshare
+			<widget source="label3" render="Label" position="405,165" size="73,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # Hop
+			<widget source="label4" render="Label" position="480,165" size="133,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # ShareID
+			<widget source="label5" render="Label" position="615,165" size="135,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # RemoteID
+			<eLabel text="ProvIDs" position="15,225" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="ProvIDlist" render="Listbox" position="15,285" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="#00000000" backgroundColor="#10fef2e6" foregroundColorSelected="#00000000" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
+				<convert type="StringList" />
+			</widget>
+			<eLabel text="Providers" position="15,485" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="Providerlist" render="Listbox" position="15,545" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="#00000000" backgroundColor="#10fef2e6" foregroundColorSelected="#00000000" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
+				<convert type="StringList" />
+			</widget>
+			<eLabel text="Nodes" position="15,745" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="Nodelist" render="Listbox" position="15,805" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="#00000000" backgroundColor="#10fef2e6" foregroundColorSelected="#00000000" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
+				<convert type="StringList" />
+			</widget>
+			<widget source="key_exit" render="Label" position="570,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
+		</screen>
+		"""
+	else:
+		skin = """
 		<screen name="OSCamEntitleDetails" position="center,center" size="765,1080" backgroundColor="#10101010" title="OSCam EntitleDetails" flags="wfNoBorder" resolution="1920,1080">
 			<ePixmap pixmap="icons/OscamLogo.png" position="15,15" size="80,80" scale="1" alphatest="blend" />
-			<widget source="Title" render="Label" position="105,15" size="660,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
-			<eLabel text="CAID" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="System" position="105,105" size="178,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Reshare" position="285,105" size="118,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="Hop" position="405,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="ShareID" position="480,105" size="133,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<eLabel text="RemoteID" position="615,105" size="135,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="label0" render="Label" position="15,165" size="88,55" font="Regular;27" halign="center" valign="center" foregroundColor="black" backgroundColor="#10fef2e6" />  # CAID
-			<widget source="label1" render="Label" position="105,165" size="178,55" font="Regular;27" halign="center" valign="center" foregroundColor="black" backgroundColor="#10fef2e6" />  # System
-			<widget source="label2" render="Label" position="285,165" size="118,55" font="Regular;27" halign="center" valign="center" foregroundColor="black" backgroundColor="#10fef2e6" />  # Reshare
-			<widget source="label3" render="Label" position="405,165" size="73,55" font="Regular;27" halign="center" valign="center" foregroundColor="black" backgroundColor="#10fef2e6" />  # Hop
-			<widget source="label4" render="Label" position="480,165" size="133,55" font="Regular;27" halign="center" valign="center" foregroundColor="black" backgroundColor="#10fef2e6" />  # ShareID
-			<widget source="label5" render="Label" position="615,165" size="135,55" font="Regular;27" halign="center" valign="center" foregroundColor="black" backgroundColor="#10fef2e6" />  # RemoteID
-			<eLabel text="ProvIDs" position="15,225" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="ProvIDlist" render="Listbox" position="15,285" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="black" backgroundColor="#10fef2e6" foregroundColorSelected="black" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
+			<widget source="Title" render="Label" position="105,15" size="660,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
+			<eLabel text="CAID" position="15,105" size="88,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="System" position="105,105" size="178,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Reshare" position="285,105" size="118,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="Hop" position="405,105" size="73,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="ShareID" position="480,105" size="133,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<eLabel text="RemoteID" position="615,105" size="135,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="label0" render="Label" position="15,165" size="88,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # CAID
+			<widget source="label1" render="Label" position="105,165" size="178,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # System
+			<widget source="label2" render="Label" position="285,165" size="118,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # Reshare
+			<widget source="label3" render="Label" position="405,165" size="73,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # Hop
+			<widget source="label4" render="Label" position="480,165" size="133,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # ShareID
+			<widget source="label5" render="Label" position="615,165" size="135,55" font="Regular;27" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#10fef2e6" />  # RemoteID
+			<eLabel text="ProvIDs" position="15,225" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="ProvIDlist" render="Listbox" position="15,285" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="#00000000" backgroundColor="#10fef2e6" foregroundColorSelected="#00000000" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
 			</widget>
-			<eLabel text="Providers" position="15,485" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="Providerlist" render="Listbox" position="15,545" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="black" backgroundColor="#10fef2e6" foregroundColorSelected="black" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
+			<eLabel text="Providers" position="15,485" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="Providerlist" render="Listbox" position="15,545" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="#00000000" backgroundColor="#10fef2e6" foregroundColorSelected="#00000000" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
 			</widget>
-			<eLabel text="Nodes" position="15,745" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
-			<widget source="Nodelist" render="Listbox" position="15,805" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="black" backgroundColor="#10fef2e6" foregroundColorSelected="black" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
+			<eLabel text="Nodes" position="15,745" size="735,58" font="Regular;27" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#105a5a5a" />
+			<widget source="Nodelist" render="Listbox" position="15,805" size="735,195" font="Regular;27" itemHeight="40" foregroundColor="#00000000" backgroundColor="#10fef2e6" foregroundColorSelected="#00000000" backgroundColorSelected="#10fef2e6" halign="center" valign="center" scrollbarMode="showOnDemand" >
 				<convert type="StringList" />
 			</widget>
-			<widget source="key_exit" render="Label" position="570,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey" />
+			<widget source="key_exit" render="Label" position="570,1020" size="150,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff" />
 		</screen>
 		"""
 
@@ -736,40 +972,45 @@ class OSCamEntitleDetails(Screen, OSCamGlobals):
 			return nlist
 
 		Screen.__init__(self, session)
+		NAMEBIN = check_NAMEBIN()
+		NAMEBIN2 = check_NAMEBIN2()
 		self.skinName = "OSCamEntitleDetails"
-		self.setTitle(_("Entitlements for 'CAID %s'") % entitlement[1])
-		entitlelen = len(entitlement)
-		for idx in range(len(entitlement)):
-			if (idx + 1) < entitlelen:
-				self["label%s" % idx] = StaticText(entitlement[idx + 1])
-		self["ProvIDlist"] = List((splitParts(entitlement[7].split(", "), 6)))
-		self['ProvIDlist'].selectionEnabled(0)
-		self["Providerlist"] = List((splitParts(entitlement[8].split(", "), 2)))
-		self['Providerlist'].selectionEnabled(0)
-		self["Nodelist"] = List((splitParts(entitlement[9].split(", "), 2)))
-		self['Nodelist'].selectionEnabled(0)
-		self["key_exit"] = StaticText(_("Exit"))
+		if entitlement:
+			self.setTitle(_("Entitlements for 'CAID %s'") % entitlement[1])
+			entitlelen = len(entitlement)
+			for idx in range(len(entitlement)):
+				if (idx + 1) < entitlelen:
+					self["label%s" % idx] = StaticText(entitlement[idx + 1])
+			self["ProvIDlist"] = List((splitParts(entitlement[7].split(", "), 6)))
+			self['ProvIDlist'].selectionEnabled(0)
+			self["Providerlist"] = List((splitParts(entitlement[8].split(", "), 2)))
+			self['Providerlist'].selectionEnabled(0)
+			self["Nodelist"] = List((splitParts(entitlement[9].split(", "), 2)))
+			self['Nodelist'].selectionEnabled(0)
+			self["key_exit"] = StaticText(_("Exit"))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": (self.close, _("Close the screen")),
 			"cancel": (self.close, _("Close the screen")),
-			}, prio=1, description=_("OSCamInfo Actions"))
+			}, prio=1, description=_("%sInfo Actions") % NAMEBIN2)
 
 
 class OSCamInfoLog(Screen, OSCamGlobals):
 	skin = """
-		<screen name="OSCamInfoLog" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCamInfo Log" flags="wfNoBorder" resolution="1920,1080">
-			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+		<screen name="OSCamInfoLog" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCam/NcamInfo Log" flags="wfNoBorder" resolution="1920,1080">
+			<widget source="Title" render="Label" position="15,15" size="1920,60" font="Regular;40" halign="center" valign="center" foregroundColor="#00ffffff" backgroundColor="#10101010" />
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
 			</widget>
-			<widget name="logtext" position="15,70" size="1890,995" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="black" />
+			<widget name="logtext" position="15,70" size="1890,995" font="Regular;24" halign="left" valign="top" foregroundColor="#00000000" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="#00000000" />
 		</screen>
 		"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		NAMEBIN = check_NAMEBIN()
+		NAMEBIN2 = check_NAMEBIN2()
 		self.skinName = "OSCamInfoLog"
-		self.setTitle(_("OSCamInfo: Log"))
+		self.setTitle(_("%sInfo: Log") % NAMEBIN2)
 		self["logtext"] = ScrollLabel(_("<no log found>"))
 		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
 			"ok": (self.exit, _("Close the screen")),
@@ -778,7 +1019,7 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 			"up": (self.keyPageUp, _("Move up a page")),
 			"down": (self.keyPageDown, _("Move down a page")),
 			"pageDown": (self.keyPageDown, _("Move down a page"))
-			}, prio=1, description=_("OSCamInfo Log Actions"))
+			}, prio=1, description=_("%sInfo Log Actions") % NAMEBIN2)
 		self.loop = eTimer()
 		self.loop.callback.append(self.displayLog)
 		self.onLayoutFinish.append(self.onLayoutFinished)

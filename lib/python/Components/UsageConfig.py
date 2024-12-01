@@ -2176,7 +2176,7 @@ def InitUsageConfig():
 		config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 	else:
 		config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
-	config.oscaminfo.hideServerName = ConfigYesNo(default=False)
+	config.misc.softcam_hideServerName = ConfigYesNo(default=False)
 	config.oscaminfo.userDataFromConf = ConfigYesNo(default=True)
 	config.oscaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
 	config.oscaminfo.password = ConfigPassword(default="password", fixed_size=False)
