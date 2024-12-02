@@ -68,7 +68,9 @@ dist_install_DATA = \
 	movie_play_rec.png \
 	movielist.png \
 	newtop.png \
+	NcamLogo.png \
 	oldtop.png \
+	OscamLogo.png \
 	part_0_4.svg \
 	part_1_4.svg \
 	part_2_4.svg \
