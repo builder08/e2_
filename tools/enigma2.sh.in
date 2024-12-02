@@ -4,11 +4,6 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-if [ -d /home/root ]; then
-	export HOME=/home/root
-	cd
-fi
-
 # workaround for corrupt ssl files
 if [ "$(grep -i config.misc.firstrun=true /etc/enigma2/settings)" != "" ]; then
 	rm -rf /etc/enigma2/cert.pem &
@@ -18,25 +13,21 @@ fi
 
 #ciplushelper start delay
 if [ -e /usr/bin/ciplushelper ]; then
-	sleep 3
+    sleep 3
+fi
+# hook to execute dhcp wait script
+if [ -x @bindir@/enigma2_dhcp_wait.sh ]; then
+	@bindir@/enigma2_dhcp_wait.sh
 fi
 
-# LC_ALL available?
-if [ -z $LC_ALL ]; then
-	export LC_ALL=en_GB.utf8
+# hook to execute scripts always before enigma2 start
+if [ -x @bindir@/enigma2_pre_start.sh ]; then
+	@bindir@/enigma2_pre_start.sh
 fi
 
-LIBS=@libdir@/libopen.so.0.0.0
-
-#Workaround for aspect ratio issue
-if [ -e /proc/stb/video/avshutdown ]; then
-	echo "down" > /proc/stb/video/avshutdown && echo "up" > /proc/stb/video/avshutdown
-fi
-
-if [ -f /proc/stb/fp/led_color ]; then
-	echo "00ffffff" > /proc/stb/fp/led_color
-elif [ -f /proc/stb/fp/led_brightness ]; then
-	echo "000000ff" > /proc/stb/fp/led_brightness
+if [ -d /home/root ]; then
+	export HOME=/home/root
+	cd
 fi
 
 # any debuglevel passed?
@@ -45,29 +36,6 @@ if [ -z $ENIGMA_DEBUG_LVL ]; then
 else
 	DEBUG_LVL=$ENIGMA_DEBUG_LVL
 fi
-
-# hook to execute dhcp wait script
-if [ -x /usr/bin/enigma2_dhcp_wait.sh ]; then
-	/usr/bin/enigma2_dhcp_wait.sh
-fi
-
-# hook to execute scripts always before enigma2 start
-if [ -x /usr/bin/enigma2_pre_start.sh ]; then
-	/usr/bin/enigma2_pre_start.sh
-fi
-
-# enigma main loop
-while : ; do
-	# show bootlogo on enigma2 start
-	if [ -x @bindir@/showiframe ]; then
-		if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
-			@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-		elif [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
-			@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
-		elif [ -f @datadir@/bootlogo.mvi ]; then
-			@bindir@/showiframe @datadir@/bootlogo.mvi
-		fi
-	fi
 
 if [ ! -e /etc/enigma2/settings ]; then
 	touch /etc/enigma2/settings
@@ -84,6 +52,58 @@ elif [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ];
 	DEBUG_LVL=4
 fi
 
+# LC_ALL available?
+if [ -z $LC_ALL ]; then
+	export LC_ALL=en_GB.utf8
+fi
+
+LIBS=@libdir@/libopen.so.0.0.0
+
+PLATFORMCHECK=`sed -En 's|^platform=(.+)$|\1|p' /usr/lib/enigma.info`
+
+if [ "${PLATFORMCHECK}" == "meson64" ]; then
+	echo "1" > /sys/class/graphics/fb0/osd_clear
+	echo "1" > /sys/class/graphics/fb1/osd_clear
+	FIRSTRUN=`sed -En 's|^config\.misc\.firstrun=(.+)$|\1|p' /etc/enigma2/settings | tr [A-Z] [a-z]`
+	if [ "$FIRSTRUN" == "true" ]; then
+		echo "1080p50hz" > /sys/class/display/mode
+	fi
+fi
+
+if [ -f /proc/stb/fp/led_color ]; then
+	echo "00ffffff" > /proc/stb/fp/led_color
+elif [ -f /proc/stb/fp/led_brightness ]; then
+	echo "000000ff" > /proc/stb/fp/led_brightness
+fi
+
+# Show backdrop on enigma2 start.
+if [ -x "/usr/bin/exteplayer3" -o -x "/usr/bin/showiframe" ]; then
+	# show bootlogo on enigma2 start
+	SKIN=`sed -En 's|^config\.skin\.primary_skin=(.+)/skin\.xml$|\1|p' "/etc/enigma2/settings"`
+	if [ -z "${SKIN}" ]; then
+		SKIN=`strings -n 10 "/usr/lib/enigma2/python/skin.pyc" | egrep -o -m 1 ".+/skin.xml" | sed 's|/skin.xml.*||'`
+	fi
+	if [ -n "${SKIN}" ]; then
+		SEARCHDIRS="/etc/enigma2/$skin /etc/enigma2/skin_common /etc/enigma2 /usr/share/enigma2/$skin /usr/share/enigma2/skin_default /usr/share/enigma2 /usr/share"
+	else
+		SEARCHDIRS="/etc/enigma2/skin_common /etc/enigma2 /usr/share/enigma2/skin_default /usr/share/enigma2 /usr/share"
+	fi
+
+	for DIR in $SEARCHDIRS
+	do
+		if [ -d ${DIR} ] && [ -f ${DIR}/backdrop.mp4 ]; then
+			"/usr/bin/exteplayer3" "${DIR}/bootlogo.mp4"
+			break
+		elif [ -d ${DIR} ] && [ -f ${DIR}/backdrop.mvi ]; then
+			"/usr/bin/showiframe" "${DIR}/backdrop.mvi"
+			break
+		fi
+	done
+fi
+
+# start enigma
+sync
+
 # Randomize timestamp if clock is not set
 RANDOMIZE1970=''
 time=`date +%Y` ;
@@ -91,8 +111,6 @@ if [ "$time" = 1970 ]; then
 	RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 fi
 
-# start enigma
-sync
 # Set time format used to prefix each line in the debug logs.
 DEBUGTIME=`sed -En 's|^config\.crash\.debugTimeFormat=(.+)$|\1|p' "@sysconfdir@/enigma2/settings"`
 [ -n "${DEBUGTIME}" ] || DEBUGTIME="2"
@@ -208,6 +226,7 @@ case $ret in
 		rm -fR /home/root/.cache/gstreamer-1.0
 		rm -f /tmp/.listen.camd.socket.ignore
 		/usr/bin/kodi
+		;;
 	42)
 		df -P | grep -v "tmpfs " | awk '{print $6}' | tail -n +3 > /tmp/upgrade_mountpoints.txt
 		while read line; do
@@ -250,5 +269,3 @@ case $ret in
 		break
 		;;
 esac
-
-done
