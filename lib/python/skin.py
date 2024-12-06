@@ -17,7 +17,7 @@ MODULE_NAME = __name__.split(".")[-1].capitalize()
 
 DEFAULT_SKIN = BoxInfo.getItem("HasFullHDSkinSupport") and "PLi-FullHD/skin.xml"
 EMERGENCY_SKIN = "skin_default/skin.xml"
-EMERGENCY_NAME = "Stone II"
+EMERGENCY_NAME = "Default"
 DEFAULT_DISPLAY_SKIN = "skin_default/skin_display.xml"
 USER_SKIN = "skin_user.xml"
 USER_SKIN_TEMPLATE = "skin_user_%s.xml"

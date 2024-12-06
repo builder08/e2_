@@ -174,6 +174,16 @@ def InitUsageConfig():
 		("235", _("ZZPicon")),
 		("250", _("ZPicon"))
 	])
+	config.usage.show_picon_bkgrn = ConfigSelection(default="transparent", choices=[
+		("none", _("Disabled")),
+		("transparent", _("Transparent")),
+		("blue", _("Blue")),
+		("red", _("Red")),
+		("black", _("Black")),
+		("white", _("White")),
+		("lightgrey", _("Light Grey")),
+		("grey", _("Grey"))
+	])
 	config.usage.servicelist_cursor_behavior = ConfigSelection(default="keep", choices=[
 		("standard", _("Standard")),
 		("keep", _("Keep service")),

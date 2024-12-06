@@ -17,7 +17,11 @@ dist_install_DATA = \
 	LiberationSans-Italic.ttf \
 	LiberationSans-Regular.ttf \
 	wqy-microhei.ttc \
-	AbyssinicaSIL-Regular.ttf
+	AbyssinicaSIL-Regular.ttf \
+	Roboto-Black.ttf \
+	Roboto-BlackItalic.ttf \
+	Roboto-Bold.ttf \
+	Roboto-BoldItalic.ttf
 
 install-data-hook:
 	cd $(DESTDIR)$(datadir)/fonts && \
