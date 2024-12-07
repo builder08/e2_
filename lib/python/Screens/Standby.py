@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from os.path import isfile
 import struct
 import RecordTimer
@@ -13,15 +12,13 @@ from Components.ImportChannels import ImportChannels
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StreamService import StreamServiceList
 from Components.Task import job_manager
-from Tools.Directories import fileWriteLine, mediaFilesInUse
+from Tools.Directories import mediaFilesInUse
 from Tools.Notifications import AddNotification
 from time import time, localtime
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer, quitMainloop, iRecordableService, eDBoxLCD
 
 MODEL = BoxInfo.getItem("model")
-AmlogicFamily = BoxInfo.getItem("AmlogicFamily")
-LCDMiniTV = BoxInfo.getItem("LCDMiniTV")
 
 inStandby = None
 infoBarInstance = None
@@ -37,13 +34,6 @@ QUIT_KODI = 15
 QUIT_MAINT = 16
 QUIT_UPGRADE_PROGRAM = 42
 QUIT_IMAGE_RESTORE = 43
-
-def setLCDModeMinitTV(value):
-	try:
-		print("[Standby] Write to /proc/stb/lcd/mode")
-		open("/proc/stb/lcd/mode", "w").write(value)
-	except:
-		print("[Standby] Write to /proc/stb/lcd/mode failed.")
 
 
 def isInfoBarInstance():
@@ -93,10 +83,6 @@ class StandbyScreen(Screen):
 
 		self.setMute()
 
-		if LCDMiniTV:
-			# set LCDminiTV off
-			setLCDModeMinitTV(0)
-
 		self.paused_service = self.paused_action = False
 
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -130,30 +116,17 @@ class StandbyScreen(Screen):
 		#set input to vcr scart
 		self.avswitch.setInput("off")
 
-		if isfile("/proc/stb/hdmi/output"):
-			try:
-				print("[Standby] Write to /proc/stb/hdmi/output")
-				open("/proc/stb/hdmi/output", "w").write("off")
-			except:
-				print("[Standby] Write to /proc/stb/hdmi/output failed.")
-
-		if AmlogicFamily:
-			try:
-				print("[Standby] Write to /sys/class/leds/led-sys/brightness")
-				open("/sys/class/leds/led-sys/brightness", "w").write("0")
-			except:
-				print("[Standby] Write to /sys/class/leds/led-sys/brightness failed.")
-			try:
-				print("[Standby] Write to /sys/class/cec/cmd")
-				open("/sys/class/cec/cmd", "w").write("0f 36")
-			except:
-				print("[Standby] Write to /sys/class/cec/cmd failed.")
+		if BoxInfo.getItem("HiSilicon") or MODEL in ("sfx6008", "sfx6018"):
+			output = "/proc/stb/hdmi/output"
+			if isfile(output):
+				with open(output, "w") as hdmi:
+					hdmi.write("off")
 
 		gotoShutdownTime = int(config.usage.standby_to_shutdown_timer.value)
 		if gotoShutdownTime:
 			self.standbyTimeoutTimer.startLongTimer(gotoShutdownTime)
 
-		if self.StandbyCounterIncrease:  # Wakeup timer with value "yes" or "standby" (only standby mode) in SleepTimerEdit.
+		if self.StandbyCounterIncrease != 1:
 			gotoWakeupTime = isNextWakeupTime(True)
 			if gotoWakeupTime != -1:
 				curtime = localtime(time())
@@ -185,16 +158,11 @@ class StandbyScreen(Screen):
 		globalActionMap.setEnabled(True)
 		if RecordTimer.RecordTimerEntry.receiveRecordEvents:
 			RecordTimer.RecordTimerEntry.stopTryQuitMainloop()
-		self.avswitch.setInput("ENCODER")
+		self.avswitch.setInput("encoder")
 		self.leaveMute()
-		# set LCDminiTV
-		if LCDMiniTV:
-			setLCDModeMinitTV(config.lcd.modeminitv.value)
-
 		if isfile("/usr/script/standby_leave.sh"):
 			Console().ePopen("/usr/script/standby_leave.sh")
-
-		if config.usage.remote_fallback_import_standby.value and not config.clientmode.enabled.value:
+		if config.usage.remote_fallback_import_standby.value:
 			ImportChannels()
 
 	def __onFirstExecBegin(self):
@@ -212,12 +180,11 @@ class StandbyScreen(Screen):
 		if isfile("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh")
 
-		if isfile("/proc/stb/hdmi/output"):
-			try:
-				print("[Standby] Write to /proc/stb/hdmi/output")
-				open("/proc/stb/hdmi/output", "w").write("on")
-			except:
-				print("[Standby] Write to /proc/stb/hdmi/output failed.")
+		if BoxInfo.getItem("HiSilicon") or MODEL in ("sfx6008", "sfx6018"):
+			output = "/proc/stb/hdmi/output"
+			if isfile(output):
+				with open(output, "w") as hdmi:
+					hdmi.write("on")
 
 	def setMute(self):
 		self.wasMuted = eDVBVolumecontrol.getInstance().isMuted(True)
@@ -299,7 +266,7 @@ class StandbySummary(Screen):
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN):
 		self.skin = """<screen name="QuitMainloopScreen" position="fill" flags="wfNoBorder">
-				<ePixmap pixmap="icons/input_info.png" position="c-27,c-60" size="53,53" alphaTest="on" />
+				<ePixmap pixmap="icons/input_info.png" position="c-27,c-60" size="53,53" alphatest="on" />
 				<widget name="text" position="center,c+5" size="720,100" font="Regular;22" halign="center" />
 			</screen>"""
 		Screen.__init__(self, session)
@@ -308,9 +275,9 @@ class QuitMainloopScreen(Screen):
 			QUIT_SHUTDOWN: _("Your %s %s is shutting down") % getBoxDisplayName(),
 			QUIT_REBOOT: _("Your %s %s is rebooting") % getBoxDisplayName(),
 			QUIT_RESTART: _("The user interface of your %s %s is restarting") % getBoxDisplayName(),
+			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % getBoxDisplayName(),
 			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
 			QUIT_DEBUG_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % getBoxDisplayName(),
-			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % getBoxDisplayName(),
 			QUIT_UPGRADE_PROGRAM: _("Unattended update in progress\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
 			QUIT_MANUFACTURER_RESET: _("Manufacturer reset in progress\nPlease wait until enigma2 restarts")
 		}.get(retvalue)
@@ -354,14 +321,14 @@ class TryQuitMainloop(MessageBox):
 				QUIT_SHUTDOWN: _("Really shutdown now?"),
 				QUIT_REBOOT: _("Really reboot now?"),
 				QUIT_RESTART: _("Really restart now?"),
+				QUIT_KODI: _("Really start Kodi and stop user interface now?"),
 				QUIT_UPGRADE_FP: _("Really update the frontprocessor and reboot now?"),
 				QUIT_DEBUG_RESTART: _("Really restart in debug mode now?"),
-				QUIT_KODI: _("Really start Kodi and stop user interface now?"),
-				QUIT_UPGRADE_PROGRAM: _("Really update your %s and reboot now?") % getBoxDisplayName(),
+				QUIT_UPGRADE_PROGRAM: _("Really update your %s %s and reboot now?") % getBoxDisplayName(),
 				QUIT_MANUFACTURER_RESET: _("Really perform a manufacturer reset now?")
 			}.get(retvalue, None)
 			if text:
-				MessageBox.__init__(self, session, "%s\n%s" % (reason, text), type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
+				MessageBox.__init__(self, session, reason + text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
 				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
@@ -410,15 +377,15 @@ class TryQuitMainloop(MessageBox):
 			elif not inStandby:
 				config.misc.RestartUI.value = True
 				config.misc.RestartUI.save()
-			if LCDMiniTV:
-				# set LCDminiTV off / fix a deep-standby-crash on some boxes
+			if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 				print("[Standby] LCDminiTV off")
-				setLCDModeMinitTV("0")
-			if MODEL in ("vusolo4k", "pulse4k"):  # Workaround for white display flash.
-				try:
-					eDBoxLCD.getInstance().setLCDBrightness(0)
-				except:
-					print("[Standby] Write to oled_brightness failed.")
+				eDBoxLCD.getInstance().setLCDMode("0")
+			if MODEL == "vusolo4k":
+				oled_brightness = "/proc/stb/fp/oled_brightness"
+				if isfile(oled_brightness):
+					print("[Standby] Brightness OLED off")
+					with open(oled_brightness, "w") as oled:
+						oled.write("0")
 			self.quitMainloop()
 		else:
 			MessageBox.close(self, True)
@@ -441,7 +408,7 @@ class TryQuitMainloop(MessageBox):
 		global inTryQuitMainloop
 		inTryQuitMainloop = False
 
-	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
+	def createSummary(self):  # Suppress the normal MessageBox MessageBoxSummary screen.
 		return None
 
 
