@@ -7,6 +7,8 @@ dist_install_DATA =     ask.png \
     blank.png \
     bullet.png \
     clock.png \
+    default.png \
+    dmm_logo.png \
     dish_scan.png \
     dish.png \
     DVI.png \
@@ -32,6 +34,8 @@ dist_install_DATA =     ask.png \
     forward_large.png \
     forward.png \
     fza.png \
+    hdd.png \
+    hdd24.png \
     HDMI.png \
     ico_dvb-c.png \
     ico_dvb-s.png \
@@ -46,12 +50,14 @@ dist_install_DATA =     ask.png \
     ico_mp_rewind.png \
     ico_mp_stop.png \
     ico_noreplay.png \
+    icons_off.png \
     ico_player.png \
     ico_replay.png \
     ico_service_group.png \
     ico_sub_off.png \
     ico_sub_on.png \
     ico_view.png \
+    icon_view.png \
     icon_crypt_off.png \
     icon_crypt.png \
     icon_dolby_off.png \
@@ -107,6 +113,7 @@ dist_install_DATA =     ask.png \
     movielist.png \
     mp_buttons.png \
     mp_wb_buttons.png \
+    NcamLogo.png \
     network_wired-active.png \
     network_wired-inactive.png \
     network_wired.png \
@@ -114,6 +121,7 @@ dist_install_DATA =     ask.png \
     network_wireless-inactive.png \
     network_wireless.png \
     newtop.png \
+    OscamLogo.png \
     oldtop.png \
     part_0_4.png \
     part_1_4.png \
@@ -181,4 +189,69 @@ dist_install_DATA =     ask.png \
     traffic_off.png \
     traffic_red.png \
     traffic_green.png \
-    traffic_yellow.png
+    traffic_yellow.png \
+    repeat_off.png \
+    selectioncross.png \
+    stream.png \
+    stream24.png \
+    ico_dvb_c-fs8.png \
+    ico_dvb_s-fs8.png \
+    ico_dvb_t-fs8.png \
+    ico_service_group-fs8.png \
+    ico_stream-fs8.png \
+    plilogo-fs8.png \
+    cutting.svg \
+    epgclock.svg \
+    epgclock_add.svg \
+    epgclock_pre.svg \
+    epgclock_prepost.svg \
+    input_error.svg \
+    input_info.svg \
+    input_message.svg \
+    input_question.svg \
+    input_warning.svg \
+    part_0_4.svg \
+    part_1_4.svg \
+    part_2_4.svg \
+    part_3_4.svg \
+    part_4_4.svg \
+    part_new.svg \
+    part_unwatched.svg \
+    pipclock.svg \
+    pipclock_add.svg \
+    pipclock_post.svg \
+    pipclock_pre.svg \
+    pipclock_prepost.svg \
+    repepgclock.svg \
+    repepgclock_add.svg \
+    repepgclock_post.svg \
+    repepgclock_pre.svg \
+    repepgclock_prepost.svg \
+    repzapclock.svg \
+    repzapclock_add.svg \
+    repzapclock_post.svg \
+    repzapclock_pre.svg \
+    repzapclock_prepost.svg \
+    repzaprecclock.svg \
+    repzaprecclock_add.svg \
+    repzaprecclock_post.svg \
+    repzaprecclock_pre.svg \
+    repzaprecclock_prepost.svg \
+    timer_autotimer.svg \
+    timer_done.svg \
+    timer_off.svg \
+    timer_prep.svg \
+    timer_rec.svg \
+    timer_rep.svg \
+    timer_wait.svg \
+    timer_zap.svg \
+    zapclock.svg \
+    zapclock_add.svg \
+    zapclock_post.svg \
+    zapclock_pre.svg \
+    zapclock_prepost.svg \
+    zaprecclock.svg \
+    zaprecclock_add.svg \
+    zaprecclock_post.svg \
+    zaprecclock_pre.svg \
+    zaprecclock_prepost.svg
