@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-19 15:02+0200\n"
+"POT-Creation-Date: 2024-12-08 15:08+0100\n"
 "PO-Revision-Date: 2021-08-02 09:19+0700\n"
 "Last-Translator: krong\n"
 "Language-Team: none\n"
@@ -80,6 +80,10 @@ msgstr " (TV)"
 
 msgid " (auto detection)"
 msgstr " (tự động phát hiện)"
+
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "Sử dụng LNB tròn"
 
 msgid " (disabled)"
 msgstr " (cho phép/không cho phép)"
@@ -257,6 +261,11 @@ msgid "%d subdirectory"
 msgid_plural "%d subdirectories"
 msgstr[0] "%d thư mục con"
 
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "hàng tuần"
+
 #, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
@@ -311,6 +320,10 @@ msgstr ""
 #, python-format
 msgid "%s %d.%d"
 msgstr "%s %d.%d"
+
+#, fuzzy, python-format
+msgid "%s (%s)"
+msgstr "%d tệp tin"
 
 #, fuzzy, python-format
 msgid "%s (files)"
@@ -383,6 +396,10 @@ msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Chỉ khả dụng nếu có nhiều giao diện được kích hoạt."
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-NO SERVICE\n"
 msgstr "-KHÔNG DỊCH VỤ\n"
@@ -544,6 +561,9 @@ msgstr "Một tập tin từ phương tiện truyền thông đang được sử
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr "EPG đồ họa cho tất cả các dịch vụ của một bó hoa cụ thể"
 
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s)."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has started:\n"
@@ -617,6 +637,9 @@ msgstr "Chuyển mã: "
 msgid "AAC+ downmix"
 msgstr "AAC kết hợp"
 
+msgid "ABOUT"
+msgstr ""
+
 msgid "AC3"
 msgstr ""
 
@@ -633,11 +656,23 @@ msgstr "THU NHẬP TSID / ONID"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "ARROWLEFT"
+msgstr ""
+
+msgid "ARROWRIGHT"
+msgstr ""
+
 msgid "ASS file"
 msgstr "Tập tin ASS"
 
 msgid "ATSC provider"
 msgstr "Nhà cung cấp ATSC"
+
+msgid "AUDIO"
+msgstr ""
+
+msgid "AUTOTIMER"
+msgstr ""
 
 msgid "Abort"
 msgstr "Thông tin phần mền"
@@ -878,6 +913,9 @@ msgstr "Cho phép sử dụng điều khiển từ xa của TV để điều khi
 
 msgid "Alpha"
 msgstr "Alpha"
+
+msgid "Alphabetical under headings"
+msgstr ""
 
 msgid "Also import at reboot/restart enigma2"
 msgstr "Đồng thời nhập vào lúc khởi động lại / khởi động lại enigma2"
@@ -1218,11 +1256,23 @@ msgstr "Ailen"
 msgid "B"
 msgstr "B"
 
+msgid "BACK"
+msgstr ""
+
 msgid "BER"
 msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "BLUE"
+msgstr ""
+
+msgid "BOUQUET+"
+msgstr ""
+
+msgid "BOUQUET-"
+msgstr ""
 
 msgid "Back"
 msgstr "Trở lại"
@@ -1288,6 +1338,10 @@ msgstr "Thông tin cơ bản về PID"
 
 msgid "Basque"
 msgstr "Basque"
+
+#, fuzzy
+msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr "Trước khi gửi lệnh chuyển TV sang chế độ chờ, bộ thu sẽ kiểm tra xem tất cả các thiết bị khác được cắm vào TV có ở chế độ chờ hay không. Nếu không, lệnh 'sourceinactive' sẽ được gửi đến TV thay vì lệnh 'standby'."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr "Trước khi gửi lệnh chuyển TV sang chế độ chờ, bộ thu sẽ kiểm tra xem tất cả các thiết bị khác được cắm vào TV có ở chế độ chờ hay không. Nếu không, lệnh 'sourceinactive' sẽ được gửi đến TV thay vì lệnh 'standby'."
@@ -1403,6 +1457,9 @@ msgstr "Đảo Bouvet"
 msgid "Brazil"
 msgstr "Brazil"
 
+msgid "Brief help information for buttons in your current context."
+msgstr ""
+
 msgid "Brightness"
 msgstr "Độ sáng"
 
@@ -1453,6 +1510,11 @@ msgstr "Bỏ qua kiểm tra HDMI EDID"
 msgid "C"
 msgstr "C"
 
+#, fuzzy
+msgctxt "Abbreviation of \"Configurable\""
+msgid "C"
+msgstr "C"
+
 msgid "C-Band"
 msgstr "Băng tần C"
 
@@ -1479,6 +1541,10 @@ msgstr "kích hoạt"
 
 msgid "CI slot: "
 msgstr "Khe CI: "
+
+#, fuzzy
+msgid "CONTEXT"
+msgstr "TEXT"
 
 msgid "CPU: "
 msgstr "CPU: "
@@ -1762,6 +1828,9 @@ msgid "Choose bouquet"
 msgstr "Chọn gói kênh"
 
 msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
+msgid "Choose the order in which items are displayed in Help windows"
 msgstr ""
 
 #, fuzzy
@@ -2505,6 +2574,9 @@ msgstr "DMM nâng cao"
 msgid "DMM normal"
 msgstr "DMM bình thường"
 
+msgid "DOWN"
+msgstr ""
+
 msgid "DTS"
 msgstr ""
 
@@ -2772,6 +2844,14 @@ msgstr "Đích đến của máy thu từ xa dự phòng cho DVB-T"
 
 msgid "Details for plugin: "
 msgstr "Chi tiết cho plugin: "
+
+#, fuzzy
+msgid "Detect PC before standby"
+msgstr "Phát hiện các hộp tiếp theo trước khi chờ"
+
+#, python-format
+msgid "Detect box%s via LAN"
+msgstr ""
 
 msgid "Detect next boxes before standby"
 msgstr "Phát hiện các hộp tiếp theo trước khi chờ"
@@ -3142,6 +3222,15 @@ msgstr "E"
 msgid "ECM Info"
 msgstr "Thông tin ECM"
 
+msgid "EJECTCD"
+msgstr ""
+
+msgid "END"
+msgstr ""
+
+msgid "ENTER"
+msgstr ""
+
 msgid "EPG"
 msgstr "EPG"
 
@@ -3163,9 +3252,15 @@ msgstr "Cài đặt EPG"
 msgid "EPG:"
 msgstr "EPG:"
 
+msgid "EPGSETUP"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "LỖI - không quét được (%s)!"
+
+msgid "EXIT"
+msgstr ""
 
 msgid "East"
 msgstr "Đông"
@@ -3695,6 +3790,16 @@ msgstr "F1/F3/F4/F4-TURBO"
 msgid "FAILED"
 msgstr "THẤT BẠI"
 
+msgid "FASTFORWARD"
+msgstr ""
+
+#, fuzzy
+msgid "FAV"
+msgstr "FTA"
+
+msgid "FAVORITES"
+msgstr ""
+
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "FBC SCR (Unicable / JESS)"
 
@@ -3739,6 +3844,9 @@ msgstr "FEC:"
 
 msgid "FHD"
 msgstr "FHD"
+
+msgid "FORWARD"
+msgstr ""
 
 msgid "FTA"
 msgstr "FTA"
@@ -3884,6 +3992,9 @@ msgstr "Phong trào tốt"
 msgid "Finetune"
 msgstr "Tinh chỉnh"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "Đã kết thúc"
 
@@ -3922,8 +4033,22 @@ msgstr ""
 "Hình ảnh nhấp nháy không thành công\n"
 "%s"
 
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "chữ cái phẳng"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "Vị trí cuối cùng tại"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "Các tác vụ sau sẽ được thực hiện sau khi bạn nhấn OK!"
+
+msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgstr ""
 
 msgid "Force legacy signal stats"
 msgstr "Lực lượng thống kê tín hiệu kế thừa"
@@ -4032,6 +4157,9 @@ msgstr "G"
 #, fuzzy
 msgid "GB"
 msgstr "RGB"
+
+msgid "GREEN"
+msgstr ""
 
 msgid "GUI Settings"
 msgstr "Cài đặt GUI"
@@ -4265,8 +4393,17 @@ msgstr "HDx1/HD1xxx/HD5x0C/VS1x00/et7x00/et8500/et7000mini"
 msgid "HELP"
 msgstr "CỨU GIÚP"
 
+msgid "HISTORY"
+msgstr ""
+
 msgid "HLG support"
 msgstr "Hỗ trợ HLG"
+
+msgid "HOME"
+msgstr ""
+
+msgid "HOMEPAGE"
+msgstr ""
 
 msgid "Haiti"
 msgstr "Haiti"
@@ -4304,6 +4441,13 @@ msgstr "Đảo Heard và Quần đảo McDonald"
 
 msgid "Hebrew"
 msgstr "Tiếng Do Thái"
+
+msgid "Help"
+msgstr ""
+
+#, fuzzy
+msgid "Help Screen"
+msgstr "Giữ màn hình"
 
 msgid "Helps setting up your antenna"
 msgstr "Giúp thiết lập ăng-ten của bạn"
@@ -4430,6 +4574,10 @@ msgstr "THÔNG TIN"
 msgid "INS"
 msgstr "Trong"
 
+#, fuzzy
+msgid "IP"
+msgstr "I"
+
 msgid "IP address"
 msgstr "Địa chỉ IP"
 
@@ -4447,6 +4595,9 @@ msgstr "Iceland"
 
 msgid "Icons"
 msgstr "Biểu tượng"
+
+msgid "If an action is user-configurable, its help entry will be flagged (C)"
+msgstr ""
 
 msgid "If disabled, underline characters in file and directory names are not shown and are replaced with spaces."
 msgstr "Nếu bị tắt, các ký tự gạch chân trong tên tệp và thư mục sẽ không được hiển thị và được thay thế bằng dấu cách."
@@ -4898,14 +5049,31 @@ msgstr "Kuwait"
 msgid "Kyrgyzstan"
 msgstr "Kít-sinh-gơ"
 
+#, fuzzy
+msgid "LAN"
+msgstr "LNB"
+
 msgid "LAN adapter"
 msgstr "Bộ điều hợp mạng LAN"
 
 msgid "LAN connection"
 msgstr "Kết nối mạng nội bộ"
 
+msgid "LEFT"
+msgstr ""
+
+msgid "LIST"
+msgstr ""
+
 msgid "LNB"
 msgstr "LNB"
+
+msgid "LOSTLOCK"
+msgstr ""
+
+#, fuzzy
+msgid "Label not defined"
+msgstr "Không xác định"
 
 msgid "Language"
 msgstr "Ngôn ngữ"
@@ -5087,6 +5255,10 @@ msgstr "Tên tập tin dài"
 msgid "Long key press"
 msgstr "Bấm phím dài"
 
+#, fuzzy
+msgid "Long press: "
+msgstr "Bấm phím dài"
+
 msgid "Longitude"
 msgstr "Kinh độ"
 
@@ -5112,6 +5284,9 @@ msgstr "Tiếng Luxembourg"
 msgid "MB"
 msgstr "B"
 
+msgid "MEDIA"
+msgstr ""
+
 msgid "MENU"
 msgstr ""
 
@@ -5123,6 +5298,9 @@ msgstr "Thẻ MMC"
 
 msgid "MORE"
 msgstr "HƠN"
+
+msgid "MUTE"
+msgstr ""
 
 msgid "Macao"
 msgstr "Macao"
@@ -5523,6 +5701,10 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "KẾ TIẾP"
 
+#, fuzzy
+msgid "NEXTSONG"
+msgstr "KẾ TIẾP"
+
 msgid "NIM & Type"
 msgstr "NIM & Loại"
 
@@ -5552,6 +5734,9 @@ msgstr "Namibia"
 
 msgid "Nauru"
 msgstr "Namibia"
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
+msgstr ""
 
 msgid "Nepal"
 msgstr "Nepal"
@@ -5634,6 +5819,10 @@ msgstr "Kế tiếp"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Kế tiếp"
+
+#, fuzzy
+msgid "Next Wizard"
+msgstr "Số dách mạng"
 
 msgid "Next day starts at"
 msgstr ""
@@ -5902,6 +6091,9 @@ msgstr "Đồng ý"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPTION"
+msgstr ""
+
 msgid "OSD 3D setup"
 msgstr "Thiết lập OSD 3D"
 
@@ -6030,6 +6222,13 @@ msgstr "Xóa ảnh"
 msgid "Other Subtitles & lang"
 msgstr "Phụ đề & ngôn ngữ khác"
 
+msgid "Other buttons will jump to the help for that button, if there is help."
+msgstr ""
+
+#, fuzzy
+msgid "Other functions"
+msgstr "giáo dục nâng cao"
+
 msgid "Output"
 msgstr "Đầu ra"
 
@@ -6045,8 +6244,17 @@ msgstr "Ghi đè tập tin cấu hình trong quá trình nâng cấp phần mề
 msgid "Overwrite configuration files?"
 msgstr "Ghi đè tập tin cấu hình?"
 
+msgid "PAGEDOWN"
+msgstr ""
+
+msgid "PAGEUP"
+msgstr ""
+
 msgid "PAL"
 msgstr "PAL"
+
+msgid "PAUSE"
+msgstr ""
 
 msgid "PCR PID"
 msgstr "PCR PID"
@@ -6063,6 +6271,15 @@ msgstr "Lọc PID"
 msgid "PIN code needed"
 msgstr "Mã PIN cần thiết"
 
+msgid "PLAY"
+msgstr ""
+
+msgid "PLAYLIST"
+msgstr ""
+
+msgid "PLAYPAUSE"
+msgstr ""
+
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -6072,8 +6289,20 @@ msgstr "Mã PLS"
 msgid "PLS Mode"
 msgstr "Chế độ PLS"
 
+msgid "PLUGIN"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PORTAL"
+msgstr ""
+
+msgid "POWER"
+msgstr ""
+
+msgid "POWER2"
+msgstr ""
 
 msgid "PPanel"
 msgstr "Bảng điều khiển"
@@ -6081,9 +6310,16 @@ msgstr "Bảng điều khiển"
 msgid "PREVIOUS"
 msgstr ""
 
+msgid "PREVIOUSSONG"
+msgstr ""
+
 #, fuzzy
 msgid "PULSe 4K(mini)"
 msgstr "PULSe 4K"
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 msgid "Package list update"
 msgstr "Cập nhật danh sách gói"
@@ -6736,8 +6972,15 @@ msgstr "Menu xem trước"
 msgid "Preview selected channel"
 msgstr "Xem trước kênh đã chọn"
 
+msgid "Previous Wizard"
+msgstr ""
+
 msgid "Primary DNS"
 msgstr "DNS chính"
+
+#, fuzzy
+msgid "Prime Time"
+msgstr "Giờ chính"
 
 msgid "Prime time"
 msgstr "Giờ chính"
@@ -6845,11 +7088,30 @@ msgstr "Nhanh chóng"
 msgid "Quick zap"
 msgstr "Nhanh chóng"
 
+msgid "RADIO"
+msgstr ""
+
 msgid "REC"
 msgstr "GHI"
 
+msgid "RECALL"
+msgstr ""
+
+msgid "RECORD"
+msgstr ""
+
+#, fuzzy
+msgid "RED"
+msgstr "GHI"
+
+msgid "REWIND"
+msgstr ""
+
 msgid "RF output"
 msgstr "Đầu ra RF"
+
+msgid "RIGHT"
+msgstr ""
 
 msgid "Radio"
 msgstr "Radio"
@@ -7325,6 +7587,10 @@ msgstr "Tiếng nga"
 msgid "Rwanda"
 msgstr "Rwanda"
 
+#, fuzzy
+msgid "SAT"
+msgstr "KA-SAT"
+
 msgid "SCPC optimized search range"
 msgstr "Phạm vi tìm kiếm được tối ưu hóa SCPC"
 
@@ -7337,8 +7603,23 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Uni cáp"
 
+msgid "SCREEN"
+msgstr ""
+
+msgid "SETUP"
+msgstr ""
+
+msgid "SHIFT: "
+msgstr ""
+
 msgid "SINGLE LAYER DVD"
 msgstr "Đĩa đơn"
+
+msgid "SLEEP"
+msgstr ""
+
+msgid "SLOW"
+msgstr ""
 
 msgid "SNR"
 msgstr "SNR"
@@ -7357,6 +7638,15 @@ msgstr "Tập tin SSA"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STOP"
+msgstr ""
+
+msgid "SUBTITLE"
+msgstr ""
+
+msgid "SUSPEND"
+msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr "Thánh Barthelemy"
@@ -8121,6 +8411,9 @@ msgstr "Đặt bộ điều chỉnh dự phòng thay thế cho DVB-T / C hoặc 
 msgid "Set as startup service"
 msgstr "Đặt làm dịch vụ khởi động"
 
+msgid "Set auto DiSEqC search order"
+msgstr ""
+
 msgid "Set blocktimes by weekday"
 msgstr "Đặt blocktimes theo ngày trong tuần"
 
@@ -8750,6 +9043,10 @@ msgstr "Sắp xếp danh sách để mặc định và thoát?"
 msgid "Sort list:"
 msgstr "Sắp xếp danh sách:"
 
+#, fuzzy
+msgid "Sort order for help screen"
+msgstr "Sắp xếp thứ tự cho các mục thiết lập"
+
 msgid "Sort order for menu entries"
 msgstr "Sắp xếp thứ tự cho các mục menu"
 
@@ -9292,6 +9589,12 @@ msgstr "Chế độ RAW T2MI"
 msgid "TEXT"
 msgstr "TEXT"
 
+msgid "TIMER"
+msgstr ""
+
+msgid "TIMESHIFT"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "THÔNG TIN TRUYỀN THÔNG (QUỐC OAI BMT)"
@@ -9307,6 +9610,9 @@ msgstr "BỘ CHỈNH:"
 
 msgid "TUNING"
 msgstr "CHẠY"
+
+msgid "TV"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "Báo cáo địa chỉ vật lý TV"
@@ -9445,6 +9751,9 @@ msgstr ""
 "Vui lòng cài đặt nó."
 
 msgid "The number of steps to change the volume on the device the keys are forwarded to."
+msgstr ""
+
+msgid "The order and grouping of the help information list can be controlled using MENU>Setup>User Interface>Settings>Sort order for help screen."
 msgstr ""
 
 msgid ""
@@ -10156,6 +10465,9 @@ msgstr "Loại quét"
 msgid "UNKNOWN"
 msgstr "KHÔNG XÁC ĐỊNH"
 
+msgid "UP"
+msgstr ""
+
 msgid "URL"
 msgstr "URL"
 
@@ -10490,14 +10802,29 @@ msgstr "Uzbekistan"
 msgid "VCR scart"
 msgstr "VCR scart"
 
+msgid "VIDEO"
+msgstr ""
+
+msgid "VKEY"
+msgstr ""
+
 msgid "VLAN connection"
 msgstr "Kết nối Vlan"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (đoạn giới thiệu)"
 
+msgid "VMODE"
+msgstr ""
+
 msgid "VOB file"
 msgstr "Tập tin VOB"
+
+msgid "VOL+"
+msgstr ""
+
+msgid "VOL-"
+msgstr ""
 
 msgid "VU+"
 msgstr "VU+"
@@ -10671,6 +10998,12 @@ msgstr "Tăng âm lượng"
 msgid "W"
 msgstr "W"
 
+msgid "WAKEUP"
+msgstr ""
+
+msgid "WIZTV"
+msgstr ""
+
 msgid "WLAN connection"
 msgstr "Kết nối mạng WLAN"
 
@@ -10680,6 +11013,9 @@ msgstr "AAC kết hợp"
 
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
+
+msgid "WWW"
+msgstr ""
 
 msgid "Waiting"
 msgstr "Đang chờ đợi"
@@ -11122,6 +11458,9 @@ msgstr "Viết thất bại!"
 msgid "Write to /tmp/positionersetup.log"
 msgstr "Viết thư cho /tmp/poseitionersetup.log"
 
+msgid "YELLOW"
+msgstr ""
+
 msgid "YES"
 msgstr "VÂNG"
 
@@ -11367,6 +11706,9 @@ msgstr ""
 "Bạn đã gắn USB WLAN Stick chưa?\n"
 "\n"
 "Vui lòng chọn những gì bạn muốn làm tiếp theo."
+
+msgid "ZOOM"
+msgstr ""
 
 msgid "Zambia"
 msgstr "Zambia"
@@ -11638,9 +11980,6 @@ msgstr "hằng ngày"
 msgid "day"
 msgstr "ngày"
 
-msgid "days"
-msgstr ""
-
 msgid "default"
 msgstr "mặc định"
 
@@ -11848,14 +12187,6 @@ msgstr ""
 msgid "horizontal"
 msgstr "ngang"
 
-#, fuzzy
-msgid "hour"
-msgstr "%d giờ"
-
-#, fuzzy
-msgid "hours"
-msgstr "%d giờ"
-
 msgid "in menu and plugins"
 msgstr "trong menu và plugin"
 
@@ -11966,14 +12297,6 @@ msgstr " min"
 
 msgid "mins"
 msgstr "phút"
-
-#, fuzzy
-msgid "minute"
-msgstr "%d phút"
-
-#, fuzzy
-msgid "minutes"
-msgstr "%d phút"
 
 #, fuzzy
 msgid "module disabled"
@@ -12147,6 +12470,10 @@ msgstr "vui lòng đợi, tải hình ảnh ..."
 
 msgid "popular culture/traditional arts"
 msgstr "văn hóa đại chúng / nghệ thuật truyền thống"
+
+#, fuzzy
+msgid "port"
+msgstr "Các môn thể thao"
 
 msgid "pre-school children's program"
 msgstr "chương trình trẻ em mẫu giáo"
@@ -12476,15 +12803,7 @@ msgstr "đang chờ đợi"
 msgid "water sport"
 msgstr "thể thao dưới nước"
 
-#, fuzzy
-msgid "week"
-msgstr "hàng tuần"
-
 msgid "weekly"
-msgstr "hàng tuần"
-
-#, fuzzy
-msgid "weeks"
 msgstr "hàng tuần"
 
 msgid "west"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 08:16+0200\n"
+"POT-Creation-Date: 2024-12-08 15:08+0100\n"
 "PO-Revision-Date: 2021-07-31 17:00+0800\n"
 "Last-Translator: 孤独之剑 <haotzyy1970@yahoo.com>\n"
 "Language-Team: 孤独之剑 <haotzyy1970@yahoo.com>\n"
@@ -82,6 +82,10 @@ msgstr " (电视)"
 msgid " (auto detection)"
 msgstr " 音频选择"
 
+#, fuzzy
+msgid " (circular LNB)"
+msgstr "使用圆极化高频头"
+
 msgid " (disabled)"
 msgstr " (禁用)"
 
@@ -158,6 +162,9 @@ msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%时:%分"
+
+msgid "%R"
+msgstr ""
 
 #. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
@@ -266,6 +273,12 @@ msgid_plural "%d subdirectories"
 msgstr[0] "%d 子目录"
 msgstr[1] "%d 子目录"
 
+#, fuzzy, python-format
+msgid "%d week"
+msgid_plural "%d weeks"
+msgstr[0] "每周"
+msgstr[1] "每周"
+
 #, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
@@ -323,6 +336,10 @@ msgid "%s %d.%d"
 msgstr "%s %d.%d"
 
 #, fuzzy, python-format
+msgid "%s (%s)"
+msgstr "%d 个文件"
+
+#, fuzzy, python-format
 msgid "%s (files)"
 msgstr "%d 个文件"
 
@@ -353,6 +370,10 @@ msgid_plural "%s updated packages available"
 msgstr[0] "%s 个更新包可用"
 msgstr[1] "%s 个更新包可用"
 
+#, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr ""
 
@@ -370,7 +391,7 @@ msgid "(activated +%d min)"
 msgstr "(激活 +%d 分钟)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "当前"
 
 msgid "(empty)"
@@ -385,8 +406,15 @@ msgstr "（显示可选的DVD音频菜单）"
 msgid "(unknown)"
 msgstr "(未知)"
 
+msgid "* = Restart Required"
+msgstr ""
+
 msgid "* Only available if more than one interface is active."
 msgstr "* 仅在一个或多个网卡激活才有效."
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-NO SERVICE\n"
 msgstr "-没有频道\n"
@@ -400,6 +428,10 @@ msgstr "/s"
 
 msgid "0"
 msgstr "0"
+
+#, fuzzy
+msgid "0 minutes"
+msgstr "%d 分钟"
 
 msgid "1"
 msgstr "1"
@@ -525,9 +557,6 @@ msgstr "<未知>"
 msgid "=NO STREAM\n"
 msgstr "=流中没有数据\n"
 
-msgid "??"
-msgstr "??"
-
 msgid "A"
 msgstr "A"
 
@@ -546,6 +575,9 @@ msgstr "正在使用媒体中的文件!"
 
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr "用于特定分组所有频道的图形化EPG"
+
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s)."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -621,6 +653,9 @@ msgstr "转码: "
 msgid "AAC+ downmix"
 msgstr "AAC缩减混音"
 
+msgid "ABOUT"
+msgstr ""
+
 msgid "AC3"
 msgstr ""
 
@@ -637,11 +672,23 @@ msgstr "获取TSID/ONID"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "ARROWLEFT"
+msgstr ""
+
+msgid "ARROWRIGHT"
+msgstr ""
+
 msgid "ASS file"
 msgstr "ASS文件"
 
 msgid "ATSC provider"
 msgstr "ATSC提供商"
+
+msgid "AUDIO"
+msgstr ""
+
+msgid "AUTOTIMER"
+msgstr ""
 
 msgid "Abort"
 msgstr "放弃"
@@ -883,6 +930,9 @@ msgstr "允许使用电视遥控器控制接收器."
 msgid "Alpha"
 msgstr "透明度"
 
+msgid "Alphabetical under headings"
+msgstr ""
+
 msgid "Also import at reboot/restart enigma2"
 msgstr "在重新启动enigma2时导入"
 
@@ -1046,9 +1096,6 @@ msgstr "艺术/文化（不包括音乐,传统的）"
 msgid "Aruba"
 msgstr "阿鲁巴"
 
-msgid "As defined by the skin"
-msgstr "作为皮肤默认值"
-
 msgid "Ask user"
 msgstr "询问用户"
 
@@ -1189,6 +1236,10 @@ msgstr "自动安装已完成"
 msgid "Autoinstalling please wait for packages being updated"
 msgstr "自动安装请等待更新包"
 
+#, fuzzy
+msgid "Automatic Language"
+msgstr "自动扫描"
+
 msgid "Automatic Scan"
 msgstr "自动扫描"
 
@@ -1225,11 +1276,23 @@ msgstr "阿塞拜疆"
 msgid "B"
 msgstr "B"
 
+msgid "BACK"
+msgstr ""
+
 msgid "BER"
 msgstr "误码率"
 
 msgid "BER:"
 msgstr "误码:"
+
+msgid "BLUE"
+msgstr ""
+
+msgid "BOUQUET+"
+msgstr ""
+
+msgid "BOUQUET-"
+msgstr ""
 
 msgid "Back"
 msgstr "返回"
@@ -1295,6 +1358,10 @@ msgstr "基本PID信息"
 
 msgid "Basque"
 msgstr "巴斯克语"
+
+#, fuzzy
+msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr "在发送将电视切换到待机状态的命令之前,接收器会测试是否所有其他连接到电视的设备都处于待机状态.如果没有,则将“sourceinactive”命令发送到电视,而不是“standby”命令."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr "在发送将电视切换到待机状态的命令之前,接收器会测试是否所有其他连接到电视的设备都处于待机状态.如果没有,则将“sourceinactive”命令发送到电视,而不是“standby”命令."
@@ -1362,6 +1429,10 @@ msgstr "块降噪"
 msgid "Blue"
 msgstr "蓝色"
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "选择功能"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr "多民族玻利维亚国"
 
@@ -1396,11 +1467,18 @@ msgstr "波黑"
 msgid "Botswana"
 msgstr "博茨瓦纳"
 
+#, fuzzy
+msgid "Bottom"
+msgstr "底部"
+
 msgid "Bouvet Island"
 msgstr "布韦岛"
 
 msgid "Brazil"
 msgstr "巴西"
+
+msgid "Brief help information for buttons in your current context."
+msgstr ""
 
 msgid "Brightness"
 msgstr "亮度"
@@ -1446,12 +1524,14 @@ msgstr "布隆迪"
 msgid "Bus: "
 msgstr "总线: "
 
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "默认情况下,信号质量以dB显示（调谐器支持的情况下）.此设置将使信号不是已百分比来显示."
-
 msgid "Bypass HDMI EDID checking"
 msgstr "绕过HDMI EDID检查"
 
+msgid "C"
+msgstr "C"
+
+#, fuzzy
+msgctxt "Abbreviation of \"Configurable\""
 msgid "C"
 msgstr "C"
 
@@ -1468,6 +1548,10 @@ msgstr "频道%s"
 msgid "CI (Common Interface) Setup"
 msgstr "CI 通用接口选择"
 
+#, fuzzy
+msgid "CI Boot Delay"
+msgstr "DVB CI延迟"
+
 msgid "CI assignment"
 msgstr "CI选择"
 
@@ -1477,6 +1561,10 @@ msgstr "启用"
 
 msgid "CI slot: "
 msgstr "CI插槽: "
+
+#, fuzzy
+msgid "CONTEXT"
+msgstr "文本"
 
 msgid "CPU: "
 msgstr "处理器: "
@@ -1559,6 +1647,14 @@ msgstr "加拿大"
 
 msgid "Cancel"
 msgstr "取消"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "取消任何文本更改并退出"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "取消对当前活动皮肤的任何更改并退出所有菜单"
 
 msgid "Cancel any changes to the currently active skin"
 msgstr "取消对当前活动皮肤的任何更改"
@@ -1654,6 +1750,10 @@ msgstr "频道"
 msgid "Channel Info"
 msgstr "频道信息"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "频道选择"
+
 msgid "Channel context menu"
 msgstr "频道上下文菜单"
 
@@ -1748,6 +1848,9 @@ msgid "Choose bouquet"
 msgstr "选择自定义组"
 
 msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
+msgid "Choose the order in which items are displayed in Help windows"
 msgstr ""
 
 #, fuzzy
@@ -1882,6 +1985,10 @@ msgstr "通用接口 (CI)"
 msgid "Common Interface assignment"
 msgstr "通用接口选择"
 
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "主题选择操作"
+
 msgid "Communication"
 msgstr "通信"
 
@@ -1943,7 +2050,8 @@ msgstr "为新定时器配置默认类型."
 msgid "Configure for how long the infobar will remain visible after activation."
 msgstr "配置信息栏在动作之后保持可见的时间."
 
-msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
+#, fuzzy
+msgid "Configure how long finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed (or for plugins that support catchup)."
 msgstr "配置EPG中结束多长时间的时间仍然保持可见,在你想知道那些时间刚刚结束或者延迟时特别有用."
 
 msgid "Configure how many channels are shown in the selection list."
@@ -1955,16 +2063,19 @@ msgstr "配置录制文件名的命名规则."
 msgid "Configure how the fan should operate"
 msgstr "配置散热风扇如何执行动作"
 
-msgid "Configure if and how crypto icons will be shown in the channel selection list."
+#, fuzzy
+msgid "Configure if and how crypto icons will be shown in the channel selection list (left alignment only available in single line mode)."
 msgstr "配置频道选择列表内是否显示加密图标以及显示时长."
 
 msgid "Configure if and how long the latest service in Picture in Picture mode will be remembered."
 msgstr "配置是否记住画中画模式下的频道以及记住的时长."
 
-msgid "Configure if and how service type icons will be shown in the channel selection list."
+#, fuzzy
+msgid "Configure if and how service type icons will be shown in the channel selection list (left alignment only available in single line mode)."
 msgstr "配置频道选择列表内是否显示频道类型图标."
 
-msgid "Configure if and how the record indicator will be shown in the channel selection list."
+#, fuzzy
+msgid "Configure if and how the record indicator will be shown in the channel selection list (left alignment only available in single line mode)."
 msgstr "配置频道选项列表里是否以及怎样显示录制指示器."
 
 msgid "Configure if and how wide columns will be shown in the channel selection list."
@@ -2045,7 +2156,8 @@ msgstr "配置接收机进入待机模式的闲置小时数时间."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "配置屏保持续时间."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "配置睡眠定时器持续分钟数,选择此项并按OK键或绿色键来开始/停止此睡眠定时器"
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2237,9 +2349,6 @@ msgstr "配置本地网络"
 msgid "Configure your network again"
 msgstr "重新配置网络"
 
-msgid "Configure your network settings and press OK to scan"
-msgstr "配置网络设置并按OK键扫描"
-
 msgid "Configure your wireless LAN again"
 msgstr "重新配置无线网络"
 
@@ -2303,7 +2412,7 @@ msgstr "继续播放"
 msgid "Continue playing"
 msgstr "继续播放"
 
-msgid "Continues play (loop)"
+msgid "Continuous play (loop)"
 msgstr "继续播放(重复)"
 
 msgid "Contrast"
@@ -2347,6 +2456,12 @@ msgstr "由于定时器 %s 冲突导致无法录制"
 #, python-format
 msgid "Could not record due to invalid service %s"
 msgstr "不能录制无效频道%s"
+
+msgid "Could not retrieve basic bouquets files"
+msgstr ""
+
+msgid "Could not retrieve the remote support files"
+msgstr ""
 
 msgid "Country"
 msgstr "国家(地区)"
@@ -2479,6 +2594,9 @@ msgstr "DMM高级"
 msgid "DMM normal"
 msgstr "DMM标准"
 
+msgid "DOWN"
+msgstr ""
+
 msgid "DTS"
 msgstr ""
 
@@ -2574,6 +2692,10 @@ msgstr "默认定时器类型"
 msgid "Default+Picon"
 msgstr "默认+Picon"
 
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "缺省值"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr ""
 
@@ -2646,6 +2768,9 @@ msgstr "开始文字滚动显示前的延迟时间（毫秒）"
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "字符滚动显示时字符间的延迟时间."
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "删除"
 
@@ -2654,6 +2779,14 @@ msgstr "删除镜像"
 
 msgid "Delete all the text"
 msgstr "删除所有文本"
+
+#, fuzzy
+msgid "Delete character to left of cursor or select AM times"
+msgstr "删除文本光标左侧的字符"
+
+#, fuzzy
+msgid "Delete character under cursor or select PM times"
+msgstr "删除文本光标下的字符"
 
 msgid "Delete entry"
 msgstr "删除项目"
@@ -2703,6 +2836,14 @@ msgstr "解扰接收中的媒体流"
 msgid "Descramble sending http streams"
 msgstr "解扰发送中的媒体流"
 
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "解扰接收中的媒体流"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
+msgstr "解扰接收中的媒体流"
+
 msgid "Description"
 msgstr "描述"
 
@@ -2723,6 +2864,14 @@ msgstr "DVB-T远程备份接收器的目的地"
 
 msgid "Details for plugin: "
 msgstr "插件信息: "
+
+#, fuzzy
+msgid "Detect PC before standby"
+msgstr "在待机状态下检测机顶盒"
+
+#, python-format
+msgid "Detect box%s via LAN"
+msgstr ""
 
 msgid "Detect next boxes before standby"
 msgstr "在待机状态下检测机顶盒"
@@ -2809,6 +2958,10 @@ msgstr "停止当前事件但排除即将到来的事件"
 msgid "Disable move mode"
 msgstr "禁用移动模式"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "可用的格式变量"
+
 msgid "Disable timer"
 msgstr "禁用定时器"
 
@@ -2854,6 +3007,9 @@ msgstr "在电影列表中显示电影长度(单行样式除外)."
 
 msgid "Display setup"
 msgstr "显示设置"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 msgid "Djibouti"
 msgstr "吉布提"
@@ -3005,6 +3161,10 @@ msgstr "多米尼加共和国"
 msgid "Don't save and stop timeshift"
 msgstr "不保存并停止时移"
 
+#, fuzzy
+msgid "Don't show default"
+msgstr "设为默认"
+
 msgid "Don't stop current event but disable coming events"
 msgstr "不能停止当前事件,不过可以禁用下一个事件"
 
@@ -3028,7 +3188,7 @@ msgstr[1] "完成-已安装,更新或删除 %d 个程序包 (%s)"
 
 #, python-format
 msgid ""
-"Download Successsful\n"
+"Download Successful\n"
 "%s"
 msgstr ""
 
@@ -3079,6 +3239,15 @@ msgstr "E"
 msgid "ECM Info"
 msgstr "ECM信息"
 
+msgid "EJECTCD"
+msgstr ""
+
+msgid "END"
+msgstr ""
+
+msgid "ENTER"
+msgstr ""
+
 msgid "EPG"
 msgstr "EPG设置"
 
@@ -3100,13 +3269,15 @@ msgstr "EPG设置"
 msgid "EPG:"
 msgstr "EPG:"
 
+msgid "EPGSETUP"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "错误 - 扫描 (%s)失败!"
 
-#, fuzzy, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr "下载文件 %s 时出错"
+msgid "EXIT"
+msgstr ""
 
 msgid "East"
 msgstr "东"
@@ -3348,7 +3519,7 @@ msgid "Enter URL"
 msgstr "输入URL地址"
 
 #, fuzzy
-msgid "Enter an URL where alternative images could be listed for FlashImage. Enter text 'all' for automatic access of many images."
+msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr "输入一个URL,其中可以列出Flash镜像的可选镜像"
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -3508,6 +3679,9 @@ msgstr "随时"
 msgid "Exceeds dual layer medium!"
 msgstr "超出双层介质!"
 
+msgid "Exclude first CA device"
+msgstr ""
+
 msgid "Execution finished!!"
 msgstr "执行完毕!"
 
@@ -3633,6 +3807,16 @@ msgstr "F1/F3/F4/F4-涡轮增压"
 msgid "FAILED"
 msgstr "失败"
 
+msgid "FASTFORWARD"
+msgstr ""
+
+#, fuzzy
+msgid "FAV"
+msgstr "免费频道"
+
+msgid "FAVORITES"
+msgstr ""
+
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "FBC SCR(单一同轴电缆/极轴)"
 
@@ -3677,6 +3861,9 @@ msgstr "纠错码(FEC):"
 
 msgid "FHD"
 msgstr "全高清"
+
+msgid "FORWARD"
+msgstr ""
 
 msgid "FTA"
 msgstr "免费频道"
@@ -3822,6 +4009,9 @@ msgstr "精确运动"
 msgid "Finetune"
 msgstr "微调"
 
+msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
+msgstr ""
+
 msgid "Finished"
 msgstr "完成"
 
@@ -3860,8 +4050,22 @@ msgstr ""
 "刷写镜像失败\n"
 "%s"
 
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "字母顺序排序"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "轨道位置"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "按OK键后,以下任务将被执行!"
+
+msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgstr ""
 
 msgid "Force legacy signal stats"
 msgstr "强制旧类型信号状态"
@@ -3970,6 +4174,9 @@ msgstr "G"
 #, fuzzy
 msgid "GB"
 msgstr "RGB三原色"
+
+msgid "GREEN"
+msgstr ""
 
 msgid "GUI Settings"
 msgstr "GUI设置"
@@ -4191,6 +4398,9 @@ msgstr "IP地址"
 msgid "HDMI-CEC setup"
 msgstr "HDMI-CEC设置"
 
+msgid "HDMI-In"
+msgstr ""
+
 msgid "HDR10 support"
 msgstr "HDR10支持"
 
@@ -4200,8 +4410,17 @@ msgstr "HDx1/HD1xxx/HD5x0C/VS1x00/et7x00/et8500/et7000迷你"
 msgid "HELP"
 msgstr "帮助"
 
+msgid "HISTORY"
+msgstr ""
+
 msgid "HLG support"
 msgstr "HLG支持"
+
+msgid "HOME"
+msgstr ""
+
+msgid "HOMEPAGE"
+msgstr ""
 
 msgid "Haiti"
 msgstr "海地"
@@ -4239,6 +4458,13 @@ msgstr "赫德岛和麦克唐纳岛"
 
 msgid "Hebrew"
 msgstr "希伯来语"
+
+msgid "Help"
+msgstr ""
+
+#, fuzzy
+msgid "Help Screen"
+msgstr "定屏"
 
 msgid "Helps setting up your antenna"
 msgstr "帮助设置天线"
@@ -4352,7 +4578,8 @@ msgstr "I"
 msgid "I do not want to perform any service scans"
 msgstr "我不想执行任何频道扫描"
 
-msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10/H11"
+#, fuzzy
+msgid "I55SE/H7(new model)/H9(new model)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10/H11/H17"
 msgstr "I55SE/H7(新款)/H9(新款)/H9COMBO/H9TWIN/H9SE/H9COMBOSE/H10/H11"
 
 msgid "IDLE"
@@ -4363,6 +4590,10 @@ msgstr "信息"
 
 msgid "INS"
 msgstr "插入键"
+
+#, fuzzy
+msgid "IP"
+msgstr "I"
 
 msgid "IP address"
 msgstr "IP地址"
@@ -4381,6 +4612,9 @@ msgstr "冰岛"
 
 msgid "Icons"
 msgstr "图标"
+
+msgid "If an action is user-configurable, its help entry will be flagged (C)"
+msgstr ""
 
 msgid "If disabled, underline characters in file and directory names are not shown and are replaced with spaces."
 msgstr "如果禁用,文件和目录名称中的下划线字符将不会显示并替换为空格."
@@ -4485,6 +4719,9 @@ msgstr "从远程接收器URL导入"
 
 msgid "Import remote receiver URL"
 msgstr "导入远程接收器URL"
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
+msgstr ""
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
 msgstr "定时录制开始,即将切换到预录频道!\n"
@@ -4594,6 +4831,14 @@ msgstr "输入设备"
 
 msgid "Input devices"
 msgstr "输入设备"
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "频道"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "定时器项目"
 
 msgid "Install"
 msgstr "安装"
@@ -4713,7 +4958,8 @@ msgstr "意大利语"
 msgid "Italy"
 msgstr "意大利"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "每页项目 "
 
 msgid "Items per page for list screen"
@@ -4742,6 +4988,12 @@ msgstr "跳转到列表开头"
 
 msgid "Jump to end of list"
 msgstr "切换到列表结尾"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "切换到下一个标记位置"
@@ -4811,14 +5063,31 @@ msgstr "科威特"
 msgid "Kyrgyzstan"
 msgstr "吉尔吉斯坦"
 
+#, fuzzy
+msgid "LAN"
+msgstr "高频头"
+
 msgid "LAN adapter"
 msgstr "无线网卡"
 
 msgid "LAN connection"
 msgstr "局域网连接"
 
+msgid "LEFT"
+msgstr ""
+
+msgid "LIST"
+msgstr ""
+
 msgid "LNB"
 msgstr "高频头"
+
+msgid "LOSTLOCK"
+msgstr ""
+
+#, fuzzy
+msgid "Label not defined"
+msgstr "未定义"
 
 msgid "Language"
 msgstr "语言设置"
@@ -5001,6 +5270,10 @@ msgstr "长文件名"
 msgid "Long key press"
 msgstr "将长按(红/绿/黄/蓝)分配给插件或E2功能"
 
+#, fuzzy
+msgid "Long press: "
+msgstr "将长按(红/绿/黄/蓝)分配给插件或E2功能"
+
 msgid "Longitude"
 msgstr "经度"
 
@@ -5026,6 +5299,12 @@ msgstr "卢森堡语"
 msgid "MB"
 msgstr "B"
 
+msgid "MEDIA"
+msgstr ""
+
+msgid "MENU"
+msgstr ""
+
 msgid "MHz"
 msgstr ""
 
@@ -5034,6 +5313,9 @@ msgstr "MMC存储卡"
 
 msgid "MORE"
 msgstr "更多"
+
+msgid "MUTE"
+msgstr ""
 
 msgid "Macao"
 msgstr "澳门"
@@ -5172,6 +5454,10 @@ msgstr "内存索引"
 msgid "Menu"
 msgstr "菜单"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "选择功能"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr "菜单排序(%s)"
@@ -5278,6 +5564,14 @@ msgstr "切换画中画到主屏幕"
 msgid "Move Picture in Picture"
 msgstr "移动画中画"
 
+#, fuzzy
+msgid "Move down a line"
+msgstr "转到列表末尾"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "向下移动到最后项目"
+
 msgid "Move east"
 msgstr "东移"
 
@@ -5305,6 +5599,14 @@ msgstr "将文本光标移动到第一个字符"
 msgid "Move the text cursor to the last character"
 msgstr "将文本光标移到最后一个字符"
 
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "移到下一个皮肤"
+
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "移到下一个皮肤"
+
 msgid "Move to position X"
 msgstr "移动到指定位置x"
 
@@ -5319,6 +5621,13 @@ msgstr "移到上一页"
 
 msgid "Move to the previous skin"
 msgstr "移到上一个皮肤"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "移动到索引位置"
+
+msgid "Move up a screen"
+msgstr ""
 
 msgid "Move west"
 msgstr "西移"
@@ -5407,6 +5716,10 @@ msgstr "空"
 msgid "NEXT"
 msgstr "下一个"
 
+#, fuzzy
+msgid "NEXTSONG"
+msgstr "下一个"
+
 msgid "NIM & Type"
 msgstr "调谐器类型"
 
@@ -5436,6 +5749,9 @@ msgstr "纳米比亚"
 
 msgid "Nauru"
 msgstr "瑙鲁"
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
+msgstr ""
 
 msgid "Nepal"
 msgstr "尼泊尔"
@@ -5519,6 +5835,10 @@ msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "稍候播出"
 
+#, fuzzy
+msgid "Next Wizard"
+msgstr "网络向导"
+
 msgid "Next day starts at"
 msgstr ""
 
@@ -5554,6 +5874,10 @@ msgstr "没有可用的活动子频道."
 
 msgid "No age block"
 msgstr "没有年龄限制"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "没有升级可用"
 
 msgid ""
 "No data on transponder!\n"
@@ -5772,11 +6096,18 @@ msgstr "重复显示文字的数量."
 msgid "Number or SMS style data entry"
 msgstr "数字或SMS样式的数据输入"
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "系统版本: "
+
 msgid "OK"
 msgstr "确定"
 
 msgid "ONID"
 msgstr "客户端(ONID)"
+
+msgid "OPTION"
+msgstr ""
 
 msgid "OSD 3D setup"
 msgstr "OSD 3D 设置"
@@ -5906,6 +6237,13 @@ msgstr "删除镜像"
 msgid "Other Subtitles & lang"
 msgstr "其他字幕和语言"
 
+msgid "Other buttons will jump to the help for that button, if there is help."
+msgstr ""
+
+#, fuzzy
+msgid "Other functions"
+msgstr "进阶指导"
+
 msgid "Output"
 msgstr "输出"
 
@@ -5921,8 +6259,17 @@ msgstr "在软件更新期间是否覆盖配置文件?"
 msgid "Overwrite configuration files?"
 msgstr "覆盖配置文件?"
 
+msgid "PAGEDOWN"
+msgstr ""
+
+msgid "PAGEUP"
+msgstr ""
+
 msgid "PAL"
 msgstr "PAL"
+
+msgid "PAUSE"
+msgstr ""
 
 msgid "PCR PID"
 msgstr "时钟同步PID"
@@ -5939,6 +6286,15 @@ msgstr "PID滤波"
 msgid "PIN code needed"
 msgstr "需要PIN码"
 
+msgid "PLAY"
+msgstr ""
+
+msgid "PLAYLIST"
+msgstr ""
+
+msgid "PLAYPAUSE"
+msgstr ""
+
 msgid "PLP ID"
 msgstr "脉冲水平ID"
 
@@ -5948,15 +6304,37 @@ msgstr "PLS码"
 msgid "PLS Mode"
 msgstr "PLS模式"
 
+msgid "PLUGIN"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "节目映射表PID"
+
+msgid "PORTAL"
+msgstr ""
+
+msgid "POWER"
+msgstr ""
+
+msgid "POWER2"
+msgstr ""
 
 msgid "PPanel"
 msgstr "ppanel面板"
 
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PREVIOUSSONG"
+msgstr ""
+
 #, fuzzy
 msgid "PULSe 4K(mini)"
 msgstr "脉冲4K"
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 msgid "Package list update"
 msgstr "更新软件列表"
@@ -6075,6 +6453,10 @@ msgstr "原始大小"
 msgid "Pilot"
 msgstr "向导"
 
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "自定义组"
+
 msgid "Pitcairn"
 msgstr "皮特凯恩群岛"
 
@@ -6132,6 +6514,12 @@ msgstr "是,播放上一个"
 msgid "Play recorded movies..."
 msgstr "播放录制的电影..."
 
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
+
 msgid "Please add titles to the compilation."
 msgstr "添加编辑标题."
 
@@ -6153,6 +6541,9 @@ msgstr ""
 
 msgid "Please connect your receiver to the internet"
 msgstr "请设置接收机互联网连接"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "不要做任何改变,除非您知道您在干什么!"
@@ -6596,8 +6987,15 @@ msgstr "DVD预览菜单"
 msgid "Preview selected channel"
 msgstr "预览选择的频道"
 
+msgid "Previous Wizard"
+msgstr ""
+
 msgid "Primary DNS"
 msgstr "主DNS"
+
+#, fuzzy
+msgid "Prime Time"
+msgstr "黄金时间"
 
 msgid "Prime time"
 msgstr "黄金时间"
@@ -6689,6 +7087,10 @@ msgstr "Python的前端/tmp/mmi.socket"
 msgid "Python version: "
 msgstr "Python版本: "
 
+#, fuzzy
+msgid "Pythonscript"
+msgstr "外壳脚本"
+
 msgid "Qatar"
 msgstr "卡塔尔"
 
@@ -6701,11 +7103,30 @@ msgstr "快速"
 msgid "Quick zap"
 msgstr "快速切换"
 
+msgid "RADIO"
+msgstr ""
+
 msgid "REC"
 msgstr "录制"
 
+msgid "RECALL"
+msgstr ""
+
+msgid "RECORD"
+msgstr ""
+
+#, fuzzy
+msgid "RED"
+msgstr "录制"
+
+msgid "REWIND"
+msgstr ""
+
 msgid "RF output"
 msgstr "射频输出"
+
+msgid "RIGHT"
+msgstr ""
 
 msgid "Radio"
 msgstr "广播"
@@ -6771,9 +7192,6 @@ msgstr "录制"
 
 msgid "Recall to previous service"
 msgstr "返回之前的频道"
-
-msgid "Receiver or driver does not support FCC"
-msgstr ""
 
 msgid "Reception settings"
 msgstr "接收设置"
@@ -7043,6 +7461,10 @@ msgstr "重启机器"
 msgid "Restart GUI now?"
 msgstr "立即重启接收机GUI?"
 
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "睡眠定时器"
+
 msgid "Restart both"
 msgstr "重启解密插件和解密卡"
 
@@ -7180,6 +7602,10 @@ msgstr "俄罗斯"
 msgid "Rwanda"
 msgstr "卢旺达"
 
+#, fuzzy
+msgid "SAT"
+msgstr "KA-SAT"
+
 msgid "SCPC optimized search range"
 msgstr "载波优化搜索范围"
 
@@ -7192,8 +7618,23 @@ msgstr "SCR极轴"
 msgid "SCR Unicable"
 msgstr "SCR单一同轴电缆"
 
+msgid "SCREEN"
+msgstr ""
+
+msgid "SETUP"
+msgstr ""
+
+msgid "SHIFT: "
+msgstr ""
+
 msgid "SINGLE LAYER DVD"
 msgstr "单层DVD"
+
+msgid "SLEEP"
+msgstr ""
+
+msgid "SLOW"
+msgstr ""
 
 msgid "SNR"
 msgstr "SNR"
@@ -7212,6 +7653,15 @@ msgstr "SSA文件"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STOP"
+msgstr ""
+
+msgid "SUBTITLE"
+msgstr ""
+
+msgid "SUSPEND"
+msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr "加勒比海圣巴特岛"
@@ -7286,6 +7736,10 @@ msgid "Save"
 msgstr "保存"
 
 msgid "Save / Enter text and exit"
+msgstr "保存/输入文本并退出"
+
+#, fuzzy
+msgid "Save all changed settings and exit"
 msgstr "保存/输入文本并退出"
 
 msgid "Save and activate the currently selected skin"
@@ -7534,6 +7988,10 @@ msgstr "如果您的天线系统支持此功能,请选择快速DiSEqC.如果你�
 msgid "Select HDD"
 msgstr "选择硬盘"
 
+#, fuzzy
+msgid "Select Service"
+msgstr "选择电影"
+
 msgid "Select Softcam"
 msgstr "选择Softcam插件"
 
@@ -7651,7 +8109,15 @@ msgstr "选择刷新率"
 msgid "Select satellites"
 msgstr "选择卫星"
 
+#, fuzzy
+msgid "Select service name"
+msgstr "频道名称"
+
 msgid "Select service to add..."
+msgstr "选择要添加的频道..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "选择要添加的频道..."
 
 msgid "Select slot"
@@ -7659,6 +8125,14 @@ msgstr "选择插槽"
 
 msgid "Select sort method:"
 msgstr "排序方式:"
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "选择Softcam插件"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "选择调谐器"
 
 msgid "Select target folder"
 msgstr "选择目标文件夹"
@@ -7686,6 +8160,13 @@ msgstr "Ε选择您的SCR设备的型号.如果型号没有 列出,根据其规�
 
 msgid "Select the movie path"
 msgstr "选择电影路径"
+
+#, fuzzy
+msgid "Select the next item in list or move cursor right"
+msgstr "选择相应区域内的时区."
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "选择您的SCR设备使用的协议.选择是“scr” unicable（unicable）或scr jess（jess，也称unicable II）."
@@ -7716,6 +8197,10 @@ msgstr "只为下一个字符使用键盘'shift'键选择字符集"
 
 msgid "Select the time zone within the area or region."
 msgstr "选择相应区域内的时区."
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "启用后,从备用调谐器导入定时器"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr "选择控制电动碟的调谐器."
@@ -7777,14 +8262,14 @@ msgstr "选择国家(地区).如果不可用,请选择'全部'."
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr "选择提供商和地区.如果不在该列表中,您将需要选择另一种‘服务扫描类型’."
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "选择供应商,按OK键开始扫描"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "选择您所在的地区,如果不可用,请将'国家'更改为'全部',然后选择一个默认选项."
 
 msgid "Select your time zone area or region."
 msgstr "选择时区或区域."
+
+msgid "Select, toggle, process or edit the current entry"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "正在转到卫星1(极轴)"
@@ -7834,6 +8319,14 @@ msgstr "频道PIDs"
 msgid "Service ID"
 msgstr "频道ID"
 
+#, fuzzy
+msgid "Service Name"
+msgstr "频道名称"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "频道名称"
+
 msgid "Service belongs to a parental protected bouquet"
 msgstr "频道属于受父母保护的自定义组"
 
@@ -7864,6 +8357,10 @@ msgstr "频道信息-调谐器当前值"
 msgid "Service info - tuner setting values"
 msgstr "频道信息-调谐器设定值"
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "频道信息"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -7874,12 +8371,20 @@ msgstr ""
 msgid "Service name"
 msgstr "频道名称"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "频道名称"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "频道未找到!\n"
 "(在PAT中找不以SID)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "字幕字体大小"
 
 msgid "Service reference"
 msgstr "频道参考"
@@ -7915,11 +8420,17 @@ msgstr "设置电影播放完成时的操作."
 msgid "Set all hotkey to default?"
 msgstr "重置所有热键?"
 
+msgid "Set all the settings back as they were"
+msgstr ""
+
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr "DVB-T/C或ATSC备用调谐器的识别"
 
 msgid "Set as startup service"
 msgstr "设置为启动频道"
+
+msgid "Set auto DiSEqC search order"
+msgstr ""
 
 msgid "Set blocktimes by weekday"
 msgstr "设置普通日(周六,日以外的任何一天)"
@@ -7970,7 +8481,8 @@ msgstr "从备用调谐器设置OpenWebif的密码"
 msgid "Set the port of the OpenWebif from your fallback tuner"
 msgstr "从备用调谐器设置OpenWebif的端口"
 
-msgid "Set the type of the progress indication in the channel selection screen."
+#, fuzzy
+msgid "Set the type of the progress indication in the channel selection screen (right alignment only available in single line mode)."
 msgstr "设置频道选项窗内进度指示器的类型."
 
 msgid "Set time window to 1 hour"
@@ -8057,9 +8569,6 @@ msgstr "显示信息条"
 msgid "Show PiP"
 msgstr "显示画中画"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "用百分比代替dB值来显示信号质量"
-
 msgid "Show True/False as graphical switch"
 msgstr "为图形交换显示开或关"
 
@@ -8068,6 +8577,10 @@ msgstr "在主菜单显示VCR scart接口"
 
 msgid "Show WLAN status"
 msgstr "显示WLAN状态"
+
+#, fuzzy
+msgid "Show additional information on infobar"
+msgstr "在信息栏显示加密信息"
 
 msgid "Show alternatives"
 msgstr "‪显示备选方案"
@@ -8099,8 +8612,19 @@ msgstr "显示频道加密图标"
 msgid "Show crypto info in infobar"
 msgstr "在信息栏显示加密信息"
 
+#, fuzzy
+msgid "Show default after description"
+msgstr "显示扩展描述"
+
+#, fuzzy
+msgid "Show default on new line"
+msgstr "显示信息行"
+
 msgid "Show detailed event info"
 msgstr "显示事件详细信息"
+
+msgid "Show disabled timers (local only)"
+msgstr ""
 
 msgid "Show event details"
 msgstr "显示事件详细内容"
@@ -8228,8 +8752,20 @@ msgstr "显示频道类型图标"
 msgid "Show servicelist or movies"
 msgstr "显示频道列表或电影"
 
+#, fuzzy
+msgid "Show setup default values"
+msgstr "显示事件详细内容"
+
+#, fuzzy
+msgid "Show simple second infobar"
+msgstr "显示第二信息栏"
+
 msgid "Show single service EPG"
 msgstr "单个EPG"
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "软件管理信息"
 
 msgid "Show softcam setup in extensions menu"
 msgstr "在菜单栏显示softcam扩展"
@@ -8346,9 +8882,6 @@ msgstr "单个"
 msgid "Single EPG"
 msgstr "单个EPG"
 
-msgid "Single line mode"
-msgstr "单行模式"
-
 msgid "Single satellite"
 msgstr "单颗卫星"
 
@@ -8367,6 +8900,10 @@ msgstr "经度"
 #, python-format
 msgid "Skin & Resolution: %s (%sx%s)\n"
 msgstr "皮肤和分辨率: %s (%sx%s)\n"
+
+#, fuzzy
+msgid "Skin Selection"
+msgstr "主题选择操作"
 
 msgid "Skin Selection Actions"
 msgstr "主题选择操作"
@@ -8525,6 +9062,10 @@ msgstr "是否恢复默认列表排序并退出?"
 msgid "Sort list:"
 msgstr "排序列表:"
 
+#, fuzzy
+msgid "Sort order for help screen"
+msgstr "设置项的排序顺序"
+
 msgid "Sort order for menu entries"
 msgstr "菜单项目排序"
 
@@ -8646,6 +9187,22 @@ msgstr "%d 号待机风扇的电压"
 msgid "Standby in "
 msgstr "待机在 "
 
+#, fuzzy
+msgid "Start CableScan"
+msgstr "有线扫描"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "重新测试"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "快速扫描"
+
+#, fuzzy
+msgid "Start Sleeptimer"
+msgstr "睡眠定时器"
+
 msgid "Start directory"
 msgstr "启动目录"
 
@@ -8716,6 +9273,10 @@ msgstr "停止"
 
 msgid "Stop PiP"
 msgstr "停止画中画"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "睡眠定时器"
 
 msgid "Stop all current recordings"
 msgstr "停止当前所有进行中的录制"
@@ -8808,6 +9369,18 @@ msgid "Stored position"
 msgstr "存贮位置"
 
 msgid "Stream"
+msgstr "流媒体"
+
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "滚动延迟"
+
+#, fuzzy
+msgid "Stream Type"
+msgstr "流媒体"
+
+#, fuzzy
+msgid "Stream URL"
 msgstr "流媒体"
 
 msgid "Stream request"
@@ -9035,6 +9608,12 @@ msgstr "T2MI原始模式"
 msgid "TEXT"
 msgstr "文本"
 
+msgid "TIMER"
+msgstr ""
+
+msgid "TIMESHIFT"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "翻译_信息"
@@ -9050,6 +9629,9 @@ msgstr "调谐器:"
 
 msgid "TUNING"
 msgstr "微调"
+
+msgid "TV"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "电视物理地址报告"
@@ -9135,6 +9717,9 @@ msgstr "时间结束前还剩余 %d 分钟时间."
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a special format data DVD (which will not play in stand-alone DVD players) instead?"
 msgstr "DVD标准不支持 H.264 (HDTV)的视频流.你是否想创建一个机顶盒数据格式DVD(不能在传统的DVD上播放)?"
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The PIN code has been changed successfully."
 msgstr "服务密码 已被成功修改."
 
@@ -9166,6 +9751,11 @@ msgstr ""
 "目录%s不可写.\n"
 "请确保您选择了一个可写目录."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "下列文件已找到..."
 
@@ -9180,6 +9770,9 @@ msgstr ""
 "请安装它."
 
 msgid "The number of steps to change the volume on the device the keys are forwarded to."
+msgstr ""
+
+msgid "The order and grouping of the help information list can be controlled using MENU>Setup>User Interface>Settings>Sort order for help screen."
 msgstr ""
 
 msgid ""
@@ -9225,6 +9818,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "路径 %s 已经存在."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s"
@@ -9307,6 +9903,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "这张DVD RW已经格式化过,再次格式化将删除所有文件."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This bouquet is protected by a parental control PIN"
 msgstr "此频道受家长控制"
@@ -9599,6 +10198,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "自动定时器概述"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "定时器位置"
+
 msgid "Timer recording location"
 msgstr "定时器位置"
 
@@ -9664,6 +10267,10 @@ msgstr "字幕选项"
 msgid "Today"
 msgstr "今天"
 
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "配置模式：%s"
+
 msgid "Toggle HDMI In"
 msgstr "切换HDMI接入"
 
@@ -9694,6 +10301,9 @@ msgstr "切换显示/隐藏"
 msgid "Toggle subtitles show/hide"
 msgstr "切换字幕显示/隐藏"
 
+msgid "Toggle the SNR values displayed"
+msgstr "用百分比代替dB值来显示信号质量"
+
 msgid "Toggle the tv and the radio player..."
 msgstr "切换电视/广播..."
 
@@ -9720,6 +10330,10 @@ msgstr "22K开关 A/B"
 
 msgid "Tonga"
 msgstr "汤加"
+
+#, fuzzy
+msgid "Top"
+msgstr "二"
 
 msgid "Top and bottom"
 msgstr "顶部和底部"
@@ -9850,9 +10464,11 @@ msgstr "图瓦卢"
 msgid "Two"
 msgstr "二"
 
+#, fuzzy
 msgid "Two lines"
 msgstr "双行模式"
 
+#, fuzzy
 msgid "Two lines and next event"
 msgstr "两行和下一个事件"
 
@@ -9867,6 +10483,9 @@ msgstr "扫描类型"
 
 msgid "UNKNOWN"
 msgstr "未知"
+
+msgid "UP"
+msgstr ""
 
 msgid "URL"
 msgstr "URL"
@@ -9968,11 +10587,19 @@ msgstr "通用高频头"
 msgid "Unknown"
 msgstr "未知"
 
+#, fuzzy
+msgid "Unknown image"
+msgstr "未知"
+
 msgid "Unmark service as dedicated 3D service"
 msgstr "取消作为专用3D频道的频道标识"
 
 msgid "Unmount"
 msgstr "卸载"
+
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "自定义组"
 
 msgid "Unsupported"
 msgstr "不支持"
@@ -10079,6 +10706,10 @@ msgstr "当Virgin EPG信息可用是启用此EPG."
 msgid "Use a gateway"
 msgstr "使用网关"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "增加项目"
+
 msgid "Use as PiP if possible"
 msgstr "如果可能,可用作画中画使用"
 
@@ -10111,6 +10742,14 @@ msgstr "使用原始图文位置"
 
 msgid "Use power measurement"
 msgstr "使用功率测量"
+
+#, fuzzy
+msgid "Use skin default"
+msgstr "设为默认"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "编辑备选方案"
 
 msgid "Use the network wizard to configure selected network adapter"
 msgstr "使用网络向导配置所选网络适配器"
@@ -10185,14 +10824,29 @@ msgstr "乌兹别克斯坦"
 msgid "VCR scart"
 msgstr "录像机"
 
+msgid "VIDEO"
+msgstr ""
+
+msgid "VKEY"
+msgstr ""
+
 msgid "VLAN connection"
 msgstr "VLAN连接"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM（简介预告片）"
 
+msgid "VMODE"
+msgstr ""
+
 msgid "VOB file"
 msgstr "VOB文件"
+
+msgid "VOL+"
+msgstr ""
+
+msgid "VOL-"
+msgstr ""
 
 msgid "VU+"
 msgstr "VU+"
@@ -10248,6 +10902,10 @@ msgstr "选择视频模式."
 
 msgid "Video output"
 msgstr "视频输出"
+
+#, fuzzy
+msgid "Video settings"
+msgstr "音/视频设置"
 
 msgid "Video setup"
 msgstr "视频设置"
@@ -10362,6 +11020,12 @@ msgstr "音量加"
 msgid "W"
 msgstr "W"
 
+msgid "WAKEUP"
+msgstr ""
+
+msgid "WIZTV"
+msgstr ""
+
 msgid "WLAN connection"
 msgstr "WLAN连接"
 
@@ -10371,6 +11035,9 @@ msgstr "AAC缩减混音"
 
 msgid "WSS on 4:3"
 msgstr "宽高比在4:3时显示宽屏幕信号"
+
+msgid "WWW"
+msgstr ""
 
 msgid "Waiting"
 msgstr "等待"
@@ -10508,8 +11175,14 @@ msgstr "西撒哈拉"
 msgid "What type of service scan do you want?"
 msgstr "您要什么类型的扫描?"
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "一旦启用,enigma2将会加载未连接的用户自定义组,也就是说用户自定义组可用,但是不包括自定义的电视和广播节目文件的自定义组仍然会被加载.这将允许保留属于你自己的个人用户自定义组,尤其是升级设置时非常有用"
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
+msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
 msgstr "启用后,可使用'exit'键关闭画中画窗口."
@@ -10530,6 +11203,10 @@ msgid "When enabled the set top box is able to wakeup on LAN"
 msgstr "一旦启用,机顶盒将可以通过LAN唤醒"
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "启用后,从备用调谐器导入定时器"
+
+#, fuzzy
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr "启用后,从备用调谐器导入定时器"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -10726,6 +11403,10 @@ msgstr "当接收器从待机状态唤醒时,它将命令电视切换到接收�
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "选择此选项后,即使未报告为支持,也允许选择视频模式."
 
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "默认情况下,信号质量以dB显示（调谐器支持的情况下）.此设置将使信号不是已百分比来显示."
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "当内容为16:9横纵比时,选择是否拉伸画面."
 
@@ -10799,6 +11480,9 @@ msgstr "写入失败!"
 msgid "Write to /tmp/positionersetup.log"
 msgstr "写入到 /tmp/positionersetup.log"
 
+msgid "YELLOW"
+msgstr ""
+
 msgid "YES"
 msgstr "是"
 
@@ -10810,6 +11494,10 @@ msgstr "黄色"
 
 msgid "Yellow DVB subtitles"
 msgstr "黄色DVB字幕"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "选择功能"
 
 msgid "Yemen"
 msgstr "也门"
@@ -11041,6 +11729,9 @@ msgstr ""
 "\n"
 "请选择下一步做什么."
 
+msgid "ZOOM"
+msgstr ""
+
 msgid "Zambia"
 msgstr "赞比亚"
 
@@ -11131,9 +11822,6 @@ msgstr "分配服务/供应商/ caids常见接口模块的界面"
 
 msgid "about to start"
 msgstr "立即开始"
-
-msgid "activate network adapter configuration"
-msgstr "激活网卡配置"
 
 msgid "active"
 msgstr "激活"
@@ -11417,14 +12105,15 @@ msgstr "执行裁剪（需要电影裁剪插件）"
 msgid "exit DVD player or return to file browser"
 msgstr "退出DVD播放器或返回文件浏览器"
 
-msgid "exit network adapter configuration"
-msgstr "退出网卡配置"
-
 msgid "exit networkadapter setup menu"
 msgstr "退出网卡设置菜单"
 
 msgid "experimental film/video"
 msgstr "实验电影/视频"
+
+#, fuzzy
+msgid "extra high"
+msgstr "超宽"
 
 msgid "extra wide"
 msgstr "超宽"
@@ -11502,6 +12191,9 @@ msgstr "抓取当前帧为bmp图片"
 msgid "green"
 msgstr "绿色"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "工艺"
 
@@ -11510,6 +12202,9 @@ msgstr "高"
 
 msgid "help..."
 msgstr "帮助..."
+
+msgid "high"
+msgstr ""
 
 msgid "horizontal"
 msgstr "水平"
@@ -11617,6 +12312,10 @@ msgstr "医学/生理学/心理学"
 
 msgid "menu"
 msgstr "菜单"
+
+#, fuzzy
+msgid "min"
+msgstr " 分钟"
 
 msgid "mins"
 msgstr "分钟"
@@ -11793,6 +12492,10 @@ msgstr "请稍候,正在加载图片..."
 
 msgid "popular culture/traditional arts"
 msgstr "流行文化/传统艺术"
+
+#, fuzzy
+msgid "port"
+msgstr "体育"
 
 msgid "pre-school children's program"
 msgstr "学前儿童程序（早教程序）"
@@ -12193,3 +12896,9 @@ msgstr "转自"
 
 msgid "®"
 msgstr "®"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 13:16+0100\n"
+"POT-Creation-Date: 2024-12-08 15:08+0100\n"
 "PO-Revision-Date: 2013-04-22 04:29+0330\n"
 "Last-Translator: dimili21\n"
 "Language-Team: \n"
@@ -335,6 +335,10 @@ msgid "%s %d.%d"
 msgstr ""
 
 #, python-format
+msgid "%s (%s)"
+msgstr ""
+
+#, python-format
 msgid "%s (files)"
 msgstr ""
 
@@ -407,6 +411,10 @@ msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Only available if more than one interface is active."
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-NO SERVICE\n"
 msgstr ""
@@ -571,6 +579,9 @@ msgstr ""
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr "A graphical EPG for all services of an specific bouquet"
 
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s)."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has started:\n"
@@ -644,6 +655,9 @@ msgstr ""
 msgid "AAC+ downmix"
 msgstr "AC3 downmix"
 
+msgid "ABOUT"
+msgstr ""
+
 msgid "AC3"
 msgstr ""
 
@@ -659,10 +673,22 @@ msgstr ""
 msgid "AGC:"
 msgstr ""
 
+msgid "ARROWLEFT"
+msgstr ""
+
+msgid "ARROWRIGHT"
+msgstr ""
+
 msgid "ASS file"
 msgstr ""
 
 msgid "ATSC provider"
+msgstr ""
+
+msgid "AUDIO"
+msgstr ""
+
+msgid "AUTOTIMER"
 msgstr ""
 
 msgid "Abort"
@@ -907,6 +933,9 @@ msgstr "Use TV remote control"
 
 msgid "Alpha"
 msgstr "Alpha"
+
+msgid "Alphabetical under headings"
+msgstr ""
 
 msgid "Also import at reboot/restart enigma2"
 msgstr ""
@@ -1262,11 +1291,23 @@ msgstr ""
 msgid "B"
 msgstr "B"
 
+msgid "BACK"
+msgstr ""
+
 msgid "BER"
 msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "BLUE"
+msgstr ""
+
+msgid "BOUQUET+"
+msgstr ""
+
+msgid "BOUQUET-"
+msgstr ""
 
 msgid "Back"
 msgstr "Paş"
@@ -1333,6 +1374,9 @@ msgstr "Service info"
 
 msgid "Basque"
 msgstr "Basque"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr ""
@@ -1450,6 +1494,9 @@ msgstr ""
 msgid "Brazil"
 msgstr ""
 
+msgid "Brief help information for buttons in your current context."
+msgstr ""
+
 msgid "Brightness"
 msgstr "Ronahi"
 
@@ -1502,6 +1549,11 @@ msgstr ""
 msgid "C"
 msgstr "C"
 
+#, fuzzy
+msgctxt "Abbreviation of \"Configurable\""
+msgid "C"
+msgstr "C"
+
 msgid "C-Band"
 msgstr "C-Band"
 
@@ -1526,6 +1578,9 @@ msgid "CI enabled"
 msgstr "enabled"
 
 msgid "CI slot: "
+msgstr ""
+
+msgid "CONTEXT"
 msgstr ""
 
 msgid "CPU: "
@@ -1797,6 +1852,9 @@ msgid "Choose bouquet"
 msgstr ""
 
 msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
+msgid "Choose the order in which items are displayed in Help windows"
 msgstr ""
 
 #, fuzzy
@@ -2546,6 +2604,9 @@ msgstr "DMM advanced"
 msgid "DMM normal"
 msgstr "DMM normal"
 
+msgid "DOWN"
+msgstr ""
+
 msgid "DTS"
 msgstr ""
 
@@ -2820,6 +2881,14 @@ msgstr ""
 
 msgid "Details for plugin: "
 msgstr "Details for plugin: "
+
+#, fuzzy
+msgid "Detect PC before standby"
+msgstr "Deep standby"
+
+#, python-format
+msgid "Detect box%s via LAN"
+msgstr ""
 
 msgid "Detect next boxes before standby"
 msgstr ""
@@ -3198,6 +3267,15 @@ msgstr "E"
 msgid "ECM Info"
 msgstr "Info"
 
+msgid "EJECTCD"
+msgstr ""
+
+msgid "END"
+msgstr ""
+
+msgid "ENTER"
+msgstr ""
+
 msgid "EPG"
 msgstr "EPG"
 
@@ -3219,9 +3297,15 @@ msgstr "EPG Çékirin"
 msgid "EPG:"
 msgstr ""
 
+msgid "EPGSETUP"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ERROR - failed to scan (%s)!"
+
+msgid "EXIT"
+msgstr ""
 
 msgid "East"
 msgstr "East"
@@ -3748,6 +3832,16 @@ msgstr ""
 msgid "FAILED"
 msgstr ""
 
+msgid "FASTFORWARD"
+msgstr ""
+
+#, fuzzy
+msgid "FAV"
+msgstr "FTA"
+
+msgid "FAVORITES"
+msgstr ""
+
 msgid "FBC SCR (Unicable/JESS)"
 msgstr ""
 
@@ -3785,6 +3879,9 @@ msgid "FEC:"
 msgstr ""
 
 msgid "FHD"
+msgstr ""
+
+msgid "FORWARD"
 msgstr ""
 
 msgid "FTA"
@@ -3973,8 +4070,22 @@ msgid ""
 "%s"
 msgstr ""
 
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "flat alphabetic"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "Final position at"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "Following tasks will be done after you press OK!"
+
+msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgstr ""
 
 msgid "Force legacy signal stats"
 msgstr ""
@@ -4085,6 +4196,9 @@ msgstr ""
 #, fuzzy
 msgid "GB"
 msgstr "RGB"
+
+msgid "GREEN"
+msgstr ""
 
 #, fuzzy
 msgid "GUI Settings"
@@ -4323,9 +4437,18 @@ msgstr ""
 msgid "HELP"
 msgstr ""
 
+msgid "HISTORY"
+msgstr ""
+
 #, fuzzy
 msgid "HLG support"
 msgstr "not supported"
+
+msgid "HOME"
+msgstr ""
+
+msgid "HOMEPAGE"
+msgstr ""
 
 #, fuzzy
 msgid "Haiti"
@@ -4364,6 +4487,13 @@ msgstr ""
 
 msgid "Hebrew"
 msgstr "Hebrew"
+
+msgid "Help"
+msgstr ""
+
+#, fuzzy
+msgid "Help Screen"
+msgstr "Hold screen"
 
 msgid "Helps setting up your antenna"
 msgstr ""
@@ -4492,6 +4622,9 @@ msgstr ""
 msgid "INS"
 msgstr ""
 
+msgid "IP"
+msgstr ""
+
 msgid "IP address"
 msgstr "IP address"
 
@@ -4509,6 +4642,9 @@ msgstr ""
 
 msgid "Icons"
 msgstr "Icons"
+
+msgid "If an action is user-configurable, its help entry will be flagged (C)"
+msgstr ""
 
 msgid "If disabled, underline characters in file and directory names are not shown and are replaced with spaces."
 msgstr ""
@@ -4963,17 +5099,31 @@ msgstr "waiting"
 msgid "Kyrgyzstan"
 msgstr ""
 
+#, fuzzy
+msgid "LAN"
+msgstr "LNB"
+
 msgid "LAN adapter"
 msgstr "LAN adapter"
 
 msgid "LAN connection"
 msgstr "LAN connection"
 
+msgid "LEFT"
+msgstr ""
+
+msgid "LIST"
+msgstr ""
+
 msgid "LNB"
 msgstr "LNB"
 
 msgid "LOSTLOCK"
 msgstr ""
+
+#, fuzzy
+msgid "Label not defined"
+msgstr "User defined"
 
 msgid "Language"
 msgstr "Ziman"
@@ -5160,6 +5310,10 @@ msgstr "Long filenames"
 msgid "Long key press"
 msgstr "Long key press"
 
+#, fuzzy
+msgid "Long press: "
+msgstr "Long key press"
+
 msgid "Longitude"
 msgstr "Longitude"
 
@@ -5186,6 +5340,9 @@ msgstr "Luxembourgish"
 msgid "MB"
 msgstr "B"
 
+msgid "MEDIA"
+msgstr ""
+
 msgid "MENU"
 msgstr ""
 
@@ -5197,6 +5354,9 @@ msgstr "MMC card"
 
 msgid "MORE"
 msgstr "MORE"
+
+msgid "MUTE"
+msgstr ""
 
 msgid "Macao"
 msgstr ""
@@ -5611,6 +5771,10 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "NEXT"
 
+#, fuzzy
+msgid "NEXTSONG"
+msgstr "NEXT"
+
 msgid "NIM & Type"
 msgstr ""
 
@@ -5639,6 +5803,9 @@ msgid "Namibia"
 msgstr ""
 
 msgid "Nauru"
+msgstr ""
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
 msgstr ""
 
 msgid "Nepal"
@@ -5722,6 +5889,10 @@ msgstr "Next"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Next"
+
+#, fuzzy
+msgid "Next Wizard"
+msgstr "Network wizard"
 
 msgid "Next day starts at"
 msgstr ""
@@ -5999,6 +6170,9 @@ msgstr "OK"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPTION"
+msgstr ""
+
 msgid "OSD 3D setup"
 msgstr ""
 
@@ -6126,6 +6300,13 @@ msgstr "Delete file"
 msgid "Other Subtitles & lang"
 msgstr ""
 
+msgid "Other buttons will jump to the help for that button, if there is help."
+msgstr ""
+
+#, fuzzy
+msgid "Other functions"
+msgstr "further education"
+
 msgid "Output"
 msgstr "Output"
 
@@ -6141,8 +6322,17 @@ msgstr "Overwrite configuration files during software update?"
 msgid "Overwrite configuration files?"
 msgstr "Overwrite configuration files?"
 
+msgid "PAGEDOWN"
+msgstr ""
+
+msgid "PAGEUP"
+msgstr ""
+
 msgid "PAL"
 msgstr "PAL"
+
+msgid "PAUSE"
+msgstr ""
 
 msgid "PCR PID"
 msgstr "PCR PID"
@@ -6159,6 +6349,15 @@ msgstr ""
 msgid "PIN code needed"
 msgstr "PIN code needed"
 
+msgid "PLAY"
+msgstr ""
+
+msgid "PLAYLIST"
+msgstr ""
+
+msgid "PLAYPAUSE"
+msgstr ""
+
 msgid "PLP ID"
 msgstr ""
 
@@ -6169,8 +6368,20 @@ msgstr ""
 msgid "PLS Mode"
 msgstr "Mode"
 
+msgid "PLUGIN"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PORTAL"
+msgstr ""
+
+msgid "POWER"
+msgstr ""
+
+msgid "POWER2"
+msgstr ""
 
 msgid "PPanel"
 msgstr ""
@@ -6178,7 +6389,13 @@ msgstr ""
 msgid "PREVIOUS"
 msgstr ""
 
+msgid "PREVIOUSSONG"
+msgstr ""
+
 msgid "PULSe 4K(mini)"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 msgid "Package list update"
@@ -6847,8 +7064,14 @@ msgstr "Preview menu"
 msgid "Preview selected channel"
 msgstr "Preview selected channel"
 
+msgid "Previous Wizard"
+msgstr ""
+
 msgid "Primary DNS"
 msgstr "Primary DNS"
+
+msgid "Prime Time"
+msgstr ""
 
 msgid "Prime time"
 msgstr ""
@@ -6956,11 +7179,29 @@ msgstr "Quick"
 msgid "Quick zap"
 msgstr "Quick zap"
 
+msgid "RADIO"
+msgstr ""
+
 msgid "REC"
+msgstr ""
+
+msgid "RECALL"
+msgstr ""
+
+msgid "RECORD"
+msgstr ""
+
+msgid "RED"
+msgstr ""
+
+msgid "REWIND"
 msgstr ""
 
 msgid "RF output"
 msgstr "RF output"
+
+msgid "RIGHT"
+msgstr ""
 
 msgid "Radio"
 msgstr "Radio"
@@ -7449,6 +7690,9 @@ msgstr ""
 msgid "Rwanda"
 msgstr ""
 
+msgid "SAT"
+msgstr ""
+
 msgid "SCPC optimized search range"
 msgstr ""
 
@@ -7461,8 +7705,23 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr ""
 
+msgid "SCREEN"
+msgstr ""
+
+msgid "SETUP"
+msgstr ""
+
+msgid "SHIFT: "
+msgstr ""
+
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
+
+msgid "SLEEP"
+msgstr ""
+
+msgid "SLOW"
+msgstr ""
 
 msgid "SNR"
 msgstr "SNR"
@@ -7481,6 +7740,15 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STOP"
+msgstr ""
+
+msgid "SUBTITLE"
+msgstr ""
+
+msgid "SUSPEND"
+msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -8910,6 +9178,10 @@ msgstr ""
 msgid "Sort list:"
 msgstr ""
 
+#, fuzzy
+msgid "Sort order for help screen"
+msgstr "Items per page for list screen"
+
 msgid "Sort order for menu entries"
 msgstr ""
 
@@ -9464,6 +9736,12 @@ msgstr ""
 msgid "TEXT"
 msgstr ""
 
+msgid "TIMER"
+msgstr ""
+
+msgid "TIMESHIFT"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr "TRANSLATOR_INFO"
@@ -9478,6 +9756,9 @@ msgid "TUNER:"
 msgstr ""
 
 msgid "TUNING"
+msgstr ""
+
+msgid "TV"
 msgstr ""
 
 msgid "TV physical address report"
@@ -9619,6 +9900,9 @@ msgstr ""
 "Please install it."
 
 msgid "The number of steps to change the volume on the device the keys are forwarded to."
+msgstr ""
+
+msgid "The order and grouping of the help information list can be controlled using MENU>Setup>User Interface>Settings>Sort order for help screen."
 msgstr ""
 
 msgid ""
@@ -10323,6 +10607,9 @@ msgstr "Type of scan"
 msgid "UNKNOWN"
 msgstr ""
 
+msgid "UP"
+msgstr ""
+
 msgid "URL"
 msgstr ""
 
@@ -10664,6 +10951,12 @@ msgstr ""
 msgid "VCR scart"
 msgstr "VCR scart"
 
+msgid "VIDEO"
+msgstr ""
+
+msgid "VKEY"
+msgstr ""
+
 #, fuzzy
 msgid "VLAN connection"
 msgstr "LAN connection"
@@ -10671,7 +10964,16 @@ msgstr "LAN connection"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
+msgid "VMODE"
+msgstr ""
+
 msgid "VOB file"
+msgstr ""
+
+msgid "VOL+"
+msgstr ""
+
+msgid "VOL-"
 msgstr ""
 
 msgid "VU+"
@@ -10850,6 +11152,12 @@ msgstr ""
 msgid "W"
 msgstr "W"
 
+msgid "WAKEUP"
+msgstr ""
+
+msgid "WIZTV"
+msgstr ""
+
 msgid "WLAN connection"
 msgstr "WLAN connection"
 
@@ -10859,6 +11167,9 @@ msgstr "AC3 downmix"
 
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
+
+msgid "WWW"
+msgstr ""
 
 msgid "Waiting"
 msgstr "Waiting"
@@ -11306,6 +11617,9 @@ msgstr "Write failed!"
 msgid "Write to /tmp/positionersetup.log"
 msgstr ""
 
+msgid "YELLOW"
+msgstr ""
+
 msgid "YES"
 msgstr ""
 
@@ -11543,6 +11857,9 @@ msgstr ""
 "Have you attached your USB WLAN Stick?\n"
 "\n"
 "Please choose what you want to do next."
+
+msgid "ZOOM"
+msgstr ""
 
 msgid "Zambia"
 msgstr ""
@@ -12309,6 +12626,10 @@ msgstr "please wait, loading picture..."
 
 msgid "popular culture/traditional arts"
 msgstr "popular culture/traditional arts"
+
+#, fuzzy
+msgid "port"
+msgstr "Sports"
 
 msgid "pre-school children's program"
 msgstr "pre-school children's program"

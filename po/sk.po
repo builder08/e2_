@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 13:16+0100\n"
+"POT-Creation-Date: 2024-12-08 15:08+0100\n"
 "PO-Revision-Date: 2023-11-10 14:18+0100\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -349,6 +349,10 @@ msgstr ""
 msgid "%s %d.%d"
 msgstr "%s %d.%d"
 
+#, fuzzy, python-format
+msgid "%s (%s)"
+msgstr "%s (files)"
+
 #, python-format
 msgid "%s (files)"
 msgstr "%s (files)"
@@ -422,6 +426,10 @@ msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Dostupné, iba ak je aktívnych viac rozhraní než jedno."
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-NO SERVICE\n"
 msgstr "-ŽIADNA STANICA\n"
@@ -582,6 +590,9 @@ msgstr "Súbor sa na disku používa!"
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr "Grafické EPG pre všetky stanice zvoleného prehľadu staníc"
 
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s)."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has started:\n"
@@ -652,6 +663,9 @@ msgstr "Prekódovanie AAC"
 msgid "AAC+ downmix"
 msgstr "Downmix AAC+"
 
+msgid "ABOUT"
+msgstr ""
+
 msgid "AC3"
 msgstr "AC3"
 
@@ -667,11 +681,23 @@ msgstr "ZÍSKANIE TSID / ONID"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "ARROWLEFT"
+msgstr ""
+
+msgid "ARROWRIGHT"
+msgstr ""
+
 msgid "ASS file"
 msgstr "ASS súbor"
 
 msgid "ATSC provider"
 msgstr "ATSC poskytovateľ"
+
+msgid "AUDIO"
+msgstr ""
+
+msgid "AUTOTIMER"
+msgstr ""
 
 msgid "Abort"
 msgstr "Prerušiť"
@@ -912,6 +938,9 @@ msgstr "Umožňuje ovládať prijímač diaľkovým ovládačom z TV."
 
 msgid "Alpha"
 msgstr "Alfa"
+
+msgid "Alphabetical under headings"
+msgstr ""
 
 msgid "Also import at reboot/restart enigma2"
 msgstr "Tiež importovať pri reštarte prjiímača / OS"
@@ -1257,11 +1286,23 @@ msgstr "Azerbajdžan"
 msgid "B"
 msgstr "B"
 
+msgid "BACK"
+msgstr ""
+
 msgid "BER"
 msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "BLUE"
+msgstr ""
+
+msgid "BOUQUET+"
+msgstr ""
+
+msgid "BOUQUET-"
+msgstr ""
 
 msgid "Back"
 msgstr "Späť"
@@ -1326,6 +1367,10 @@ msgstr "Základné informácie"
 
 msgid "Basque"
 msgstr "Baskicky"
+
+#, fuzzy
+msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr "Pred odoslaním príkazu na prepnutie TV do pohotovostného režimu prijímač otestuje, či sú všetky ostatné zariadenia pripojené k TV v pohotovostnom režime. Ak nie sú, namiesto príkazu \"standby\" sa do televízora odošle príkaz \"sourceinactive\"."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr "Pred odoslaním príkazu na prepnutie TV do pohotovostného režimu prijímač otestuje, či sú všetky ostatné zariadenia pripojené k TV v pohotovostnom režime. Ak nie sú, namiesto príkazu \"standby\" sa do televízora odošle príkaz \"sourceinactive\"."
@@ -1441,6 +1486,9 @@ msgstr "Bouvetské ostrovy"
 msgid "Brazil"
 msgstr "Brazília"
 
+msgid "Brief help information for buttons in your current context."
+msgstr ""
+
 msgid "Brightness"
 msgstr "Jas"
 
@@ -1491,6 +1539,11 @@ msgstr "Vynechať kontrolu HDMI EDID"
 msgid "C"
 msgstr "C"
 
+#, fuzzy
+msgctxt "Abbreviation of \"Configurable\""
+msgid "C"
+msgstr "C"
+
 msgid "C-Band"
 msgstr "C-pásmo"
 
@@ -1515,6 +1568,10 @@ msgstr "CI povolené"
 
 msgid "CI slot: "
 msgstr "CI slot: "
+
+#, fuzzy
+msgid "CONTEXT"
+msgstr "TEXT"
 
 msgid "CPU: "
 msgstr "Procesor: "
@@ -1799,6 +1856,9 @@ msgstr "Zvoľte prehľad"
 
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Vyberte možnosť opravy neplatných údajov EPG."
+
+msgid "Choose the order in which items are displayed in Help windows"
+msgstr ""
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Vyberte, či sa majú prekódovať zvukové stopy AAC."
@@ -2533,6 +2593,9 @@ msgstr "Rozšírené DMM"
 msgid "DMM normal"
 msgstr "Normálne DMM"
 
+msgid "DOWN"
+msgstr ""
+
 msgid "DTS"
 msgstr "DTS"
 
@@ -2797,6 +2860,14 @@ msgstr "Cieľ záložného vzdialeného prijímača pre DVB-T"
 
 msgid "Details for plugin: "
 msgstr "Údaje o doplnku: "
+
+#, fuzzy
+msgid "Detect PC before standby"
+msgstr "Detekcia ďalších prijímačov pred prechodom do pohot. režimu"
+
+#, python-format
+msgid "Detect box%s via LAN"
+msgstr ""
 
 msgid "Detect next boxes before standby"
 msgstr "Detekcia ďalších prijímačov pred prechodom do pohot. režimu"
@@ -3167,6 +3238,15 @@ msgstr "E"
 msgid "ECM Info"
 msgstr "ECM Info"
 
+msgid "EJECTCD"
+msgstr ""
+
+msgid "END"
+msgstr ""
+
+msgid "ENTER"
+msgstr ""
+
 msgid "EPG"
 msgstr "EPG - programový sprievodca"
 
@@ -3188,9 +3268,15 @@ msgstr "Nastavenie EPG"
 msgid "EPG:"
 msgstr "EPG:"
 
+msgid "EPGSETUP"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "CHYBA - zlyhalo vyhľadávanie (%s)!"
+
+msgid "EXIT"
+msgstr ""
 
 msgid "East"
 msgstr "Východne"
@@ -3713,6 +3799,16 @@ msgstr "F1/F3/F4/F4-TURBO"
 msgid "FAILED"
 msgstr "ZLYHALO"
 
+msgid "FASTFORWARD"
+msgstr ""
+
+#, fuzzy
+msgid "FAV"
+msgstr "Nekódované"
+
+msgid "FAVORITES"
+msgstr ""
+
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "FBC SCR (Unicable/JESS)"
 
@@ -3755,6 +3851,9 @@ msgstr "Korekcia chybovosti (FEC):"
 
 msgid "FHD"
 msgstr "FHD"
+
+msgid "FORWARD"
+msgstr ""
 
 msgid "FTA"
 msgstr "Nekódované"
@@ -3941,8 +4040,22 @@ msgstr ""
 "Aktualizácia systému nebola úspešná\n"
 "%s"
 
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "abecedne"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "Konečná pozícia na"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "Po stlačení OK sa vykonajú nasledujúce úlohy!"
+
+msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgstr ""
 
 msgid "Force legacy signal stats"
 msgstr "Vynútiť zastaralú štatistiku signálu"
@@ -4047,6 +4160,9 @@ msgstr "G"
 
 msgid "GB"
 msgstr "GB"
+
+msgid "GREEN"
+msgstr ""
 
 msgid "GUI Settings"
 msgstr "Nastavenie užívateľského rozhrania"
@@ -4278,8 +4394,17 @@ msgstr "HDx1/HD1xxx/HD5x0C/VS1x00/et7x00/et8500/et7000mini"
 msgid "HELP"
 msgstr "POMOC"
 
+msgid "HISTORY"
+msgstr ""
+
 msgid "HLG support"
 msgstr "Podpora HLG"
+
+msgid "HOME"
+msgstr ""
+
+msgid "HOMEPAGE"
+msgstr ""
 
 msgid "Haiti"
 msgstr "Haiti"
@@ -4316,6 +4441,13 @@ msgstr "Heardské ostrovy a McDonald ostrovy"
 
 msgid "Hebrew"
 msgstr "Hebrejsky"
+
+msgid "Help"
+msgstr ""
+
+#, fuzzy
+msgid "Help Screen"
+msgstr "Pridržať obraz"
 
 msgid "Helps setting up your antenna"
 msgstr "Pomáha nastaviť Vašu parabolu"
@@ -4441,6 +4573,10 @@ msgstr "INFO"
 msgid "INS"
 msgstr "INS"
 
+#, fuzzy
+msgid "IP"
+msgstr "I"
+
 msgid "IP address"
 msgstr "Adresa IP"
 
@@ -4458,6 +4594,9 @@ msgstr "Island"
 
 msgid "Icons"
 msgstr "Ikony"
+
+msgid "If an action is user-configurable, its help entry will be flagged (C)"
+msgstr ""
 
 msgid "If disabled, underline characters in file and directory names are not shown and are replaced with spaces."
 msgstr "Ak je zakázané, podčiarknuté znaky v zozname súborov a zložiek nie sú zobrazené a sú nahradené medzerami."
@@ -4912,17 +5051,31 @@ msgstr "Kuwait"
 msgid "Kyrgyzstan"
 msgstr "Kyrgyzstan"
 
+#, fuzzy
+msgid "LAN"
+msgstr "LNB"
+
 msgid "LAN adapter"
 msgstr "Sieťová karta"
 
 msgid "LAN connection"
 msgstr "Pripojenie LAN"
 
+msgid "LEFT"
+msgstr ""
+
+msgid "LIST"
+msgstr ""
+
 msgid "LNB"
 msgstr "LNB"
 
 msgid "LOSTLOCK"
 msgstr ""
+
+#, fuzzy
+msgid "Label not defined"
+msgstr "Nedefinované"
 
 msgid "Language"
 msgstr "Jazyk"
@@ -5106,6 +5259,10 @@ msgstr "Dlhé názvy súborov"
 msgid "Long key press"
 msgstr "Dlhé stlačenie tlačidla"
 
+#, fuzzy
+msgid "Long press: "
+msgstr "Dlhé stlačenie tlačidla"
+
 msgid "Longitude"
 msgstr "Zem. dĺžka"
 
@@ -5130,6 +5287,9 @@ msgstr "Luxembursky"
 msgid "MB"
 msgstr "MB"
 
+msgid "MEDIA"
+msgstr ""
+
 msgid "MENU"
 msgstr ""
 
@@ -5141,6 +5301,9 @@ msgstr "Karta MMC"
 
 msgid "MORE"
 msgstr "VIAC"
+
+msgid "MUTE"
+msgstr ""
 
 msgid "Macao"
 msgstr "Makao"
@@ -5540,6 +5703,10 @@ msgstr "Nie je k dispozícii"
 msgid "NEXT"
 msgstr "NASL."
 
+#, fuzzy
+msgid "NEXTSONG"
+msgstr "NASL."
+
 msgid "NIM & Type"
 msgstr "NIM a Typ"
 
@@ -5569,6 +5736,9 @@ msgstr "Namíbia"
 
 msgid "Nauru"
 msgstr "Nauru"
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
+msgstr ""
 
 msgid "Nepal"
 msgstr "Nepál"
@@ -5650,6 +5820,10 @@ msgstr "Ďalej"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Ďalšia"
+
+#, fuzzy
+msgid "Next Wizard"
+msgstr "Sprievodca sieťou"
 
 msgid "Next day starts at"
 msgstr "Ďalší deň začína o"
@@ -5917,6 +6091,9 @@ msgstr "OK"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPTION"
+msgstr ""
+
 msgid "OSD 3D setup"
 msgstr "Nastavenie 3D OSD"
 
@@ -6040,6 +6217,13 @@ msgstr "Iné obrazy systému"
 msgid "Other Subtitles & lang"
 msgstr "Ďalšie titulky a jazyk"
 
+msgid "Other buttons will jump to the help for that button, if there is help."
+msgstr ""
+
+#, fuzzy
+msgid "Other functions"
+msgstr "vzdelávanie dospelých"
+
 msgid "Output"
 msgstr "Výstup"
 
@@ -6055,8 +6239,17 @@ msgstr "Prepísať konfiguračné súbory pri aktualizácii softvéru?"
 msgid "Overwrite configuration files?"
 msgstr "Prepísať konfiguračné súbory?"
 
+msgid "PAGEDOWN"
+msgstr ""
+
+msgid "PAGEUP"
+msgstr ""
+
 msgid "PAL"
 msgstr "PAL"
+
+msgid "PAUSE"
+msgstr ""
 
 msgid "PCR PID"
 msgstr "PCR PID"
@@ -6073,6 +6266,15 @@ msgstr "PID filtrovanie"
 msgid "PIN code needed"
 msgstr "Je vyžadovaný PIN"
 
+msgid "PLAY"
+msgstr ""
+
+msgid "PLAYLIST"
+msgstr ""
+
+msgid "PLAYPAUSE"
+msgstr ""
+
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -6082,8 +6284,20 @@ msgstr "PLS kód"
 msgid "PLS Mode"
 msgstr "PLS mód"
 
+msgid "PLUGIN"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PORTAL"
+msgstr ""
+
+msgid "POWER"
+msgstr ""
+
+msgid "POWER2"
+msgstr ""
 
 msgid "PPanel"
 msgstr "PPanel"
@@ -6091,8 +6305,15 @@ msgstr "PPanel"
 msgid "PREVIOUS"
 msgstr ""
 
+msgid "PREVIOUSSONG"
+msgstr ""
+
 msgid "PULSe 4K(mini)"
 msgstr "PULSe 4K(mini)"
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 msgid "Package list update"
 msgstr "Aktualizácia zoznamu balíčkov"
@@ -6748,8 +6969,15 @@ msgstr "Prezrieť menu"
 msgid "Preview selected channel"
 msgstr "Náhľad zvolenej stanice"
 
+msgid "Previous Wizard"
+msgstr ""
+
 msgid "Primary DNS"
 msgstr "Primárny DNS"
+
+#, fuzzy
+msgid "Prime Time"
+msgstr "Hlavný vysielací čas"
 
 msgid "Prime time"
 msgstr "Hlavný vysielací čas"
@@ -6857,11 +7085,30 @@ msgstr "Rýchlo"
 msgid "Quick zap"
 msgstr "Rýchle prepnutie"
 
+msgid "RADIO"
+msgstr ""
+
 msgid "REC"
 msgstr "REC"
 
+msgid "RECALL"
+msgstr ""
+
+msgid "RECORD"
+msgstr ""
+
+#, fuzzy
+msgid "RED"
+msgstr "REC"
+
+msgid "REWIND"
+msgstr ""
+
 msgid "RF output"
 msgstr "VF výstup"
+
+msgid "RIGHT"
+msgstr ""
 
 msgid "Radio"
 msgstr "Rádio"
@@ -7338,6 +7585,10 @@ msgstr "Ruská Federácia"
 msgid "Rwanda"
 msgstr "Rwanda"
 
+#, fuzzy
+msgid "SAT"
+msgstr "KA-SAT"
+
 msgid "SCPC optimized search range"
 msgstr "SCPC optimalizovaný rozsah vyhľadávania"
 
@@ -7350,8 +7601,23 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
+msgid "SCREEN"
+msgstr ""
+
+msgid "SETUP"
+msgstr ""
+
+msgid "SHIFT: "
+msgstr ""
+
 msgid "SINGLE LAYER DVD"
 msgstr "JEDNOVRSTVOVÉ DVD"
+
+msgid "SLEEP"
+msgstr ""
+
+msgid "SLOW"
+msgstr ""
 
 msgid "SNR"
 msgstr "SNR"
@@ -7370,6 +7636,15 @@ msgstr "SSA file"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STOP"
+msgstr ""
+
+msgid "SUBTITLE"
+msgstr ""
+
+msgid "SUSPEND"
+msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr "Saint Barthelemy"
@@ -8766,6 +9041,10 @@ msgstr "Vykonať predvolené zoradenie zoznamu a ukončiť?"
 msgid "Sort list:"
 msgstr "Usporiadať zoznam:"
 
+#, fuzzy
+msgid "Sort order for help screen"
+msgstr "Zoradenie položiek menu"
+
 msgid "Sort order for menu entries"
 msgstr "Zoradenie položiek menu"
 
@@ -9303,6 +9582,12 @@ msgstr "Režim T2MI RAW"
 msgid "TEXT"
 msgstr "TEXT"
 
+msgid "TIMER"
+msgstr ""
+
+msgid "TIMESHIFT"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -9321,6 +9606,9 @@ msgstr "TUNER:"
 
 msgid "TUNING"
 msgstr "LADENIE"
+
+msgid "TV"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "Výpis fyzickej adresy TV"
@@ -9460,6 +9748,9 @@ msgstr ""
 
 msgid "The number of steps to change the volume on the device the keys are forwarded to."
 msgstr "Počet krokov na zmenu hlasitosti na zariadení, na ktoré sú tlačidlá presmerované."
+
+msgid "The order and grouping of the help information list can be controlled using MENU>Setup>User Interface>Settings>Sort order for help screen."
+msgstr ""
 
 msgid ""
 "The overscan wizard has been completed.\n"
@@ -10168,6 +10459,9 @@ msgstr "Druh vyhľadávania"
 msgid "UNKNOWN"
 msgstr "NEZNÁME"
 
+msgid "UP"
+msgstr ""
+
 msgid "URL"
 msgstr "URL"
 
@@ -10503,14 +10797,29 @@ msgstr "Uzbekistan"
 msgid "VCR scart"
 msgstr "Scart - videorekordér"
 
+msgid "VIDEO"
+msgstr ""
+
+msgid "VKEY"
+msgstr ""
+
 msgid "VLAN connection"
 msgstr "VLAN pripojenie"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (úvodný trailer)"
 
+msgid "VMODE"
+msgstr ""
+
 msgid "VOB file"
 msgstr "VOB súbor"
+
+msgid "VOL+"
+msgstr ""
+
+msgid "VOL-"
+msgstr ""
 
 msgid "VU+"
 msgstr "VU+"
@@ -10682,6 +10991,12 @@ msgstr "Zvýšiť hlasitosť"
 msgid "W"
 msgstr "Z"
 
+msgid "WAKEUP"
+msgstr ""
+
+msgid "WIZTV"
+msgstr ""
+
 msgid "WLAN connection"
 msgstr "Pripojenie WLAN"
 
@@ -10690,6 +11005,9 @@ msgstr "WMA Pro downmix"
 
 msgid "WSS on 4:3"
 msgstr "WSS pri 4:3"
+
+msgid "WWW"
+msgstr ""
 
 msgid "Waiting"
 msgstr "Čakám"
@@ -11130,6 +11448,9 @@ msgstr "Zápis zlyhal!"
 msgid "Write to /tmp/positionersetup.log"
 msgstr "Zapísať do /tmp/positionersetup.log"
 
+msgid "YELLOW"
+msgstr ""
+
 msgid "YES"
 msgstr "ÁNO"
 
@@ -11377,6 +11698,9 @@ msgstr ""
 "Pripojili ste kľúč USB WLAN?\n"
 "\n"
 "Zvoľte, čo chcete robiť ďalej."
+
+msgid "ZOOM"
+msgstr ""
 
 msgid "Zambia"
 msgstr "Zambia"
@@ -12122,6 +12446,10 @@ msgstr "Čakajte prosím, načítavam obraz…"
 
 msgid "popular culture/traditional arts"
 msgstr "populárna kultúra/tradičné umenie"
+
+#, fuzzy
+msgid "port"
+msgstr "Športy"
 
 msgid "pre-school children's program"
 msgstr "program pre predškolské deti"

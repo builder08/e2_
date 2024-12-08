@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 13:16+0100\n"
+"POT-Creation-Date: 2024-12-08 15:08+0100\n"
 "PO-Revision-Date: 2022-10-23 15:37+0300\n"
 "Last-Translator: Audronis <adga45@gmail.com>\n"
 "Language-Team: Adga (C) <adga45@gmail.com>\n"
@@ -349,6 +349,10 @@ msgid "%s %d.%d"
 msgstr "%s %d.%d"
 
 #, fuzzy, python-format
+msgid "%s (%s)"
+msgstr "%d failas"
+
+#, fuzzy, python-format
 msgid "%s (files)"
 msgstr "%d failas"
 
@@ -421,6 +425,10 @@ msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-NO SERVICE\n"
 msgstr "-KANALO NĖRA\n"
@@ -581,6 +589,9 @@ msgstr "Medijos failas yra naudojamas!"
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr "Konkretaus paketo visų kanalų grafinis EPG"
 
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list indicates whether the function is for a long press of the button(s)."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has started:\n"
@@ -652,6 +663,9 @@ msgstr "AAC perkodavimas"
 msgid "AAC+ downmix"
 msgstr "AAC+ kanalų suliejimas"
 
+msgid "ABOUT"
+msgstr ""
+
 msgid "AC3"
 msgstr "AC3"
 
@@ -667,11 +681,23 @@ msgstr "GAUNAMAS TSID/ONID"
 msgid "AGC:"
 msgstr "AGC:"
 
+msgid "ARROWLEFT"
+msgstr ""
+
+msgid "ARROWRIGHT"
+msgstr ""
+
 msgid "ASS file"
 msgstr "ASS failas"
 
 msgid "ATSC provider"
 msgstr "ATSC teikėjas"
+
+msgid "AUDIO"
+msgstr ""
+
+msgid "AUTOTIMER"
+msgstr ""
 
 msgid "Abort"
 msgstr "Nutraukti"
@@ -912,6 +938,9 @@ msgstr "Leidžia naudoti televizoriaus nuotolinio valdymo pultą imtuvui valdyti
 
 msgid "Alpha"
 msgstr "Alfa"
+
+msgid "Alphabetical under headings"
+msgstr ""
 
 msgid "Also import at reboot/restart enigma2"
 msgstr "Importuoti kanalus perkraunant arba paleidžiant grafinę aplinką iš naujo"
@@ -1255,11 +1284,23 @@ msgstr "Azerbaidžanas"
 msgid "B"
 msgstr "B"
 
+msgid "BACK"
+msgstr ""
+
 msgid "BER"
 msgstr "BER"
 
 msgid "BER:"
 msgstr "BER:"
+
+msgid "BLUE"
+msgstr ""
+
+msgid "BOUQUET+"
+msgstr ""
+
+msgid "BOUQUET-"
+msgstr ""
 
 msgid "Back"
 msgstr "Atgal"
@@ -1325,6 +1366,10 @@ msgstr "Pagrindinė PID info"
 
 msgid "Basque"
 msgstr "Baskų"
+
+#, fuzzy
+msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr "Prieš siųsdamas komandą, kad televizorius būtų perjungtas į budėjimo režimą, imtuvas tikrina, ar visi kiti prie televizoriaus prijungti įrenginiai yra budėjimo režime. Jei ne, komanda 'šaltinis neaktyvus' bus nusiųsta į televizorių, o ne į komandą \"budėjimo režimas\"."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr "Prieš siųsdamas komandą, kad televizorius būtų perjungtas į budėjimo režimą, imtuvas tikrina, ar visi kiti prie televizoriaus prijungti įrenginiai yra budėjimo režime. Jei ne, komanda 'šaltinis neaktyvus' bus nusiųsta į televizorių, o ne į komandą \"budėjimo režimas\"."
@@ -1440,6 +1485,9 @@ msgstr "Buveto sala"
 msgid "Brazil"
 msgstr "Brazilų"
 
+msgid "Brief help information for buttons in your current context."
+msgstr ""
+
 msgid "Brightness"
 msgstr "Šviesumas"
 
@@ -1490,6 +1538,11 @@ msgstr "Praleiskite HDMI EDID patikrinimą"
 msgid "C"
 msgstr "C"
 
+#, fuzzy
+msgctxt "Abbreviation of \"Configurable\""
+msgid "C"
+msgstr "C"
+
 msgid "C-Band"
 msgstr "C-juosta"
 
@@ -1515,6 +1568,10 @@ msgstr "CI įjungtas"
 
 msgid "CI slot: "
 msgstr "CI lizdas: "
+
+#, fuzzy
+msgid "CONTEXT"
+msgstr "TEKSTAS"
 
 msgid "CPU: "
 msgstr "Procesorius: "
@@ -1797,6 +1854,9 @@ msgid "Choose bouquet"
 msgstr "Pasirinkite paketą"
 
 msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
+msgid "Choose the order in which items are displayed in Help windows"
 msgstr ""
 
 msgid "Choose whether AAC sound tracks should be transcoded."
@@ -2533,6 +2593,9 @@ msgstr "DMM išplėstinis"
 msgid "DMM normal"
 msgstr "DMM normalus"
 
+msgid "DOWN"
+msgstr ""
+
 msgid "DTS"
 msgstr "DTS"
 
@@ -2799,6 +2862,14 @@ msgstr "DVB-T nuotolinio atsarginio imtuvo paskirties vieta"
 
 msgid "Details for plugin: "
 msgstr "Išsamiau apie priedą: "
+
+#, fuzzy
+msgid "Detect PC before standby"
+msgstr "Aptikti kitą imtuvą prieš budėjimą"
+
+#, python-format
+msgid "Detect box%s via LAN"
+msgstr ""
 
 msgid "Detect next boxes before standby"
 msgstr "Aptikti kitą imtuvą prieš budėjimą"
@@ -3169,6 +3240,15 @@ msgstr "E"
 msgid "ECM Info"
 msgstr "ECM informacija"
 
+msgid "EJECTCD"
+msgstr ""
+
+msgid "END"
+msgstr ""
+
+msgid "ENTER"
+msgstr ""
+
 msgid "EPG"
 msgstr "Elektroninis programų vadovas"
 
@@ -3190,9 +3270,15 @@ msgstr "EPG nustatymai"
 msgid "EPG:"
 msgstr "Elektroninis programų vadovas:"
 
+msgid "EPGSETUP"
+msgstr ""
+
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "KLAIDA - paieška nepavyko (%s)!"
+
+msgid "EXIT"
+msgstr ""
 
 msgid "East"
 msgstr "Rytai"
@@ -3717,6 +3803,16 @@ msgstr "F1/F3/F4/F4-TURBO"
 msgid "FAILED"
 msgstr "NEPAVYKO"
 
+msgid "FASTFORWARD"
+msgstr ""
+
+#, fuzzy
+msgid "FAV"
+msgstr "NEKODUOTI"
+
+msgid "FAVORITES"
+msgstr ""
+
 msgid "FBC SCR (Unicable/JESS)"
 msgstr "FBC SCR (Unicable/JESS)"
 
@@ -3755,6 +3851,9 @@ msgstr "FEC:"
 
 msgid "FHD"
 msgstr "FHD"
+
+msgid "FORWARD"
+msgstr ""
 
 msgid "FTA"
 msgstr "NEKODUOTI"
@@ -3941,8 +4040,22 @@ msgstr ""
 "Avaizdo įdiegti nepavyko\n"
 "%s"
 
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "plokščias abėcėlinis"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "Galutinė pozicija ties"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "Šios užduotys bus atliktos, kai paspausite 'OK'!"
+
+msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgstr ""
 
 msgid "Force legacy signal stats"
 msgstr "Priverstinė pasenusių signalų statistika"
@@ -4047,6 +4160,9 @@ msgstr "G"
 
 msgid "GB"
 msgstr "GB"
+
+msgid "GREEN"
+msgstr ""
 
 msgid "GUI Settings"
 msgstr "Grafinės aplinkos nustatymai"
@@ -4278,8 +4394,17 @@ msgstr "HDx1/HD1xxx/HD5x0C/VS1x00/et7x00/et8500/et7000mini"
 msgid "HELP"
 msgstr "PAGALBA"
 
+msgid "HISTORY"
+msgstr ""
+
 msgid "HLG support"
 msgstr "HLG palaikymas"
+
+msgid "HOME"
+msgstr ""
+
+msgid "HOMEPAGE"
+msgstr ""
 
 msgid "Haiti"
 msgstr "Haitis"
@@ -4316,6 +4441,13 @@ msgstr "Herdo ir Makdonaldo salos"
 
 msgid "Hebrew"
 msgstr "Hebrajų"
+
+msgid "Help"
+msgstr ""
+
+#, fuzzy
+msgid "Help Screen"
+msgstr "Užlaikytas vaizdas"
 
 msgid "Helps setting up your antenna"
 msgstr "Padės jums suderinti anteną"
@@ -4441,6 +4573,10 @@ msgstr "INFO"
 msgid "INS"
 msgstr "INS"
 
+#, fuzzy
+msgid "IP"
+msgstr "I"
+
 msgid "IP address"
 msgstr "IP adresas"
 
@@ -4458,6 +4594,9 @@ msgstr "Islandija"
 
 msgid "Icons"
 msgstr "Piktogramos"
+
+msgid "If an action is user-configurable, its help entry will be flagged (C)"
+msgstr ""
 
 msgid "If disabled, underline characters in file and directory names are not shown and are replaced with spaces."
 msgstr "Jei išjungta, failų ir katalogų pavadinimų pabraukimo simboliai nerodomi ir pakeičiami tarpais."
@@ -4911,17 +5050,31 @@ msgstr "Kuveitas"
 msgid "Kyrgyzstan"
 msgstr "Kirgistanas"
 
+#, fuzzy
+msgid "LAN"
+msgstr "LNB konverteris"
+
 msgid "LAN adapter"
 msgstr "LAN adapteris"
 
 msgid "LAN connection"
 msgstr "LAN ryšys"
 
+msgid "LEFT"
+msgstr ""
+
+msgid "LIST"
+msgstr ""
+
 msgid "LNB"
 msgstr "LNB konverteris"
 
 msgid "LOSTLOCK"
 msgstr ""
+
+#, fuzzy
+msgid "Label not defined"
+msgstr "Neapibrėžta"
 
 msgid "Language"
 msgstr "Kalba"
@@ -5105,6 +5258,10 @@ msgstr "Ilgi failų pavadinimai"
 msgid "Long key press"
 msgstr "Ilgas mygtuko paspaudimas"
 
+#, fuzzy
+msgid "Long press: "
+msgstr "Ilgas mygtuko paspaudimas"
+
 msgid "Longitude"
 msgstr "Ilguma"
 
@@ -5129,6 +5286,9 @@ msgstr "Liuksemburgiečių"
 msgid "MB"
 msgstr "MB"
 
+msgid "MEDIA"
+msgstr ""
+
 msgid "MENU"
 msgstr ""
 
@@ -5140,6 +5300,9 @@ msgstr "MMC laikmena"
 
 msgid "MORE"
 msgstr "DAUGIAU"
+
+msgid "MUTE"
+msgstr ""
 
 msgid "Macao"
 msgstr "Makao"
@@ -5539,6 +5702,10 @@ msgstr "N/G"
 msgid "NEXT"
 msgstr "KITAS"
 
+#, fuzzy
+msgid "NEXTSONG"
+msgstr "KITAS"
+
 msgid "NIM & Type"
 msgstr "IMTUVAS IR TIPAS"
 
@@ -5568,6 +5735,9 @@ msgstr "Namibija"
 
 msgid "Nauru"
 msgstr "Nauriečių"
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
+msgstr ""
 
 msgid "Nepal"
 msgstr "Nepalas"
@@ -5649,6 +5819,10 @@ msgstr "Sekantis"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Toliau programoje"
+
+#, fuzzy
+msgid "Next Wizard"
+msgstr "Tinklo vedlys"
 
 msgid "Next day starts at"
 msgstr "Kita diena prasideda nuo"
@@ -5916,6 +6090,9 @@ msgstr "Gerai"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPTION"
+msgstr ""
+
 msgid "OSD 3D setup"
 msgstr "OSD 3D sąranka"
 
@@ -6041,6 +6218,13 @@ msgstr "Ištrinti atvaizdą"
 msgid "Other Subtitles & lang"
 msgstr "Kiti subtitrai ir kalba"
 
+msgid "Other buttons will jump to the help for that button, if there is help."
+msgstr ""
+
+#, fuzzy
+msgid "Other functions"
+msgstr "aukštasis mokslas"
+
 msgid "Output"
 msgstr "Išvestis"
 
@@ -6056,8 +6240,17 @@ msgstr "Ar atnaujinimo metu perrašyti konfigūracijos failus naujais?"
 msgid "Overwrite configuration files?"
 msgstr "Perrašyti konfigūracijos failus?"
 
+msgid "PAGEDOWN"
+msgstr ""
+
+msgid "PAGEUP"
+msgstr ""
+
 msgid "PAL"
 msgstr "PAL"
+
+msgid "PAUSE"
+msgstr ""
 
 msgid "PCR PID"
 msgstr "PCR PID"
@@ -6074,6 +6267,15 @@ msgstr "PID filtravimas"
 msgid "PIN code needed"
 msgstr "Reikalingas PIN kodas"
 
+msgid "PLAY"
+msgstr ""
+
+msgid "PLAYLIST"
+msgstr ""
+
+msgid "PLAYPAUSE"
+msgstr ""
+
 msgid "PLP ID"
 msgstr "PLP ID"
 
@@ -6083,8 +6285,20 @@ msgstr "PLS kodas"
 msgid "PLS Mode"
 msgstr "PLS režimas"
 
+msgid "PLUGIN"
+msgstr ""
+
 msgid "PMT PID"
 msgstr "PMT PID"
+
+msgid "PORTAL"
+msgstr ""
+
+msgid "POWER"
+msgstr ""
+
+msgid "POWER2"
+msgstr ""
 
 msgid "PPanel"
 msgstr "PLi skydelis"
@@ -6092,8 +6306,15 @@ msgstr "PLi skydelis"
 msgid "PREVIOUS"
 msgstr ""
 
+msgid "PREVIOUSSONG"
+msgstr ""
+
 msgid "PULSe 4K(mini)"
 msgstr "PULSe 4K(mini)"
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 msgid "Package list update"
 msgstr "Paketo sąrašo atnaujinimas"
@@ -6745,8 +6966,15 @@ msgstr "Peržiūros meniu"
 msgid "Preview selected channel"
 msgstr "Peržiūrėti pasirinktą kanalą"
 
+msgid "Previous Wizard"
+msgstr ""
+
 msgid "Primary DNS"
 msgstr "Pirminis DNS"
+
+#, fuzzy
+msgid "Prime Time"
+msgstr "Geriausias laikas"
 
 msgid "Prime time"
 msgstr "Geriausias laikas"
@@ -6854,11 +7082,30 @@ msgstr "Greitas"
 msgid "Quick zap"
 msgstr "Greitas perjungimas"
 
+msgid "RADIO"
+msgstr ""
+
 msgid "REC"
 msgstr "REC"
 
+msgid "RECALL"
+msgstr ""
+
+msgid "RECORD"
+msgstr ""
+
+#, fuzzy
+msgid "RED"
+msgstr "REC"
+
+msgid "REWIND"
+msgstr ""
+
 msgid "RF output"
 msgstr "RF išvestis"
+
+msgid "RIGHT"
+msgstr ""
 
 msgid "Radio"
 msgstr "Radijas"
@@ -7334,6 +7581,10 @@ msgstr "Rusijos Federacija"
 msgid "Rwanda"
 msgstr "Ruanda"
 
+#, fuzzy
+msgid "SAT"
+msgstr "KA-PALYDOVAS"
+
 msgid "SCPC optimized search range"
 msgstr "SCPC optimizuotas paieškos diapazonas"
 
@@ -7346,8 +7597,23 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
+msgid "SCREEN"
+msgstr ""
+
+msgid "SETUP"
+msgstr ""
+
+msgid "SHIFT: "
+msgstr ""
+
 msgid "SINGLE LAYER DVD"
 msgstr "VIENO SLUOKSNIO DVD"
+
+msgid "SLEEP"
+msgstr ""
+
+msgid "SLOW"
+msgstr ""
 
 msgid "SNR"
 msgstr "SNR"
@@ -7366,6 +7632,15 @@ msgstr "SSA failas"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid "STOP"
+msgstr ""
+
+msgid "SUBTITLE"
+msgstr ""
+
+msgid "SUSPEND"
+msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr "Sent Bartolomėjus"
@@ -8765,6 +9040,10 @@ msgstr "Rūšiuoti sąrašą numatytąja tvarka ir užverti?"
 msgid "Sort list:"
 msgstr "Rūšiuoti sąrašą:"
 
+#, fuzzy
+msgid "Sort order for help screen"
+msgstr "Meniu rūšiavimo tvarka"
+
 msgid "Sort order for menu entries"
 msgstr "Meniu rūšiavimo tvarka"
 
@@ -9303,6 +9582,12 @@ msgstr "T2MI RAW režimas"
 msgid "TEXT"
 msgstr "TEKSTAS"
 
+msgid "TIMER"
+msgstr ""
+
+msgid "TIMESHIFT"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -9320,6 +9605,9 @@ msgstr "IMTUVAS:"
 
 msgid "TUNING"
 msgstr "DERINIMA"
+
+msgid "TV"
+msgstr ""
 
 msgid "TV physical address report"
 msgstr "TV fizinio adreso ataskaita"
@@ -9459,6 +9747,9 @@ msgstr ""
 
 msgid "The number of steps to change the volume on the device the keys are forwarded to."
 msgstr "Veiksmų, kaip pakeisti garsumą įrenginyje, į kurį persiunčiami klavišai, skaičius."
+
+msgid "The order and grouping of the help information list can be controlled using MENU>Setup>User Interface>Settings>Sort order for help screen."
+msgstr ""
 
 msgid ""
 "The overscan wizard has been completed.\n"
@@ -10167,6 +10458,9 @@ msgstr "Paieškos būdas"
 msgid "UNKNOWN"
 msgstr "NEŽINOMA"
 
+msgid "UP"
+msgstr ""
+
 msgid "URL"
 msgstr "Internetinis adresas"
 
@@ -10502,14 +10796,29 @@ msgstr "Uzbekistanas"
 msgid "VCR scart"
 msgstr "VCR skartas"
 
+msgid "VIDEO"
+msgstr ""
+
+msgid "VKEY"
+msgstr ""
+
 msgid "VLAN connection"
 msgstr "VLAN prisijungimas"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (anonsas)"
 
+msgid "VMODE"
+msgstr ""
+
 msgid "VOB file"
 msgstr "VOB failas"
+
+msgid "VOL+"
+msgstr ""
+
+msgid "VOL-"
+msgstr ""
 
 msgid "VU+"
 msgstr "VU+"
@@ -10683,6 +10992,12 @@ msgstr "Pagarsinti"
 msgid "W"
 msgstr "V"
 
+msgid "WAKEUP"
+msgstr ""
+
+msgid "WIZTV"
+msgstr ""
+
 msgid "WLAN connection"
 msgstr "Belaidis ryšys"
 
@@ -10691,6 +11006,9 @@ msgstr "WMA Pro suliejimas"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3 režime"
+
+msgid "WWW"
+msgstr ""
 
 msgid "Waiting"
 msgstr "Laukiama"
@@ -11131,6 +11449,9 @@ msgstr "Įrašyti nepavyko!"
 msgid "Write to /tmp/positionersetup.log"
 msgstr "Rašyti į /tmp/positionersetup.log"
 
+msgid "YELLOW"
+msgstr ""
+
 msgid "YES"
 msgstr "TAIP"
 
@@ -11379,6 +11700,9 @@ msgstr ""
 "Jūs prijungėte savo USB WLAN įrenginį?\n"
 "\n"
 "Prašome pasirinkti tai, ką jūs norite daryti vėliau."
+
+msgid "ZOOM"
+msgstr ""
 
 msgid "Zambia"
 msgstr "Zambija"
@@ -12125,6 +12449,10 @@ msgstr "laukite, užkraunamas paveikslėlis..."
 
 msgid "popular culture/traditional arts"
 msgstr "populiarioji kultūra/tradiciniai menai"
+
+#, fuzzy
+msgid "port"
+msgstr "Sportas"
 
 msgid "pre-school children's program"
 msgstr "ikimokyklinė vaikų programa"
