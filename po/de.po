@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-08 13:16+0100\n"
-"PO-Revision-Date: 2023-06-19 13:16+0200\n"
+"PO-Revision-Date: 2024-12-06 17:39+0100\n"
 "Last-Translator: kueken\n"
 "Language-Team: OpenPLi\n"
 "Language: de\n"
@@ -154,11 +154,11 @@ msgstr "%A %d %B"
 
 #. TRANSLATORS: long date representations dayname daynum monthname in strftime() format! See 'man strftime'
 msgid "%A %e %B"
-msgstr "%A %e %B"
+msgstr "%A, %e. %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %e %B %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A, %e. %B %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
@@ -168,15 +168,15 @@ msgstr ""
 
 #. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
 msgid "%a %e %B %Y"
-msgstr "%a %e %B %Y"
+msgstr "%a, %e. %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %e/%m"
-msgstr "%a %e/%m"
+msgstr "%a %e.%m."
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr "%a %e/%m  %-H:%M"
+msgstr "%a %e.%m.  %-H:%M"
 
 #, python-format
 msgid "%d MB"
@@ -309,7 +309,7 @@ msgstr "%d:%02d"
 
 #. TRANSLATORS: VFD hour:minute daynum short monthname in strftime() format! See 'man strftime'
 msgid "%k:%M %e/%m"
-msgstr "%k:%M %e/%m"
+msgstr "%k:%M %e.%m."
 
 #, python-format
 msgid ""
@@ -821,7 +821,7 @@ msgid "Afghanistan"
 msgstr "Afghanistan"
 
 msgid "After event"
-msgstr "Nach der Sendung"
+msgstr "Nach der Aufnahme"
 
 msgid "Aland Islands"
 msgstr "Aland-Inseln"
@@ -941,7 +941,7 @@ msgid "Always include ECM messages in recordings. This overrides the individual 
 msgstr "Fügen Sie ECM-Nachrichten immer in Aufzeichnungen ein. Dies überschreibt die einzelnen Timer-Einstellungen global. Es ermöglicht die anschließende Entschlüsselung von Aufzeichnungen (manchmal als Offline-Decodierung bezeichnet), sofern dies von Ihrem Empfänger unterstützt wird. Standard: aus."
 
 msgid "American Samoa"
-msgstr "Amerikanischen Samoa-Inseln"
+msgstr "Amerikanische Samoa-Inseln"
 
 msgid "An empty filename is illegal."
 msgstr "Leerer Dateiname nicht erlaubt."
@@ -1315,7 +1315,7 @@ msgid "Basque"
 msgstr "Baskisch"
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
-msgstr "Receiver sucht aktive HDMI Geräte am TV und schaltet den TV nur dann in den Standby-Modus, wenn alles inaktiv ist."
+msgstr "Receiver sucht aktive HDMI-Geräte am TV und schaltet den TV nur dann in den Standby-Modus, wenn alles inaktiv ist."
 
 msgid "Begin time"
 msgstr "Startzeit"
@@ -1339,7 +1339,7 @@ msgid "Belarus"
 msgstr "Belarus"
 
 msgid "Belgian"
-msgstr "Belgier"
+msgstr "Belgisch"
 
 msgid "Belgium"
 msgstr "Belgien"
@@ -1802,10 +1802,10 @@ msgid "Choose whether multi channel aac+ sound tracks should be downmixed to ste
 msgstr "Wählen sie aus wie AAC+ Sound transkodiert werden soll."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
-msgstr "Wähle aus  ob du einen einzelnen Transponder , Satellit oder mehrere  Satelliten scannen willst."
+msgstr "Sendersuche auf einem Transponder, einem Satelliten oder mehreren Satelliten."
 
 msgid "Choose whether to scan for free services only or whether to include paid/encrypted services too."
-msgstr "Sendersuche nur freie Sender oder auch Pay-TV."
+msgstr "Sendersuche nur nur nach frei empfangbaren Sendern oder auch nach verschlüsselten Sendern."
 
 msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den Tuner aus."
@@ -1902,7 +1902,7 @@ msgid "Command order"
 msgstr "Befehlsfolge"
 
 msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
-msgstr "Sende Kommando zur Aktivierung des richtigen HDMI Eingangs (TV), wenn Aufnahme Timer aktiviert."
+msgstr "Sende Kommando zur Aktivierung des richtigen HDMI-Eingangs am TV, wenn Aufnahmetimer startet."
 
 msgid "Commit info"
 msgstr "Änderungsinfos"
@@ -1967,10 +1967,10 @@ msgid "Configure DVB-T"
 msgstr "Konfiguriere DVB-T"
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
-msgstr "Konfiguration einer zusätzlichen Verzögerung zur besseren Synchronisation externer Untertitel."
+msgstr "Einstellen einer zusätzlichen Verzögerung zur besseren Synchronisation externer Untertitel."
 
 msgid "Configure an additional delay to improve subtitle synchronisation."
-msgstr "Konfiguriert eine zusätzliche Verzögerung zur besseren Synchronisation der Untertitel."
+msgstr "Einstellen einer zusätzlichen Verzögerung zur besseren Synchronisation der Untertitel."
 
 msgid "Configure default type for new timers."
 msgstr "Konfiguriere Standardtyp von neuen Timern."
@@ -2037,7 +2037,7 @@ msgid "Configure separator type used in full description for separate short and 
 msgstr "Konfigurieren Sie den Trennzeichentyp, der in der vollständigen Beschreibung verwendet wird, für separate kurze und erweiterte Beschreibungen."
 
 msgid "Configure the DiSEqC mode for this LNB."
-msgstr "DiSEqC Modus Einstellung für diesen LNB."
+msgstr "Einstellen des DiSEqC-Modus für diesen LNB."
 
 msgid "Configure the IP address."
 msgstr "IP Adresse konfigurieren."
@@ -2067,7 +2067,7 @@ msgid "Configure the brightness level of the front panel display."
 msgstr "Anpassung der Helligkeit des Frontdisplays."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
-msgstr "Konfiguration externe Untertitel Farbe, Alternativ (normal in Weiß, kursiv in Gelb, fett in Cyan, Unterstriche in Grün), Weiß oder Gelb."
+msgstr "Farbe der externen Teletext-Untertitel bestimmen: Weiß, Gelb oder Alternativ (normal in Weiß, kursiv in Gelb, fett in Cyan, Unterstriche in Grün)."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Farbe der Teletext-Untertitel bestimmen."
@@ -2622,7 +2622,7 @@ msgid "Default: '%s'."
 msgstr "Standard"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
-msgstr "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
+msgstr "Zusätzliche Verzögerung in Millisekunden vor dem Start von http(s)-Streams, z.B. um Verbindung zu Remote-Tuner aufzubauen oder bei einem komplexen DiSEqC-Setup."
 
 msgid "Define the location of the EPG Cache file."
 msgstr "Definieren Sie den Speicherort der EPG-Cache-Datei."
@@ -2634,13 +2634,13 @@ msgid "Delay after continuous tone disable before diseqc"
 msgstr "Pause nach ausschalten vom kontinuierlichen Tonsignal vor Diseqc-Kommando"
 
 msgid "Delay after diseqc peripherial poweron command"
-msgstr "Pause nach An-Signal für Diseqc Peripherie"
+msgstr "Pause nach An-Signal für DiSEqC-Peripherie"
 
 msgid "Delay after diseqc reset command"
-msgstr "Pause nach Diseqc Reset-Kommando"
+msgstr "Pause nach DiSEqC-Reset-Kommando"
 
 msgid "Delay after enable voltage before motor command"
-msgstr "Pause nachmdem Spannung anliegt bevor Motor-Kommando"
+msgstr "Pause nachdem Spannung anliegt bevor Motor-Kommando"
 
 msgid "Delay after enable voltage before switch command"
 msgstr "Pause nachdem Spannung anliegt bevor Switch-Kommando"
@@ -2649,7 +2649,7 @@ msgid "Delay after final continuous tone change"
 msgstr "Pause nach letzter kontinuierlichen Tonänderung"
 
 msgid "Delay after last diseqc command"
-msgstr "Pause nach letztem Diseqc Kommando"
+msgstr "Pause nach letztem DiSEqC-Kommando"
 
 msgid "Delay after last voltage change"
 msgstr "Pause nach letzter Spannungsänderung"
@@ -2676,7 +2676,7 @@ msgid "Delay between CEC commands when sending a series of commands. Some device
 msgstr "Zeitintervall der Sende-Impulse HDMI zwischen 50-150ms einstellbar."
 
 msgid "Delay between diseqc commands"
-msgstr "Pause zwischen Diseqc Kommandos"
+msgstr "Pause zwischen DiSEqC-Kommandos"
 
 msgid "Delay between switch and motor command"
 msgstr "Pause zwischen Switch- und Motor-Kommando"
@@ -2821,7 +2821,7 @@ msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
 msgid "DiSEqC Tester"
-msgstr "DiSEqC Tester"
+msgstr "DiSEqC-Tester"
 
 msgid "DiSEqC mode"
 msgstr "DiSEqC-Modus"
@@ -2909,7 +2909,7 @@ msgid "Display EPG list for current channel"
 msgstr "EPG für aktuellen Kanal anzeigen"
 
 msgid "Display Skin"
-msgstr "Display Skin"
+msgstr "Display-Skin"
 
 msgid "Display and userinterface"
 msgstr "Display und Benutzeroberfläche"
@@ -3292,7 +3292,7 @@ msgid "Enable auto fastscan for %s"
 msgstr "Aktiviere automatischen schnellen Kanalscan für %s"
 
 msgid "Enable bluetooth audio"
-msgstr "Bluetooth Audio Aktivieren"
+msgstr "Bluetooth-Audio aktivieren"
 
 msgid "Enable bouquet edit"
 msgstr "Bouqueteditieren anschalten"
@@ -3342,7 +3342,7 @@ msgstr "Aktiviere Timer-Konflikt-Erkennung"
 msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
 msgstr ""
 "Wenn aktiviert, werden alle Einstell-Optionen für\n"
-"“Wahr / Falsch”, “Ja / Nein”, “Ein / Aus” und\n"
+"“Ja / Nein”, “Wahr / Falsch”,  “Ein / Aus” und\n"
 "“Ein- / Ausschalten” als grafischer Schalter angezeigt."
 
 msgid "Enable volume control with arrow buttons"
@@ -3395,7 +3395,7 @@ msgstr "Englisch"
 
 #, python-format
 msgid "Enigma (re)starts: %d\n"
-msgstr "Benutzeroberfläche (Enigma) startet neu: %d\n"
+msgstr "Neustarts der Benutzeroberfläche (Enigma): %d\n"
 
 #, python-format
 msgid "Enigma debug level: %d\n"
@@ -3677,10 +3677,10 @@ msgid "External subtitle color"
 msgstr "Farbe für externe Untertitel"
 
 msgid "External subtitle dialog colorisation"
-msgstr "Externe Untertitel Dialogeinfärbung"
+msgstr "Dialogeinfärbung für externe Untertitel"
 
 msgid "External subtitle switch fonts"
-msgstr "Externe Untertitel Schriftart Wechsel"
+msgstr "Schriftartwechsel für externe Untertitel"
 
 msgid "Externally powered"
 msgstr "Extern mit Strom versorgt"
@@ -3828,7 +3828,7 @@ msgid "Fan speed"
 msgstr "Lüftergeschwindigkeit"
 
 msgid "Faroe Islands"
-msgstr "Cayman Inseln"
+msgstr "Färöer Inseln"
 
 msgid "Fast"
 msgstr "Schnell"
@@ -3891,7 +3891,7 @@ msgid "Finetune"
 msgstr "Feineinstellung"
 
 msgid "Finetune the auto DiSEqC order to in your situation the satellites could be found faster."
-msgstr ""
+msgstr "Feineinstellung der automatischen DiSEqC-Reihenfolge auf die individuelle Situation damit Satelliten schneller gefunden werden können"
 
 msgid "Finished"
 msgstr "Beendet"
@@ -4042,7 +4042,7 @@ msgid "GUI Settings"
 msgstr "GUI-Einstellungen"
 
 msgid "GUI Skin"
-msgstr "GUI Skin"
+msgstr "GUI-Skin"
 
 msgid ""
 "GUI needs a restart to apply a new language\n"
@@ -4061,13 +4061,13 @@ msgid "Gateway"
 msgstr "Gateway"
 
 msgid "General AC3 delay"
-msgstr "Allgemeine AC3 Verzögerung"
+msgstr "Allgemeine AC3-Verzögerung"
 
 msgid "General PCM delay"
-msgstr "Allgemeine PCM Verzögerung"
+msgstr "Allgemeine PCM-Verzögerung"
 
 msgid "General bluetooth audio delay"
-msgstr "Allgemeine Bluetooth Audio Verzögerung"
+msgstr "Allgemeine Bluetooth-Audioverzögerung"
 
 msgid "Genre"
 msgstr "Kategorie"
@@ -4169,7 +4169,7 @@ msgid "GotoX calibration"
 msgstr "Gehe zur X Kalibrierung"
 
 msgid "GraphMultiEpg Settings"
-msgstr "GraphMultiEpg Einstellungen"
+msgstr "Grafischer Multi-EPG-Einstellungen"
 
 msgid "Graphical Multi EPG"
 msgstr "Grafischer Multi-EPG"
@@ -4232,16 +4232,16 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI Colordepth"
-msgstr "HDMI Farbtiefe"
+msgstr "HDMI-Farbtiefe"
 
 msgid "HDMI Colorimetry"
-msgstr "HDMI Farbmetrik"
+msgstr "HDMI-Farbmetrik"
 
 msgid "HDMI Colorspace"
-msgstr "HDMI Farbraum"
+msgstr "HDMI-Farbraum"
 
 msgid "HDMI HDR Type"
-msgstr "HDMI HDR Typ"
+msgstr "HDMI-HDR-Typ"
 
 msgid "HDMI-CEC Source Active"
 msgstr "HDMI-CEC-Quelle aktiv"
@@ -4250,10 +4250,10 @@ msgid "HDMI-CEC Source Inactive"
 msgstr "HDMI-CEC-Quelle inaktiv"
 
 msgid "HDMI-CEC address"
-msgstr "HDMI CEC-Adresse"
+msgstr "HDMI-CEC-Adresse"
 
 msgid "HDMI-CEC setup"
-msgstr "HDMI-CEC Konfiguration"
+msgstr "HDMI-CEC-Konfiguration"
 
 #, fuzzy
 msgid "HDMI-In"
@@ -4401,7 +4401,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten wollen Sie aufnehmen?"
 
 msgid "Http(s) stream start delay"
-msgstr "Http(s) stream Start Verzögerung"
+msgstr "Startverzögerung http(s)-Stream"
 
 msgid "Hue"
 msgstr "Farbton"
@@ -4759,10 +4759,10 @@ msgid "Iran, Islamic Republic"
 msgstr "Iran"
 
 msgid "Iraq"
-msgstr "Iraq"
+msgstr "Irak"
 
 msgid "Ireland"
-msgstr "Ireland"
+msgstr "Irland"
 
 msgid "Is this setting ok?"
 msgstr "Diese Einstellungen übernehmen?"
@@ -4771,7 +4771,7 @@ msgid "Is this video mode ok?"
 msgstr "Diesen Videomodus beibehalten?"
 
 msgid "Isle of Man"
-msgstr "Insel Man"
+msgstr "Isle of Man"
 
 msgid "Israel"
 msgstr "Israel"
@@ -5099,10 +5099,10 @@ msgid "Longitude"
 msgstr "Längengrad"
 
 msgid "Looking for active transponders in the cable network. Please wait..."
-msgstr "Suche benutzte Transponder im Kabel Netzwerk. Bitte warten…"
+msgstr "Suche nach aktiven Transpondern im Kabelnetz läuft. Bitte warten…"
 
 msgid "Looking for active transponders in the terrestrial network. Please wait..."
-msgstr "Suche benutzte Transponder im terrestrischen Netzwerk. Bitte warten…"
+msgstr "Suche nach aktiven terrestrischen Transpondern läuft. Bitte warten…"
 
 msgid "Loop through from"
 msgstr "Verbunden mit"
@@ -5204,8 +5204,8 @@ msgid ""
 "Manufacturer reset in progress\n"
 "Please wait until enigma2 restarts"
 msgstr ""
-"Hersteller Rücksetzung gestartet\n"
-"Bitte warten Sie bis Enigma2 sich neustartet"
+"Rücksetzung auf Auslieferungseinstellungen läuft\n"
+"Bitte warten Sie bis Enigma2 neu startet"
 
 msgid "Margin after recording (minutes)"
 msgstr "Nachlauf hinter Aufnahme (in Minuten)"
@@ -5488,7 +5488,7 @@ msgid "Multi channel downmix"
 msgstr "Multi channel downmix"
 
 msgid "Multi-EPG bouquet selection"
-msgstr "Multi-EPG Bouquet Auswahl"
+msgstr "Multi-EPG Bouquetauswahl"
 
 msgid "MultiType"
 msgstr "Multifunktion"
@@ -5509,7 +5509,7 @@ msgid "Multisat"
 msgstr "Multisat"
 
 msgid "Multisat all select"
-msgstr "Multisat alle auswählen"
+msgstr "Multisat (alle Satelliten vorausgewählt)"
 
 msgid "Multistream"
 msgstr "Multistream"
@@ -5551,7 +5551,7 @@ msgid "Nameserver"
 msgstr "Nameserver"
 
 msgid "Namespace & Orbital pos."
-msgstr "Namensraum & Orbital Position"
+msgstr "Namensraum & Orbitalposition"
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -5874,7 +5874,7 @@ msgstr ""
 "Bitte den Tuner vor der Suche einstellen."
 
 msgid "Nothing to scan! Setup your tuner and try again."
-msgstr "Nichts zu scannen! Richten Sie Ihren Tuner ein und versuchen Sie es erneut."
+msgstr "Nichts zu suchen! Richten Sie Ihren Tuner ein und versuchen Sie es erneut."
 
 msgid "Now"
 msgstr "Jetzt"
@@ -6135,10 +6135,10 @@ msgid "Parental control setup"
 msgstr "Jugendschutz-Einstellungen"
 
 msgid "Partial"
-msgstr "Partial"
+msgstr "Ähnlich"
 
 msgid "Partial EPG"
-msgstr "Partial-EPG"
+msgstr "Ähnliche Sendungen"
 
 msgid "Passthrough"
 msgstr "Passthrough"
@@ -6465,13 +6465,13 @@ msgid "Please wait while your network is restarting..."
 msgstr "Bitte warten Sie, das Netzwerk wird neu gestartet…"
 
 msgid "Please wait, restarting cardserver."
-msgstr "Bitte warte, starte den Kartenserver neu."
+msgstr "Bitte warten, Cardserver wird neu gestartet."
 
 msgid "Please wait, restarting softcam and cardserver."
-msgstr "Bitte warten, Softcam und Kartenserver neu starten."
+msgstr "Bitte warten, Softcam und Cardserver werden neu gestartet."
 
 msgid "Please wait, restarting softcam."
-msgstr "Bitte warten, Softcam neu starten."
+msgstr "Bitte warten, Softcam wird neu gestartet."
 
 msgid "Please wait..."
 msgstr "Bitte warten…"
@@ -6577,7 +6577,7 @@ msgid "PowerMenu"
 msgstr "Power Menü"
 
 msgid "Predefined transponder"
-msgstr "Vordefinierte Transponder"
+msgstr "Vordefinierter Transponder"
 
 msgid "Prefer AC3 track"
 msgstr "Bevorzuge AC3"
@@ -6722,7 +6722,7 @@ msgid "Press or select button and then press 'OK' for attach next function or ed
 msgstr "Drücken oder wählen Sie die Taste, dann die 'OK' Taste drücken um die nächste Funktion aufzurufen, oder den Anschluss zu editieren."
 
 msgid "Press yellow button to set CEC address again"
-msgstr "Drücke Gelb für Festlegung der HDMI-CEC Adresse"
+msgstr "Drücke Gelb für Festlegung der HDMI-CEC-Adresse"
 
 msgid "Press yellow to set this interface as default interface."
 msgstr "Drücken Sie Gelb, um diese Schnittstelle als Standard zu setzen."
@@ -7091,10 +7091,10 @@ msgid "Remove selected satellite"
 msgstr "Entferne gewählten Satellit"
 
 msgid "Remove terrestrial services"
-msgstr "Terrestrische-Dienste entfernen"
+msgstr "Terrestrische Sender entfernen"
 
 msgid "Remove the services on scanned transponders before re-adding services?"
-msgstr "Beende den aktiven Transponder bevor du neu scanst"
+msgstr "Alle Sender vom gewählten Transponder/Satelliten vor der Suche löschen?"
 
 msgid "Remove this logfile"
 msgstr "Diese Log-Datei entfernen"
@@ -7140,7 +7140,7 @@ msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subt
 msgstr "Ersetzen Sie `- ` in Dialogen mit farbigem Text pro Sprecher (wie Teletext-Untertitel für Hörgeschädigte) Kommentare für Hörgeschädigte"
 
 msgid "Replace newlines in EPG"
-msgstr "Führe die neuen Zeilen im EPG zusammen"
+msgstr "Zeilenumbruch ersetzen"
 
 msgid "Request for physical address report"
 msgstr "Anfrage für den physischen Adressbericht"
@@ -7213,7 +7213,7 @@ msgid "Restart network"
 msgstr "Netzwerk neu starten"
 
 msgid "Restart softcam"
-msgstr "Starten Sie die Softcam neu"
+msgstr "Softcam jetzt neustarten"
 
 msgid "Restart test"
 msgstr "Test wiederholen"
@@ -7377,7 +7377,7 @@ msgid "Saint Lucia"
 msgstr "Saint Lucia"
 
 msgid "Saint Martin (French part)"
-msgstr "Saint Martin (French part)"
+msgstr "Saint Martin (Französisch)"
 
 msgid "Saint Pierre and Miquelon"
 msgstr "Saint Pierre and Miquelon"
@@ -7431,7 +7431,7 @@ msgid "Saturday"
 msgstr "Samstag"
 
 msgid "Saudi Arabia"
-msgstr "Saudi Arabia"
+msgstr "Saudi-Arabien"
 
 msgid "Save"
 msgstr "Speichern"
@@ -7535,7 +7535,7 @@ msgid "Scan state"
 msgstr "Scan-Status"
 
 msgid "Scan using transponders on NIT table? 'No' will use transponders in xml file."
-msgstr "Mit Transpondern auf NIT-Tabelle scannen? „Nein“ verwendet Transponder in der XML-Datei."
+msgstr "Suche nach Transpondern in der NIT-Tabelle des Satelliten? „Nein“ verwendet stattdessen die Transponder in der XML-Datei."
 
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
@@ -7582,7 +7582,7 @@ msgid "Search west"
 msgstr "Westlich suchen"
 
 msgid "Searching"
-msgstr "Durchsuche"
+msgstr "Suche läuft"
 
 msgid "Searching east..."
 msgstr "Suche östlich…"
@@ -7694,7 +7694,7 @@ msgid "Select Service"
 msgstr "Filmauswahl"
 
 msgid "Select Softcam"
-msgstr "Wählen Sie Softcam"
+msgstr "Softcam auswählen"
 
 msgid "Select a bouquet"
 msgstr "Bouquet auswählen"
@@ -7740,7 +7740,7 @@ msgid "Select channel to record from"
 msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 
 msgid "Select char for replacing newlines in EPG."
-msgstr "Wählen Sie \"char\" zum Ersetzen von Zeilenumbrüchen im EPG."
+msgstr "Konfigurieren eines Zeichens zum Ersetzen von Zeilenumbrüchen im EPG."
 
 msgid "Select copy destination for:"
 msgstr "Wähle Zielverzeichnis für:"
@@ -7932,7 +7932,7 @@ msgid "Select whether your SCR device is externally powered."
 msgstr "Bitte wählen sie aus ob ihr SCR Gerät extern mit Strom gespeist wird."
 
 msgid "Select which satellite to scan."
-msgstr "Wähle Satelliten zum scannen"
+msgstr "Wählen Sie einen Satelliten zum scannen."
 
 msgid "Select which transponder to scan."
 msgstr "Wählen Sie einen Transponder zum scannen."
@@ -7987,10 +7987,10 @@ msgid "Send 'sourceactive' before zap timers"
 msgstr "Senden Sie ‘sourceactive’ vor den Zap-Timern"
 
 msgid "Send DiSEqC"
-msgstr "DiSEqC senden"
+msgstr "DiSEqC-Befehl senden"
 
 msgid "Send DiSEqC only on satellite change"
-msgstr "DiSEqC nur bei Sat-Wechsel senden"
+msgstr "DiSEqC-Befehl nur bei Sat-Wechsel senden"
 
 msgid "Senegal"
 msgstr "Senegal"
@@ -8081,7 +8081,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Service number font size"
-msgstr "Untertitel Schriftgröße"
+msgstr "Untertitel-Schriftgröße"
 
 msgid "Service reference"
 msgstr "Kanal-Referenz"
@@ -8127,7 +8127,7 @@ msgid "Set as startup service"
 msgstr "Als Anschalt-Kanal setzen"
 
 msgid "Set auto DiSEqC search order"
-msgstr ""
+msgstr "Einstellung der automatischen DiSEqC-Suchreihenfolge"
 
 msgid "Set blocktimes by weekday"
 msgstr "Setze Blockzeiten nach Wochentag"
@@ -8227,7 +8227,7 @@ msgid "Setup your satellite equipment"
 msgstr "Satelliten-Ausrüstung"
 
 msgid "Seychelles"
-msgstr "Seychelles"
+msgstr "Seychellen"
 
 msgid "Sharpness"
 msgstr "Schärfe"
@@ -8266,7 +8266,7 @@ msgid "Show PiP"
 msgstr "PiP (Bild in Bild) anzeigen"
 
 msgid "Show True/False as graphical switch"
-msgstr "Zeige True / False als grafischen Schalter"
+msgstr "Zeige Ja/Nein als grafischen Schalter"
 
 msgid "Show VCR scart on main menu"
 msgstr "VCR-SCART im Hauptmenü anzeigen"
@@ -8464,7 +8464,7 @@ msgid "Show softcam information"
 msgstr "Softwaremanager Information"
 
 msgid "Show softcam setup in extensions menu"
-msgstr "Zeigen Sie das Softcam-Setup im Erweiterungsmenü an"
+msgstr "Softcam-Setup im Erweiterungsmenü anzeigen"
 
 msgid "Show status icons in movie list"
 msgstr "Status-Symbole in der Filmliste anzeigen"
@@ -8578,13 +8578,13 @@ msgid "Single EPG"
 msgstr "Einfach-EPG"
 
 msgid "Single satellite"
-msgstr "Einzelnen Satelliten"
+msgstr "Einzelner Satellit"
 
 msgid "Single step (GOP)"
 msgstr "Einzelschritt (GOP)"
 
 msgid "Sint Maarten (Dutch part)"
-msgstr "Sint Maarten (Dutch part)"
+msgstr "Sint Maarten (Niederländisch)"
 
 msgid "Site latitude"
 msgstr "Breitengrad ausrichten"
@@ -8616,7 +8616,7 @@ msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Überspringe Internet-Verbindungstest (automatische Paketinstallation deaktivieren)"
 
 msgid "Skip jumping to live TV while timeshifting with plugins"
-msgstr "Überspringen Sie das Springen zum Live-TV, während  mit Plugins timehift aktiviert sind"
+msgstr "Nicht zum Live-TV springen während Timeshift mit Plugins aktiv ist"
 
 msgid "Sleep timer"
 msgstr "Ausschalt-Timer"
@@ -8712,7 +8712,7 @@ msgid "Somalia"
 msgstr "Somalia"
 
 msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
-msgstr "Einige TV's lassen sich via HDMI nicht einschalten wenn \"Image View On\" aktiviert ist, versuch dann stattdessen \"Text View On\"."
+msgstr "Einige TVs lassen sich via HDMI nicht einschalten wenn \"Image View On\" aktiviert ist. In dem Fall stattdessen \"Text View On\" versuchen."
 
 msgid "Some plugins are not available:\n"
 msgstr "Einige Plugins sind nicht verfügbar:\n"
@@ -8722,7 +8722,7 @@ msgid "Sorry, %s has not been installed!"
 msgstr "Entschuldigung, %s ist nicht installiert!"
 
 msgid "Sorry, deleting directories can (for now) only be done through the trash can."
-msgstr "Entschuldigung, Verzeichnisse können (bis jetzt) nur per Mülleimer gelöscht werden."
+msgstr "Entschuldigung, Verzeichnisse können (bis jetzt) nur per Papierkorb gelöscht werden."
 
 msgid "Sorry, no backups found!"
 msgstr "Entschuldigung, keine Sicherungen gefunden!"
@@ -9093,10 +9093,10 @@ msgid "Subtitle Quickmenu"
 msgstr "Untertitel Schnellmenü"
 
 msgid "Subtitle alignment"
-msgstr "Untertitel Ausrichtung"
+msgstr "Untertitel-Ausrichtung"
 
 msgid "Subtitle border width"
-msgstr "Untertitel Randbreite"
+msgstr "Untertitel-Randbreite"
 
 msgid "Subtitle delay when timing is bad"
 msgstr "Verzögerung für Untertitel"
@@ -9105,7 +9105,7 @@ msgid "Subtitle delay when timing lacks"
 msgstr "Verzögerung Untertitel bei fehlendem Timing"
 
 msgid "Subtitle font size"
-msgstr "Untertitel Schriftgröße"
+msgstr "Untertitel-Schriftgröße"
 
 msgid "Subtitle language selection 1"
 msgstr "Untertitel Sprachauswahl 1"
@@ -9120,7 +9120,7 @@ msgid "Subtitle language selection 4"
 msgstr "Untertitel Sprachauswahl 4"
 
 msgid "Subtitle position"
-msgstr "Untertitel Position"
+msgstr "Untertitel-Position"
 
 msgid "Subtitle selection"
 msgstr "Untertitel-Auswahl"
@@ -9184,7 +9184,7 @@ msgid "Swaziland"
 msgstr "Swaziland"
 
 msgid "Sweden"
-msgstr "Sweden"
+msgstr "Schweden"
 
 msgid "Swedish"
 msgstr "Schwedisch"
@@ -9335,7 +9335,7 @@ msgid "Tajikistan"
 msgstr "Tadschikistan"
 
 msgid "Tanzania, United Republic of"
-msgstr "Tansania, Vereinigte Republik"
+msgstr "Tansania"
 
 msgid "Teletext subtitle color"
 msgstr "Teletext-Untertitel Farbe"
@@ -9695,7 +9695,7 @@ msgid "This option allows you to show the full screen path leading to the curren
 msgstr "Mit dieser Option können Sie den kompletten Pfad vor dem Bildschirmnamen anzeigen lassen."
 
 msgid "This option allows you to switch audio to bluetooth speakers."
-msgstr "Mit dieser Option können Sie zum Bluetooth Lautsprecher wechseln."
+msgstr "Mit dieser Option können Sie zum Bluetooth-Lautsprecher wechseln."
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Mit dieser Option können Sie die alten und neuen Einstellungen nebeneinander anzeigen."
@@ -9844,13 +9844,13 @@ msgid "Time scale"
 msgstr "Zeitskala"
 
 msgid "Time synchronization method"
-msgstr "Zeit Synchronisation Methode"
+msgstr "Zeitsynchronisationsmethode"
 
 msgid "Time zone"
 msgstr "Zeitzone"
 
 msgid "Time zone area"
-msgstr "Zeitzonen Gebiet"
+msgstr "Region für Zeitzone"
 
 msgid "Timer"
 msgstr "Timer"
@@ -9865,7 +9865,7 @@ msgid "Timer entry"
 msgstr "Timer-Eintrag"
 
 msgid "Timer log"
-msgstr "Timer-Logbuch"
+msgstr "Timer-Historie"
 
 msgid ""
 "Timer overlap in timers.xml detected!\n"
@@ -10111,10 +10111,10 @@ msgid "Tuners & scanning"
 msgstr "Tuner & Suchlauf"
 
 msgid "Tunisia"
-msgstr "Tunisia"
+msgstr "Tunesien"
 
 msgid "Turkey"
-msgstr "Turkey"
+msgstr "Türkei"
 
 msgid "Turkish"
 msgstr "Türkisch"
@@ -10230,19 +10230,19 @@ msgid "Unhide parental control services"
 msgstr "Jugendschutz gesperrte Kanäle sichtbar machen"
 
 msgid "Unicable delay after change voltage before switch command"
-msgstr "Unicable Pause nach Spannungsänderung vor Switch-Kommando"
+msgstr "Unicable Verzögerung nach Spannungsänderung vor Switch-Kommando"
 
 msgid "Unicable delay after enable voltage before switch command"
-msgstr "Unicable Pause nachdem Spannung anliegt bevor Switch-Kommando"
+msgstr "Unicable Verzögerung nachdem Spannung anliegt bevor Switch-Kommando"
 
 msgid "Unicable delay after last diseqc command"
-msgstr "Unicable Pause nach letztem Diseqc Kommando"
+msgstr "Unicable Verzögerung nach letztem DiSEqC-Kommando"
 
 msgid "Uninstall"
 msgstr "Deinstallieren"
 
 msgid "United Arab Emirates"
-msgstr "United Arab Emirates"
+msgstr "Vereinigte Arabische Emirate"
 
 msgid "United Kingdom"
 msgstr "United Kingdom"
@@ -10347,22 +10347,22 @@ msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
 msgid "Use EIT EPG information when it is available."
-msgstr "Verwende EIT EPG Information, wenn sie verfügbar ist."
+msgstr "Lade EPG-Informationen im EIT-Format wenn verfügbar."
 
 msgid "Use FreeSat EPG information when it is available."
-msgstr "Verwende FreeSat EPG Information, wenn sie verfügbar ist."
+msgstr "Lade EPG-Informationen im Freesat-Format wenn verfügbar."
 
 msgid "Use HDMI pre-emphasis"
-msgstr "Verwenden Sie HDMI Pre-Emphasis"
+msgstr "Verwende HDMI Pre-Emphasis"
 
 msgid "Use MHW EPG information when it is available."
-msgstr "Verwende MHW EPG Information, wenn sie verfügbar ist."
+msgstr "Lade EPG-Informationen im MHW-Format wenn verfügbar."
 
 msgid "Use Netmed EPG information when it is available."
-msgstr "Verwende Netmed EPG Information, wenn sie verfügbar ist."
+msgstr "Lade EPG-Informationen im Netmed-Format wenn verfügbar."
 
 msgid "Use OpenTV EPG information when it is available."
-msgstr "Verwende OpenTV EPG Information, wenn verfügbar."
+msgstr "Lade EPG-Informationen im OpenTV-Format wenn verfügbar."
 
 msgid "Use TV remote control"
 msgstr "Fernbedienungsbefehle des Fernsehers weiterleiten"
@@ -10371,10 +10371,10 @@ msgid "Use USALS for this sat"
 msgstr "USALS für diesen Sat benutzen"
 
 msgid "Use ViaSat EPG information when it is available."
-msgstr "Verwende ViaSat EPG Information, wenn sie verfügbar ist."
+msgstr "Lade EPG-Informationen im ViaSat-Format wenn verfügbar."
 
 msgid "Use Virgin EPG information when it is available."
-msgstr "Verwende Virgin EPG Information, wenn sie verfügbar ist."
+msgstr "Lade EPG-Informationen im Virgin-Format wenn verfügbar."
 
 msgid "Use a gateway"
 msgstr "Einen Gateway verwenden?"
@@ -10411,7 +10411,7 @@ msgid "Use original DVB subtitle position"
 msgstr "Benutze originale DVB-Untertitel Position"
 
 msgid "Use original teletext position"
-msgstr "Benutze originale Teletext Position"
+msgstr "Benutze originale Teletext-Position"
 
 msgid "Use power measurement"
 msgstr "Stromaufnahme messen"
@@ -10472,7 +10472,7 @@ msgid "User defined"
 msgstr "Benutzerdefiniert"
 
 msgid "User defined transponder"
-msgstr "Vordefinierte Transponder"
+msgstr "Benutzerdefinierter Transponder"
 
 msgid "User interface"
 msgstr "Benutzeroberfläche"
@@ -10582,7 +10582,7 @@ msgid "Videocodec, size & format"
 msgstr "Codec, Auflösung & Format"
 
 msgid "Viet Nam"
-msgstr "Viet Nam"
+msgstr "Vietnam"
 
 msgid "View Rass interactive..."
 msgstr "RaSS Interaktiv anzeigen…"
@@ -10634,7 +10634,7 @@ msgid "View photos..."
 msgstr "Photos ansehen…"
 
 msgid "View teletext..."
-msgstr "Videotext anzeigen…"
+msgstr "Teletext anzeigen…"
 
 msgid "View video CD..."
 msgstr "Video CD ansehen…"
@@ -10679,7 +10679,7 @@ msgid "W"
 msgstr "W"
 
 msgid "WLAN connection"
-msgstr "WLAN Verbindung"
+msgstr "WLAN-Verbindung"
 
 msgid "WMA Pro downmix"
 msgstr "WMA-Pro Downmix"
@@ -10861,7 +10861,7 @@ msgid "When enabled then when you select a new channel in the channel selection 
 msgstr "Wenn aktiviert wird bei Auswahl eines neuen Senders in der Kanalauswahlliste diese nicht geschlossen. Die Kanalauswahlliste schließt nur wenn der aktuell laufende Sender ausgewählt wird. Das ist eine Art Vorschau-Modus."
 
 msgid "When enabled you can control the volume with the arrow buttons instead of getting the channel selection list"
-msgstr "Falls aktiviert, dann lässt sich die Lautstärke über die Pfeiltasten regeln, anstatt die Kanalauswahlliste aufzurufen."
+msgstr "Wenn aktiviert, dann lässt sich die Lautstärke über die Pfeiltasten regeln. Wenn nicht aktiviert, rufen die Pfeiltasten die Kanalauswahlliste auf."
 
 msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
 msgstr "Wenn aktiviert, kann der Reserve-Tuner im OpenWebIf konfiguriert werden."
@@ -10945,7 +10945,7 @@ msgstr "Falls aktiviert, werden externe Untertitel (sofern vorhanden) beim Abspi
 msgid "When enabled, graphical DVB subtitles are preferred over teletext subtitles, when both types are available."
 msgstr ""
 "Grafische DVB-Untertitel werden den\n"
-"Teletext-Untertitel vorgezogen, falls beide zur Verfügung stehen."
+"Teletext-Untertiteln vorgezogen, falls beide zur Verfügung stehen."
 
 msgid "When enabled, graphical DVB subtitles will be centered horizontally."
 msgstr "Grafische DVB-Untertitel horizontal zentrieren."
@@ -10957,22 +10957,22 @@ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instea
 msgstr "Grafische DVB-Untertitel immer gelb anzeigen, anstatt in ihrer ursprünglichen Farbe."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
-msgstr "Wenn aktiviert, werden HTTP-Streams auf der Server-Seite entschlüsselt. Der Client-Receiver muss die Entschlüsselung nicht selbst durchführen."
+msgstr "HTTP-Streams auf der Server-Seite entschlüsseln. Der Client-Receiver muss die Entschlüsselung nicht selbst durchführen."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
-msgstr "Falls aktiviert, kann der Movieplayer mit der Exit-Taste geschlossen werden."
+msgstr "Movieplayer kann mit der Exit-Taste geschlossen werden."
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
-msgstr "Falls aktiviert, wird der letzte Radiosender automatisch abgespielt, wenn zum Radiomodus gewechselt wird."
+msgstr "Automatisch den letzten Radiosender abspielen, wenn zum Radiomodus gewechselt wird."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Stromverbrauch messen um festzustellen wann der Rotor aufhört sich zu drehen (falls vom Tuner unterstützt)."
 
 msgid "When enabled, number markers will be hidden."
-msgstr "Wenn diese Option aktiviert ist, werden Nummernmarkierungen ausgeblendet."
+msgstr "Nummernmarkierungen ausgeblenden."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
-msgstr "Wenn diese Option aktiviert ist, werden die Untertitel an die Breite des Bildschirms angepasst."
+msgstr "Untertitel an die Breite des Bildschirms angepassen."
 
 msgid "When enabled, services may be grouped in multiple bouquets."
 msgstr "Sender können in mehreren Bouqets gruppiert werden."
@@ -10981,7 +10981,7 @@ msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kanalnummer in Kanalauswahlliste anzeigen."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
-msgstr "Wenn aktiviert, können Untertitel für Hörgeschädigte benutzt werden."
+msgstr "Untertitel für Hörgeschädigte können benutzt werden."
 
 msgid "When enabled, subtitles for the hearing impaired will be preferred over normal subtitles, when both types are available."
 msgstr "Bevorzuge spezielle Untertitel für Hörgeschädigte wenn solche und normale Untertitel zur Verfügung stehen."
@@ -10993,13 +10993,13 @@ msgid "When enabled, teletext subtitles will be displayed at their original posi
 msgstr "Teletext-Untertitel an ihrer ursprünglichen Position anzeigen."
 
 msgid "When enabled, the VCR scart option will be shown on the main menu"
-msgstr "Falls aktiviert, wird die Option VCR-SCART im Hauptmenü angezeigt."
+msgstr "VCR-SCART im Hauptmenü angezeigen."
 
 msgid "When enabled, the channel selection list will be hidden while listening to a radio channel. When disabled, the option 'Auto play last service in radio mode' is available."
-msgstr "Wenn aktiviert wird Kanalliste während dem Radiohören ausgeblendet."
+msgstr "Kanalliste während dem Radiohören ausblenden."
 
 msgid "When enabled, the infobar will be displayed when a new event starts."
-msgstr "Wenn aktiviert, wird die Infoleiste beim Sendungswechsel eingeblendet."
+msgstr "Infoleiste beim Sendungswechsel eingeblendet."
 
 msgid "When enabled, the infobar will be displayed when changing channels."
 msgstr "Infoleiste bei Kanalwechsel anzeigen."
@@ -11023,19 +11023,19 @@ msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "AC3 Tonspur verwenden (falls vorhanden)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Der Receiver wählt (falls verfügbar) die AC3+ Tonspur aus, wenn diese Einstellung aktiviert ist."
+msgstr "Der Receiver wählt (falls verfügbar) die AC3+ Tonspur aus."
 
 msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
-msgstr "Falls aktiviert, dann lässt sich die Lautstärke über die Pfeiltasten regeln, anstatt die Kanalauswahlliste aufzurufen."
+msgstr "Der Cursor bei Bouquetwechsel zeigt auf den letzten Kanal, der in diesem Bouquet laut Verlauf angesehen wurde."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "Wenn diese Einstellung aktiviert ist, hat sie mehr Gewicht als “Bevorzugter Tuner für Aufnahmen”."
+msgstr "Wenn diese Einstellung aktiviert ist, hat sie eine höhere Priorität als “Bevorzugter Tuner für Aufnahmen”."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
-msgstr "Wenn diese Einstellung aktiviert ist, hat sie mehr Gewicht als “Bevorzugter Tuner”."
+msgstr "Wenn diese Einstellung aktiviert ist, hat sie eine höhere Priorität als “Bevorzugter Tuner”."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
-msgstr "Wenn aktiviert, startet die Timeshift-Aufnahme nach der eingestellten Zeit automatisch im Hintergrund."
+msgstr "Die Timeshift-Aufnahme startet nach der eingestellten Zeit automatisch im Hintergrund."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Dynamische IP Adressen (DHCP) für IP-Vergabe verwenden."
@@ -11044,16 +11044,16 @@ msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Der Receiver erkennt Aktivitäten am Video-SCART Eingang."
 
 msgid "When nonzero, a recording will start earlier than the starting time indicated by the EPG."
-msgstr "Legt standardmäßig fest, um wie viele Minuten eine Aufnahme früher beginnen soll, als von den EPG Informationen angedacht."
+msgstr "Legt standardmäßig fest, um wie viele Minuten eine Aufnahme früher beginnen soll, als die angezeigte Startzeit laut EPG."
 
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
-msgstr "Legt standardmäßig fest, um wie viele Minuten eine Aufnahme später enden soll, als von den EPG Informationen angedacht. "
+msgstr "Legt standardmäßig fest, um wie viele Minuten eine Aufnahme später enden soll, als die angezeigte Endzeit laut EPG. "
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
-msgstr "Wenn Receiver aus dem Standby aufwacht wird der HDMI am Fernsehen aktiviert."
+msgstr "Wenn Receiver aus dem Standby aufwacht, wird der HDMI am Fernsehen aktiviert."
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
-msgstr "Wenn ausgewählt, können Videomodi ausgewählt werden, auch wenn sie nicht als unterstützt gemeldet werden."
+msgstr "Videomodi können ausgewählt werden, auch wenn sie nicht als unterstützt gemeldet werden."
 
 #, fuzzy
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
@@ -11078,16 +11078,16 @@ msgid "Wireless network"
 msgstr "Funk-Netzwerk"
 
 msgid "Wireless network configuration..."
-msgstr "Funk-Netzwerk Konfiguration…"
+msgstr "Funk-Netzwerk-Konfiguration…"
 
 msgid "Wireless network connection setup"
-msgstr "Funk-Netzwerk Konfiguration"
+msgstr "Funk-Netzwerk-Konfiguration"
 
 msgid "Wireless network connection setup."
-msgstr "Funk-Netzwerk Konfiguration."
+msgstr "Funk-Netzwerk-Konfiguration."
 
 msgid "Wireless network state"
-msgstr "Funk-Netzwerk Status"
+msgstr "Funk-Netzwerk-Status"
 
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Mit T2MI-ROH Modus deaktiviert (Standard) kann Single T2MI-PLP Kapselung verwendet werden. Mit T2MI-ROH Modus aktiviert kann Astra-sm verwendet werden um T2MI zu analysieren."
@@ -11111,7 +11111,7 @@ msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "Mit dieser Option können Sie die LED Farbe ändern oder die LED ausschalten."
 
 msgid "Without popup"
-msgstr "ohne Popup"
+msgstr "Ohne Popup"
 
 msgid "Wizard setup"
 msgstr "Einrichtungsassistent"
@@ -11374,7 +11374,7 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 "Ihre Funk-Internetverbindung konnte nicht gestartet werden!\n"
-"Ist Ihr USB WLAN-Stick korrekt angeschlossen?\n"
+"Ist Ihr USB-WLAN-Stick korrekt angeschlossen?\n"
 "\n"
 "Bitte wählen Sie eine Option zum Fortfahren."
 
@@ -11408,7 +11408,7 @@ msgid "Zap focus to main screen"
 msgstr "Fokus auf Hauptbild legen"
 
 msgid "Zap mode"
-msgstr "Zap Modus"
+msgstr "Zap-Modus"
 
 msgid "Zap to"
 msgstr "Umschalten"
@@ -11512,7 +11512,7 @@ msgid "alphabetical"
 msgstr "alphabetisch"
 
 msgid "alternative"
-msgstr "alternativ"
+msgstr "Alternativ"
 
 msgid "always"
 msgstr "immer"
@@ -11624,7 +11624,7 @@ msgid "connected"
 msgstr "Verbunden"
 
 msgid "controlled by HDMI"
-msgstr "gesteuert von HDMI"
+msgstr "gesteuert über HDMI"
 
 msgid "convert to AC3"
 msgstr "konvertiere zu AC3"
@@ -12302,10 +12302,10 @@ msgid "social/spiritual sciences"
 msgstr "Sozial/Geisteswissenschaft"
 
 msgid "space"
-msgstr "Frei"
+msgstr "frei"
 
 msgid "special events"
-msgstr "Sondersendung"
+msgstr "Besondere Ereignisse"
 
 msgid "special format data DVD (HDTV compatible)"
 msgstr "spezielles Format Daten-DVD (HDTV-kompatibel)"
@@ -12314,7 +12314,7 @@ msgid "sports (general)"
 msgstr "Sport (Allgemein)"
 
 msgid "sports magazine"
-msgstr "Sportzeitung"
+msgstr "Sportmagazin"
 
 msgid "standard"
 msgstr "Standard"
@@ -12519,7 +12519,7 @@ msgid "®"
 msgstr "®"
 
 msgid "°E"
-msgstr ""
+msgstr "°O"
 
 msgid "°W"
-msgstr ""
+msgstr "°W"
