@@ -292,6 +292,7 @@ commitLogs = [
 	("OpenPli Enigma2", "https://api.github.com/repos/68foxboris/enigma2/commits"),
 	("Openpli OE Core", "https://api.github.com/repos/openpli/openpli-oe-core/commits"),
 	("Enigma2 Plugins", "https://api.github.com/repos/openpli/enigma2-plugins/commits"),
+	("Enigma2 Binary Plugins", "https://api.github.com/repos/openpli/enigma2-binary-plugins/commits"),
 	("Aio Grab", "https://api.github.com/repos/openpli/aio-grab/commits"),
 	("Plugin EPGImport", "https://api.github.com/repos/openpli/enigma2-plugin-extensions-epgimport/commits"),
 	("Skin PLi HD", "https://api.github.com/repos/68foxboris/skin-PLiHD/commits"),
