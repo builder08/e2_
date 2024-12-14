@@ -59,7 +59,7 @@ class OSCamGlobals():
 	def confPath(self):
 		conffile, owebif = ipv6compiled = found = "", False
 		oport = opath = signstatus = data = error = file = url = None
-		for filename in ["oscam.version", "ncam.version"]:
+		for filename in ["oscam.version"] if exists("/tmp/.oscam/oscam.version") else ["ncam.version"]:
 			conffile = filename.replace("version", "conf")
 			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
 				file = "/tmp/.%s/%s" % (filename.split('.')[0], filename)
@@ -620,7 +620,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="key_blue" render="Label" foregroundColor="blue" backgroundColor="blue" position="1150,1010" size="10,65" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" objectTypes="key_blue,StaticText">
+			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="00ffffff" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
 			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
@@ -715,7 +715,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="key_blue" render="Label" foregroundColor="blue" backgroundColor="blue" position="1150,1010" size="10,65" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" objectTypes="key_blue,StaticText">
+			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="00ffffff" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
 			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
