@@ -27,20 +27,6 @@ from Tools.Directories import fileExists
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
 
-NAMEBIN = ""
-NAMEBIN2 = ""
-def check_NAMEBIN():
-	NAMEBIN = "oscam"
-	if fileExists("/tmp/.ncam/ncam.version"):
-		NAMEBIN = "ncam"
-	return NAMEBIN
-
-def check_NAMEBIN2():
-	NAMEBIN2 = "OScam"
-	if fileExists("/tmp/.ncam/ncam.version"):
-		NAMEBIN2 = "Ncam"
-	return NAMEBIN2	
-
 
 class OSCamGlobals():
 	def __init__(self):
@@ -54,12 +40,13 @@ class OSCamGlobals():
 		webifok, url, result = self.callApi(proto=proto, ip=ip, port=port, \
 						username=user, password=pwd, api=api, \
 						fmt=fmt, part=part, label=label, log=log)
-		return webifok, url, signstatus, result
+		return webifok, api, url, signstatus, result
 
 	def confPath(self):
-		conffile, owebif = ipv6compiled = found = "", False
+		conffile = ""
+		owebif = ipv6compiled = found = False
 		oport = opath = signstatus = data = error = file = url = None
-		for filename in ["oscam.version"] if exists("/tmp/.oscam/oscam.version") else ["ncam.version"]:
+		for filename in ["oscam.version", "ncam.version"]:
 			conffile = filename.replace("version", "conf")
 			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
 				file = "/tmp/.%s/%s" % (filename.split('.')[0], filename)
@@ -107,14 +94,14 @@ class OSCamGlobals():
 		return owebif, oport, opath, ipv6compiled, signstatus, conffile, error
 
 	def getUserData(self):
-		NAMEBIN2 = check_NAMEBIN2()
-		webif, port, conf, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam/ncam.conf', None)
+		webif, port, conf, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
 		conf = "%s%s" % ((conf or ""), (conffile or "oscam.conf"))
 		api = conffile.replace(".conf", "api")
-		proto, blocked, user = pwd = "http", False, None  # Assume that oscam/ncam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
-		ret = _("%s webif disabled") % NAMEBIN2 if not error else error
-		if webif and port is not None:  # oscam/ncam reports it got webif support and webif is running (Port != 0)
-			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam/ncam, ncam (auto)
+		proto, blocked = "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
+		user = pwd = None
+		ret = _("OSCam webif disabled") if not error else error
+		if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
+			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
 				if conf is not None and exists(conf):  # If we have a config file, we need to investigate it further
 					with open(conf) as data:
 						for i in data:
@@ -128,7 +115,7 @@ class OSCamGlobals():
 									proto = "https"
 									port = port.replace("+", "")
 							elif "httpallowed" in i.lower():
-								blocked = True  # Once we encounter a httpallowed statement, we have to assume oscam/ncam webif is blocking us ...
+								blocked = True  # Once we encounter a httpallowed statement, we have to assume oscam webif is blocking us ...
 								allowed = i.split("=")[1].strip()
 								if "::1" in allowed or "127.0.0.1" in allowed or "0.0.0.0-255.255.255.255" in allowed:
 									blocked = False  # ... until we find either 127.0.0.1 or ::1 in allowed list
@@ -153,7 +140,7 @@ class OSCamGlobals():
 		elif part in ["restart", "shutdown"]:
 			url = "%s://%s:%s/shutdown.html?action=%s" % (proto, ip, port, part)  # e.g. http://127.0.0.1:8080//shutdown.html?action=restart or ...?action=shutdown
 		elif label:
-			key = "file" if part == "files" else "label"                                            # e.g. http://127.0.0.1:8080/oscamapi.html?part=files&file=oscam/ncam.conf
+			key = "file" if part == "files" else "label"                                            # e.g. http://127.0.0.1:8080/oscamapi.html?part=files&file=oscam.conf
 			url = "%s://%s:%s/%s.%s?part=%s&%s=%s" % (proto, ip, port, api, fmt, part, key, label)  # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
 		opener = build_opener(webhandler)
 		if username and password and url:
@@ -176,7 +163,7 @@ class OSCamGlobals():
 			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
 
 	def updateLog(self):
-		webifok, url, signstatus, result = self.openWebIF(log=True)
+		webifok, api, url, signstatus, result = self.openWebIF(log=True)
 		result = result.decode(encoding="latin-1", errors="ignore")
 		if webifok:
 			log = search(r'<log>(.*?)</log>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
@@ -333,10 +320,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		NAMEBIN = check_NAMEBIN()
-		NAMEBIN2 = check_NAMEBIN2()
 		self.skinName = "OSCamInfo"
-		self.setTitle(_("%sInfo: Information") % NAMEBIN2)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
+		self.setTitle(_("%sInfo: Information") % camname)
 		self.rulist = []
 		self["buildinfos"] = StaticText()
 		self["extrainfos"] = StaticText()
@@ -349,8 +336,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["buffer"] = StaticText()
 		self["virtuell"] = StaticText()
 		self["resident"] = StaticText()
-		self["key_red"] = StaticText(_("Shutdown %s") % NAMEBIN2)
-		self["key_green"] = StaticText(_("Restart %s") % NAMEBIN2)
+		self["key_red"] = StaticText(_("Shutdown %s") % camname)
+		self["key_green"] = StaticText(_("Restart %s") % camname)
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
 		self["key_entitlements"] = StaticText()
@@ -360,51 +347,50 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"menu": (self.keyMenu, _("Open Settings")),
-			"red": (self.keyShutdown, _("Shutdown %s") % NAMEBIN2),
-			"green": (self.keyRestart, _("Restart %s") % NAMEBIN2),
+			"red": (self.keyShutdown, _("Shutdown %s") % camname),
+			"green": (self.keyRestart, _("Restart %s") % camname),
 			"blue": (self.keyBlue, _("Open Log"))
-			}, prio=1, description=_("%sInfo Actions") % NAMEBIN2)
+			}, prio=1, description=_("%sInfo Actions") % camname)
 		self.loop = eTimer()
 		self.loop.callback.append(self.updateOScamData)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 
 	def onLayoutFinished(self):
+		webifok, api, url, signstatus, result = self.openWebIF()
+		tag = {"oscamapi": ("oscam"), "ncamapi": ("ncam")}.get(api)
 		self.showHideKeyOk()
 		self["outlist"].onSelectionChanged.append(self.showHideKeyOk)
 		if config.oscaminfo.userDataFromConf.value and self.confPath()[0] is None:
 			config.oscaminfo.userDataFromConf.value = False
 			config.oscaminfo.userDataFromConf.save()
-			self["extrainfos"].setText(_("File %s.conf not found.\nPlease enter username/password manually.") % NAMEBIN)
+			self["extrainfos"].setText(_("File %s.conf not found.\nPlease enter username/password manually.") % tag)
 		else:
 			callInThread(self.updateOScamData)
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
 	def updateOScamData(self):
-		NAMEBIN2 = check_NAMEBIN2()
-		webifok, url, signstatus, result = self.openWebIF()
+		webifok, api, url, signstatus, result = self.openWebIF()
+		tag, camname = {"oscamapi": ("oscam", "OSCam"), "ncamapi": ("ncam", "NCam")}.get(api)
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		na = _("n/a")
 		if webifok and result:
-			if fileExists("/tmp/.ncam/ncam.version"):
-				oscam = loads(result).get("ncam", {})
-			else:
-				oscam = loads(result).get("oscam", {})
-			sysinfo = oscam.get("sysinfo", {})
+			jsonData = loads(result).get(tag, {})
+			sysinfo = jsonData.get("sysinfo", {})
 			# GENERAL INFOS (timing, memory usage)
-			stime_iso = oscam.get("starttime", None)
+			stime_iso = jsonData.get("starttime", None)
 			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (na, na)
-			runtime = "%s Run Time: %s" % (NAMEBIN2, oscam.get("runtime", na))
-			version = "%s: %s" % (NAMEBIN2, oscam.get("version", na))
-			srvidfile = "srvidfile: %s" % oscam.get("srvidfile", na)
+			runtime = "%s Run Time: %s" % (camname, jsonData.get("runtime", na))
+			version = "%s: %s" % (camname, jsonData.get("version", na))
+			srvidfile = "srvidfile: %s" % jsonData.get("srvidfile", na)
 			url = "%s: %s//%s" % (_("Host"), url.split('/')[0], url.split('/')[2])
 			signed = "%s: %s" % (_("Signed by"), signstatus) if signstatus else ""
 			rulist = []
 			# MAIN INFOS {'s': 'server', 'h': 'http', 'p': 'proxy', 'r': 'reader', 'c': 'cccam_ext', 'x': 'cache exchange', 'm': 'monitor'}
 			outlist = []
-			for client in oscam.get("status", {}).get("client", []):
+			for client in jsonData.get("status", {}).get("client", []):
 				connection = client.get("connection", {})
 				request = client.get("request", {})
 				times = client.get("times", {})
@@ -457,12 +443,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["used"].setText("Used: %s" % sysinfo.get("mem_cur_used", na))
 			self["free"].setText("Free: %s" % sysinfo.get("mem_cur_free", na))
 			self["buffer"].setText("Buffer: %s" % sysinfo.get("mem_cur_buff", na))
-			if fileExists("/tmp/.ncam/ncam.version"):
-				self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get("ncam_vmsize", na))
-				self["resident"].setText("Resident Set: %s" % sysinfo.get("ncam_rsssize", na))
-			else:
-				self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get("oscam_vmsize", na))
-				self["resident"].setText("Resident Set: %s" % sysinfo.get("oscam_rsssize", na))
+			self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get(tag + "_vmsize", na))
+			self["resident"].setText("Resident Set: %s" % sysinfo.get(tag + "_rsssize", na))
 			self["outlist"].updateList(outlist)
 			self.displayLog()
 		else:
@@ -513,10 +495,14 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
 	def keyShutdown(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\n\nATTENTION: To reactivate %s, a complete receiver restart must be carried out!" % (NAMEBIN2, NAMEBIN2)), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\n\nATTENTION: To reactivate %s, a complete receiver restart must be carried out!" % (camname, camname)), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!" % NAMEBIN2), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!" % camname), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyBlue(self):
 		self.loop.stop()
@@ -525,7 +511,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def msgboxCB(self, action, answer):
 		if answer:
 			self.loop.stop()
-			webifok, url, signstatus, result = self.openWebIF(part=action)
+			webifok, api, url, signstatus, result = self.openWebIF(part=action)
 			if not webifok:
 				print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
 				self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
@@ -620,7 +606,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="key_blue" render="Label" foregroundColor="blue" backgroundColor="blue" position="1150,1010" size="10,65" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="00ffffff" objectTypes="key_blue,StaticText">
+			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
 			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
@@ -715,7 +701,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			<widget source="key_blue" render="Label" foregroundColor="blue" backgroundColor="blue" position="1150,1010" size="10,65" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
-			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="00ffffff" objectTypes="key_blue,StaticText">
+			<widget source="key_blue" render="Label" position="1170,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="#00ffffff" objectTypes="key_blue,StaticText">
 				<convert type="ConditionalShowHide" />
 			</widget>
 			<widget source="key_OK" render="Label" position="1395,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="#00000000" backgroundColor="#00ffffff">
@@ -729,11 +715,11 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def __init__(self, session, readeruser):
 		self.readeruser = readeruser
-		NAMEBIN = check_NAMEBIN()
-		NAMEBIN2 = check_NAMEBIN2()
 		Screen.__init__(self, session)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		self.skinName = "OSCamEntitlements"
-		self.setTitle(_("%sInfo: Entitlements for '%s'") % (NAMEBIN2, self.readeruser))
+		self.setTitle(_("%samInfo: Entitlements for '%s'") % (camname, self.readeruser))
 		self.dheaders = ["type", "CAID", "Provid", "ID", "Class", "Start Date", "Expire Date", "Name"]
 		self.cheaders = ["CAID", "System", "Reshare", "Hop", "ShareID", "RemoteID", "ProvIDs", "Providers", "Nodes", "Locals", "Count", "Hop1", "Hop2", "Hopx", "Curr", "Res0", "Res1", "Res2", "Resx", "Reshare"]
 		self.showall = False
@@ -752,7 +738,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show all details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"blue": (self.keyBlue, _("Show all"))
-			}, prio=1, description=_("%sInfo Actions") % NAMEBIN2)
+			}, prio=1, description=_("%sInfo Actions") % camname)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 		self.loop = eTimer()
@@ -772,6 +758,8 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 		callInThread(self.updateEntitlements)
 
 	def updateEntitlements(self):
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		entitleslist = self.getJSONentitlements()
 		if entitleslist:
 			self["entitleslist"].style = "default"
@@ -786,7 +774,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 					self["entitleslist"].style = "entitlements"
 					self.show_cheaders()
 		self["entitleslist"].updateList(entitleslist)
-		self.setTitle(_("%sInfo: %s Entitlements for '%s'") % (NAMEBIN2, len(entitleslist), self.readeruser))
+		self.setTitle(_("%sInfo: %s Entitlements for '%s'") % (camname, len(entitleslist), self.readeruser))
 		self.entitleslist = entitleslist
 		self.showHideBlue()
 		self.showHideKeyOk()
@@ -795,12 +783,10 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def getJSONentitlements(self):
 		entitleslist = []
-		webifok, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser)  # read JSON-entitlements
+		webifok, api, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser)  # read JSON-entitlements
+		tag = {"oscamapi": ("oscam"), "ncamapi": ("ncam")}.get(api)
 		if webifok and result:
-			if fileExists("/tmp/.ncam/ncam.version"):
-				entitlements = loads(result).get("ncam", {}).get("entitlements", [])
-			else:
-				entitlements = loads(result).get("oscam", {}).get("entitlements", [])
+			entitlements = loads(result).get(tag, {}).get("entitlements", [])
 			if entitlements:
 				bgcoloridx = 0
 				na = _("n/a")
@@ -820,12 +806,10 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def getJSONstats(self):
 		entitleslist = []
-		webifok, url, signstatus, result = self.openWebIF()  # read JSON-status
+		webifok, api, url, signstatus, result = self.openWebIF()  # read JSON-status
+		tag = {"oscamapi": ("oscam"), "ncamapi": ("ncam")}.get(api)
 		if webifok and result:
-			if fileExists("/tmp/.ncam/ncam.version"):
-				self.clients = loads(result).get("ncam", {}).get("status", {}).get("client", [])
-			else:
-				self.clients = loads(result).get("oscam", {}).get("status", {}).get("client", [])
+			self.clients = loads(result).get(tag, {}).get("status", {}).get("client", [])
 			bgcoloridx = 0
 			na = _("n/a")
 			for client in self.clients:
@@ -845,7 +829,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def getXMLentitlements(self):
 		entitleslist = []
-		webifok, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser, fmt="xml")  # read XML-entitlements
+		webifok, api, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser, fmt="xml")  # read XML-entitlements
 		if webifok and result:
 			reader = XML(result).find("reader")
 			bgcoloridx = 0
@@ -1011,26 +995,25 @@ class OSCamEntitleDetails(Screen, OSCamGlobals):
 			return nlist
 
 		Screen.__init__(self, session)
-		NAMEBIN = check_NAMEBIN()
-		NAMEBIN2 = check_NAMEBIN2()
+		webifok, api, url, signstatus, result = self.openWebIF()  # read JSON-status
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		self.skinName = "OSCamEntitleDetails"
-		if entitlement:
-			self.setTitle(_("Entitlements for 'CAID %s'") % entitlement[1])
-			entitlelen = len(entitlement)
-			for idx in range(len(entitlement)):
-				if (idx + 1) < entitlelen:
-					self["label%s" % idx] = StaticText(entitlement[idx + 1])
-			self["ProvIDlist"] = List((splitParts(entitlement[7].split(", "), 6)))
-			self['ProvIDlist'].selectionEnabled(0)
-			self["Providerlist"] = List((splitParts(entitlement[8].split(", "), 2)))
-			self['Providerlist'].selectionEnabled(0)
-			self["Nodelist"] = List((splitParts(entitlement[9].split(", "), 2)))
-			self['Nodelist'].selectionEnabled(0)
-			self["key_exit"] = StaticText(_("Exit"))
+		self.setTitle(_("Entitlements for 'CAID %s'") % entitlement[1])
+		entitlelen = len(entitlement)
+		for idx in range(len(entitlement)):
+			if (idx + 1) < entitlelen:
+				self["label%s" % idx] = StaticText(entitlement[idx + 1])
+		self["ProvIDlist"] = List((splitParts(entitlement[7].split(", "), 6)))
+		self['ProvIDlist'].selectionEnabled(0)
+		self["Providerlist"] = List((splitParts(entitlement[8].split(", "), 2)))
+		self['Providerlist'].selectionEnabled(0)
+		self["Nodelist"] = List((splitParts(entitlement[9].split(", "), 2)))
+		self['Nodelist'].selectionEnabled(0)
+		self["key_exit"] = StaticText(_("Exit"))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": (self.close, _("Close the screen")),
 			"cancel": (self.close, _("Close the screen")),
-			}, prio=1, description=_("%sInfo Actions") % NAMEBIN2)
+			}, prio=1, description=_("%sInfo Actions") % camname)
 
 
 class OSCamInfoLog(Screen, OSCamGlobals):
@@ -1046,10 +1029,10 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		NAMEBIN = check_NAMEBIN()
-		NAMEBIN2 = check_NAMEBIN2()
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		self.skinName = "OSCamInfoLog"
-		self.setTitle(_("%sInfo: Log") % NAMEBIN2)
+		self.setTitle(_("%sInfo: Log") % camname)
 		self["logtext"] = ScrollLabel(_("<no log found>"))
 		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
 			"ok": (self.exit, _("Close the screen")),
@@ -1058,7 +1041,7 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 			"up": (self.keyPageUp, _("Move up a page")),
 			"down": (self.keyPageDown, _("Move down a page")),
 			"pageDown": (self.keyPageDown, _("Move down a page"))
-			}, prio=1, description=_("%sInfo Log Actions") % NAMEBIN2)
+			}, prio=1, description=_("%sInfo Log Actions") % camname)
 		self.loop = eTimer()
 		self.loop.callback.append(self.displayLog)
 		self.onLayoutFinish.append(self.onLayoutFinished)
