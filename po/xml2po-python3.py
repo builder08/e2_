@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 import sys
 import os
@@ -19,18 +20,21 @@ class parseXML(ContentHandler, LexicalHandler):
 		self.isPointsElement, self.isReboundsElement = 0, 0
 		self.attrlist = attrlist
 		self.last_comment = None
-		self.ishex = re.compile(r'#[0-9a-fA-F]+\Z')
+		self.ishex = re.compile('#[0-9a-fA-F]+\Z')
 
 	def comment(self, comment):
 		if "TRANSLATORS:" in comment:
 			self.last_comment = comment
 
 	def startElement(self, name, attrs):
-		for x in ["text", "title", "value", "caption", "description"]:
+		for x in ["text", "title", "value", "caption", "description", "context"]:
 			try:
 				k = attrs[x]
 				if k.strip() != "" and not self.ishex.match(k):
-					attrlist.add((k, self.last_comment))
+					if x == "context":
+						attrlist.add((re.sub(r"(\w)([A-Z])([a-z])", r"\1 \2\3", k), self.last_comment))
+					else:
+						attrlist.add((k, self.last_comment))
 					self.last_comment = None
 			except KeyError:
 				pass
