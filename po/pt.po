@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2014-12-15 19:38-0000\n"
 "Last-Translator: Phenom <phenomxy@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -389,6 +389,9 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
+msgid "'Ping' is used for detection device on this address."
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1549,7 +1552,7 @@ msgstr "Informação de canal"
 msgid "Basque"
 msgstr "Basco"
 
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr ""
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -3255,16 +3258,14 @@ msgid "Details for plugin: "
 msgstr "Detalhes do Plugin: "
 
 #
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Seleccionar rede sem fios"
+
+#
 #, fuzzy
-msgid "Detect PC before standby"
+msgid "Detect other boxes before standby"
 msgstr "Desligar"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
-msgstr ""
 
 #
 msgid "Detected NIMs:"
@@ -4624,7 +4625,7 @@ msgstr "Posição final em"
 msgid "Following tasks will be done after you press OK!"
 msgstr "As tarefas seguintes vão terminar depois de pressionar OK!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -7123,6 +7124,9 @@ msgstr ""
 msgid "Open the movie list"
 msgstr "Voltar à Lista de Filmes"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr ""
 
@@ -7418,6 +7422,11 @@ msgstr "Piloto"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Favoritos"
+
+#
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Desligar"
 
 msgid "Pitcairn"
 msgstr ""
@@ -7822,6 +7831,9 @@ msgid "Port D"
 msgstr "Porta D"
 
 msgid "Port of fallback remote receiver"
+msgstr ""
+
+msgid "Port used by OpenWebif on tested box."
 msgstr ""
 
 #

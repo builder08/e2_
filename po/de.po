@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2024-12-06 17:39+0100\n"
 "Last-Translator: kueken\n"
 "Language-Team: OpenPLi\n"
@@ -376,6 +376,9 @@ msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr "\"kleinstes Sendeintervall\" kann hier aktiviert werden."
+
+msgid "'Ping' is used for detection device on this address."
+msgstr ""
 
 msgid "(VU+ type)"
 msgstr "(VU + Typ)"
@@ -1356,7 +1359,7 @@ msgid "Basque"
 msgstr "Baskisch"
 
 #, fuzzy
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr "Receiver sucht aktive HDMI-Geräte am TV und schaltet den TV nur dann in den Standby-Modus, wenn alles inaktiv ist."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2853,15 +2856,12 @@ msgstr "Bestimmungsort vom Reserve-Receiver für DVB-T"
 msgid "Details for plugin: "
 msgstr "Details des Plugins: "
 
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Funk-Netzwerk auswählen"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "Erkennen Sie die nächsten Kästchen vor dem Standby"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "Erkennen Sie die nächsten Kästchen vor dem Standby"
 
 msgid "Detected NIMs:"
@@ -3417,7 +3417,7 @@ msgid "Enable remote enigma2 receiver to be tried to tune into services that can
 msgstr "Aktiviert einen Reserve-Receiver, der versucht wird wenn ein Sender lokal nicht empfangen werden kann. (z.B. wenn Tuner belegt oder Sender lokal nicht verfügbar ist). Angabe der kompletten URL inklusive http:// und Port-Nummer (normal ...:8001), z.B. http://zweite_box:8001 notwendig."
 
 msgid "Enable teletext caching"
-msgstr "Aktiviere Teletext Cache"
+msgstr "Aktiviere Teletext-Cache"
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
@@ -4044,7 +4044,7 @@ msgstr "Endposition auf"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Folgendes wird ausgeführt, nachdem Sie OK gedrückt haben!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -4796,7 +4796,7 @@ msgid "Input"
 msgstr "Eingabe"
 
 msgid "Input "
-msgstr "Eingabe "
+msgstr "Input "
 
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
@@ -6122,7 +6122,7 @@ msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Ignoriere bei gültigen ONIDs die Frequenz vom Sub-Netzwerk."
 
 msgid "One"
-msgstr "Eins"
+msgstr "Eine"
 
 msgid "Online update of your receiver software."
 msgstr "Online-Update Ihrer Receiver-Software."
@@ -6165,6 +6165,9 @@ msgstr "Öffnen Sie den Setup-Tuner"
 
 msgid "Open the movie list"
 msgstr "Zurück zur Videoliste"
+
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Status LED im Deep Standby"
@@ -6425,6 +6428,10 @@ msgstr "Pilot"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Benutzer bouquets"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Erkennen Sie die nächsten Kästchen vor dem Standby"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -6746,6 +6753,9 @@ msgstr "Port D"
 msgid "Port of fallback remote receiver"
 msgstr "Port des Reserve-Receivers"
 
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
+
 msgid "Portugal"
 msgstr "Portugal"
 
@@ -6801,10 +6811,10 @@ msgid "Predefined transponder"
 msgstr "Vordefinierter Transponder"
 
 msgid "Prefer AC3 track"
-msgstr "Bevorzuge AC3"
+msgstr "Bevorzuge AC3-Tonspur"
 
 msgid "Prefer AC3+ track"
-msgstr "Bevorzuge AC3+ Tonspur"
+msgstr "Bevorzuge AC3+-Tonspur"
 
 msgid "Prefer audio track stored by service"
 msgstr "Bevorzuge gespeicherte Tonspur des Senders"
@@ -9194,7 +9204,7 @@ msgid "Start recording?"
 msgstr "Aufnahme beginnen?"
 
 msgid "Start teletext"
-msgstr "Viedeotext starten"
+msgstr "Teletext starten"
 
 msgid "Start test"
 msgstr "Test starten"
@@ -10303,7 +10313,7 @@ msgstr "Tonga"
 
 #, fuzzy
 msgid "Top"
-msgstr "Zwei"
+msgstr "Oben"
 
 msgid "Top and bottom"
 msgstr "Oben und Unten"
@@ -11338,10 +11348,10 @@ msgid "When enabled, the receiver will no longer monitor the tuned transponder f
 msgstr "Veränderungen des Tuner-Transponders nicht mehr überwachen. Bitte wählen Sie diese Option nur falls Sie sich ganz sicher sind was Sie tun."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "AC3 Tonspur verwenden (falls vorhanden)."
+msgstr "AC3-Tonspur verwenden (falls vorhanden)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
-msgstr "Der Receiver wählt (falls verfügbar) die AC3+ Tonspur aus."
+msgstr "AC3+-Tonspur verwenden (falls vorhanden)."
 
 msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
 msgstr "Der Cursor bei Bouquetwechsel zeigt auf den letzten Kanal, der in diesem Bouquet laut Verlauf angesehen wurde."

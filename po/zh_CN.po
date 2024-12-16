@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2021-07-31 17:00+0800\n"
 "Last-Translator: 孤独之剑 <haotzyy1970@yahoo.com>\n"
 "Language-Team: 孤独之剑 <haotzyy1970@yahoo.com>\n"
@@ -375,6 +375,9 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
+msgid "'Ping' is used for detection device on this address."
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1360,7 +1363,7 @@ msgid "Basque"
 msgstr "巴斯克语"
 
 #, fuzzy
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr "在发送将电视切换到待机状态的命令之前,接收器会测试是否所有其他连接到电视的设备都处于待机状态.如果没有,则将“sourceinactive”命令发送到电视,而不是“standby”命令."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2865,15 +2868,12 @@ msgstr "DVB-T远程备份接收器的目的地"
 msgid "Details for plugin: "
 msgstr "插件信息: "
 
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "选择一个无线网"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "在待机状态下检测机顶盒"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "在待机状态下检测机顶盒"
 
 msgid "Detected NIMs:"
@@ -4064,7 +4064,7 @@ msgstr "轨道位置"
 msgid "Following tasks will be done after you press OK!"
 msgstr "按OK键后,以下任务将被执行!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6191,6 +6191,9 @@ msgstr "打开调谐器设置 "
 msgid "Open the movie list"
 msgstr "打开电影列表"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr "深度待机模式下LED的工作状态"
 
@@ -6456,6 +6459,10 @@ msgstr "向导"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "自定义组"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "在待机状态下检测机顶盒"
 
 msgid "Pitcairn"
 msgstr "皮特凯恩群岛"
@@ -6775,6 +6782,9 @@ msgstr "端口D"
 
 msgid "Port of fallback remote receiver"
 msgstr "备用接收器端口"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 msgid "Portugal"
 msgstr "葡萄牙"

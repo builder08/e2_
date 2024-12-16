@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2023-01-01 16:49+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -395,6 +395,9 @@ msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr "'Minste sende intervall' må være aktivert for å bruke dette alternativet."
+
+msgid "'Ping' is used for detection device on this address."
+msgstr ""
 
 msgid "(VU+ type)"
 msgstr "(VU+ type)"
@@ -1489,7 +1492,7 @@ msgid "Basque"
 msgstr "Baskisk"
 
 #, fuzzy
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr "Før standby kommandoen til TV-en sendes, sjekker mottakeren at de andre enhetene som er koblet til TV-en er i standby. Hvis ikke, sendes kommandoen 'sourceinactive' til TV-en i stedet for 'standby' kommandoen."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -3124,15 +3127,13 @@ msgstr "Reserve fjern mottakers DVB-T destinasjon"
 msgid "Details for plugin: "
 msgstr "Detaljer for utvidelser: "
 
+#
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Velg et trådløst nettverk"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "Merk neste hendelser før standby"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "Merk neste hendelser før standby"
 
 #
@@ -4456,7 +4457,7 @@ msgstr "Siste posisjon ved"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Følgende oppgaver vil bli utført etter at du trykker OK!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6821,6 +6822,9 @@ msgstr "Åpne oppsetts tuner "
 msgid "Open the movie list"
 msgstr "Åpne opptaksliste"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr "LED-status i dyp standby-modus"
 
@@ -7105,6 +7109,10 @@ msgstr "Pilot"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Favorittlister"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Merk neste hendelser før standby"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -7482,6 +7490,9 @@ msgstr "Inngang  D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Ekstern reserve mottakers port"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugal"

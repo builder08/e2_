@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Openpli\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -373,6 +373,9 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
+msgid "'Ping' is used for detection device on this address."
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1369,7 +1372,7 @@ msgstr "Kanaliinfo"
 msgid "Basque"
 msgstr "Baski"
 
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr ""
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2876,15 +2879,12 @@ msgstr "Kaugvastuvõtja sihtkoht"
 msgid "Details for plugin: "
 msgstr "Laienduse üksikasjad: "
 
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Vali WiFi võrk"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "Leia järgnevad seadmed enne ooteseisundit"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "Leia järgnevad seadmed enne ooteseisundit"
 
 msgid "Detected NIMs:"
@@ -4090,7 +4090,7 @@ msgstr "Lõplik asend"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Järgmised toimingud tehakse pärast OK vajutamist!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6236,6 +6236,9 @@ msgstr "Ava tuuneri seadistamine "
 msgid "Open the movie list"
 msgstr "Ava filmilist"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr ""
 
@@ -6500,6 +6503,10 @@ msgstr "Pilot"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Lemmiknimekirjad"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Leia järgnevad seadmed enne ooteseisundit"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -6823,6 +6830,9 @@ msgstr "Port D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Kaugvastuvõtja Port"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugal"

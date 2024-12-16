@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2022-10-23 15:37+0300\n"
 "Last-Translator: Audronis <adga45@gmail.com>\n"
 "Language-Team: Adga (C) <adga45@gmail.com>\n"
@@ -390,6 +390,9 @@ msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr "Norint naudoti šią parinktį, reikia įjungti \"Minimalų siuntimo intervalą\"."
+
+msgid "'Ping' is used for detection device on this address."
+msgstr ""
 
 msgid "(VU+ type)"
 msgstr "(VU+ tipas)"
@@ -1368,7 +1371,7 @@ msgid "Basque"
 msgstr "Baskų"
 
 #, fuzzy
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr "Prieš siųsdamas komandą, kad televizorius būtų perjungtas į budėjimo režimą, imtuvas tikrina, ar visi kiti prie televizoriaus prijungti įrenginiai yra budėjimo režime. Jei ne, komanda 'šaltinis neaktyvus' bus nusiųsta į televizorių, o ne į komandą \"budėjimo režimas\"."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2863,15 +2866,12 @@ msgstr "DVB-T nuotolinio atsarginio imtuvo paskirties vieta"
 msgid "Details for plugin: "
 msgstr "Išsamiau apie priedą: "
 
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Pasirinkite bevielį tinklą"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "Aptikti kitą imtuvą prieš budėjimą"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "Aptikti kitą imtuvą prieš budėjimą"
 
 msgid "Detected NIMs:"
@@ -4054,7 +4054,7 @@ msgstr "Galutinė pozicija ties"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Šios užduotys bus atliktos, kai paspausite 'OK'!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6174,6 +6174,9 @@ msgstr "Atidaryti imtuvo konfigūravimą "
 msgid "Open the movie list"
 msgstr "Atidaryti filmų sąrašą"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr "LED būsenos veikimas gilaus laukimo režimu"
 
@@ -6436,6 +6439,10 @@ msgstr "Pilotinis signalas"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Vartotojo paketai"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Aptikti kitą imtuvą prieš budėjimą"
 
 msgid "Pitcairn"
 msgstr "Pitkernas"
@@ -6755,6 +6762,9 @@ msgstr "Jungtis D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Atsarginio nuotolinio imtuvo jungtis"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugalija"

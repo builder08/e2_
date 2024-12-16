@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2023-11-10 14:18+0100\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -391,6 +391,9 @@ msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr "Ak chcete použiť túto možnosť, musíte povoliť 'Minimálny interval odosielania'."
+
+msgid "'Ping' is used for detection device on this address."
+msgstr ""
 
 msgid "(VU+ type)"
 msgstr "(Typ VU+)"
@@ -1369,7 +1372,7 @@ msgid "Basque"
 msgstr "Baskicky"
 
 #, fuzzy
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr "Pred odoslaním príkazu na prepnutie TV do pohotovostného režimu prijímač otestuje, či sú všetky ostatné zariadenia pripojené k TV v pohotovostnom režime. Ak nie sú, namiesto príkazu \"standby\" sa do televízora odošle príkaz \"sourceinactive\"."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2861,15 +2864,12 @@ msgstr "Cieľ záložného vzdialeného prijímača pre DVB-T"
 msgid "Details for plugin: "
 msgstr "Údaje o doplnku: "
 
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Vyberte bezdrôtovú sieť"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "Detekcia ďalších prijímačov pred prechodom do pohot. režimu"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "Detekcia ďalších prijímačov pred prechodom do pohot. režimu"
 
 msgid "Detected NIMs:"
@@ -4054,7 +4054,7 @@ msgstr "Konečná pozícia na"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Po stlačení OK sa vykonajú nasledujúce úlohy!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6175,6 +6175,9 @@ msgstr "Otvoriť nastavenia tunera "
 msgid "Open the movie list"
 msgstr "Otvoriť zoznam filmov"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr "Stav LED v režime hlbokého spánku"
 
@@ -6434,6 +6437,10 @@ msgstr "Pilot"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Užívateľ prehľady"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Detekcia ďalších prijímačov pred prechodom do pohot. režimu"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -6753,6 +6760,9 @@ msgstr "Port D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Port záložného vzdialeného prijímača"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugalsko"

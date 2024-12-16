@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -365,6 +365,9 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
+msgid "'Ping' is used for detection device on this address."
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1350,7 +1353,7 @@ msgstr ""
 msgid "Basque"
 msgstr ""
 
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr ""
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2846,14 +2849,11 @@ msgstr ""
 msgid "Details for plugin: "
 msgstr ""
 
-msgid "Detect PC before standby"
-msgstr ""
-
 #, python-format
-msgid "Detect box%s via LAN"
+msgid "Detect box%s via network"
 msgstr ""
 
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr ""
 
 msgid "Detected NIMs:"
@@ -4035,7 +4035,7 @@ msgstr ""
 msgid "Following tasks will be done after you press OK!"
 msgstr "按下 OK 鍵後將完成以下任務!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6191,6 +6191,9 @@ msgstr ""
 msgid "Open the movie list"
 msgstr ""
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr ""
 
@@ -6453,6 +6456,9 @@ msgstr "Pilot"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "自定義組"
+
+msgid "Ping device before standby"
+msgstr ""
 
 msgid "Pitcairn"
 msgstr ""
@@ -6778,6 +6784,9 @@ msgid "Port D"
 msgstr "埠 D"
 
 msgid "Port of fallback remote receiver"
+msgstr ""
+
+msgid "Port used by OpenWebif on tested box."
 msgstr ""
 
 #, fuzzy

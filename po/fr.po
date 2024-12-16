@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
-"PO-Revision-Date: 2024-12-08 15:27+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
+"PO-Revision-Date: 2024-12-15 13:13+0100\n"
 "Last-Translator: Pr2\n"
 "Language-Team: french\n"
 "Language: fr\n"
@@ -374,6 +374,9 @@ msgstr "%s%s(Par défaut: %s)"
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr "l'option \"Intervalle minimum d'envoi\" doit être activée pour pouvoir utiliser cette option."
+
+msgid "'Ping' is used for detection device on this address."
+msgstr "« Ping » est utilisé pour détecter le périphérique sur cette adresse."
 
 msgid "(VU+ type)"
 msgstr "(type VU+)"
@@ -1349,8 +1352,8 @@ msgstr "Info de base"
 msgid "Basque"
 msgstr "Basque"
 
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
-msgstr "Avant d'envoyer la commande de mise en veille du téléviseur, le récepteur vérifie si l'ordinateur connecté au téléviseur est en veille. Si ce n'est pas le cas, la commande 'source inactive' est envoyée au téléviseur au lieu de la commande 'veille'."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
+msgstr "Avant d'envoyer la commande pour mettre le téléviseur en veille, le récepteur peut tester si un appareil connecté au téléviseur répond à un « ping » réseau. Si c'est le cas, au lieu de la commande « veille », la commande « sourceinactive » sera envoyée au téléviseur."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr "Avant d’envoyer la commande pour passer le téléviseur en veille, le récepteur teste si tous les autres appareils branchés à la télévision sont en veille. Si ce n’est pas le cas, la commande « sourceinactive » sera envoyée à la télévision au lieu de la commande « veille »."
@@ -2824,15 +2827,12 @@ msgstr "Destination du récepteur à distance de repli pour DVB-T"
 msgid "Details for plugin: "
 msgstr "Détails sur le plugin: "
 
-msgid "Detect PC before standby"
-msgstr "Détecter PC  avant de se mettre en veille"
-
 #, python-format
-msgid "Detect box%s via LAN"
-msgstr "Détecter la boîte %s via le réseau local"
+msgid "Detect box%s via network"
+msgstr "Détecter la boîte %s via le réseau"
 
-msgid "Detect next boxes before standby"
-msgstr "Détecter les autres équipements avant de se mettre en veille"
+msgid "Detect other boxes before standby"
+msgstr "Détecter les autres boîtes avant la mise en veille"
 
 msgid "Detected NIMs:"
 msgstr "Tuners détectés:"
@@ -4010,8 +4010,8 @@ msgstr "A plat par position sur la télécommande"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Les tâches suivantes seront réalisées après avoir appuyé sur OK!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
-msgstr "Pour la détection, les récepteurs suivants utilisent le réseau local Ethernet au lieu du protocole HDMI-CEC."
+msgid "For this box, the network connection can also be used for detection."
+msgstr "Pour cette box, la connexion réseau peut également être utilisée pour la détection."
 
 msgid "Force legacy signal stats"
 msgstr "Forcer les statistiques de signal hérité"
@@ -6107,6 +6107,9 @@ msgstr "Ouvrir la configuration du tuner "
 msgid "Open the movie list"
 msgstr "Ouvrir la liste de films"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr "OpenWebif est utilisé pour la détection sur la box avec cette adresse IP."
+
 msgid "Operating LED status in deep standby mode"
 msgstr "État de la LED de fonctionnement en veille profonde"
 
@@ -6363,6 +6366,9 @@ msgstr "Pilote"
 
 msgid "Pin Userbouquet"
 msgstr "Épingler le favori"
+
+msgid "Ping device before standby"
+msgstr "Envoyer un ping à l'appareil avant la mise en veille"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -6682,6 +6688,9 @@ msgstr "Port D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Port du récepteur distant de repli"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr "Port utilisé par OpenWebif sur la box testée."
 
 msgid "Portugal"
 msgstr "Portugal"
@@ -9486,7 +9495,7 @@ msgstr ""
 "\n"
 "Support: https://www.openpli.org/\n"
 "Traducteur: Pr2\n"
-"Dernière MÀJ: 08-11-2024"
+"Dernière MÀJ: 15-12-2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Fichier TS trop grand pour le niveau 1 ISO9660!"

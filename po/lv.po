@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -391,6 +391,9 @@ msgstr "%s%s(Pēc noklusējuma: %s)"
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
 msgstr "Lai izmantotu šo iespēju jāieslēdz minimālo sūtīšanas intervālu."
+
+msgid "'Ping' is used for detection device on this address."
+msgstr ""
 
 msgid "(VU+ type)"
 msgstr "(VU+ tips)"
@@ -1368,7 +1371,7 @@ msgid "Basque"
 msgstr "Basku"
 
 #, fuzzy
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr "Pirms sūtīt komandu pārslēgt TV gaidīšanas režīmā uztvērējs pārbaudīs vai visas ierīces, kuras pieslēgtas TV, ir gaidīšanas režīmā. Ja kāda nav, tad tiks sūtīta komanda 'avots neaktīvs' nevis komanda 'gaidīšanas režīms'."
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -2847,15 +2850,12 @@ msgstr "DVB-T attālinātā rezerves uztvērēja adrese"
 msgid "Details for plugin: "
 msgstr "Spraudņu papildinformācija: "
 
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Izvēlieties bezvadu tīklu"
+
 #, fuzzy
-msgid "Detect PC before standby"
-msgstr "Noteikt citas iekārtas pirms gaidstāves"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
+msgid "Detect other boxes before standby"
 msgstr "Noteikt citas iekārtas pirms gaidstāves"
 
 msgid "Detected NIMs:"
@@ -4037,7 +4037,7 @@ msgstr "Beigu pozīcija"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Šādi uzdevumi tiks veikti pēc tam, kad nospiedīsiet OK!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6143,6 +6143,9 @@ msgstr "Atvērt uztvērēja iestatījumus "
 msgid "Open the movie list"
 msgstr "Atvērt mediju sarakstu"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr "LED izslēdzot"
 
@@ -6402,6 +6405,10 @@ msgstr "Pilot"
 
 msgid "Pin Userbouquet"
 msgstr "Piespraust lietotāja buķeti"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Noteikt citas iekārtas pirms gaidstāves"
 
 msgid "Pitcairn"
 msgstr "Pitkērna"
@@ -6721,6 +6728,9 @@ msgstr "Ieeja D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Rezerves uztvērēja ports"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 msgid "Portugal"
 msgstr "Portugāle"

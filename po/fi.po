@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-08 15:08+0100\n"
+"POT-Creation-Date: 2024-12-15 13:08+0100\n"
 "PO-Revision-Date: 2020-05-16 18:41+0200\n"
 "Last-Translator: jamu\n"
 "Language-Team: BoxFreak/jamu\n"
@@ -395,6 +395,9 @@ msgid "%s%s(Default: %s)"
 msgstr ""
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
+msgid "'Ping' is used for detection device on this address."
 msgstr ""
 
 msgid "(VU+ type)"
@@ -1505,7 +1508,7 @@ msgstr "Kanavatiedot"
 msgid "Basque"
 msgstr "Baski"
 
-msgid "Before sending the command to switch the TV to standby, the receiver tests if PC connected to TV is in standby. If it is not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgid "Before sending the command to switch the TV to standby, the receiver can test if a device connected to the TV responds to a network 'ping'. If it does, instead of the 'standby' command the 'sourceinactive' command will be sent to the TV."
 msgstr ""
 
 msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
@@ -3141,16 +3144,14 @@ msgstr "Etävastaanottimen kohde"
 msgid "Details for plugin: "
 msgstr "Lisäosan tiedot: "
 
+#
+#, fuzzy, python-format
+msgid "Detect box%s via network"
+msgstr "Valitse WLAN-verkko"
+
 #, fuzzy
-msgid "Detect PC before standby"
+msgid "Detect other boxes before standby"
 msgstr "Virransäästötila"
-
-#, python-format
-msgid "Detect box%s via LAN"
-msgstr ""
-
-msgid "Detect next boxes before standby"
-msgstr ""
 
 #
 msgid "Detected NIMs:"
@@ -4480,7 +4481,7 @@ msgstr "Lopullinen sijainti"
 msgid "Following tasks will be done after you press OK!"
 msgstr "Seuraavat tehtävät suoritetaan kun painat OK!"
 
-msgid "For detection next receivers use ethernet LAN instead HDMI-CEC protocol."
+msgid "For this box, the network connection can also be used for detection."
 msgstr ""
 
 msgid "Force legacy signal stats"
@@ -6900,6 +6901,9 @@ msgstr "Avaa viritinasetukset"
 msgid "Open the movie list"
 msgstr "Avaa tallenneluettelo"
 
+msgid "OpenWebif is used for detection on box with this IP address."
+msgstr ""
+
 msgid "Operating LED status in deep standby mode"
 msgstr ""
 
@@ -7181,6 +7185,10 @@ msgstr "Pilot"
 #, fuzzy
 msgid "Pin Userbouquet"
 msgstr "Käyttäjä suosikit"
+
+#, fuzzy
+msgid "Ping device before standby"
+msgstr "Virransäästötila"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -7564,6 +7572,9 @@ msgstr "Portti D"
 
 msgid "Port of fallback remote receiver"
 msgstr "Etävastaanottimen portti"
+
+msgid "Port used by OpenWebif on tested box."
+msgstr ""
 
 #
 msgid "Portugal"
