@@ -1468,12 +1468,6 @@ msgstr "-"
 msgid "- No space left on backup device."
 msgstr "- На устройстве резервного копирования не осталось места."
 
-msgid "- No write permission on backup device."
-msgstr "- Нет разрешения на запись на устройстве резервного копирования."
-
-msgid "- Wrong backup destination."
-msgstr "- Неправильное место назначения резервного копирования."
-
 msgid "-24 Hours"
 msgstr "-24 часа"
 
@@ -17165,7 +17159,7 @@ msgid "Space total %s, used %s, free %s (%0.f%%)."
 msgstr "Всего места %s, занято %s, свободно %s (%0.f%%)."
 
 msgid "Space used:"
-msgstr "Занято"
+msgstr "Занято:"
 
 msgid "Spain"
 msgstr "Испания"
