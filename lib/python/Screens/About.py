@@ -242,7 +242,7 @@ class CommitInformation(InformationBase):
 
 	def showCommitMenu(self):
 		choices = [(commitLog[0], index) for index, commitLog in enumerate(self.commitLogs)]
-		self.session.openWithCallback(self.showCommitMenuCallBack, MessageBox, text=_("Select a repository commit log to view:"), list=choices, title=self.baseTitle)
+		self.session.openWithCallback(self.showCommitMenuCallBack, MessageBox, text=_("Select a repository commit log to view:"), list=choices, windowTitle=self.baseTitle)
 
 	def showCommitMenuCallBack(self, selectedIndex):
 		if isinstance(selectedIndex, int):
@@ -343,7 +343,7 @@ class DebugInformation(InformationBase):
 
 	def showLogMenu(self):
 		choices = [(_("Log file: '%s'  (%s)") % (debugLog[0], debugLog[1]), index) for index, debugLog in enumerate(self.debugLogs)]
-		self.session.openWithCallback(self.showLogMenuCallBack, MessageBox, text=_("Select a debug log file to view:"), list=choices, default=self.debugLogIndex, title=self.baseTitle)
+		self.session.openWithCallback(self.showLogMenuCallBack, MessageBox, text=_("Select a debug log file to view:"), list=choices, default=self.debugLogIndex, windowTitle=self.baseTitle)
 
 	def showLogMenuCallBack(self, selectedIndex):
 		if isinstance(selectedIndex, int):
@@ -369,10 +369,10 @@ class DebugInformation(InformationBase):
 			try:
 				remove(path)
 				del self.cachedDebugInfo[path]
-				self.session.open(MessageBox, _("Log file '%s' deleted.") % name, type=MessageBox.TYPE_INFO, timeout=5, close_on_any_key=True, title=self.baseTitle)
+				self.session.open(MessageBox, _("Log file '%s' deleted.") % name, type=MessageBox.TYPE_INFO, timeout=5, close_on_any_key=True, windowTitle=self.baseTitle)
 				self.debugLogs = []
 			except OSError as err:
-				self.session.open(MessageBox, _("Error %d: Log file '%s' not deleted!  (%s)") % (err.errno, name, err.strerror), type=MessageBox.TYPE_ERROR, timeout=5, title=self.baseTitle)
+				self.session.open(MessageBox, _("Error %d: Log file '%s' not deleted!  (%s)") % (err.errno, name, err.strerror), type=MessageBox.TYPE_ERROR, timeout=5, windowTitle=self.baseTitle)
 			self.informationTimer.start(25)
 
 	def deleteAllLogs(self):
@@ -391,7 +391,7 @@ class DebugInformation(InformationBase):
 					type = MessageBox.TYPE_ERROR
 					close = False
 					log.append(((_("Error %d: Log file '%s' not deleted!  (%s)") % (err.errno, name, err.strerror)), None))
-			self.session.open(MessageBox, _("Results of the delete all logs:"), type=type, list=log, timeout=5, close_on_any_key=close, title=self.baseTitle)
+			self.session.open(MessageBox, _("Results of the delete all logs:"), type=type, list=log, timeout=5, close_on_any_key=close, windowTitle=self.baseTitle)
 			self.debugLogs = []
 			self.cachedDebugInfo = {}
 			self.informationTimer.start(25)
@@ -548,6 +548,7 @@ class DistributionInformation(InformationBase):
 			info.append(formatLine("P1", _("Info file override"), _("Defined / Active")))
 		info.append(formatLine("P1", _("Distribution version"), BoxInfo.getItem("imgversion")))
 		info.append(formatLine("P1", _("Distribution language"), BoxInfo.getItem("imglanguage")))
+		info.append(formatLine("P1", _("OEM model"), BoxInfo.getItem("platform", _("Unknown"))))
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 		if MultiBoot.canMultiBoot():
 			device = MultiBoot.getBootDevice()
@@ -588,6 +589,7 @@ class DistributionInformation(InformationBase):
 		info.append(formatLine("P1", _("Enigma2 version"), enigmaVersion))
 		compileDate = str(BoxInfo.getItem("compiledate"))
 		info.append(formatLine("P1", _("Last update"), formatDate(f"{compileDate[:4]}{compileDate[4:6]}{compileDate[6:]}")))
+		info.append(formatLine("P1", _("Last flash"), formatDate(about.getFlashDateString())))
 		info.append(formatLine("P1", _("Enigma2 (re)starts"), config.misc.startCounter.value))
 		info.append(formatLine("P1", _("Enigma2 debug level"), eGetEnigmaDebugLvl()))
 		mediaService = BoxInfo.getItem("mediaservice")
@@ -1395,7 +1397,7 @@ class ServiceInformation(InformationBase):
 				self.informationTimer.start(25)
 
 		choices = [(serviceCommand[0], index) for index, serviceCommand in enumerate(self.serviceCommands)]
-		self.session.openWithCallback(showServiceMenuCallBack, MessageBox, text=_("Select service information to view:"), list=choices, title=self.baseTitle)
+		self.session.openWithCallback(showServiceMenuCallBack, MessageBox, text=_("Select service information to view:"), list=choices, windowTitle=self.baseTitle)
 
 	def previousService(self):
 		self.serviceCommandsIndex = (self.serviceCommandsIndex - 1) % self.serviceCommandsMax
@@ -1904,7 +1906,7 @@ class SystemInformation(InformationBase):
 				self.informationTimer.start(25)
 
 		choices = [(systemCommand[0], index) for index, systemCommand in enumerate(self.systemCommands)]
-		self.session.openWithCallback(self.showSystemMenuCallBack, MessageBox, text=_("Select system information to view:"), list=choices, title=self.baseTitle)
+		self.session.openWithCallback(showSystemMenuCallBack, MessageBox, text=_("Select system information to view:"), list=choices, windowTitle=self.baseTitle)
 
 	def previousSystem(self):
 		self.systemCommandsIndex = (self.systemCommandsIndex - 1) % self.systemCommandsMax
