@@ -1468,6 +1468,12 @@ msgstr "-"
 msgid "- No space left on backup device."
 msgstr "- На устройстве резервного копирования не осталось места."
 
+msgid "- No write permission on backup device."
+msgstr "- Нет разрешения на запись на устройстве резервного копирования."
+
+msgid "- Wrong backup destination."
+msgstr "- Неправильное место назначения резервного копирования."
+
 msgid "-24 Hours"
 msgstr "-24 часа"
 
@@ -1789,6 +1795,7 @@ msgstr "Идёт проверка обновления в фоновом реж�
 msgid "A backup is now being created."
 msgstr "Сейчас создается резервная копия."
 
+#, python-format
 msgid "A crash log was %s created in '%s'"
 msgstr "Журнал сбоев был создан %s в '%s'"
 
@@ -1804,11 +1811,13 @@ msgstr "Конфигурационный файл (%s) был изменен в 
 msgid "A file from media is in use!"
 msgstr "Медиа файл используется!"
 
-msgid "A finished powertimer wants to reboot your receiver. Do that now?"
+#, python-format
+msgid "A finished powertimer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Запись по таймеру завершена, ресивер будет переведен в режим ожидания.\n"
+"Запись по таймеру завершена, %s %s будет переведен в режим ожидания.\n"
 "Сделать это сейчас?"
 
+#, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1816,6 +1825,7 @@ msgstr ""
 "Таймер выключения требует перевести ваш %s %s в режим ожидания\n"
 "Сделать это сейчас?"
 
+#, python-format
 msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
@@ -1860,6 +1870,7 @@ msgstr "В данный момент идет запись. Пожалуйста
 msgid "A recording is currently running. Please stop the recording before trying to start a testing DiSEqC."
 msgstr "В текущее время идет запись. Пожалуйста остановите запись перед началом тестирования DiSEqC."
 
+#, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
@@ -2163,6 +2174,18 @@ msgstr "Добавить альтернативы"
 msgid "Add AutoTimer"
 msgstr "Добавить автотаймер"
 
+msgid "Add File Commander to Extensions Menu"
+msgstr "Добавить File Commander в меню расширений"
+
+msgid "Add File Commander to Main Menu"
+msgstr "Добавить File Commander в главное меню"
+
+msgid "Add File Commander to the Extensions Menu list of options."
+msgstr "Добавьте File Commander в список опций меню расширений."
+
+msgid "Add File Commander to the Main Menu list of options."
+msgstr "Добавьте File Commander в список опций главного меню."
+
 msgid "Add BISS CaID to service"
 msgstr "Добавление BISS CaID в сервис"
 
@@ -2245,16 +2268,16 @@ msgid "Add provider"
 msgstr "Добавить оператора"
 
 msgid "Add recording (Enter recording duration)"
-msgstr "Добавить запись (Введите продолжительность записи)"
+msgstr "Начать запись (Введите длительность записи)"
 
 msgid "Add recording (Enter recording end time)"
-msgstr "Добавить запись (Введите время окончания записи)"
+msgstr "Начать запись (Введите время окончания)"
 
 msgid "Add recording (Indefinitely - 24 hours)"
-msgstr "Добавить запись (бессрочно - 24 часа)"
+msgstr "Начать запись (Конец не определён)"
 
 msgid "Add recording (Stop after current event)"
-msgstr "Добавить запись (Остановить после текущего события)"
+msgstr "Начать запись (Стоп после окончания передачи)"
 
 msgid "Add service"
 msgstr "Добавить канал"
@@ -4228,6 +4251,9 @@ msgstr "Чад"
 msgid "Change AC3 audio track"
 msgstr "Изменить звуковую дорожку AC3"
 
+msgid "Change Boxmode to control Hardware Chip Modes*"
+msgstr "Изменить тип ресивера для управления чипом *"
+
 msgid "Change Language"
 msgstr "Изменить язык"
 
@@ -5639,8 +5665,18 @@ msgstr "Скрыть мигающую строку для этого серви�
 msgid "Crash log '%s' (%d/%d)"
 msgstr "Журнал '%s' (%d/%d)"
 
+#, python-format
+msgid "Crash %d/%d"
+msgstr "Сбой %d/%d"
+
 msgid "Crash Logs"
 msgstr "Журналы сбоев"
+
+msgid "Crash at skin error for debug reasons"
+msgstr "Сбой при ошибке скина по причинам отладки"
+
+msgid "Create"
+msgstr "Создание"
 
 msgid "Crash at skin error for debug reasons ?"
 msgstr "Сбой при ошибке скина по причинам отладки ?"
@@ -5689,7 +5725,7 @@ msgstr "Создать дамп ядра."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
-msgstr "Создайте резервную копию образа восстановления «%s»."
+msgstr "Создать резервную копию образа для восстановления '%s'."
 
 msgid "Create rescue dump."
 msgstr "Создать аварийный дамп."
@@ -8588,6 +8624,9 @@ msgstr "Шрифт Fixed X11 (SD)"
 msgid "Flash"
 msgstr "Прошивка"
 
+msgid "Flash Expander"
+msgstr "Расширение флеш-памяти"
+
 msgid "Flash image Online"
 msgstr "Прошивка образа онлайн"
 
@@ -8597,6 +8636,7 @@ msgstr "Прошивка образа"
 msgid "Flash image"
 msgstr "Прошивка образа"
 
+#, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Нельзя использовать каталог во флеш-памяти '%s' !"
 
@@ -8618,21 +8658,18 @@ msgstr "Прошивка образа"
 msgid "Flashing image successful"
 msgstr "Образ успешно прошит"
 
-msgid ""
-"Flashing image was not successful\n"
-"%s"
-msgstr ""
-"Прошивка имиджа не закончилась успехом\n"
-"%s"
+#, python-format
+msgid "Flashing image '%s' was not successful!"
+msgstr "Прошивка образа '%s' не удалась!"
 
 msgid "Flat alphabetical"
-msgstr "Ровный алфавитный"
+msgstr "Единый алфавит"
 
 msgid "Flat by key group on remote"
-msgstr "Ровный по группе ключей на пульте"
+msgstr "По группе клавиш на пульте"
 
 msgid "Flat by position on remote"
-msgstr "Ровный по положению на пульте"
+msgstr "По положению на пульте"
 
 msgid "Following tasks will be done after you press OK!"
 msgstr "Выполнение процесса начнется после того, как вы нажмете ОК!"
@@ -9708,6 +9745,9 @@ msgstr "В процессе"
 
 msgid "In the Standby record on the LCD display"
 msgstr "В режиме ожидания запись на ЖК-дисплее в режиме ожидания"
+
+msgid "Inactive"
+msgstr "Неактивен"
 
 msgid "Inactivity Sleeptimer"
 msgstr "Таймер неактивности"
@@ -10873,8 +10913,8 @@ msgstr "Макс вниз "
 msgid "Maximum minutes to jump %d !"
 msgstr "Максимум минут для перехода %d !"
 
-msgid "Maximum no of days:"
-msgstr "Максимальное количество дней:"
+msgid "Maximum no of days"
+msgstr "Максимальное количество дней"
 
 msgid "Maximum number of days in EPG"
 msgstr "Максимальное количество дней в ТВ-гиде"
@@ -11103,8 +11143,8 @@ msgstr "Смонтирован "
 msgid "Mountpoint"
 msgstr "Точка монтирования"
 
-msgid "MountManager"
-msgstr "Установки монтирования"
+msgid "Mount Manager"
+msgstr "Диспетчер подключений"
 
 msgid "Mounts"
 msgstr "Точки монтирования"
@@ -14699,6 +14739,9 @@ msgstr "Сохранить"
 msgid "Save / Enter text and exit"
 msgstr "Сохранить / ввести текст и выйти"
 
+msgid "Save EPG data"
+msgstr "Сохранить данные ТВ-гида"
+
 msgid "Save EPG"
 msgstr "Сохранить ТВ-гид"
 
@@ -14721,7 +14764,11 @@ msgid "Save changes"
 msgstr "Сохранить изменения"
 
 msgid "Save every (in hours)"
-msgstr "Сохранить каждый (в часах)"
+msgstr "Сохранить каждые (в часах)"
+
+#, python-format
+msgid "Save image as '%s'"
+msgstr "Сохранить образ как '%s'"
 
 msgid "Save last directory on exit"
 msgstr "Сохранить последний каталог при выходе"
@@ -15160,7 +15207,7 @@ msgid "Select Input Device"
 msgstr "Выберите устройства ввода"
 
 msgid "Select interface"
-msgstr "Выбор интерфейса"
+msgstr "Выберите интерфейс"
 
 msgid "Select image"
 msgstr "Выбор имиджа"
@@ -15175,7 +15222,7 @@ msgid "Select menu entry"
 msgstr "Выберите пункт меню"
 
 msgid "Select movie"
-msgstr "Выбор видео"
+msgstr "Выберите фильм"
 
 msgid "Select path for logfile"
 msgstr "Выбор пути для файла лога"
@@ -16206,6 +16253,9 @@ msgstr "Показать в браузере плагинов"
 msgid "Show Log"
 msgstr "Показать журнал"
 
+msgid "Show Log Manager in Extension Menu"
+msgstr "Показывать менеджер логов в меню дополнений"
+
 msgid "Show Logs Manager in extensions list ?"
 msgstr "Показать диспетчер журналов в списке расширений ?"
 
@@ -17003,6 +17053,7 @@ msgstr "Некоторые телевизоры не выходят из реж�
 msgid "Some plugins are not available:\n"
 msgstr "Некоторые плагины недоступны:\n"
 
+#, python-format
 msgid "Sorry, %s has not been installed!"
 msgstr "Извините, %s не установлен!"
 
@@ -17010,7 +17061,7 @@ msgid "Sorry, deleting directories can (for now) only be done through the trash 
 msgstr "Извините, удаление директорий может (пока) быть сделано только через корзину."
 
 msgid "Sorry, no backups found!"
-msgstr "Не найдены бэкапы!"
+msgstr "Извините, не найдено ни одной копии!"
 
 msgid "Sorry, no details available!"
 msgstr "Извините, нет доступного описания!"
@@ -17105,6 +17156,16 @@ msgstr "Южная Георгия и Южные Сандвичевы остро�
 
 msgid "South Sudan"
 msgstr "Южный Судан"
+
+msgid "Space to reserve for recordings (GB)"
+msgstr "Резервировать место на диске для записей (Гб)"
+
+#, python-format
+msgid "Space total %s, used %s, free %s (%0.f%%)."
+msgstr "Всего места %s, занято %s, свободно %s (%0.f%%)."
+
+msgid "Space used:"
+msgstr "Занято"
 
 msgid "Spain"
 msgstr "Испания"
@@ -17286,6 +17347,9 @@ msgstr "Штат: "
 
 msgid "Status"
 msgstr "Состояние"
+
+msgid "Status:"
+msgstr "Статус:"
 
 msgid "Steps"
 msgstr "Шаги"
@@ -20250,6 +20314,10 @@ msgstr "Выходные"
 
 msgid "Weekly"
 msgstr "Еженедельно"
+
+#, python-format
+msgid "Welcome to %s"
+msgstr "Добро пожаловать в %s"
 
 msgid "Weighted position"
 msgstr "Анализируем позицию"
