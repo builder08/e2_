@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-15 13:08+0100\n"
+"POT-Creation-Date: 2024-12-18 13:25+0000\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -1155,6 +1155,10 @@ msgstr "Audio PID"
 msgid "Audio PID%s, codec & lang"
 msgstr "Audio PID%s"
 
+#, fuzzy
+msgid "Audio Selection Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
 msgid "Audio auto volume level"
 msgstr "Automātiskā skaļuma līmenis"
 
@@ -1755,6 +1759,18 @@ msgstr "Kanāls"
 msgid "Channel Info"
 msgstr "Info par kanālu"
 
+#, fuzzy
+msgid "Channel Select Base Actions"
+msgstr "Kanālu izvēlne"
+
+#, fuzzy
+msgid "Channel Select Edit Actions"
+msgstr "Kanālu izvēlne"
+
+#, fuzzy
+msgid "Channel SelectEPG Actions"
+msgstr "Kanālu izvēlne"
+
 msgid "Channel Selection"
 msgstr "Kanālu izvēlne"
 
@@ -1883,6 +1899,10 @@ msgstr "Izvēlieties kuru uztvērēju konfigurēt"
 msgid "Christmas Island"
 msgstr "Ziemassvētku sala"
 
+#, fuzzy
+msgid "Ci Selection Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
 msgid "Circular LNB"
 msgstr "Cirkulārā LNB"
 
@@ -1944,6 +1964,9 @@ msgstr "Koda biežums LP"
 msgid "Codec & lang%s"
 msgstr "Audio informācija%s"
 
+msgid "Collapse"
+msgstr ""
+
 msgid "Collection name"
 msgstr "Kolekcijas nosaukums"
 
@@ -1955,6 +1978,10 @@ msgstr "Kolumbija"
 
 msgid "Color"
 msgstr "Krāsa"
+
+#, fuzzy
+msgid "Color Actions"
+msgstr "Kopējās iestatīšanas darbības"
 
 msgid "Color format"
 msgstr "Krāsu formāts"
@@ -1983,9 +2010,6 @@ msgstr "Common interfeiss"
 msgid "Common Interface assignment"
 msgstr "Common interfeiss"
 
-msgid "Common Setup Actions"
-msgstr "Kopējās iestatīšanas darbības"
-
 msgid "Communication"
 msgstr "Komunikācija"
 
@@ -2004,8 +2028,9 @@ msgstr "Komplicēts (pieļauj skaņas celiņu un aspektu jaukšanu)"
 msgid "Composition of the recording filenames"
 msgstr "Ieraksta faila nosaukuma veidošana"
 
-msgid "Compress"
-msgstr "Sakļaut"
+#, fuzzy
+msgid "Config List Actions"
+msgstr "Kopējās iestatīšanas darbības"
 
 msgid "Config Scan Details"
 msgstr "Detalizēta informācija"
@@ -2554,6 +2579,14 @@ msgstr "Kursora darbība atverot kanālu sarakstu"
 msgid "Cut"
 msgstr "Griezt"
 
+#, fuzzy
+msgid "Cut List Editor Actions"
+msgstr "Griešanas redaktors"
+
+#, fuzzy
+msgid "Cutlist Seek Actions"
+msgstr "Griešanas redaktors"
+
 msgid "Cutlist editor"
 msgstr "Griešanas redaktors"
 
@@ -2619,6 +2652,18 @@ msgstr "DVD ieraksts"
 
 msgid "DVD Menu"
 msgstr "DVD izvēlne"
+
+#, fuzzy
+msgid "DVD Player Actions"
+msgstr "DVD atskaņotājs"
+
+#, fuzzy
+msgid "DVD Title List"
+msgstr "DVD nosaukumi"
+
+#, fuzzy
+msgid "DVD Toolbox"
+msgstr "DVD mediju aprīkojums"
 
 msgid "DVD data format"
 msgstr "DVD datu formāts"
@@ -2907,6 +2952,10 @@ msgstr "Digitālo kontūru noņemšana"
 msgid "Direct playback of linked titles without menu"
 msgstr "Saistīto nosaukumu tiešā atskaņošana bez izvēlnes"
 
+#, fuzzy
+msgid "Direction Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
 msgid "Directory"
 msgstr "Mape"
 
@@ -3029,6 +3078,10 @@ msgid ""
 msgstr ""
 "Vai tiešām vēlaties pārbaudīt failu sistēmu?\n"
 "Tas var prasīt daudz laika!"
+
+#, fuzzy
+msgid "Do you really want to clear this playlist?"
+msgstr "Vai tiešām vēlaties dzēst %s?"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -3233,6 +3286,10 @@ msgstr ""
 
 msgid "EPG"
 msgstr "EPG"
+
+#, fuzzy
+msgid "EPG Select Actions"
+msgstr "Izvēlieties darbību"
 
 msgid "EPG language selection 1"
 msgstr "EPG valodas izvēle 1"
@@ -3627,6 +3684,14 @@ msgstr "Ethernet tīkla interfeiss"
 
 msgid "Ethiopia"
 msgstr "Etiopija"
+
+#, fuzzy
+msgid "Event View Actions"
+msgstr "Notikuma apskata izvēlne"
+
+#, fuzzy
+msgid "Event ViewEPG Actions"
+msgstr "Notikuma apskata izvēlne"
 
 msgid "Event font size (relative to skin size)"
 msgstr "Notikuma fontu izmērs (salīdzinājumā ar noformējuma izmēru)"
@@ -4129,6 +4194,10 @@ msgstr "Pilnekrāna izšķirtspēja"
 msgid "Fullbackup Images"
 msgstr "Imidži no dublējumkopijas"
 
+#, fuzzy
+msgid "Function Key Actions"
+msgstr "Taustiņa Labi funkcija"
+
 msgid "Function of OK button"
 msgstr "Taustiņa Labi funkcija"
 
@@ -4143,6 +4212,10 @@ msgstr "G"
 
 msgid "GB"
 msgstr "GB"
+
+#, fuzzy
+msgid "GMEPG Select Actions"
+msgstr "Izvēlieties darbību"
 
 msgid "GREEN"
 msgstr ""
@@ -4198,6 +4271,9 @@ msgstr "Gana"
 
 msgid "Gibraltar"
 msgstr "Gibraltārs"
+
+msgid "Global Actions"
+msgstr ""
 
 msgid "Go down the list"
 msgstr "Iet uz saraksta leju"
@@ -4428,6 +4504,10 @@ msgid "Help"
 msgstr ""
 
 #, fuzzy
+msgid "Help Actions"
+msgstr "Izvēlieties darbību"
+
+#, fuzzy
 msgid "Help Screen"
 msgstr "Noturēt ekrānu"
 
@@ -4505,6 +4585,10 @@ msgstr "Ātro taustiņu iestatījumi"
 
 msgid "Hotkey"
 msgstr "Ātrie taustiņi"
+
+#, fuzzy
+msgid "Hotkey Actions"
+msgstr "tālākizglītība"
 
 msgid "Hotkey Panic"
 msgstr "Panikas pārslēgšana uz"
@@ -4741,8 +4825,90 @@ msgstr "Infojosla"
 msgid "Info bar timeout"
 msgstr "Infojoslas noildze"
 
+#, fuzzy
+msgid "Infobar Actions"
+msgstr "Infojoslas noildze"
+
+#, fuzzy
+msgid "Infobar Audio Selection Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
+#, fuzzy
+msgid "Infobar Channel Selection"
+msgstr "Kanālu izvēlne"
+
+msgid "Infobar Cue Sheet Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Extensions"
+msgstr "Instalēt paplašinājumus"
+
+#, fuzzy
+msgid "Infobar Instant Record"
+msgstr "Ieraksts"
+
+#, fuzzy
+msgid "Infobar Menu Actions"
+msgstr "Infojoslas noildze"
+
+#, fuzzy
+msgid "Infobar Movie List Actions"
+msgstr "Mediju iestatījumi"
+
+#, fuzzy
+msgid "Infobar PiP Actions"
+msgstr "Infojoslas noildze"
+
+#, fuzzy
+msgid "Infobar Rds Actions"
+msgstr "Infojoslas noildze"
+
+msgid "Infobar Red Button Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Seek Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
+msgid "Infobar Show Hide Actions"
+msgstr ""
+
+msgid "Infobar Subservice Quickzap Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Subservice Selection Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
+#, fuzzy
+msgid "Infobar Subtitle Selection Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
+#, fuzzy
+msgid "Infobar Teletext Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
+msgid "Infobar Timer Button Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Timeshift Actions"
+msgstr "Laika aiztures vieta"
+
+#, fuzzy
+msgid "Infobar Timeshift Activate Actions"
+msgstr "Laika aiztures vieta"
+
+msgid "Infobar Vmode Button Actions"
+msgstr ""
+
 msgid "Infobar frontend data source"
 msgstr "Infojoslas frontend datu avots"
+
+#, fuzzy
+msgid "InfobarEPG Actions"
+msgstr "Infojoslas noildze"
 
 msgid "Information"
 msgstr "Informācija"
@@ -4789,6 +4955,16 @@ msgstr "Ievade"
 msgid "Input "
 msgstr "Ieeja "
 
+#, fuzzy
+msgid "Input Actions"
+msgstr "Ieeja "
+
+msgid "Input Ascii Actions"
+msgstr ""
+
+msgid "Input Box Actions"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
 
@@ -4818,6 +4994,10 @@ msgstr "Instalēt lokālo paplašinājumu"
 
 msgid "Install picons on"
 msgstr "Instalēt pikonas"
+
+#, fuzzy
+msgid "Install plugin"
+msgstr "Uzstāda"
 
 msgid "Installation has completed."
 msgstr "Uzstādīšana pabeigta."
@@ -5003,6 +5183,10 @@ msgstr "Notikumus"
 msgid "Keyboard"
 msgstr "Tastatūra"
 
+#, fuzzy
+msgid "Keyboard Input Actions"
+msgstr "Virtuālās tastatūras funkcijas"
+
 msgid "Keyboard data entry"
 msgstr "Tastatūras dati"
 
@@ -5174,6 +5358,13 @@ msgid_plural "List version %(ver)d, found %(num)d channels"
 msgstr[0] "Saraksta versija %(ver)d, atrasts %(num)d kanāls"
 msgstr[1] "Saraksta versija %(ver)d, atrasti %(num)d kanāli"
 msgstr[2] "Saraksta versija %(ver)d, atrasti %(num)d kanāli"
+
+#, fuzzy
+msgid "Listbox Actions"
+msgstr "Atrašanās vieta"
+
+msgid "Listbox Help Menu Actions"
+msgstr ""
 
 msgid "Listen to the radio..."
 msgstr "Klausīties radio..."
@@ -5393,6 +5584,16 @@ msgstr "Varbūt pašreiz notiek ieraksts. Pirms konfigurējat pozicionieri lūdz
 msgid "Mayotte"
 msgstr "Majota"
 
+#, fuzzy
+msgid "Media Player Actions"
+msgstr "Mediju atskaņotājs"
+
+msgid "Media Player Cue Sheet Actions"
+msgstr ""
+
+msgid "Media Player Seek Actions"
+msgstr ""
+
 msgid "Media player"
 msgstr "Mediju atskaņotājs"
 
@@ -5416,6 +5617,10 @@ msgstr "Atmiņas indekss"
 
 msgid "Menu"
 msgstr "Izvēlne"
+
+#, fuzzy
+msgid "Menu Actions"
+msgstr "Kopējās iestatīšanas darbības"
 
 msgid "Menu button function"
 msgstr "Izvēlnes pogas funkcija"
@@ -5445,6 +5650,10 @@ msgstr "Minimālais vecums %d gadi"
 
 msgid "Minimum send interval"
 msgstr "Minimālais sūtīšanas intervāls"
+
+#, fuzzy
+msgid "Minute Input Actions"
+msgstr "Izvēlnes pogas funkcija"
 
 msgid "Missing "
 msgstr "Trūkst"
@@ -5598,6 +5807,14 @@ msgstr "Griezt uz pozīciju indeksā"
 msgid "Movement"
 msgstr "Kustība"
 
+#, fuzzy
+msgid "Movie Player Actions"
+msgstr "Mediju faili"
+
+#, fuzzy
+msgid "Movie Selection Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
 msgid "Movie list configuration"
 msgstr "Mediju iestatījumi"
 
@@ -5624,6 +5841,9 @@ msgstr "Griezt uz rietumiem..."
 
 msgid "Mozambique"
 msgstr "Mozambika"
+
+msgid "Msg Box Actions"
+msgstr ""
 
 msgid "Multi EPG"
 msgstr "Daudzkanālu EPG"
@@ -5709,6 +5929,10 @@ msgstr "Nauru"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
 msgstr ""
+
+#, fuzzy
+msgid "Navigation Actions"
+msgstr "Noformējuma izvēlnes darbības"
 
 msgid "Nepal"
 msgstr "Nepāla"
@@ -6041,6 +6265,10 @@ msgstr "Atskaņo"
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Tagad lietojiet kontrasta iestatīšanu lai palielinātu fona spilgtumu cik vien iespējams, bet pārliecinieties, ka divi spilgtāko toņu līmeņi joprojām ir izšķirami. Ja esat to izdarījuši, spiediet OK."
 
+#, fuzzy
+msgid "Number Actions"
+msgstr "tālākizglītība"
+
 msgid "Number of channels shown in channel selection list"
 msgstr "Kanālu daudzums kanālu sarakstā"
 
@@ -6082,6 +6310,10 @@ msgstr "Izslēgts"
 
 msgid "Offline decode delay (ms)"
 msgstr "Bezsaistes dekodēšanas aizture (ms)"
+
+#, fuzzy
+msgid "Ok Cancel Actions"
+msgstr "Atcelt izpildi?"
 
 msgid "Oman"
 msgstr "Omāna"
@@ -6383,6 +6615,10 @@ msgstr "Peru"
 
 msgid "Philippines"
 msgstr "Filipīnas"
+
+#, fuzzy
+msgid "PiP Setup Actions"
+msgstr "Kopējās iestatīšanas darbības"
 
 msgid "PiP setup"
 msgstr "PiP iestatījumi"
@@ -6759,6 +6995,9 @@ msgstr "Pozicioniera iestatījumi"
 msgid "Positioner setup log"
 msgstr "Pozicioniera iestatījumu logs"
 
+msgid "Power Key Actions"
+msgstr ""
+
 msgid "Power LED"
 msgstr "Ieslēgt LED"
 
@@ -7096,6 +7335,10 @@ msgstr "Ram disks"
 msgid "Random"
 msgstr "Nejauša"
 
+#, fuzzy
+msgid "Rass Interactive Actions"
+msgstr "Skatīt Rass interaktīvi..."
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Raidorganizācijas vērtējums - %d"
@@ -7314,6 +7557,10 @@ msgstr "Dzēst no miskastes pēc (dienām)"
 
 msgid "Remove new found flag"
 msgstr "Dzēst 'jaunatrasts' marķējumu"
+
+#, fuzzy
+msgid "Remove plugin"
+msgstr "Dzēst spraudņus"
 
 msgid "Remove plugins"
 msgstr "Dzēst spraudņus"
@@ -7678,6 +7925,9 @@ msgstr "Pavadoņa garuma pozīcija:"
 
 msgid "Satellites"
 msgstr "Pavadoņi"
+
+msgid "Satlist Shortcut Action"
+msgstr ""
 
 msgid "Sats"
 msgstr "Pavad"
@@ -8458,6 +8708,10 @@ msgstr "Iestatījumi būs atšķirīgi katrai direktorijai. Neattiecas uz noņem
 msgid "Setup"
 msgstr "Iestatījumi"
 
+#, fuzzy
+msgid "Setup Actions"
+msgstr "Kopējās iestatīšanas darbības"
+
 msgid "Setup hard disk"
 msgstr "Uzstādiet cieto disku"
 
@@ -8487,6 +8741,10 @@ msgstr "Shift"
 
 msgid "Short filenames"
 msgstr "Īsie failu nosaukumi"
+
+#, fuzzy
+msgid "Shortcut Actions"
+msgstr "Izvēlieties darbību"
 
 msgid "Show"
 msgstr "Rādīt"
@@ -8858,6 +9116,10 @@ msgstr "Izlaist interneta savienojuma pārbaudi (atspējo automātisku pakotņu 
 msgid "Skip jumping to live TV while timeshifting with plugins"
 msgstr "Nepārslēgt uz tiešraidi kad notiek laika aizture"
 
+#, fuzzy
+msgid "Sleep Timer Editor Actions"
+msgstr "Miega taimera iestatījumi"
+
 msgid "Sleep timer"
 msgstr "Miega taimeris"
 
@@ -9102,6 +9364,10 @@ msgstr "Gaidstāve"
 
 msgid "Standby / restart"
 msgstr "Izslēgšana"
+
+#, fuzzy
+msgid "Standby Actions"
+msgstr "Gaidstāvē "
 
 msgid "Standby LED"
 msgstr "LED gaidstāvē"
@@ -9578,6 +9844,10 @@ msgstr "Tadžikistāna"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzānija, Apvienotā Republika"
 
+#, fuzzy
+msgid "Teletext Actions"
+msgstr "Izvēlieties darbību"
+
 msgid "Teletext subtitle color"
 msgstr "Teleteksta subtitru krāsa"
 
@@ -9604,6 +9874,13 @@ msgstr "Testa attēls"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Testa attēls lai palīdzētu noregulēt attēlošanu"
+
+#, fuzzy
+msgid "Text Edit Actions"
+msgstr "Rediģēt"
+
+msgid "Text Entry Actions"
+msgstr ""
 
 msgid "Text View On"
 msgstr "Ieslēgt tekstu"
@@ -10095,6 +10372,10 @@ msgstr "Laika joslas apgabals"
 msgid "Timer"
 msgstr "Taimeri"
 
+#, fuzzy
+msgid "Timer Edit Actions"
+msgstr "Taimeru izvēle"
+
 msgid "Timer Overview"
 msgstr "Taimeru pārskats"
 
@@ -10377,6 +10658,10 @@ msgstr "Noskaņošanas soļa lielums"
 
 msgid "Tuvalu"
 msgstr "Tuvalu"
+
+#, fuzzy
+msgid "Tv Radio Actions"
+msgstr "Uz audio iestatīšanu"
 
 msgid "Two"
 msgstr "Divi"
@@ -10897,11 +11182,19 @@ msgstr "Virdžīniju salas (britu)"
 msgid "Virgin Islands (U.S.)"
 msgstr "Virdžīniju salas (ASV)"
 
+#, fuzzy
+msgid "Virtual Key Board Actions"
+msgstr "Virtuālās tastatūras funkcijas"
+
 msgid "Virtual KeyBoard Functions"
 msgstr "Virtuālās tastatūras funkcijas"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Virtuālās tastatūras teksts:"
+
+#, fuzzy
+msgid "Virtual Keyboard Actions"
+msgstr "Virtuālās tastatūras funkcijas"
 
 msgid "Virtual keyboard"
 msgstr "Virtuālā tastatūra"
@@ -11321,6 +11614,10 @@ msgstr "Kad uztvērējs ieslēdzas no gaidstāves vai pēc izslēgšanas, tas no
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Kur saglabāt pagaidu laika aiztures ierakstus?"
 
+#, fuzzy
+msgid "Window Actions"
+msgstr "Noformējuma izvēlnes darbības"
+
 msgid "Wireless LAN"
 msgstr "Bezvadu tīkls"
 
@@ -11362,6 +11659,10 @@ msgstr "Izmaina LED krāsu, vai izslēdz LED."
 
 msgid "Without popup"
 msgstr "Bez uznirstošā loga"
+
+#, fuzzy
+msgid "Wizard Actions"
+msgstr "Iestatījumi"
 
 msgid "Wizard setup"
 msgstr "Iestatījumi"

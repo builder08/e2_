@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-15 13:08+0100\n"
+"POT-Creation-Date: 2024-12-18 13:25+0000\n"
 "PO-Revision-Date: 2024-03-09 11:25+0100\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: angelodos angelo2807@hotmail.com\n"
@@ -1258,6 +1258,11 @@ msgstr "PID d'àudio"
 msgid "Audio PID%s, codec & lang"
 msgstr "PID d'àudio%s, còdec i idioma"
 
+#
+#, fuzzy
+msgid "Audio Selection Actions"
+msgstr "Accions de selecció de skin"
+
 msgid "Audio auto volume level"
 msgstr "Nivell de volum automàtic d’àudio"
 
@@ -1925,6 +1930,21 @@ msgid "Channel Info"
 msgstr "Informació del canal"
 
 #
+#, fuzzy
+msgid "Channel Select Base Actions"
+msgstr "Selecció de canal"
+
+#
+#, fuzzy
+msgid "Channel Select Edit Actions"
+msgstr "Selecció de canal"
+
+#
+#, fuzzy
+msgid "Channel SelectEPG Actions"
+msgstr "Selecció de canal"
+
+#
 msgid "Channel Selection"
 msgstr "Selecció de canal"
 
@@ -2066,6 +2086,11 @@ msgstr "Triar el sintonitzador que es vol configurar."
 msgid "Christmas Island"
 msgstr "Illa Christmas"
 
+#
+#, fuzzy
+msgid "Ci Selection Actions"
+msgstr "Accions de selecció de skin"
+
 msgid "Circular LNB"
 msgstr "LNB circular"
 
@@ -2135,6 +2160,9 @@ msgstr "LP de tasa de codificació"
 msgid "Codec & lang%s"
 msgstr "Còdec i idioma%s"
 
+msgid "Collapse"
+msgstr ""
+
 #
 msgid "Collection name"
 msgstr "Nom de la col·lecció"
@@ -2150,6 +2178,11 @@ msgstr "Colòmbia"
 #
 msgid "Color"
 msgstr "Color"
+
+#
+#, fuzzy
+msgid "Color Actions"
+msgstr "Accions de selecció de skin"
 
 #
 msgid "Color format"
@@ -2185,11 +2218,6 @@ msgid "Common Interface assignment"
 msgstr "Assignació d’interfície comuna"
 
 #
-#, fuzzy
-msgid "Common Setup Actions"
-msgstr "Accions de selecció de skin"
-
-#
 msgid "Communication"
 msgstr "Comunicació"
 
@@ -2212,8 +2240,9 @@ msgid "Composition of the recording filenames"
 msgstr "Composició dels noms de fitxers d'enregistrament"
 
 #
-msgid "Compress"
-msgstr "Comprimir"
+#, fuzzy
+msgid "Config List Actions"
+msgstr "Accions de selecció de skin"
 
 msgid "Config Scan Details"
 msgstr "Configurar els detalls d’escaneig"
@@ -2795,6 +2824,14 @@ msgstr "Personalitzar el comportament del cursor de la llista de canals"
 msgid "Cut"
 msgstr "Tallar"
 
+#, fuzzy
+msgid "Cut List Editor Actions"
+msgstr "Editor de llista de talls"
+
+#, fuzzy
+msgid "Cutlist Seek Actions"
+msgstr "Editor de llista de talls"
+
 msgid "Cutlist editor"
 msgstr "Editor de llista de talls"
 
@@ -2868,6 +2905,21 @@ msgstr "Gravació de DVD"
 
 msgid "DVD Menu"
 msgstr "Menú de DVD"
+
+#
+#, fuzzy
+msgid "DVD Player Actions"
+msgstr "Reproductor de DVD"
+
+#
+#, fuzzy
+msgid "DVD Title List"
+msgstr "Llista de títols de DVD"
+
+#
+#, fuzzy
+msgid "DVD Toolbox"
+msgstr "Caixa d’eines multimèdia de DVD"
 
 msgid "DVD data format"
 msgstr "Format de dades de DVD"
@@ -3196,6 +3248,11 @@ msgstr "Eliminació del contorn digital"
 msgid "Direct playback of linked titles without menu"
 msgstr "Reproducció directa de títols enllaçats sense menú"
 
+#
+#, fuzzy
+msgid "Direction Actions"
+msgstr "Accions de selecció de skin"
+
 msgid "Directory"
 msgstr "Directori"
 
@@ -3341,6 +3398,11 @@ msgid ""
 msgstr ""
 "Segur que vols comprovar el sistema de fitxers?\n"
 "Això podria trigar molt!"
+
+#
+#, fuzzy
+msgid "Do you really want to clear this playlist?"
+msgstr "Segur que vols eliminar %s?"
 
 #
 #, python-format
@@ -3577,6 +3639,10 @@ msgstr ""
 
 msgid "EPG"
 msgstr "EPG"
+
+#, fuzzy
+msgid "EPG Select Actions"
+msgstr "Seleccionar acció"
 
 msgid "EPG language selection 1"
 msgstr "Selecció d’idioma d'EPG 1"
@@ -4010,6 +4076,16 @@ msgstr "Interfície de xarxa Ethernet"
 
 msgid "Ethiopia"
 msgstr "Etiòpia"
+
+#
+#, fuzzy
+msgid "Event View Actions"
+msgstr "Menú de visualització d’esdeveniments"
+
+#
+#, fuzzy
+msgid "Event ViewEPG Actions"
+msgstr "Menú de visualització d’esdeveniments"
 
 msgid "Event font size (relative to skin size)"
 msgstr "Mida de la lletra d’esdeveniment (en relació amb la mida de la skin)"
@@ -4564,6 +4640,10 @@ msgstr "Resolució de vista sencera"
 msgid "Fullbackup Images"
 msgstr "Imatges de còpia de seguretat completa"
 
+#, fuzzy
+msgid "Function Key Actions"
+msgstr "Funció del botó OK"
+
 msgid "Function of OK button"
 msgstr "Funció del botó OK"
 
@@ -4579,6 +4659,10 @@ msgstr "G"
 #
 msgid "GB"
 msgstr "GB"
+
+#, fuzzy
+msgid "GMEPG Select Actions"
+msgstr "Seleccionar acció"
 
 msgid "GREEN"
 msgstr ""
@@ -4641,6 +4725,9 @@ msgstr "Ghana"
 
 msgid "Gibraltar"
 msgstr "Gibraltar"
+
+msgid "Global Actions"
+msgstr ""
 
 msgid "Go down the list"
 msgstr "Baixar per la llista"
@@ -4890,6 +4977,10 @@ msgid "Help"
 msgstr ""
 
 #, fuzzy
+msgid "Help Actions"
+msgstr "Seleccionar acció"
+
+#, fuzzy
 msgid "Help Screen"
 msgstr "Mantenir la pantalla"
 
@@ -4970,6 +5061,10 @@ msgstr "Configuració de botó directe"
 
 msgid "Hotkey"
 msgstr "Botó directe"
+
+#, fuzzy
+msgid "Hotkey Actions"
+msgstr "educació superior"
 
 msgid "Hotkey Panic"
 msgstr "Botó de pànic directe"
@@ -5226,8 +5321,105 @@ msgstr "Barra d’informació"
 msgid "Info bar timeout"
 msgstr "Temps d’espera de la barra d’informació"
 
+#
+#, fuzzy
+msgid "Infobar Actions"
+msgstr "Temps d’espera de la barra d’informació"
+
+#
+#, fuzzy
+msgid "Infobar Audio Selection Actions"
+msgstr "Accions de selecció de skin"
+
+#
+#, fuzzy
+msgid "Infobar Channel Selection"
+msgstr "Selecció de canal"
+
+msgid "Infobar Cue Sheet Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Extensions"
+msgstr "Instal·lar extensions"
+
+#
+#, fuzzy
+msgid "Infobar Instant Record"
+msgstr "Enregistrament instantani"
+
+#
+#, fuzzy
+msgid "Infobar Menu Actions"
+msgstr "Temps d’espera de la barra d’informació"
+
+#
+#, fuzzy
+msgid "Infobar Movie List Actions"
+msgstr "Configuració de la llista de pel·lícules"
+
+#
+#, fuzzy
+msgid "Infobar PiP Actions"
+msgstr "Temps d’espera de la barra d’informació"
+
+#
+#, fuzzy
+msgid "Infobar Rds Actions"
+msgstr "Temps d’espera de la barra d’informació"
+
+msgid "Infobar Red Button Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Seek Actions"
+msgstr "Accions de selecció de skin"
+
+msgid "Infobar Show Hide Actions"
+msgstr ""
+
+msgid "Infobar Subservice Quickzap Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Subservice Selection Actions"
+msgstr "Accions de selecció de skin"
+
+#
+#, fuzzy
+msgid "Infobar Subtitle Selection Actions"
+msgstr "Accions de selecció de skin"
+
+#
+#, fuzzy
+msgid "Infobar Teletext Actions"
+msgstr "Accions de selecció de skin"
+
+msgid "Infobar Timer Button Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Timeshift Actions"
+msgstr "Ubicació de timeshift"
+
+#
+#, fuzzy
+msgid "Infobar Timeshift Activate Actions"
+msgstr "Ubicació de timeshift"
+
+msgid "Infobar Vmode Button Actions"
+msgstr ""
+
 msgid "Infobar frontend data source"
 msgstr "Font de dades del frontend de la barra d'informació"
+
+#
+#, fuzzy
+msgid "InfobarEPG Actions"
+msgstr "Temps d’espera de la barra d’informació"
 
 #
 msgid "Information"
@@ -5283,6 +5475,17 @@ msgstr "Entrada"
 msgid "Input "
 msgstr "Entrada "
 
+#
+#, fuzzy
+msgid "Input Actions"
+msgstr "Entrada "
+
+msgid "Input Ascii Actions"
+msgstr ""
+
+msgid "Input Box Actions"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr "Identificador de flux d’entrada"
 
@@ -5319,6 +5522,11 @@ msgstr "Instal·lar extensió local"
 
 msgid "Install picons on"
 msgstr "Instal·lar picons a"
+
+#
+#, fuzzy
+msgid "Install plugin"
+msgstr "Instal·lant"
 
 msgid "Installation has completed."
 msgstr "La instal·lació s’ha completat."
@@ -5524,6 +5732,10 @@ msgstr "Esdeveniments clau"
 msgid "Keyboard"
 msgstr "Teclat"
 
+#, fuzzy
+msgid "Keyboard Input Actions"
+msgstr "Funcions del teclat virtual"
+
 #
 msgid "Keyboard data entry"
 msgstr "Entrada de dades del teclat"
@@ -5717,6 +5929,14 @@ msgid "List version %(ver)d, found %(num)d channel"
 msgid_plural "List version %(ver)d, found %(num)d channels"
 msgstr[0] "Versió de llista %(ver)d, trobada %(num)d canal"
 msgstr[1] "Versió de llista %(ver)d, trobada %(num)d canals"
+
+#
+#, fuzzy
+msgid "Listbox Actions"
+msgstr "Ubicació"
+
+msgid "Listbox Help Menu Actions"
+msgstr ""
 
 #
 msgid "Listen to the radio..."
@@ -5967,6 +6187,17 @@ msgid "Mayotte"
 msgstr "Mayotte"
 
 #
+#, fuzzy
+msgid "Media Player Actions"
+msgstr "Reproductor multimèdia"
+
+msgid "Media Player Cue Sheet Actions"
+msgstr ""
+
+msgid "Media Player Seek Actions"
+msgstr ""
+
+#
 msgid "Media player"
 msgstr "Reproductor multimèdia"
 
@@ -5994,6 +6225,11 @@ msgstr "Índex de memòria"
 #
 msgid "Menu"
 msgstr "Menú"
+
+#
+#, fuzzy
+msgid "Menu Actions"
+msgstr "Accions de selecció de skin"
 
 #
 #, fuzzy
@@ -6028,6 +6264,11 @@ msgstr "Edat mínima de %d anys"
 
 msgid "Minimum send interval"
 msgstr "Interval d’enviament mínim"
+
+#
+#, fuzzy
+msgid "Minute Input Actions"
+msgstr "Seleccionar funció"
 
 msgid "Missing "
 msgstr "Falta "
@@ -6206,6 +6447,16 @@ msgid "Movement"
 msgstr "Moviment"
 
 #
+#, fuzzy
+msgid "Movie Player Actions"
+msgstr "Selecció de pel·lícules"
+
+#
+#, fuzzy
+msgid "Movie Selection Actions"
+msgstr "Accions de selecció de skin"
+
+#
 msgid "Movie list configuration"
 msgstr "Configuració de la llista de pel·lícules"
 
@@ -6235,6 +6486,9 @@ msgstr "En desplaçament cap a l’oest …"
 
 msgid "Mozambique"
 msgstr "Moçambic"
+
+msgid "Msg Box Actions"
+msgstr ""
 
 #
 msgid "Multi EPG"
@@ -6335,6 +6589,11 @@ msgstr "Nauru"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Navigation Actions"
+msgstr "Accions de selecció de skin"
 
 msgid "Nepal"
 msgstr "Nepal"
@@ -6715,6 +6974,10 @@ msgstr "Reproduint ara"
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Ara utilitza la configuració de contrast per ajustar la brillantor del fons al màxim possible, però assegura't que encara pots veure la diferència entre els dos nivells de tons més brillants. Si ja ho has fet, prem OK."
 
+#, fuzzy
+msgid "Number Actions"
+msgstr "educació superior"
+
 msgid "Number of channels shown in channel selection list"
 msgstr "Núm. de canals mostrats a la llista de sel. de canal"
 
@@ -6760,6 +7023,11 @@ msgstr "Desactivat"
 
 msgid "Offline decode delay (ms)"
 msgstr "Retard de descodificació fora de línia (ms)"
+
+#
+#, fuzzy
+msgid "Ok Cancel Actions"
+msgstr "Anul·lar execució?"
 
 msgid "Oman"
 msgstr "Oman"
@@ -7083,6 +7351,11 @@ msgstr "Perú"
 
 msgid "Philippines"
 msgstr "Filipines"
+
+#
+#, fuzzy
+msgid "PiP Setup Actions"
+msgstr "Accions de selecció de skin"
 
 #
 msgid "PiP setup"
@@ -7530,6 +7803,9 @@ msgstr "Configuració del posicionador"
 msgid "Positioner setup log"
 msgstr "Registre de configuració del posicionador"
 
+msgid "Power Key Actions"
+msgstr ""
+
 msgid "Power LED"
 msgstr "LED d'alimentació"
 
@@ -7901,6 +8177,11 @@ msgstr "Disc RAM"
 msgid "Random"
 msgstr "Aleatori"
 
+#
+#, fuzzy
+msgid "Rass Interactive Actions"
+msgstr "Veure Rass interactiu…"
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Classificació definida per un emissor - %d"
@@ -8151,6 +8432,11 @@ msgstr "Eliminar els elements de la paperera després de (dies)"
 #
 msgid "Remove new found flag"
 msgstr "Eliminar marca de nou trobat"
+
+#
+#, fuzzy
+msgid "Remove plugin"
+msgstr "Eliminar plugins"
 
 #
 msgid "Remove plugins"
@@ -8566,6 +8852,9 @@ msgstr "Longitud del satèl·lit:"
 #
 msgid "Satellites"
 msgstr "Satèl·lits"
+
+msgid "Satlist Shortcut Action"
+msgstr ""
 
 #
 msgid "Sats"
@@ -9455,6 +9744,11 @@ msgid "Setup"
 msgstr "Configuració"
 
 #
+#, fuzzy
+msgid "Setup Actions"
+msgstr "Accions de selecció de skin"
+
+#
 msgid "Setup hard disk"
 msgstr "Configuració del disc dur"
 
@@ -9487,6 +9781,10 @@ msgstr "Shift"
 
 msgid "Short filenames"
 msgstr "Noms de fitxer curts"
+
+#, fuzzy
+msgid "Shortcut Actions"
+msgstr "Seleccionar acció"
 
 msgid "Show"
 msgstr "Espectacle"
@@ -9897,6 +10195,10 @@ msgstr "Ometre verificació de la connexió a Internet (desactiva la instal·lac
 msgid "Skip jumping to live TV while timeshifting with plugins"
 msgstr "Ometre saltar a la TV en directe quan s'utilitza timeshift amb plugins"
 
+#, fuzzy
+msgid "Sleep Timer Editor Actions"
+msgstr "Configuració del programador de suspensió"
+
 #
 msgid "Sleep timer"
 msgstr "Programador de suspensió"
@@ -10162,6 +10464,10 @@ msgstr "Mode standby"
 #
 msgid "Standby / restart"
 msgstr "Mode standby / reinici"
+
+#, fuzzy
+msgid "Standby Actions"
+msgstr "Standby en "
 
 #
 msgid "Standby LED"
@@ -10700,6 +11006,10 @@ msgstr "Tajikistan"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzània, República Unida de"
 
+#, fuzzy
+msgid "Teletext Actions"
+msgstr "Seleccionar acció"
+
 msgid "Teletext subtitle color"
 msgstr "Color de subtítols del teletext"
 
@@ -10731,6 +11041,14 @@ msgstr "Pantalles de proves"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Pantalles de proves que serveixen per ajustar amb precisió la pantalla"
+
+#
+#, fuzzy
+msgid "Text Edit Actions"
+msgstr "Editar selecció"
+
+msgid "Text Entry Actions"
+msgstr ""
 
 msgid "Text View On"
 msgstr "Visualització de text activada"
@@ -11255,6 +11573,11 @@ msgstr "Zona de fus horari"
 msgid "Timer"
 msgstr "Programador"
 
+#
+#, fuzzy
+msgid "Timer Edit Actions"
+msgstr "Selecció de programador"
+
 msgid "Timer Overview"
 msgstr "Visió general de programador"
 
@@ -11587,6 +11910,10 @@ msgstr "Mida de pas de rotació"
 
 msgid "Tuvalu"
 msgstr "Tuvalu"
+
+#, fuzzy
+msgid "Tv Radio Actions"
+msgstr "A la selecció d’àudio"
 
 #
 msgid "Two"
@@ -12176,11 +12503,19 @@ msgstr "Illes Verges (britàniques)"
 msgid "Virgin Islands (U.S.)"
 msgstr "Illes Verges (EUA)"
 
+#, fuzzy
+msgid "Virtual Key Board Actions"
+msgstr "Funcions del teclat virtual"
+
 msgid "Virtual KeyBoard Functions"
 msgstr "Funcions del teclat virtual"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Text del teclat virtual:"
+
+#, fuzzy
+msgid "Virtual Keyboard Actions"
+msgstr "Funcions del teclat virtual"
 
 msgid "Virtual keyboard"
 msgstr "Teclat virtual"
@@ -12616,6 +12951,11 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "On desar els enregistraments de timeshift temporals?"
 
 #
+#, fuzzy
+msgid "Window Actions"
+msgstr "Accions de selecció de skin"
+
+#
 msgid "Wireless LAN"
 msgstr "Xarxa local sense fils"
 
@@ -12658,6 +12998,11 @@ msgstr "Amb aquesta opció, pots canviar el color del LED o desactivar el LED."
 
 msgid "Without popup"
 msgstr "Sense finestra emergent"
+
+#
+#, fuzzy
+msgid "Wizard Actions"
+msgstr "Configuració de l’assistent"
 
 #
 msgid "Wizard setup"

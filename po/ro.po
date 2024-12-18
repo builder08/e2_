@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-15 13:08+0100\n"
+"POT-Creation-Date: 2024-12-18 13:25+0000\n"
 "PO-Revision-Date: 2010-03-09 21:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -1156,6 +1156,10 @@ msgstr ""
 msgid "Audio PID%s, codec & lang"
 msgstr ""
 
+#, fuzzy
+msgid "Audio Selection Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Audio auto volume level"
 msgstr ""
 
@@ -1763,6 +1767,18 @@ msgid "Channel Info"
 msgstr ""
 
 #, fuzzy
+msgid "Channel Select Base Actions"
+msgstr "Selectie canal"
+
+#, fuzzy
+msgid "Channel Select Edit Actions"
+msgstr "Selectie canal"
+
+#, fuzzy
+msgid "Channel SelectEPG Actions"
+msgstr "Selectie canal"
+
+#, fuzzy
 msgid "Channel Selection"
 msgstr "Selectie canal"
 
@@ -1896,6 +1912,10 @@ msgstr ""
 msgid "Christmas Island"
 msgstr ""
 
+#, fuzzy
+msgid "Ci Selection Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Circular LNB"
 msgstr ""
 
@@ -1958,6 +1978,9 @@ msgstr ""
 msgid "Codec & lang%s"
 msgstr ""
 
+msgid "Collapse"
+msgstr ""
+
 msgid "Collection name"
 msgstr "Nume colectie"
 
@@ -1971,6 +1994,10 @@ msgstr "Format color"
 #, fuzzy
 msgid "Color"
 msgstr "Format color"
+
+#, fuzzy
+msgid "Color Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 #, fuzzy
 msgid "Color format"
@@ -2002,10 +2029,6 @@ msgstr "Common Interface"
 msgid "Common Interface assignment"
 msgstr "Atribuirea pentru Common Interface"
 
-#, fuzzy
-msgid "Common Setup Actions"
-msgstr "Alege locatia copiei de siguranta"
-
 msgid "Communication"
 msgstr "Comunicare"
 
@@ -2026,8 +2049,8 @@ msgid "Composition of the recording filenames"
 msgstr ""
 
 #, fuzzy
-msgid "Compress"
-msgstr "Incheiat"
+msgid "Config List Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 msgid "Config Scan Details"
 msgstr ""
@@ -2597,6 +2620,14 @@ msgstr ""
 msgid "Cut"
 msgstr "Taie"
 
+#, fuzzy
+msgid "Cut List Editor Actions"
+msgstr "Editor montaj..."
+
+#, fuzzy
+msgid "Cutlist Seek Actions"
+msgstr "Selectare subtitrare"
+
 msgid "Cutlist editor"
 msgstr ""
 
@@ -2665,6 +2696,18 @@ msgstr ""
 
 msgid "DVD Menu"
 msgstr ""
+
+#, fuzzy
+msgid "DVD Player Actions"
+msgstr "Player DVD"
+
+#, fuzzy
+msgid "DVD Title List"
+msgstr "lista alba"
+
+#, fuzzy
+msgid "DVD Toolbox"
+msgstr "Instrumente DVD"
 
 msgid "DVD data format"
 msgstr ""
@@ -2972,6 +3015,10 @@ msgstr ""
 msgid "Direct playback of linked titles without menu"
 msgstr "Redare directa a titlurilor fara meniu"
 
+#, fuzzy
+msgid "Direction Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Directory"
 msgstr ""
 
@@ -3108,6 +3155,10 @@ msgid ""
 msgstr ""
 "Confirmati verificarea sistemului de fisiere?\n"
 "Aceasta operatiune ar putea dura foarte mult"
+
+#, fuzzy
+msgid "Do you really want to clear this playlist?"
+msgstr "Confirmati stergerea %s?"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -3312,6 +3363,10 @@ msgstr ""
 
 msgid "EPG"
 msgstr ""
+
+#, fuzzy
+msgid "EPG Select Actions"
+msgstr "Selectie EPG"
 
 msgid "EPG language selection 1"
 msgstr ""
@@ -3708,6 +3763,14 @@ msgstr ""
 
 msgid "Ethiopia"
 msgstr ""
+
+#, fuzzy
+msgid "Event View Actions"
+msgstr "Detalii eveniment"
+
+#, fuzzy
+msgid "Event ViewEPG Actions"
+msgstr "Detalii eveniment"
 
 msgid "Event font size (relative to skin size)"
 msgstr ""
@@ -4219,6 +4282,10 @@ msgstr ""
 msgid "Fullbackup Images"
 msgstr "Flash"
 
+#, fuzzy
+msgid "Function Key Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Function of OK button"
 msgstr ""
 
@@ -4234,6 +4301,10 @@ msgstr ""
 #, fuzzy
 msgid "GB"
 msgstr "RGB"
+
+#, fuzzy
+msgid "GMEPG Select Actions"
+msgstr "Selectie EPG"
 
 msgid "GREEN"
 msgstr ""
@@ -4292,6 +4363,9 @@ msgid "Ghana"
 msgstr ""
 
 msgid "Gibraltar"
+msgstr ""
+
+msgid "Global Actions"
 msgstr ""
 
 msgid "Go down the list"
@@ -4537,6 +4611,10 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#, fuzzy
+msgid "Help Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Help Screen"
 msgstr ""
 
@@ -4616,6 +4694,10 @@ msgstr ""
 
 msgid "Hotkey"
 msgstr ""
+
+#, fuzzy
+msgid "Hotkey Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 msgid "Hotkey Panic"
 msgstr ""
@@ -4853,8 +4935,88 @@ msgstr "Bara de informatii"
 msgid "Info bar timeout"
 msgstr "Timeout bara de informatii"
 
+#, fuzzy
+msgid "Infobar Actions"
+msgstr "Timeout bara de informatii"
+
+#, fuzzy
+msgid "Infobar Audio Selection Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+#, fuzzy
+msgid "Infobar Channel Selection"
+msgstr "Selectie canal"
+
+msgid "Infobar Cue Sheet Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Extensions"
+msgstr "Extensii"
+
+#, fuzzy
+msgid "Infobar Instant Record"
+msgstr "Inregistrare instant"
+
+#, fuzzy
+msgid "Infobar Menu Actions"
+msgstr "Timeout bara de informatii"
+
+#, fuzzy
+msgid "Infobar Movie List Actions"
+msgstr "Configurare tuner"
+
+#, fuzzy
+msgid "Infobar PiP Actions"
+msgstr "Timeout bara de informatii"
+
+#, fuzzy
+msgid "Infobar Rds Actions"
+msgstr "Timeout bara de informatii"
+
+msgid "Infobar Red Button Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Seek Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+msgid "Infobar Show Hide Actions"
+msgstr ""
+
+msgid "Infobar Subservice Quickzap Actions"
+msgstr ""
+
+#, fuzzy
+msgid "Infobar Subservice Selection Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+#, fuzzy
+msgid "Infobar Subtitle Selection Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+#, fuzzy
+msgid "Infobar Teletext Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+msgid "Infobar Timer Button Actions"
+msgstr ""
+
+msgid "Infobar Timeshift Actions"
+msgstr ""
+
+msgid "Infobar Timeshift Activate Actions"
+msgstr ""
+
+msgid "Infobar Vmode Button Actions"
+msgstr ""
+
 msgid "Infobar frontend data source"
 msgstr ""
+
+#, fuzzy
+msgid "InfobarEPG Actions"
+msgstr "Timeout bara de informatii"
 
 msgid "Information"
 msgstr "Informatii"
@@ -4905,6 +5067,16 @@ msgstr "Intrare"
 msgid "Input "
 msgstr "Intrare"
 
+#, fuzzy
+msgid "Input Actions"
+msgstr "Intrare"
+
+msgid "Input Ascii Actions"
+msgstr ""
+
+msgid "Input Box Actions"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -4937,6 +5109,10 @@ msgstr ""
 
 msgid "Install picons on"
 msgstr ""
+
+#, fuzzy
+msgid "Install plugin"
+msgstr "Instaleaza"
 
 #, fuzzy
 msgid "Installation has completed."
@@ -5134,6 +5310,10 @@ msgid "Keyboard"
 msgstr "Tastatura"
 
 #, fuzzy
+msgid "Keyboard Input Actions"
+msgstr "Tastatura Virtuala"
+
+#, fuzzy
 msgid "Keyboard data entry"
 msgstr "Configurare tastatura"
 
@@ -5313,6 +5493,13 @@ msgid "List version %(ver)d, found %(num)d channel"
 msgid_plural "List version %(ver)d, found %(num)d channels"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+msgid "Listbox Actions"
+msgstr "Locatie"
+
+msgid "Listbox Help Menu Actions"
+msgstr ""
 
 #, fuzzy
 msgid "Listen to the radio..."
@@ -5545,6 +5732,16 @@ msgstr ""
 msgid "Mayotte"
 msgstr ""
 
+#, fuzzy
+msgid "Media Player Actions"
+msgstr "Media player"
+
+msgid "Media Player Cue Sheet Actions"
+msgstr ""
+
+msgid "Media Player Seek Actions"
+msgstr ""
+
 msgid "Media player"
 msgstr "Media player"
 
@@ -5569,6 +5766,10 @@ msgstr ""
 
 msgid "Menu"
 msgstr "Meniu"
+
+#, fuzzy
+msgid "Menu Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 #, fuzzy
 msgid "Menu button function"
@@ -5600,6 +5801,10 @@ msgstr ""
 
 msgid "Minimum send interval"
 msgstr ""
+
+#, fuzzy
+msgid "Minute Input Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 msgid "Missing "
 msgstr ""
@@ -5770,6 +5975,14 @@ msgid "Movement"
 msgstr ""
 
 #, fuzzy
+msgid "Movie Player Actions"
+msgstr "Selectare timer"
+
+#, fuzzy
+msgid "Movie Selection Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+#, fuzzy
 msgid "Movie list configuration"
 msgstr "Configurare tuner"
 
@@ -5796,6 +6009,9 @@ msgid "Moving west..."
 msgstr ""
 
 msgid "Mozambique"
+msgstr ""
+
+msgid "Msg Box Actions"
 msgstr ""
 
 msgid "Multi EPG"
@@ -5885,6 +6101,10 @@ msgstr ""
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
 msgstr ""
+
+#, fuzzy
+msgid "Navigation Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 msgid "Nepal"
 msgstr ""
@@ -6235,6 +6455,10 @@ msgstr "In redare acum"
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Acum, folositi setarile pentru contrast pentru a ridica luminozitatea de fundalcat mai mult posibil, dar asigurati-va ca pueti vedea inca diferentaintre umbrele cele mai luminoase. Daca ati facut aceasta, apasati OK."
 
+#, fuzzy
+msgid "Number Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Number of channels shown in channel selection list"
 msgstr ""
 
@@ -6278,6 +6502,10 @@ msgstr "Oprit"
 
 msgid "Offline decode delay (ms)"
 msgstr ""
+
+#, fuzzy
+msgid "Ok Cancel Actions"
+msgstr "Selectie canal"
 
 msgid "Oman"
 msgstr ""
@@ -6594,6 +6822,10 @@ msgstr ""
 
 msgid "Philippines"
 msgstr ""
+
+#, fuzzy
+msgid "PiP Setup Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 #, fuzzy
 msgid "PiP setup"
@@ -6984,6 +7216,9 @@ msgstr "Configurare Pozitioner"
 msgid "Positioner setup log"
 msgstr ""
 
+msgid "Power Key Actions"
+msgstr ""
+
 msgid "Power LED"
 msgstr ""
 
@@ -7321,6 +7556,10 @@ msgstr "Disk Ram"
 msgid "Random"
 msgstr "Aleator"
 
+#, fuzzy
+msgid "Rass Interactive Actions"
+msgstr "Vezi Rass interactive..."
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr ""
@@ -7545,6 +7784,10 @@ msgstr ""
 
 msgid "Remove new found flag"
 msgstr "Elimina insemnul nou"
+
+#, fuzzy
+msgid "Remove plugin"
+msgstr "Eliminare plugin-uri"
 
 msgid "Remove plugins"
 msgstr "Eliminare plugin-uri"
@@ -7921,6 +8164,9 @@ msgstr ""
 
 msgid "Satellites"
 msgstr "Sateliti"
+
+msgid "Satlist Shortcut Action"
+msgstr ""
 
 msgid "Sats"
 msgstr "Sateliti"
@@ -8757,6 +9003,10 @@ msgid "Setup"
 msgstr "Configurare"
 
 #, fuzzy
+msgid "Setup Actions"
+msgstr "Alege locatia copiei de siguranta"
+
+#, fuzzy
 msgid "Setup hard disk"
 msgstr "Hard disc"
 
@@ -8788,6 +9038,10 @@ msgstr ""
 
 msgid "Short filenames"
 msgstr ""
+
+#, fuzzy
+msgid "Shortcut Actions"
+msgstr "Alege locatia copiei de siguranta"
 
 #, fuzzy
 msgid "Show"
@@ -9184,6 +9438,9 @@ msgstr ""
 msgid "Skip jumping to live TV while timeshifting with plugins"
 msgstr ""
 
+msgid "Sleep Timer Editor Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Sleep timer"
 msgstr "Sleep timer"
@@ -9443,6 +9700,10 @@ msgstr "Asteptare"
 #, fuzzy
 msgid "Standby / restart"
 msgstr "Asteptare / Restart"
+
+#, fuzzy
+msgid "Standby Actions"
+msgstr "Asteptare"
 
 #, fuzzy
 msgid "Standby LED"
@@ -9957,6 +10218,10 @@ msgstr ""
 msgid "Tanzania, United Republic of"
 msgstr ""
 
+#, fuzzy
+msgid "Teletext Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Teletext subtitle color"
 msgstr ""
 
@@ -9984,6 +10249,13 @@ msgid "Testscreens"
 msgstr ""
 
 msgid "Testscreens that are helpfull to fine-tune your display"
+msgstr ""
+
+#, fuzzy
+msgid "Text Edit Actions"
+msgstr "Selectie EPG"
+
+msgid "Text Entry Actions"
 msgstr ""
 
 msgid "Text View On"
@@ -10457,6 +10729,10 @@ msgstr "Zona de fus orar"
 msgid "Timer"
 msgstr "Timer"
 
+#, fuzzy
+msgid "Timer Edit Actions"
+msgstr "Selectare timer"
+
 msgid "Timer Overview"
 msgstr ""
 
@@ -10755,6 +11031,9 @@ msgid "Turning step size"
 msgstr ""
 
 msgid "Tuvalu"
+msgstr ""
+
+msgid "Tv Radio Actions"
 msgstr ""
 
 msgid "Two"
@@ -11306,11 +11585,19 @@ msgid "Virgin Islands (U.S.)"
 msgstr ""
 
 #, fuzzy
+msgid "Virtual Key Board Actions"
+msgstr "Tastatura Virtuala"
+
+#, fuzzy
 msgid "Virtual KeyBoard Functions"
 msgstr "Tastatura Virtuala"
 
 #, fuzzy
 msgid "Virtual KeyBoard Text:"
+msgstr "Tastatura Virtuala"
+
+#, fuzzy
+msgid "Virtual Keyboard Actions"
 msgstr "Tastatura Virtuala"
 
 #, fuzzy
@@ -11726,6 +12013,10 @@ msgstr ""
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Unde salvam inregistrarile temporate timeshift?"
 
+#, fuzzy
+msgid "Window Actions"
+msgstr "Alege locatia copiei de siguranta"
+
 msgid "Wireless LAN"
 msgstr ""
 
@@ -11770,6 +12061,10 @@ msgstr ""
 
 msgid "Without popup"
 msgstr ""
+
+#, fuzzy
+msgid "Wizard Actions"
+msgstr "Video Setup"
 
 #, fuzzy
 msgid "Wizard setup"

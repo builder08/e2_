@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-15 13:08+0100\n"
+"POT-Creation-Date: 2024-12-18 13:25+0000\n"
 "PO-Revision-Date: 2023-01-01 16:49+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -1249,6 +1249,11 @@ msgstr "Lyd PID"
 msgid "Audio PID%s, codec & lang"
 msgstr "Lyd-PID%s, codec & språk"
 
+#
+#, fuzzy
+msgid "Audio Selection Actions"
+msgstr "Handlinger for valg av skin"
+
 msgid "Audio auto volume level"
 msgstr "Auto lydvolum nivå"
 
@@ -1921,6 +1926,18 @@ msgid "Channel Info"
 msgstr "Kanal info"
 
 #, fuzzy
+msgid "Channel Select Base Actions"
+msgstr "Kanalvalg"
+
+#, fuzzy
+msgid "Channel Select Edit Actions"
+msgstr "Kanalvalg"
+
+#, fuzzy
+msgid "Channel SelectEPG Actions"
+msgstr "Kanalvalg"
+
+#, fuzzy
 msgid "Channel Selection"
 msgstr "Kanalvalg"
 
@@ -2063,6 +2080,11 @@ msgid "Christmas Island"
 msgstr "Christmas Island"
 
 #
+#, fuzzy
+msgid "Ci Selection Actions"
+msgstr "Handlinger for valg av skin"
+
+#
 msgid "Circular LNB"
 msgstr "Sirkulær LNB"
 
@@ -2130,6 +2152,9 @@ msgstr "Kode hastighet LP"
 msgid "Codec & lang%s"
 msgstr ""
 
+msgid "Collapse"
+msgstr ""
+
 #
 msgid "Collection name"
 msgstr "Navnesamling"
@@ -2145,6 +2170,11 @@ msgstr "Colombia"
 #
 msgid "Color"
 msgstr "Farge"
+
+#
+#, fuzzy
+msgid "Color Actions"
+msgstr "Handlinger for valg av skin"
 
 #
 msgid "Color format"
@@ -2180,11 +2210,6 @@ msgid "Common Interface assignment"
 msgstr "Tildeling av Cam modul"
 
 #
-#, fuzzy
-msgid "Common Setup Actions"
-msgstr "Handlinger for valg av skin"
-
-#
 msgid "Communication"
 msgstr "Kommunikasjon"
 
@@ -2207,8 +2232,9 @@ msgid "Composition of the recording filenames"
 msgstr "Sammensetning på opptakenes filnavn"
 
 #
-msgid "Compress"
-msgstr "Lukk"
+#, fuzzy
+msgid "Config List Actions"
+msgstr "Handlinger for valg av skin"
 
 msgid "Config Scan Details"
 msgstr "Still inn søkedetaljer"
@@ -2795,6 +2821,16 @@ msgid "Cut"
 msgstr "Klipp"
 
 #
+#, fuzzy
+msgid "Cut List Editor Actions"
+msgstr "Klipp og lim editor"
+
+#
+#, fuzzy
+msgid "Cutlist Seek Actions"
+msgstr "Klipp og lim editor"
+
+#
 msgid "Cutlist editor"
 msgstr "Klipp og lim editor"
 
@@ -2866,6 +2902,21 @@ msgstr "DVD brenn"
 
 msgid "DVD Menu"
 msgstr "DVD meny"
+
+#
+#, fuzzy
+msgid "DVD Player Actions"
+msgstr "DVD spiller"
+
+#
+#, fuzzy
+msgid "DVD Title List"
+msgstr "DVD navneliste"
+
+#
+#, fuzzy
+msgid "DVD Toolbox"
+msgstr "DVD medie verktøykasse"
 
 msgid "DVD data format"
 msgstr "DVD dataformat"
@@ -3189,6 +3240,11 @@ msgstr "Fjern digital støy"
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte avspilling uten hjelp av meny"
 
+#
+#, fuzzy
+msgid "Direction Actions"
+msgstr "Handlinger for valg av skin"
+
 msgid "Directory"
 msgstr "Mappe"
 
@@ -3328,6 +3384,11 @@ msgid ""
 msgstr ""
 "Vil du virkelig kontrollere filsystemet?\n"
 "Dette kan ta veldig lang tid!"
+
+#
+#, fuzzy
+msgid "Do you really want to clear this playlist?"
+msgstr "Er du sikker på at du vil slette %s?"
 
 #
 #, python-format
@@ -3567,6 +3628,11 @@ msgstr ""
 
 msgid "EPG"
 msgstr "EPG"
+
+#
+#, fuzzy
+msgid "EPG Select Actions"
+msgstr "Velg handling"
 
 msgid "EPG language selection 1"
 msgstr "EPG språkvalg 1"
@@ -4000,6 +4066,16 @@ msgstr "Ethernet nettverkskort"
 
 msgid "Ethiopia"
 msgstr "Etiopia"
+
+#
+#, fuzzy
+msgid "Event View Actions"
+msgstr "Meny programoversikt"
+
+#
+#, fuzzy
+msgid "Event ViewEPG Actions"
+msgstr "Meny programoversikt"
 
 msgid "Event font size (relative to skin size)"
 msgstr "Program- skriftstørrelse (i forhold til størrelse på utseende)"
@@ -4561,6 +4637,10 @@ msgstr "Fullskjerms oppløsning"
 msgid "Fullbackup Images"
 msgstr "Sikkerhetskopier Images"
 
+#, fuzzy
+msgid "Function Key Actions"
+msgstr "Funksjon for OK knapp"
+
 msgid "Function of OK button"
 msgstr "Funksjon for OK knapp"
 
@@ -4576,6 +4656,11 @@ msgstr "G"
 #
 msgid "GB"
 msgstr "GB"
+
+#
+#, fuzzy
+msgid "GMEPG Select Actions"
+msgstr "Velg handling"
 
 msgid "GREEN"
 msgstr ""
@@ -4636,6 +4721,9 @@ msgstr "Ghana"
 
 msgid "Gibraltar"
 msgstr "Gibraltar"
+
+msgid "Global Actions"
+msgstr ""
 
 msgid "Go down the list"
 msgstr "Gå nedover listen"
@@ -4883,6 +4971,11 @@ msgstr "Hebraisk"
 msgid "Help"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Help Actions"
+msgstr "Velg handling"
+
 #, fuzzy
 msgid "Help Screen"
 msgstr "Hold skjerm"
@@ -4968,6 +5061,10 @@ msgstr "Snarveistast innstilling"
 
 msgid "Hotkey"
 msgstr "Snarveistast"
+
+#, fuzzy
+msgid "Hotkey Actions"
+msgstr "videreutdanning"
 
 msgid "Hotkey Panic"
 msgstr "Snarveistast panikk"
@@ -5222,8 +5319,104 @@ msgstr "Infobar"
 msgid "Info bar timeout"
 msgstr "Tidslengde på infobar"
 
+#
+#, fuzzy
+msgid "Infobar Actions"
+msgstr "Tidslengde på infobar"
+
+#
+#, fuzzy
+msgid "Infobar Audio Selection Actions"
+msgstr "Handlinger for valg av skin"
+
+#, fuzzy
+msgid "Infobar Channel Selection"
+msgstr "Kanalvalg"
+
+msgid "Infobar Cue Sheet Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Extensions"
+msgstr "Installer utvidelser"
+
+#
+#, fuzzy
+msgid "Infobar Instant Record"
+msgstr "Direkte opptak"
+
+#
+#, fuzzy
+msgid "Infobar Menu Actions"
+msgstr "Tidslengde på infobar"
+
+#, fuzzy
+msgid "Infobar Movie List Actions"
+msgstr "Opptakslistevalg"
+
+#
+#, fuzzy
+msgid "Infobar PiP Actions"
+msgstr "Tidslengde på infobar"
+
+#
+#, fuzzy
+msgid "Infobar Rds Actions"
+msgstr "Tidslengde på infobar"
+
+msgid "Infobar Red Button Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Seek Actions"
+msgstr "Handlinger for valg av skin"
+
+msgid "Infobar Show Hide Actions"
+msgstr ""
+
+msgid "Infobar Subservice Quickzap Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Subservice Selection Actions"
+msgstr "Handlinger for valg av skin"
+
+#
+#, fuzzy
+msgid "Infobar Subtitle Selection Actions"
+msgstr "Handlinger for valg av skin"
+
+#
+#, fuzzy
+msgid "Infobar Teletext Actions"
+msgstr "Handlinger for valg av skin"
+
+msgid "Infobar Timer Button Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Infobar Timeshift Actions"
+msgstr "Mappe for timeskift"
+
+#
+#, fuzzy
+msgid "Infobar Timeshift Activate Actions"
+msgstr "Mappe for timeskift"
+
+msgid "Infobar Vmode Button Actions"
+msgstr ""
+
 msgid "Infobar frontend data source"
 msgstr "Infobar for visningsdata"
+
+#
+#, fuzzy
+msgid "InfobarEPG Actions"
+msgstr "Tidslengde på infobar"
 
 #
 msgid "Information"
@@ -5281,6 +5474,17 @@ msgstr "Inngang"
 msgid "Input "
 msgstr "Inngang "
 
+#
+#, fuzzy
+msgid "Input Actions"
+msgstr "Inngang "
+
+msgid "Input Ascii Actions"
+msgstr ""
+
+msgid "Input Box Actions"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr "Inngående strøm ID"
 
@@ -5318,6 +5522,11 @@ msgstr "Installer lokal utvidelse"
 
 msgid "Install picons on"
 msgstr "Installer kanallogo på"
+
+#
+#, fuzzy
+msgid "Install plugin"
+msgstr "Installerer"
 
 msgid "Installation has completed."
 msgstr "Installasjonen er ferdig."
@@ -5524,6 +5733,10 @@ msgstr "Viktige hendelser"
 msgid "Keyboard"
 msgstr "Tastatur"
 
+#, fuzzy
+msgid "Keyboard Input Actions"
+msgstr "Virtuelle tastatur funksjoner"
+
 #
 msgid "Keyboard data entry"
 msgstr "Tastatur dataregistrering"
@@ -5720,6 +5933,14 @@ msgid "List version %(ver)d, found %(num)d channel"
 msgid_plural "List version %(ver)d, found %(num)d channels"
 msgstr[0] "Listeversjon %(ver)d, funnet %(num)d kanal"
 msgstr[1] "Listeversjon %(ver)d, funnet %(num)d kanaler"
+
+#
+#, fuzzy
+msgid "Listbox Actions"
+msgstr "Opptaksmappe"
+
+msgid "Listbox Help Menu Actions"
+msgstr ""
 
 #
 msgid "Listen to the radio..."
@@ -5974,6 +6195,17 @@ msgid "Mayotte"
 msgstr "Mayotte"
 
 #
+#, fuzzy
+msgid "Media Player Actions"
+msgstr "Mediespiller"
+
+msgid "Media Player Cue Sheet Actions"
+msgstr ""
+
+msgid "Media Player Seek Actions"
+msgstr ""
+
+#
 msgid "Media player"
 msgstr "Mediespiller"
 
@@ -5999,6 +6231,11 @@ msgstr "Minne oversikt"
 
 msgid "Menu"
 msgstr "Meny"
+
+#
+#, fuzzy
+msgid "Menu Actions"
+msgstr "Handlinger for valg av skin"
 
 #
 #, fuzzy
@@ -6030,6 +6267,11 @@ msgstr "Minste alder %d år"
 
 msgid "Minimum send interval"
 msgstr "Minste sendings intervall"
+
+#
+#, fuzzy
+msgid "Minute Input Actions"
+msgstr "Velg funksjon"
 
 msgid "Missing "
 msgstr "Savnet "
@@ -6210,6 +6452,15 @@ msgstr "Flyttet til startposisjon"
 msgid "Movement"
 msgstr "Bevegelse"
 
+#, fuzzy
+msgid "Movie Player Actions"
+msgstr "Opptaksvalg"
+
+#
+#, fuzzy
+msgid "Movie Selection Actions"
+msgstr "Handlinger for valg av skin"
+
 msgid "Movie list configuration"
 msgstr "Opptakslistevalg"
 
@@ -6236,6 +6487,9 @@ msgstr "Flytter vest..."
 
 msgid "Mozambique"
 msgstr "Mosambik"
+
+msgid "Msg Box Actions"
+msgstr ""
 
 #
 msgid "Multi EPG"
@@ -6334,6 +6588,11 @@ msgstr "Nauru"
 
 msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. EXIT to return to the help screen. OK to perform the action described in the currently highlighted help."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Navigation Actions"
+msgstr "Handlinger for valg av skin"
 
 msgid "Nepal"
 msgstr "Nepal"
@@ -6709,6 +6968,10 @@ msgstr "Spiller nå"
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Nå bruker du kontrastinnstillingen til å skru opp lysstyrken i bakgrunnen så mye som mulig, men pass på at du fortsatt kan se forskjellen mellom de to lyseste nivåene av nyanser. Hvis du har gjort det, trykker du på OK."
 
+#, fuzzy
+msgid "Number Actions"
+msgstr "videreutdanning"
+
 msgid "Number of channels shown in channel selection list"
 msgstr "Antall kanaler vist i kanallisten"
 
@@ -6755,6 +7018,10 @@ msgstr "Av"
 
 msgid "Offline decode delay (ms)"
 msgstr "Frakoblet dekodingsforsinkelse (ms)"
+
+#, fuzzy
+msgid "Ok Cancel Actions"
+msgstr "Avbryt gjennomføringen?"
 
 msgid "Oman"
 msgstr "Oman"
@@ -7083,6 +7350,11 @@ msgstr "Peru"
 
 msgid "Philippines"
 msgstr "Filippinene"
+
+#
+#, fuzzy
+msgid "PiP Setup Actions"
+msgstr "Handlinger for valg av skin"
 
 #
 msgid "PiP setup"
@@ -7526,6 +7798,9 @@ msgstr "Oppsett posisjonerer"
 msgid "Positioner setup log"
 msgstr "Oppsettlogg for posisjonering"
 
+msgid "Power Key Actions"
+msgstr ""
+
 msgid "Power LED"
 msgstr "Strøm-LED"
 
@@ -7891,6 +8166,11 @@ msgstr "RAM disk"
 msgid "Random"
 msgstr "Tilfeldig"
 
+#
+#, fuzzy
+msgid "Rass Interactive Actions"
+msgstr "Vis Rass interaktiv..."
+
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Rangering definert av kringkasteren -%d"
@@ -8128,6 +8408,11 @@ msgstr "Tøm papirkurven etter (dager)"
 
 msgid "Remove new found flag"
 msgstr "Fjern nye flagg"
+
+#
+#, fuzzy
+msgid "Remove plugin"
+msgstr "Fjern utvidelser"
 
 #
 msgid "Remove plugins"
@@ -8532,6 +8817,9 @@ msgstr "Satellitt lengdegrad:"
 
 msgid "Satellites"
 msgstr "Leverandørlister"
+
+msgid "Satlist Shortcut Action"
+msgstr ""
 
 #
 msgid "Sats"
@@ -9398,6 +9686,11 @@ msgstr "Innstillingene kan være forskjellig for hver separate mappe (for ikke f
 msgid "Setup"
 msgstr "Innstilling"
 
+#
+#, fuzzy
+msgid "Setup Actions"
+msgstr "Handlinger for valg av skin"
+
 msgid "Setup hard disk"
 msgstr "Oppsett harddisk"
 
@@ -9430,6 +9723,11 @@ msgstr "Skift"
 
 msgid "Short filenames"
 msgstr "Korte filnavn"
+
+#
+#, fuzzy
+msgid "Shortcut Actions"
+msgstr "Velg handling"
 
 #
 msgid "Show"
@@ -9865,6 +10163,10 @@ msgstr "Hopp over Internett-tilkoblingen (deaktiverer automatisk installasjon av
 msgid "Skip jumping to live TV while timeshifting with plugins"
 msgstr "Hopp over direktesendt TV ved bruk av timeshifting med plugins"
 
+#, fuzzy
+msgid "Sleep Timer Editor Actions"
+msgstr "Dvale timer innstilling"
+
 msgid "Sleep timer"
 msgstr "Dvale timer"
 
@@ -10131,6 +10433,10 @@ msgstr "Slå av"
 
 msgid "Standby / restart"
 msgstr "Av/på strømvalg"
+
+#, fuzzy
+msgid "Standby Actions"
+msgstr "Slå av om "
 
 msgid "Standby LED"
 msgstr "Standby LED"
@@ -10671,6 +10977,11 @@ msgstr "Tadsjikistan"
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania"
 
+#
+#, fuzzy
+msgid "Teletext Actions"
+msgstr "Velg handling"
+
 msgid "Teletext subtitle color"
 msgstr "Undertekst farge"
 
@@ -10702,6 +11013,14 @@ msgstr "Prøvebilder"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Prøvebilder som kan brukes til å finjustere skjermen"
+
+#
+#, fuzzy
+msgid "Text Edit Actions"
+msgstr "Rediger utvalg"
+
+msgid "Text Entry Actions"
+msgstr ""
 
 msgid "Text View On"
 msgstr "Tekstvisning på"
@@ -11228,6 +11547,11 @@ msgid "Timer"
 msgstr "Timer"
 
 #
+#, fuzzy
+msgid "Timer Edit Actions"
+msgstr "Timer valg"
+
+#
 msgid "Timer Overview"
 msgstr "Timer oversikt"
 
@@ -11560,6 +11884,10 @@ msgstr "Trinn lengde"
 
 msgid "Tuvalu"
 msgstr "Tuvalu"
+
+#, fuzzy
+msgid "Tv Radio Actions"
+msgstr "Lyd valg"
 
 #
 msgid "Two"
@@ -12132,11 +12460,19 @@ msgstr "Jomfruøyene (Engelsk)"
 msgid "Virgin Islands (U.S.)"
 msgstr "Jomfruøyene (U.S.)"
 
+#, fuzzy
+msgid "Virtual Key Board Actions"
+msgstr "Virtuelle tastatur funksjoner"
+
 msgid "Virtual KeyBoard Functions"
 msgstr "Virtuelle tastatur funksjoner"
 
 msgid "Virtual KeyBoard Text:"
 msgstr "Virtuell tastatur tekst:"
+
+#, fuzzy
+msgid "Virtual Keyboard Actions"
+msgstr "Virtuelle tastatur funksjoner"
 
 msgid "Virtual keyboard"
 msgstr "Virtuelt tastatur"
@@ -12570,6 +12906,11 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Hvor skal midlertidige timeskift opptak lagres?"
 
 #
+#, fuzzy
+msgid "Window Actions"
+msgstr "Handlinger for valg av skin"
+
+#
 msgid "Wireless LAN"
 msgstr "Trådløst LAN"
 
@@ -12615,6 +12956,11 @@ msgstr "Med dette valget kan du bytte LED-farge eller deaktivere LED-lampen."
 
 msgid "Without popup"
 msgstr "Uten varsel"
+
+#
+#, fuzzy
+msgid "Wizard Actions"
+msgstr "Veiviser oppsett"
 
 #
 msgid "Wizard setup"
