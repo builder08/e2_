@@ -2,7 +2,7 @@ from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, e
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigNothing, ConfigSelection, ConfigYesNo, ConfigOnOff
+from Components.config import config, ConfigSlider, ConfigSubsection, ConfigNothing, ConfigSelection, ConfigYesNo, ConfigOnOff
 from Components.Label import Label
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
@@ -11,6 +11,7 @@ from Components.VolumeControl import VolumeControl
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Components.UsageConfig import originalAudioTracks, visuallyImpairedCommentary
+from Components.VolumeControl import VolumeControl
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 from Tools.BoundFunction import boundFunction
@@ -281,6 +282,12 @@ class AudioSelection(ConfigListScreen, Screen):
 				self.settings.autovolume.addNotifier(self.changeAutoVolume, initial_call=False)
 				conflist.append((_("Auto Volume Level"), self.settings.autovolume, None))
 
+			if config.hdmicec.enabled.value and config.hdmicec.volume_forwarding.value and VolumeControl.instance:
+				volumeCtrl = VolumeControl.instance.dvbVolumeControl
+				self.settings.volume = ConfigSlider(default=volumeCtrl.getVolume(), increment=1, limits=(0, 100))
+				self.settings.volume.addNotifier(self.changeVolume, initial_call=False)
+				conflist.append(getConfigListEntry(_("Volume"), self.settings.volume, None))
+
 			from Components.PluginComponent import plugins
 			from Plugins.Plugin import PluginDescriptor
 
@@ -401,6 +408,9 @@ class AudioSelection(ConfigListScreen, Screen):
 		if autovolume.value:
 			config.av.autovolume.value = autovolume.value
 		config.av.autovolume.save()
+
+	def changeVolume(self, volume):
+		VolumeControl.instance.dvbVolumeControl.setVolume(volume.value, volume.value)
 
 	def changeAC3Downmix(self, downmix):
 		if DreamBoxAudio or PLATFORM == "dmamlogic":
