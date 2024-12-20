@@ -168,7 +168,7 @@ DEFINE_REF(eServiceDVD);
 
 eServiceDVD::eServiceDVD(eServiceReference ref):
 	m_ref(ref), m_ddvdconfig(ddvd_create()), m_subtitle_widget(0), m_state(stIdle),
-	m_current_trick(0), m_pump(eApp, 1, "eServiceDVD"), m_width(-1), m_height(-1),
+	m_current_trick(0), m_pump(eApp, 1,"eServiceDVD"), m_width(-1), m_height(-1),
 	m_aspect(-1), m_framerate(-1), m_progressive(-1)
 {
 	int aspect = DDVD_16_9;
@@ -812,35 +812,38 @@ RESULT eServiceDVD::disableSubtitles()
 	return 0;
 }
 
+/**
+ * Retrieves the list of available subtitle tracks for the current DVD.
+ * @param subtitlelist A vector to be filled with the available subtitle tracks.
+ * @return RESULT indicating success or failure.
+ */
 RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlelist)
 {
 	unsigned int spu_count = 0;
 	ddvd_get_spu_count(m_ddvdconfig, &spu_count);
 	eDebug("[eServiceDVD] getSubtitleList: %d spus", spu_count);
 
-	for ( unsigned int spu_id = 0; spu_id < spu_count; spu_id++ )
+	for (unsigned int spu_id = 0; spu_id < spu_count; spu_id++)
 	{
 		struct SubtitleTrack track = {};
 		uint16_t spu_lang;
 
 		ddvd_get_spu_byid(m_ddvdconfig, spu_id, &spu_lang);
-		if (spu_lang != 0xFFFF)
-		{
-			char spu_string[3] = {(char)((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
-			eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string);
-
-			track.type = 2;
-			track.pid = spu_id + 1;
-			track.page_number = 5;
-			track.magazine_number = 0;
-			track.language_code = spu_string;
-			subtitlelist.push_back(track);
-
-		}
-		else
+		if (spu_lang == 0xFFFF)
 		{
 			eDebug("[eServiceDVD] getSubtitleList: spu_id=%d: invalid subtitle track", spu_id);
+			continue;
 		}
+
+		char spu_string[3] = {(char)((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
+		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string);
+
+		track.type = 2;
+		track.pid = spu_id + 1;
+		track.page_number = 5;
+		track.magazine_number = 0;
+		track.language_code = spu_string;
+		subtitlelist.push_back(track);
 	}
 	return 0;
 }
@@ -1039,7 +1042,7 @@ void eServiceDVD::loadCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				char buf[128];
-				snprintf(buf, 128, "%llx", st.st_mtime);
+				snprintf(buf, 128, "%lx", st.st_mtime);
 				filename += buf;
 			}
 			else
@@ -1129,7 +1132,7 @@ void eServiceDVD::saveCuesheet()
 		if (stat("/home/root", &st) == 0 && stat(filename.c_str(), &st) != 0)
 			if (mkdir(filename.c_str(), 0755))
 				return; // cannot create directory so no point in trying to save cue data
-			
+
 		filename += "/";
 		if (m_ddvd_titlestring[0] != '\0')
 			filename += m_ddvd_titlestring;
@@ -1139,7 +1142,7 @@ void eServiceDVD::saveCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				char buf[128];
-				snprintf(buf, 128, "%llx", st.st_mtime);
+				snprintf(buf, 128, "%lx", st.st_mtime);
 				filename += buf;
 			}
 			else
@@ -1180,17 +1183,17 @@ void eServiceDVD::saveCuesheet()
 
 eAutoInitPtr<eServiceFactoryDVD> init_eServiceFactoryDVD(eAutoInitNumbers::service+1, "eServiceFactoryDVD");
 
-	static struct PyModuleDef servicedvd_moduledef = {
-		PyModuleDef_HEAD_INIT,
-		"servicedvd",	/* m_name */
-		"servicedvd",	/* m_doc */
-		-1,				/* m_size */
-		NULL,			/* m_methods */
-		NULL,			/* m_reload */
-		NULL,			/* m_traverse */
-		NULL,			/* m_clear */
-		NULL,			/* m_free */
-	};
+static struct PyModuleDef servicedvd_moduledef = {
+	PyModuleDef_HEAD_INIT,
+	"servicedvd",	/* m_name */
+	"servicedvd",	/* m_doc */
+	-1,				/* m_size */
+	NULL,			/* m_methods */
+	NULL,			/* m_reload */
+	NULL,			/* m_traverse */
+	NULL,			/* m_clear */
+	NULL,			/* m_free */
+};
 
 PyMODINIT_FUNC
 initservicedvd(void)
