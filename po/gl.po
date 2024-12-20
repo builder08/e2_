@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2021-10-16 21:21+0200\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
@@ -613,6 +613,9 @@ msgstr "=SEN FLUXO\n"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Unha gravación programada que rematou quere pór o receptor en repouso. Facelo agora?"
@@ -2878,6 +2881,9 @@ msgstr "Editor de corte"
 msgid "Cutlist editor..."
 msgstr "Editor de corte…"
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Chipre"
 
@@ -2934,6 +2940,10 @@ msgstr "Versión do controlador DVB: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparencia negra do subtítulo DVB"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Cor dos subtítulos externos"
 
 msgid "DVB type"
 msgstr "Tipografía DVB"
@@ -6104,6 +6114,10 @@ msgstr "Macao"
 
 msgid "Madagascar"
 msgstr "Madagascar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Arxentina"
 
 #
 msgid "Main menu"
@@ -11107,9 +11121,10 @@ msgstr ""
 "Preme OK para continuar."
 
 #
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Grazas por usar o asistente. O receptor xa está listo para usar.\n"
 "Preme OK para comezar."
@@ -12275,7 +12290,8 @@ msgid "Use the network wizard to configure your network\n"
 msgstr "Usar o asistente de rede para configurar a rede\n"
 
 #
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Usar as teclas arriba/abaixo do mando para seleccionar unha opción. A continuación, preme OK."
 
 #
@@ -12729,11 +12745,12 @@ msgstr ""
 "\n"
 "Preme OK para iniciar a configuración da rede"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Benvido.\n"
 "\n"
@@ -12881,9 +12898,6 @@ msgstr "Cando está activado, céntranse horizontalmente os subtítulos gráfico
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Cando está activado, amósanse na súa posición orixinal os subtítulos gráficos de DVB."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Cando está activado, amósanse en amarelo os subtítulos gráficos DVB, en lugar da súa cor orixinal."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Cando está activado, os fluxos http descífranse no lado do servidor; o receptor do cliente (remoto) non ten que descodificar nada. O valor por defecto é activado."
@@ -13092,9 +13106,6 @@ msgstr "Ano"
 
 msgid "Yellow"
 msgstr "Amarelo"
-
-msgid "Yellow DVB subtitles"
-msgstr "Subtítulos DVB amarelos"
 
 #, fuzzy
 msgid "Yellow button function"

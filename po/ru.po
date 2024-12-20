@@ -1774,6 +1774,9 @@ msgstr "=НЕТ СТРИМА\n"
 msgid "A"
 msgstr "A"
 
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr "Для лучшей читаемости субтитров DVB можно использовать цветной фильтр."
+
 msgid ""
 "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
 "Extend sleep timer 30 minutes. Your %s %s\n"
@@ -5887,6 +5890,9 @@ msgstr "Видео редактор"
 msgid "Cutlist editor..."
 msgstr "Видео редактор..."
 
+msgid "Cyan"
+msgstr "Голубой"
+
 msgid "Cyprus"
 msgstr "Кипр"
 
@@ -5971,6 +5977,9 @@ msgstr "Версия DVB драйверов: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Прозрачность чёрного фона DVB субтитров"
+
+msgid "DVB subtitles color filter"
+msgstr "Цветовой фильтр субтитров DVB"
 
 msgid "DVB type"
 msgstr "DVB тип"
@@ -10776,6 +10785,9 @@ msgstr "Македония"
 
 msgid "Madagascar"
 msgstr "Мадагаскар"
+
+msgid "Magenta"
+msgstr "Пурпурный"
 
 msgid "Main menu"
 msgstr "Главное меню"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2018-02-14 16:51+0330\n"
 "Last-Translator: Persian Prince <persianprince@pe4k.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -544,6 +544,9 @@ msgstr "=بدون جریان\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr ""
@@ -2633,6 +2636,9 @@ msgstr ""
 msgid "Cutlist editor..."
 msgstr "ویرایشگر برش لیست"
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr ""
 
@@ -2686,6 +2692,10 @@ msgstr "نسخه کرنل: "
 
 msgid "DVB subtitle black transparency"
 msgstr "شفافیت سیاه زیرنویس DVB"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "رنگ زیرنویس تله تکست"
 
 msgid "DVB type"
 msgstr ""
@@ -5613,6 +5623,9 @@ msgid "Macao"
 msgstr ""
 
 msgid "Madagascar"
+msgstr ""
+
+msgid "Magenta"
 msgstr ""
 
 msgid "Main menu"
@@ -10273,9 +10286,10 @@ msgstr ""
 "برای استفاده از هدایتگر تشکر میکنیم\n"
 "برای ادامه دادن دکمه OK را فشار دهید."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "برای استفاده از هدایتگر ممنونیم ، دستگاه شما اکنون آماده استفاده است\n"
 "برای شروع استفاده از دستگاه خود دکمه OK را فشار دهید."
@@ -11288,7 +11302,7 @@ msgstr ""
 msgid "Use the network wizard to configure your network\n"
 msgstr ""
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -11675,7 +11689,7 @@ msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 
 msgid "Welcome..."
@@ -11814,9 +11828,6 @@ msgid "When enabled, graphical DVB subtitles will be centered horizontally."
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr ""
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr ""
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
@@ -12015,9 +12026,6 @@ msgstr "سال"
 
 msgid "Yellow"
 msgstr "زرد"
-
-msgid "Yellow DVB subtitles"
-msgstr "زیرنویس زرد DVB"
 
 #, fuzzy
 msgid "Yellow button function"

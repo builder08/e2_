@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -612,6 +612,9 @@ msgstr ""
 #
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr ""
@@ -2917,6 +2920,9 @@ msgstr ""
 msgid "Cutlist editor..."
 msgstr "Kniplyst bewurker..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr ""
 
@@ -2976,6 +2982,9 @@ msgid "DVB driver version: "
 msgstr "Nije ferzje:"
 
 msgid "DVB subtitle black transparency"
+msgstr ""
+
+msgid "DVB subtitles color filter"
 msgstr ""
 
 msgid "DVB type"
@@ -6262,6 +6271,9 @@ msgid "Macao"
 msgstr ""
 
 msgid "Madagascar"
+msgstr ""
+
+msgid "Magenta"
 msgstr ""
 
 #
@@ -11521,7 +11533,7 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 
 #, python-format
@@ -12702,7 +12714,8 @@ msgid "Use the network wizard to configure your network\n"
 msgstr "Bruk de netwurk gûcheler om it netwurk yn te stellen\n"
 
 #
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Knoppen op en del brûke om in opsje te kiezen. Dêrnei druk Ok"
 
 #
@@ -13173,7 +13186,7 @@ msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 
 #
@@ -13316,9 +13329,6 @@ msgid "When enabled, graphical DVB subtitles will be centered horizontally."
 msgstr ""
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
-msgstr ""
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 msgstr ""
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
@@ -13530,9 +13540,6 @@ msgid "Year"
 msgstr "Jier"
 
 msgid "Yellow"
-msgstr ""
-
-msgid "Yellow DVB subtitles"
 msgstr ""
 
 #

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2021-08-02 09:19+0700\n"
 "Last-Translator: krong\n"
 "Language-Team: none\n"
@@ -547,6 +547,9 @@ msgstr "= KHÔNG TRỰC TIẾP\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn máy thu để chờ. Làm điều đó bây giờ?"
@@ -2584,6 +2587,9 @@ msgstr "Biên tập danh sách cắt"
 msgid "Cutlist editor..."
 msgstr "Biên tập viên danh sách ..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Đảo Síp"
 
@@ -2636,6 +2642,10 @@ msgstr "Phiên bản trình điều khiển DVB: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Phụ đề màu đen trong suốt DVB"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Màu phụ đề bên ngoài"
 
 msgid "DVB type"
 msgstr "Loại DVB"
@@ -5497,6 +5507,10 @@ msgstr "Macao"
 
 msgid "Madagascar"
 msgstr "Madagascar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentina"
 
 msgid "Main menu"
 msgstr "Menu chính"
@@ -9970,9 +9984,10 @@ msgstr ""
 "Cảm ơn bạn đã sử dụng thuật sĩ.\n"
 "Vui lòng nhấn OK để tiếp tục."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Cảm ơn bạn đã sử dụng thuật sĩ. Máy thu của bạn đã sẵn sàng để sử dụng.\n"
 "Nhấn OK để bắt đầu sử dụng máy thu của bạn."
@@ -11029,7 +11044,8 @@ msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ 
 msgid "Use the network wizard to configure your network\n"
 msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình mạng của bạn\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Sử dụng các phím lên / xuống trên điều khiển từ xa của bạn để chọn một tùy chọn. Sau đó, nhấn OK."
 
 msgid "Use the wizard to set up basic features"
@@ -11429,11 +11445,12 @@ msgstr ""
 "\n"
 "Nhấn OK để bắt đầu cấu hình mạng của bạn"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Chào mừng bạn\n"
 "\n"
@@ -11578,9 +11595,6 @@ msgstr "Khi được bật, phụ đề DVB đồ họa sẽ được căn giữ
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Khi được bật, phụ đề DVB đồ họa sẽ được hiển thị ở vị trí ban đầu."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Khi được bật, phụ đề DVB đồ họa sẽ được hiển thị màu vàng, thay vì màu gốc."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Khi được bật, các luồng http được giải mã ở phía máy chủ. Máy thu khách (từ xa) không phải thực hiện giải mã. Mặc định trên."
@@ -11779,9 +11793,6 @@ msgstr "Năm"
 
 msgid "Yellow"
 msgstr "Màu vàng"
-
-msgid "Yellow DVB subtitles"
-msgstr "Phụ đề DVB màu vàng"
 
 #, fuzzy
 msgid "Yellow button function"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2022-10-23 15:37+0300\n"
 "Last-Translator: Audronis <adga45@gmail.com>\n"
 "Language-Team: Adga (C) <adga45@gmail.com>\n"
@@ -575,6 +575,9 @@ msgstr "=SRAUTO NĖRA\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Baigtas įrašymo laikmatis netrukus įjungs imtuvą budėjimo režimu. Ar norite tęsti?"
@@ -2604,6 +2607,9 @@ msgstr "Iškirpimo redaktorius"
 msgid "Cutlist editor..."
 msgstr "Iškirpimo redaktorius..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Kipras"
 
@@ -2654,6 +2660,10 @@ msgstr "DVB tvarkyklės versija: "
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtitrų juodos spalvos skaidrumas"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Išorinių subtitrų spalva"
 
 msgid "DVB type"
 msgstr "DVB tipas"
@@ -5499,6 +5509,10 @@ msgstr "Makao"
 
 msgid "Madagascar"
 msgstr "Madagaskaras"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentina"
 
 msgid "Main menu"
 msgstr "Pagrindinis meniu"
@@ -9965,9 +9979,10 @@ msgstr ""
 "Ačiū, kad naudojatės vedliu.\n"
 "Spauskite OK, kad tęsti."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Ačiū, kad naudojatės nustatymų vedliu. Jūsų imtuvas yra paruoštas naudojimui.\n"
 "Prašome nuspauskite OK, kad pradėti naudotis imtuvu."
@@ -11023,7 +11038,8 @@ msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
 msgid "Use the network wizard to configure your network\n"
 msgstr "Naudokite tinklo vedlį, kad sukonfigūruoti tinklą\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Naudokitės mygtukais aukštyn/žemyn valdymo pulte, nustatymų pasirinkimui. Po to spauskite OK."
 
 msgid "Use the wizard to set up basic features"
@@ -11422,11 +11438,12 @@ msgstr ""
 "\n"
 "Spauskite 'OK', kad pradėti tinklo konfigūravimą"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Sveiki,\n"
 "\n"
@@ -11571,9 +11588,6 @@ msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus centruojami horizontaliai
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus rodomi jų numatytojoje vietoje."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus rodomi ne numatytosios, bet geltonos spalvos."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Kai čia įjungta, http srautai bus dekoduojami serveryje. Kliento imtuvui nereikės to daryti. Numatytasis: 'Taip'."
@@ -11770,9 +11784,6 @@ msgstr "Metai"
 
 msgid "Yellow"
 msgstr "Geltonas"
-
-msgid "Yellow DVB subtitles"
-msgstr "Geltonos spalvos DVB subtitrai"
 
 #, fuzzy
 msgid "Yellow button function"

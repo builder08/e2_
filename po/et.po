@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Openpli\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -562,6 +562,9 @@ msgstr "=VOOGU EI OLE\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Lõpetanud salvestuse taimer soovib panna vastuvõtja ooterežiimi. Kas nõustud?"
@@ -2607,6 +2610,9 @@ msgstr "Lõikekohtade monteerija"
 msgid "Cutlist editor..."
 msgstr "Lõikekohtade monteerija..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Küpros"
 
@@ -2659,6 +2665,10 @@ msgstr "DVB draiveri versioon: "
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtiitrite tausta läbipaistvus"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Väliste subtiitrite värv"
 
 msgid "DVB type"
 msgstr "DVB tüüp"
@@ -5545,6 +5555,10 @@ msgstr "Macau"
 
 msgid "Madagascar"
 msgstr "Madagaskar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentina"
 
 msgid "Main menu"
 msgstr "Peamenüü"
@@ -10084,9 +10098,10 @@ msgstr ""
 "Täname, et kasutasid abilist.\n"
 "Jätkamiseks vajuta OK."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Täname, et kasutasid abilist. Vastuvõtja on kasutuseks valmis\n"
 "Jätkamiseks vajuta OK."
@@ -11173,7 +11188,8 @@ msgstr "Kasuta abilist valitud võrgukaardi seadmiseks"
 msgid "Use the network wizard to configure your network\n"
 msgstr "Kasuta seadistusabilist oma võrgu seadistamiseks\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Kasuta valimiseks üles/alla nuppu puldil, siis vajuta OK."
 
 msgid "Use the wizard to set up basic features"
@@ -11577,11 +11593,12 @@ msgstr ""
 "\n"
 "Võrgu seadistamise alustamiseks vajuta OK"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Tere.\n"
 "\n"
@@ -11732,9 +11749,6 @@ msgstr "Määrates 'jah', kuvatakse DVB subtiitrid horisontaalselt tsentreeritun
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende algsel asukohal."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende tõelise värvi asemel kollasena."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Määrates 'jah', dekodeeritakse http vood serveri poolt. Klientvastuvõtja ei pea neid enam dekodeerima. Vaikimisi sees."
@@ -11938,9 +11952,6 @@ msgstr "Aasta"
 
 msgid "Yellow"
 msgstr "Kollane"
-
-msgid "Yellow DVB subtitles"
-msgstr "Kollased DVB subtiitrid"
 
 #, fuzzy
 msgid "Yellow button function"

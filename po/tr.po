@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OPENPLi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2015-12-18 21:05+0200\n"
 "Last-Translator: Yetkin AYDIN <yetkina@gmail.com>\n"
 "Language-Team: http://www.hurforum.com <yetkina@gmail.com>\n"
@@ -553,6 +553,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Kayıt süresi dolmuş. Alıcı bekleme konumuna geçecek. Şimdi yapılsın mı?"
@@ -2615,6 +2618,9 @@ msgstr ""
 msgid "Cutlist editor..."
 msgstr "Film düzenleyici..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr ""
 
@@ -2669,6 +2675,10 @@ msgstr "DVB sürücüleri: "
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB altyazı siyah saydamlığı"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Harici Altyazı Rengi"
 
 msgid "DVB type"
 msgstr ""
@@ -5583,6 +5593,9 @@ msgid "Macao"
 msgstr ""
 
 msgid "Madagascar"
+msgstr ""
+
+msgid "Magenta"
 msgstr ""
 
 msgid "Main menu"
@@ -10169,9 +10182,10 @@ msgstr ""
 "Sihirbazını kullandığınız için teşekkür ederiz.\n"
 "Devam etmek için OK tuşuna basın."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Sihirbazını kullandığınız için teşekkür ederiz. Alıcınız artık kullanıma hazırdır.\n"
 "Alıcınızı kullanmaya başlamak için OK tuşuna basın."
@@ -11245,7 +11259,8 @@ msgstr "Seçilen ağ bağdaştırıcısını yapılandırmak için ağ sihirbaz�
 msgid "Use the network wizard to configure your network\n"
 msgstr "Ağ yapılandırmak için ağ sihirbazını kullan\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Bir seçeneği seçmek için uzaktan kumanda üzerindeki Aşağı/Yukarı tuşlarını kullanın. Bundan sonra, OK düğmesine basın."
 
 msgid "Use the wizard to set up basic features"
@@ -11651,11 +11666,12 @@ msgstr ""
 "\n"
 "Ağ yapılandırmasını başlatmak için OK tuşuna basın."
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Hoşgeldiniz.\n"
 "\n"
@@ -11804,9 +11820,6 @@ msgstr "Grafik DVB altyazı yatayda ortala."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Grafik DVB altyazıyı orijinal konumunda görüntülenir."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Grafik DVB altyazı orjinal renginin yerine sarı renk içinde gösterilir."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "http akışları sunucu tarafında kodlanabilir. (Uzak) istemci alıcının akışı çözülmesine yardımcı olmak zorunda değildir."
@@ -12009,9 +12022,6 @@ msgstr "Yıl"
 
 msgid "Yellow"
 msgstr "Sarı"
-
-msgid "Yellow DVB subtitles"
-msgstr "Sarı DVB altyazı"
 
 #, fuzzy
 msgid "Yellow button function"

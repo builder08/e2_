@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2020-05-16 18:41+0200\n"
 "Last-Translator: jamu\n"
 "Language-Team: BoxFreak/jamu\n"
@@ -603,6 +603,9 @@ msgstr "=EI SYÖTETTÄ\n"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Päättynyt ajastus haluaa asettaa vastaanottimesi valmiustilaan. Tehdäänkö niin nyt?"
@@ -2849,6 +2852,9 @@ msgstr "Leikkauskohtien editori"
 msgid "Cutlist editor..."
 msgstr "Määritä leikkauskohdat..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Kypros"
 
@@ -2903,6 +2909,10 @@ msgstr "DVB ajurin versio: "
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB-tekstin mustan reunan läpinäkyvyys"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Ulkoisen tekstityksen väri"
 
 msgid "DVB type"
 msgstr "DVB tyyppi"
@@ -6109,6 +6119,10 @@ msgstr "Macao"
 
 msgid "Madagascar"
 msgstr "Madagascar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentiina"
 
 #
 msgid "Main menu"
@@ -11225,9 +11239,10 @@ msgstr ""
 "Ohjattu verkkoasennus on päättynyt.\n"
 "Jatka painamalla OK-näppäintä."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Kiitos että käytit avustajaa. Vastaanottimesi on nyt valmis käyttöön.\n"
 "Paina OK aloittaaksesi käytön."
@@ -12393,7 +12408,8 @@ msgstr "Muokkaa lähiverkon asetuksia verkkoavustajan opastamana\n"
 #
 #  Ohjatun asennuksen (Start Wizard) toinen ruutu. Teksti on rivitetty
 #  tilaansa käsin. Hyödyksi käytetään Unicode-nuolisymboleja.
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr ""
 "Valitse haluamasi vaihtoehto\n"
 "kaukosäätimen nuolinäppäimillä\n"
@@ -12845,11 +12861,12 @@ msgstr ""
 "\n"
 "Paina OK näppäintä aloittaaksesi verkkomäärityksien teon."
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Tervetuloa.\n"
 "\n"
@@ -12998,9 +13015,6 @@ msgstr "Kun päällä, DVB-tekstitys näytetään vaakasuunnassa keskitetysti. "
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Kun päällä, DVB-tekstitys näytetään alkuperäisellä paikallaan."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Kun päällä, DVB-tekstitys näytetään keltaisena alkuperäisen värin sijaan."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Kun valittuna, http-striimit puretaan lähettävässä päässä. Asiakas etävastaanotimessa ei tällöin ole purkua. Oletus: Kyllä."
@@ -13211,9 +13225,6 @@ msgstr "Vuosi"
 #
 msgid "Yellow"
 msgstr "Keltainen"
-
-msgid "Yellow DVB subtitles"
-msgstr "Keltaiset DVB-tekstit"
 
 #
 #, fuzzy

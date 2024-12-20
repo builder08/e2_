@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2021-11-03 15:10+0100\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -559,6 +559,9 @@ msgstr "=NINCS ADATFOLYAM\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Egy befejezett időzítés le akarja kapcsolni a készüléket készenléti módba. Engedélyezi?"
@@ -2598,6 +2601,9 @@ msgstr "Film-vágó"
 msgid "Cutlist editor..."
 msgstr "Film-vágó..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Ciprus"
 
@@ -2650,6 +2656,10 @@ msgstr "DVB driver verzió: "
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB felirat fekete-áttetszőssége"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Külső feliratok szine"
 
 msgid "DVB type"
 msgstr "DVB típusa"
@@ -5510,6 +5520,10 @@ msgstr "Makaó"
 
 msgid "Madagascar"
 msgstr "Madagaszkár"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentína"
 
 msgid "Main menu"
 msgstr "Főmenü"
@@ -9993,9 +10007,10 @@ msgstr ""
 "Köszönöm, hogy használta a Varázslót.\n"
 "Kérem, nyomja le az OK gombot a folytatáshoz."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Köszönjük hogy használta a Varázslót. A készüléke most már be van állítva.\n"
 "Az OK gomb megnyomása után máris használatba veheti a készülékét."
@@ -11053,7 +11068,8 @@ msgstr "A hálózati Varázsló használata a kijelölt hálózati interfész ko
 msgid "Use the network wizard to configure your network\n"
 msgstr "A hálózat beállításához használja a hálózati Varázslót\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "A fel/le nyílgombokkal változtathatja az opciót. Ez után nyomja meg az OK-t."
 
 msgid "Use the wizard to set up basic features"
@@ -11449,11 +11465,12 @@ msgstr ""
 "\n"
 "Kérem, nyomja le az OK gombot a hákózat konfigurálásához"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Üdvözlöm.\n"
 "\n"
@@ -11598,9 +11615,6 @@ msgstr "A DVB felirat középre zárása."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "A DVB felirat eredeti helyen történő megjelenítése."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "A DVB felirat átszínezése sárgára, az eredeti szín helyett."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Ha engedélyezi, a http streamek szerver oldalon lesznek dekódolva. A távoli (kliens) vevőnek nem kell dekódolást végeznie. Alapértelmezett: 'be'."
@@ -11799,9 +11813,6 @@ msgstr "Év"
 
 msgid "Yellow"
 msgstr "Sárga"
-
-msgid "Yellow DVB subtitles"
-msgstr "DVB feliratok színe: sárga"
 
 #, fuzzy
 msgid "Yellow button function"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OBH enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2019-04-12 12:36+0300\n"
 "Last-Translator: mosad - مساعد الجعيد <abo-mishal@hotmail.com>\n"
 "Language-Team: mosad - مساعد الجعيد\n"
@@ -633,6 +633,9 @@ msgstr "= لا يوجد قنوات تدفق\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr ""
@@ -2781,6 +2784,9 @@ msgstr "محرر قائمة القطع"
 msgid "Cutlist editor..."
 msgstr "محرر قائمة القطع..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "قبرص"
 
@@ -2836,6 +2842,10 @@ msgstr "إصدار جديد:"
 
 msgid "DVB subtitle black transparency"
 msgstr "الترجمة الأساسية للقنوات بخلفية سوداء شفافة"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "لون ترجمة مواد الوسائط الخارجية"
 
 msgid "DVB type"
 msgstr "نوع بث الفديو الرقمي من الستلايت"
@@ -5861,6 +5871,10 @@ msgstr "ماكاو"
 
 msgid "Madagascar"
 msgstr "مدغشقر"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "الأرجنتين"
 
 msgid "Main menu"
 msgstr "القائمة الرئيسية"
@@ -10637,7 +10651,7 @@ msgstr ""
 #, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "شكرا لك على استخدام هذه النافذة. %s %s جاهزة الآن للاستخدام.\n"
 "يرجى الضغط على موافق لبدء إستخدامها %s %s."
@@ -11756,7 +11770,8 @@ msgstr ""
 "إستخدام نافذة إعدادات الشبكة لتكوين شبكة الأتصال\n"
 "\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "اضغط المفتاح العلوى أو السفلى من الريموت وحدد اختيارك ثم بعدها, أضغط موافق."
 
 msgid "Use the wizard to set up basic features"
@@ -12173,7 +12188,7 @@ msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "أهلا وسهلا \n"
 "\n"
@@ -12335,9 +12350,6 @@ msgstr "عند التمكين سيتم عرض الترجمة النصية للق
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "عند التمكين سيتم عرض الترجمة النصية للقنوات في مكانها الإفتراضي."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "عند التمكين، سيتم عرض الترجمة النصية للقنوات باللون الأصفر، بدلا من اللون الأصلي."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "عند التمكين، يتم فتح تشفير روابط التدفق على جانب الخادم. لا يحتاج مستقبل العميل (وحدة التحكم عن بعد) إلى إزالة فتح التشفير الإفتراضي ."
@@ -12545,9 +12557,6 @@ msgstr "عام"
 
 msgid "Yellow"
 msgstr "أصفر"
-
-msgid "Yellow DVB subtitles"
-msgstr "الترجمة الأساسية للقنوات باللون الأصفر"
 
 #, fuzzy
 msgid "Yellow button function"

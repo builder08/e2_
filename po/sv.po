@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -606,6 +606,9 @@ msgstr ""
 #
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "En avslutad inspelningstimer vill försätta din mottagare i viloläge. Utföra det nu?"
@@ -2901,6 +2904,9 @@ msgstr "Klipplisteditor"
 msgid "Cutlist editor..."
 msgstr "Klipplisteditor..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr ""
 
@@ -2960,6 +2966,10 @@ msgstr "DVB drivrutiner :"
 
 msgid "DVB subtitle black transparency"
 msgstr "Svart transparens för DVB undertexter"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Extern undertextfärg"
 
 msgid "DVB type"
 msgstr "DVB Typ"
@@ -6201,6 +6211,9 @@ msgid "Macao"
 msgstr ""
 
 msgid "Madagascar"
+msgstr ""
+
+msgid "Magenta"
 msgstr ""
 
 #
@@ -11328,9 +11341,10 @@ msgstr ""
 "Tack för att du använde guiden.\n"
 "Vänligen tryck OK för att forsätta."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Tack för att du använde guiden. Din mottagare är nu konfigurerad.\n"
 "Tryck OK för att börja använda din mottagare."
@@ -12549,7 +12563,8 @@ msgid "Use the network wizard to configure your network\n"
 msgstr "Använd nätverksguiden för att konfigurera ditt nätverk\n"
 
 #
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Använd upp / ner pilarna på din fjärrkontroll för att välja. Tryck sedan OK."
 
 #
@@ -13010,11 +13025,12 @@ msgstr ""
 "\n"
 "Tryck OK för att starta konfigurationen av ditt nätverk"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Välkommen.\n"
 "\n"
@@ -13166,9 +13182,6 @@ msgstr "Vid aktiverad kommer grafiska DVB undertexter centreras horisontellt."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Vid aktiverad kommer grafiska DVB undertexter visas vid originalpositionen."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Vid aktiverad kommer grafiska DVB undertexter att visas i gult, i stället för originalfärgen."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Vid aktiverad kommer http strömmar avkodas på serversidan. (Fjärr) klientmottagaren behöver inte göra avkodning. Standard på."
@@ -13382,9 +13395,6 @@ msgstr "År"
 
 msgid "Yellow"
 msgstr "gul"
-
-msgid "Yellow DVB subtitles"
-msgstr "Gula DVB undertexter"
 
 #, fuzzy
 msgid "Yellow button function"

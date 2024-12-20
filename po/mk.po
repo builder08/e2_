@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2021-02-19 14:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Muzoss-VELEBRDO\n"
@@ -563,6 +563,9 @@ msgstr "= НЕМА СТРИМ\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Тајмер за снимање сака да го постави вашиот приемник во мирување. Дали сакате сега?"
@@ -2604,6 +2607,9 @@ msgstr "Уредник на списоци"
 msgid "Cutlist editor..."
 msgstr "Уредник на списоци ..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Кипар"
 
@@ -2656,6 +2662,10 @@ msgstr "DVB driver верзија: "
 
 msgid "DVB subtitle black transparency"
 msgstr "ДВБ-транспарентност на црниот поднаслов"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Надворешна боја на превод"
 
 msgid "DVB type"
 msgstr "DVB тип"
@@ -5518,6 +5528,10 @@ msgstr "Макао"
 
 msgid "Madagascar"
 msgstr "Мадагаскар"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Аргентина"
 
 msgid "Main menu"
 msgstr "Главно мени"
@@ -9990,9 +10004,10 @@ msgstr ""
 "Ви благодариме што го користевте волшебникот.\n"
 "Притиснете OK за да продолжите."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Ви благодариме што го користевте волшебникот.\n"
 "Вашиот приемник сега е подготвен за употреба.\n"
@@ -11044,7 +11059,8 @@ msgstr "Користете го мрежниот асистент за конф�
 msgid "Use the network wizard to configure your network\n"
 msgstr "Користете го мрежниот асистент за да ја конфигурирате вашата мрежа\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Користете ги копчињата горе / долу на вашиот далечински управувач за да изберете опција. После тоа, притиснете ОК."
 
 msgid "Use the wizard to set up basic features"
@@ -11442,11 +11458,12 @@ msgstr ""
 "Ако сакате да го поврзете вашиот приемник со Интернет, овој асистент ќе ве води низ основните мрежни поставки за вашиот приемник. \n"
 "Кликнете OK за да започнете со конфигурирање на вашата мрежа"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Добредојде\n"
 "Овој асистент за стартување за почеток ќе ве води низ основните поставки на вашиот приемник.\n"
@@ -11597,9 +11614,6 @@ msgstr "Ако е активирана оваа опција, графичкит
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Ако е активирана оваа опција, графичките DVB преводи ќе бидат прикажани во нивната оригинална позиција."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Ако е активирана оваа опција, графичките DVB преводи ќе бидат прикажани во жолто, наместо во оригиналната боја."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Ако е активирана оваа опција, HTTP стримовите се дешифрираат од страната на серверот. (Далечински управувач) клиент не мора сам да ја изврши декрипцијата."
@@ -11798,9 +11812,6 @@ msgstr "Година"
 
 msgid "Yellow"
 msgstr "Жолта"
-
-msgid "Yellow DVB subtitles"
-msgstr "Жолти DVB преводи"
 
 #, fuzzy
 msgid "Yellow button function"

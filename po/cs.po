@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -628,6 +628,9 @@ msgstr "=NO STREAM\n"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr "Pro lepší čitelnost DVB titulků může být použit barevný filtr."
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Dokončený časovač nahrávání chce přepnout přijímač do pohotovostního režimu. Přepnout?"
@@ -1304,9 +1307,8 @@ msgid "Audio PID%s, codec & lang"
 msgstr "Audio PID%s, kodek & jazyk"
 
 #
-#, fuzzy
 msgid "Audio Selection Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 msgid "Audio auto volume level"
 msgstr "Automatická úroveň hlasitosti"
@@ -1982,19 +1984,16 @@ msgid "Channel Info"
 msgstr "Informace o programu"
 
 #
-#, fuzzy
 msgid "Channel Select Base Actions"
-msgstr "Výběr programu"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Channel Select Edit Actions"
-msgstr "Výběr programu"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Channel SelectEPG Actions"
-msgstr "Výběr programu"
+msgstr ""
 
 #
 msgid "Channel Selection"
@@ -2139,9 +2138,8 @@ msgid "Christmas Island"
 msgstr "Vánoční ostrov"
 
 #
-#, fuzzy
 msgid "Ci Selection Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 msgid "Circular LNB"
 msgstr "Circular LNB"
@@ -2213,7 +2211,7 @@ msgid "Codec & lang%s"
 msgstr "Kodek &jazyk%s"
 
 msgid "Collapse"
-msgstr ""
+msgstr "Sbalit"
 
 #
 msgid "Collection name"
@@ -2232,9 +2230,8 @@ msgid "Color"
 msgstr "Barva"
 
 #
-#, fuzzy
 msgid "Color Actions"
-msgstr "Společné akce nastavení"
+msgstr ""
 
 #
 msgid "Color format"
@@ -2292,9 +2289,8 @@ msgid "Composition of the recording filenames"
 msgstr "Vytváření názvů nahrávaných souborů"
 
 #
-#, fuzzy
 msgid "Config List Actions"
-msgstr "Společné akce nastavení"
+msgstr ""
 
 msgid "Config Scan Details"
 msgstr "Konfigurovat detaily prohledávání"
@@ -2905,14 +2901,12 @@ msgid "Cut"
 msgstr "Střih"
 
 #
-#, fuzzy
 msgid "Cut List Editor Actions"
-msgstr "Editor střihu"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Cutlist Seek Actions"
-msgstr "Editor střihu"
+msgstr ""
 
 #
 msgid "Cutlist editor"
@@ -2921,6 +2915,9 @@ msgstr "Editor střihu"
 #
 msgid "Cutlist editor..."
 msgstr "Editor střihu..."
+
+msgid "Cyan"
+msgstr "Azurová"
 
 msgid "Cyprus"
 msgstr "Kypr"
@@ -2980,6 +2977,9 @@ msgstr "DVB ovladače: "
 msgid "DVB subtitle black transparency"
 msgstr "Průhlednost pozadí DVD titulků"
 
+msgid "DVB subtitles color filter"
+msgstr "Barevný filtr pro DVB titulky"
+
 msgid "DVB type"
 msgstr "DVB typ"
 
@@ -2991,19 +2991,16 @@ msgid "DVD Menu"
 msgstr "DVD Menu"
 
 #
-#, fuzzy
 msgid "DVD Player Actions"
-msgstr "DVD přehrávač"
+msgstr ""
 
 #
-#, fuzzy
 msgid "DVD Title List"
-msgstr "DVD seznam titulů"
+msgstr ""
 
 #
-#, fuzzy
 msgid "DVD Toolbox"
-msgstr "DVD media nástroje"
+msgstr ""
 
 msgid "DVD data format"
 msgstr "DVD datový formát"
@@ -3345,9 +3342,8 @@ msgid "Direct playback of linked titles without menu"
 msgstr "Okamžité přehrávání připojených titulů bez menu"
 
 #
-#, fuzzy
 msgid "Direction Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 #
 msgid "Directory"
@@ -3500,9 +3496,8 @@ msgstr ""
 "Může to trvat dlouho!"
 
 #
-#, fuzzy
 msgid "Do you really want to clear this playlist?"
-msgstr "Opravdu chcete smazat \"%s\"?"
+msgstr "Opravdu chcete smazat tento playlist?"
 
 #
 #, python-format
@@ -3744,9 +3739,8 @@ msgid "EPG"
 msgstr "EPG"
 
 #
-#, fuzzy
 msgid "EPG Select Actions"
-msgstr "Zvolte akci"
+msgstr ""
 
 #
 msgid "EPG language selection 1"
@@ -4200,14 +4194,12 @@ msgid "Ethiopia"
 msgstr "Etiopie"
 
 #
-#, fuzzy
 msgid "Event View Actions"
-msgstr "Menu přehledu událostí"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Event ViewEPG Actions"
-msgstr "Menu přehledu událostí"
+msgstr ""
 
 msgid "Event font size (relative to skin size)"
 msgstr "Velikost písma pro událost (relativně k velikosti skinu)"
@@ -4768,9 +4760,8 @@ msgstr "Plné rozlišení"
 msgid "Fullbackup Images"
 msgstr "Úplná záloha obrazů"
 
-#, fuzzy
 msgid "Function Key Actions"
-msgstr "Funkce tlačítka OK"
+msgstr ""
 
 msgid "Function of OK button"
 msgstr "Funkce tlačítka OK"
@@ -4792,9 +4783,8 @@ msgid "GB"
 msgstr "GB"
 
 #
-#, fuzzy
 msgid "GMEPG Select Actions"
-msgstr "Zvolte akci"
+msgstr ""
 
 msgid "GREEN"
 msgstr "GREEN"
@@ -5110,9 +5100,8 @@ msgid "Help"
 msgstr "Nápověda"
 
 #
-#, fuzzy
 msgid "Help Actions"
-msgstr "Zvolte akci"
+msgstr ""
 
 msgid "Help Screen"
 msgstr "Nápověda"
@@ -5198,9 +5187,8 @@ msgstr "Nastavení Hotkey"
 msgid "Hotkey"
 msgstr "Hotkey"
 
-#, fuzzy
 msgid "Hotkey Actions"
-msgstr "Další funkce"
+msgstr "Další funkc"
 
 msgid "Hotkey Panic"
 msgstr "Hotkey Panic"
@@ -5462,59 +5450,49 @@ msgid "Info bar timeout"
 msgstr "Doba po které skrývat infobar"
 
 #
-#, fuzzy
 msgid "Infobar Actions"
-msgstr "Doba po které skrývat infobar"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Audio Selection Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Channel Selection"
-msgstr "Výběr programu"
+msgstr ""
 
 msgid "Infobar Cue Sheet Actions"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Extensions"
-msgstr "Instalovat rozšíření"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Instant Record"
-msgstr "Okamžité nahrávání"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Menu Actions"
-msgstr "Doba po které skrývat infobar"
+msgstr ""
 
-#, fuzzy
 msgid "Infobar Movie List Actions"
-msgstr "Nastavení seznamu filmů"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar PiP Actions"
-msgstr "Doba po které skrývat infobar"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Rds Actions"
-msgstr "Doba po které skrývat infobar"
+msgstr ""
 
 msgid "Infobar Red Button Actions"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Seek Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 msgid "Infobar Show Hide Actions"
 msgstr ""
@@ -5523,32 +5501,27 @@ msgid "Infobar Subservice Quickzap Actions"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Subservice Selection Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Subtitle Selection Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Teletext Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 msgid "Infobar Timer Button Actions"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Timeshift Actions"
-msgstr "Timeshift"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Infobar Timeshift Activate Actions"
-msgstr "Timeshift"
+msgstr ""
 
 msgid "Infobar Vmode Button Actions"
 msgstr ""
@@ -5557,9 +5530,8 @@ msgid "Infobar frontend data source"
 msgstr "Zdroj Infobar frontend dat"
 
 #
-#, fuzzy
 msgid "InfobarEPG Actions"
-msgstr "Doba po které skrývat infobar"
+msgstr ""
 
 #
 msgid "Information"
@@ -5618,9 +5590,8 @@ msgid "Input "
 msgstr "Zadání "
 
 #
-#, fuzzy
 msgid "Input Actions"
-msgstr "Zadání "
+msgstr ""
 
 msgid "Input Ascii Actions"
 msgstr ""
@@ -5666,9 +5637,8 @@ msgid "Install picons on"
 msgstr "Instalovat picons do"
 
 #
-#, fuzzy
 msgid "Install plugin"
-msgstr "Instaluji"
+msgstr "Instalovat plugin"
 
 msgid "Installation has completed."
 msgstr "Instalace byla dokončena."
@@ -5883,9 +5853,8 @@ msgid "Keyboard"
 msgstr "Klávesnice"
 
 #
-#, fuzzy
 msgid "Keyboard Input Actions"
-msgstr "Funkce virtuální klávesnice"
+msgstr ""
 
 #
 msgid "Keyboard data entry"
@@ -6085,9 +6054,8 @@ msgstr[1] "Seznam verze %(ver)d, nalezeny %(num)d kanály"
 msgstr[2] "Seznam verze %(ver)d, nalezeno %(num)d kanálů"
 
 #
-#, fuzzy
 msgid "Listbox Actions"
-msgstr "Umístění"
+msgstr ""
 
 msgid "Listbox Help Menu Actions"
 msgstr ""
@@ -6222,6 +6190,9 @@ msgstr "Macao"
 msgid "Madagascar"
 msgstr "Madagaskar"
 
+msgid "Magenta"
+msgstr "Fialová"
+
 #
 msgid "Main menu"
 msgstr "Hlavní menu"
@@ -6348,9 +6319,8 @@ msgid "Mayotte"
 msgstr "Mayotte"
 
 #
-#, fuzzy
 msgid "Media Player Actions"
-msgstr "Přehrávač médií"
+msgstr ""
 
 msgid "Media Player Cue Sheet Actions"
 msgstr ""
@@ -6389,9 +6359,8 @@ msgid "Menu"
 msgstr "Menu"
 
 #
-#, fuzzy
 msgid "Menu Actions"
-msgstr "Společné akce nastavení"
+msgstr ""
 
 msgid "Menu button function"
 msgstr "Funkce tlačítka menu"
@@ -6424,9 +6393,8 @@ msgstr "minimální věk %d roků"
 msgid "Minimum send interval"
 msgstr "Minimální interval posílání"
 
-#, fuzzy
 msgid "Minute Input Actions"
-msgstr "Funkce tlačítka menu"
+msgstr ""
 
 msgid "Missing "
 msgstr "Chybí "
@@ -6605,14 +6573,12 @@ msgstr "Natočeno na pozici podle indexu"
 msgid "Movement"
 msgstr "Natáčení"
 
-#, fuzzy
 msgid "Movie Player Actions"
-msgstr "Výběr filmů"
+msgstr ""
 
 #
-#, fuzzy
 msgid "Movie Selection Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 msgid "Movie list configuration"
 msgstr "Nastavení seznamu filmů"
@@ -6748,9 +6714,8 @@ msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. E
 msgstr "Pro pohyb nahoru/dolů použijte tlačítka UP/DOWN, pro změnu stránky tlačítka LEFT/RIGHT. Tlačítko EXIT slouží k návratu na obrazovku nápovědy. Tlačítko OK slouží k provedení akce popsané v aktuálně zvýrazněné nápovědě."
 
 #
-#, fuzzy
 msgid "Navigation Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 msgid "Nepal"
 msgstr "Nepál"
@@ -7140,9 +7105,8 @@ msgstr "Přehrává se"
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Nyní použijte nastavení kontrastu pro nastavení světlosti pozadí na nejvyšší hodnotu, ale ujistěte se, že stále vidíte rozdíl mezi dvěma nejsvětlejšími odstíny. Pokud jste hotovi, stiskněte OK."
 
-#, fuzzy
 msgid "Number Actions"
-msgstr "Další funkce"
+msgstr ""
 
 #
 msgid "Number of channels shown in channel selection list"
@@ -7193,9 +7157,8 @@ msgid "Offline decode delay (ms)"
 msgstr "Zpoždění offline dekódování (ms)"
 
 #
-#, fuzzy
 msgid "Ok Cancel Actions"
-msgstr "Zrušit provádění?"
+msgstr ""
 
 msgid "Oman"
 msgstr "Omán"
@@ -7524,9 +7487,8 @@ msgid "Philippines"
 msgstr "Filipíny"
 
 #
-#, fuzzy
 msgid "PiP Setup Actions"
-msgstr "Společné akce nastavení"
+msgstr ""
 
 #
 msgid "PiP setup"
@@ -8377,9 +8339,8 @@ msgid "Random"
 msgstr "Náhodný"
 
 #
-#, fuzzy
 msgid "Rass Interactive Actions"
-msgstr "Prohlížet Rass interaktivně..."
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -8640,9 +8601,8 @@ msgid "Remove new found flag"
 msgstr "Odebrat příznak 'nově nalezeno'"
 
 #
-#, fuzzy
 msgid "Remove plugin"
-msgstr "Odstranit pluginy"
+msgstr "Odstranit plugin"
 
 #
 msgid "Remove plugins"
@@ -9953,9 +9913,8 @@ msgid "Setup"
 msgstr "Nastavení"
 
 #
-#, fuzzy
 msgid "Setup Actions"
-msgstr "Společné akce nastavení"
+msgstr ""
 
 #
 msgid "Setup hard disk"
@@ -9992,9 +9951,8 @@ msgid "Short filenames"
 msgstr "Krátké názvy souborů"
 
 #
-#, fuzzy
 msgid "Shortcut Actions"
-msgstr "Zvolte akci"
+msgstr ""
 
 msgid "Show"
 msgstr "Zobrazit"
@@ -10419,9 +10377,8 @@ msgstr "Přeskočit test internetového připojení (zakáže automatickou insta
 msgid "Skip jumping to live TV while timeshifting with plugins"
 msgstr "Přeskočit návrat do živého vysílání při timeshiftu z pluginů"
 
-#, fuzzy
 msgid "Sleep Timer Editor Actions"
-msgstr "Konfigurace časovače usínání"
+msgstr ""
 
 #
 msgid "Sleep timer"
@@ -10704,9 +10661,8 @@ msgstr "Pohotovostní režim"
 msgid "Standby / restart"
 msgstr "Standby / restart"
 
-#, fuzzy
 msgid "Standby Actions"
-msgstr "Standby za "
+msgstr ""
 
 #
 msgid "Standby LED"
@@ -11255,9 +11211,8 @@ msgid "Tanzania, United Republic of"
 msgstr "Tanzánie"
 
 #
-#, fuzzy
 msgid "Teletext Actions"
-msgstr "Zvolte akci"
+msgstr ""
 
 msgid "Teletext subtitle color"
 msgstr "Barva teletextových titulků"
@@ -11291,9 +11246,8 @@ msgstr "Testovací obrazce"
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Testovací obrazce pomáhají doladit obrazovku"
 
-#, fuzzy
 msgid "Text Edit Actions"
-msgstr "Upravit výběr"
+msgstr ""
 
 msgid "Text Entry Actions"
 msgstr ""
@@ -11321,10 +11275,10 @@ msgstr ""
 
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Děkujeme za použití průvodce. Přijímač je nyní připraven k používání.\n"
-"Stiskněte OK a začněte přijímač používat."
+"Stiskněte Modré nebo OK a začněte přijímač používat."
 
 #, python-format
 msgid "The %d min remaining before the end of the event."
@@ -11826,9 +11780,8 @@ msgid "Timer"
 msgstr "Časovač"
 
 #
-#, fuzzy
 msgid "Timer Edit Actions"
-msgstr "Výběr časovače"
+msgstr ""
 
 #
 msgid "Timer Overview"
@@ -12163,9 +12116,8 @@ msgid "Tuvalu"
 msgstr "Tuvalu"
 
 #
-#, fuzzy
 msgid "Tv Radio Actions"
-msgstr "Výběr zvuku"
+msgstr ""
 
 #
 msgid "Two"
@@ -12492,8 +12444,8 @@ msgid "Use the network wizard to configure your network\n"
 msgstr "Použijte průvodce pro nakonfigurování vaší sítě\n"
 
 #
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
-msgstr "Použijte šipku nahoru / dolu na DO pro výběr volby. Potom stiskněte OK."
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
+msgstr "Použijte šipku nahoru / dolů na DO pro výběr volby. Potom stiskněte Modré nebo OK."
 
 #
 msgid "Use the wizard to set up basic features"
@@ -12767,9 +12719,8 @@ msgid "Virgin Islands (U.S.)"
 msgstr "Panenské ostrovy (U.S.)"
 
 #
-#, fuzzy
 msgid "Virtual Key Board Actions"
-msgstr "Funkce virtuální klávesnice"
+msgstr ""
 
 #
 msgid "Virtual KeyBoard Functions"
@@ -12780,9 +12731,8 @@ msgid "Virtual KeyBoard Text:"
 msgstr "Text virtuální klávesnice:"
 
 #
-#, fuzzy
 msgid "Virtual Keyboard Actions"
-msgstr "Funkce virtuální klávesnice"
+msgstr ""
 
 #
 msgid "Virtual keyboard"
@@ -12951,12 +12901,12 @@ msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Vítejte.\n"
 "\n"
 "Tento průvodce vás provede základním nastavením Vašeho přijímače.\n"
-"Stiskněte OK na dálkovém ovladači pro přesun na další krok."
+"Stiskněte Modré nebo OK na dálkovém ovladači pro přesun na další krok."
 
 #
 msgid "Welcome..."
@@ -13101,9 +13051,6 @@ msgstr "Jestliže je povoleno, grafické DVB titulky budou horizontálně centro
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány na jejich původní pozici."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány žlutě namísto jejich původní barvy."
-
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Při povolení budou http streamy dekódovány na straně serveru. Klientský (vzdálený) přijímač nemusí pak provádět dekódování. Standardně zapnuto."
 
@@ -13222,9 +13169,8 @@ msgid "Where to save temporary timeshift recordings?"
 msgstr "Kam ukládat dočasný záznam timeshiftu?"
 
 #
-#, fuzzy
 msgid "Window Actions"
-msgstr "Akce pro výběr skinu"
+msgstr ""
 
 #
 msgid "Wireless LAN"
@@ -13271,9 +13217,8 @@ msgid "Without popup"
 msgstr "Bez dialogu"
 
 #
-#, fuzzy
 msgid "Wizard Actions"
-msgstr "Pomocník nastavení"
+msgstr ""
 
 #
 msgid "Wizard setup"
@@ -13309,10 +13254,6 @@ msgstr "Rok"
 
 msgid "Yellow"
 msgstr "Žluté"
-
-#
-msgid "Yellow DVB subtitles"
-msgstr "Žluté DVB titulky"
 
 msgid "Yellow button function"
 msgstr "Funkce žlutého tlačítka"

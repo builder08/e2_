@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2021-07-31 17:00+0800\n"
 "Last-Translator: 孤独之剑 <haotzyy1970@yahoo.com>\n"
 "Language-Team: 孤独之剑 <haotzyy1970@yahoo.com>\n"
@@ -562,6 +562,9 @@ msgstr "=流中没有数据\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "机顶盒待机定时器命令触发了是否确定现在进入待机?"
@@ -2604,6 +2607,9 @@ msgstr "剪切列表编辑器"
 msgid "Cutlist editor..."
 msgstr "列表编辑器..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "塞浦路斯"
 
@@ -2656,6 +2662,10 @@ msgstr "DVB驱动版本: "
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB字幕黑色透明"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "图文字幕颜色"
 
 msgid "DVB type"
 msgstr "DVB类型"
@@ -5512,6 +5522,10 @@ msgstr "澳门"
 
 msgid "Madagascar"
 msgstr "马达加斯加"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "阿根廷"
 
 msgid "Main menu"
 msgstr "主菜单"
@@ -9989,9 +10003,10 @@ msgstr ""
 "感谢您使用设置向导.\n"
 "按OK键确认."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "感谢您使用该向导.机顶盒已经可以使用了.\n"
 "按OK键开始使用."
@@ -11051,7 +11066,8 @@ msgstr "使用网络向导配置所选网络适配器"
 msgid "Use the network wizard to configure your network\n"
 msgstr "使用网络向导配置网络\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "使用遥控上/下键选择一个选项.在此之后按下OK."
 
 msgid "Use the wizard to set up basic features"
@@ -11451,11 +11467,12 @@ msgstr ""
 "\n"
 "按OK键开始配置您的网络"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "基本设置向导\n"
 "\n"
@@ -11600,9 +11617,6 @@ msgstr "一旦启用,图形DVB字幕将会置中显示."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "一旦启用,图形DVB字幕将会显示于原始位置."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "一旦启用,将会使用黄色代替默认颜色来显示图形DVB字幕."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "一旦启用,http媒体流在服务端解扰.远程客户端不需要解扰."
@@ -11801,9 +11815,6 @@ msgstr "年"
 
 msgid "Yellow"
 msgstr "黄色"
-
-msgid "Yellow DVB subtitles"
-msgstr "黄色DVB字幕"
 
 #, fuzzy
 msgid "Yellow button function"

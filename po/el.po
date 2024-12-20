@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLI Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -561,6 +561,9 @@ msgstr "=ΧΩΡΙΣ ΡΟΗ\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Ένας ολοκληρωμένος χρονοδιακόπτης πρόκειται να θέσει τον δέκτη σας σε κατάσταση αναμονής. Θέλετε να προχωρήσετε;"
@@ -2582,6 +2585,9 @@ msgstr "Επεξεργασία σημείων αποκοπής"
 msgid "Cutlist editor..."
 msgstr "Επεξεργασία σημείων αποκοπής..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Κύπρος"
 
@@ -2632,6 +2638,10 @@ msgstr "Έκδοση οδηγών DVB: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Διαφάνεια υποτίτλων DVB"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Χρώμα εξωτερικών υποτίτλων"
 
 msgid "DVB type"
 msgstr "Τύπος DVB"
@@ -5474,6 +5484,10 @@ msgstr "Μακάο"
 
 msgid "Madagascar"
 msgstr "Μαδαγασκάρη"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Αργεντινή"
 
 msgid "Main menu"
 msgstr "Κύριο μενού"
@@ -9936,9 +9950,10 @@ msgstr ""
 "Σας ευχαριστούμε που χρησιμοποιήσατε τον οδηγό.\n"
 "Πιέστε ΟΚ για να συνεχίσετε."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Σας ευχαριστούμε που χρησιμοποιήσατε τον οδηγό. Ο δέκτης σας είναι πλέον έτοιμος για χρήση.\n"
 "Πιέστε ΟΚ για να ξεκινήσετε."
@@ -10993,7 +11008,8 @@ msgstr "Χρήση του οδηγού δικτύου για τη ρύθμιση
 msgid "Use the network wizard to configure your network\n"
 msgstr "Χρήση οδηγού δικτύου για τη ρύθμιση του δικτύου\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Πιέστε τα πλήκτρα πάνω/κάτω του τηλεχειριστηρίου για επιλογή. Μετά, πιέστε ΟΚ."
 
 msgid "Use the wizard to set up basic features"
@@ -11392,11 +11408,12 @@ msgstr ""
 "\n"
 "Πιέστε OK για να ξεκινήσετε τη ρύθμιση του δικτύου σας"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Καλώς ήρθατε. \n"
 "\n"
@@ -11541,9 +11558,6 @@ msgstr "Όταν είναι ενεργό, οι γραφικοί υπότιτλο
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Όταν είναι ενεργό, οι γραφικοί υπότιτλοι DVB θα εμφανίζονται στην αρχική τους θέση."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Όταν είναι ενεργό, οι γραφικοί υπότιτλοι DVB θα εμφανίζονται σε κίτρινο χρώμα αντί του κανονικού τους."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Όταν είναι ενεργό, οι ροές http αποκρυπτογραφούνται στην πλευρά του διακομιστή. Ο (απομακρυσμένος) δέκτης-πελάτης δεν χρειάζεται να κάνει αποκρυπτογράφηση. Προεπιλογή ενεργό."
@@ -11740,9 +11754,6 @@ msgstr "Έτος"
 
 msgid "Yellow"
 msgstr "Κίτρινο"
-
-msgid "Yellow DVB subtitles"
-msgstr "Κίτρινοι υπότιτλοι DVB"
 
 #, fuzzy
 msgid "Yellow button function"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2021-03-06\n"
 "Last-Translator: LinuxSTV\n"
 "Language-Team: \n"
@@ -570,6 +570,9 @@ msgstr "=Tidak ada stream\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Pewaktu rekam yang telah selesai ingin memproses Rx pada mode standby. Lakukan sekarang?"
@@ -2661,6 +2664,9 @@ msgstr "Penyunting daftarpotong"
 msgid "Cutlist editor..."
 msgstr "Penyunting daftarpotong..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Siprus"
 
@@ -2715,6 +2721,10 @@ msgstr "Versi modul DVB: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparansi hitam terjemahan DVB"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Warna terjemahan dari luar"
 
 msgid "DVB type"
 msgstr "Jenis DVB"
@@ -5673,6 +5683,10 @@ msgstr "Makau"
 
 msgid "Madagascar"
 msgstr "Madagaskar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentina"
 
 msgid "Main menu"
 msgstr "Menu Utama"
@@ -10272,9 +10286,10 @@ msgstr ""
 "Terima kasih telah menggunakan wizard.\n"
 "Tekan OK untuk lanjut."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Terima kasih telah menggunakan wizard. Rx anda telah siap digunakan.\n"
 "Tekan OK untuk mulai menggunakan Rx anda."
@@ -11360,7 +11375,8 @@ msgstr "Gunakan wizard jaringan untuk menyetel adapter jaringan yg dipilih"
 msgid "Use the network wizard to configure your network\n"
 msgstr "Gunakna wizard jaringan untuk menyetel jaringan anda\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Gunakan tombol atas/bawah pada remote kontrol untuk memilih pilihan. Setelah itu, tekan OK."
 
 msgid "Use the wizard to set up basic features"
@@ -11769,11 +11785,12 @@ msgstr ""
 "\n"
 "Tekan OK untuk mulai penyetelan jaringan anda"
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Selamat Datang.\n"
 "\n"
@@ -11921,9 +11938,6 @@ msgstr "Ketika diaktifkan, terjemahan DVB grafis akan ditengahkan secara horizon
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Ketika diaktifkan, terjemahan DVB grafis akan ditampilkan pada posisi aslinya."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Ketika diaktifkan, terjemahan DVB grafis akan ditampilkan berwarna kuning, daripada warna aslinya."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Ketika diaktifkan, streaming http melakukan descramble pada sisi server. rx klien tidak perlu melakukan descramble. Bawaan diaktifkan."
@@ -12128,9 +12142,6 @@ msgstr "Tahun"
 
 msgid "Yellow"
 msgstr "Kuning"
-
-msgid "Yellow DVB subtitles"
-msgstr "terjemahan DVB warna kuning"
 
 #, fuzzy
 msgid "Yellow button function"

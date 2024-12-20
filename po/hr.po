@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 13:25+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: 2022-03-28 16:33+0200\n"
 "Last-Translator: Željko <zdezmar2@gmail.com>\n"
 "Language-Team: Željko\n"
@@ -575,6 +575,9 @@ msgstr "=NEMA WEB PRIJENOSA\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Po završetku snimanja tajmer želi staviti prijemnik u stanje čekanja? Da li to želite učiniti sada?"
@@ -2616,6 +2619,9 @@ msgstr "Uređivač popisa skraćenica videozapisa"
 msgid "Cutlist editor..."
 msgstr "Uređivač popisa skraćenica videozapisa..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Cipar"
 
@@ -2668,6 +2674,10 @@ msgstr "DVB verzija drajvera: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparentnost crnih DVB titlova"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Boja vanjskog titla"
 
 msgid "DVB type"
 msgstr "DVB tip"
@@ -5529,6 +5539,10 @@ msgstr "Makao"
 
 msgid "Madagascar"
 msgstr "Madagaskar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentina"
 
 msgid "Main menu"
 msgstr "Glavni izbornik"
@@ -9997,9 +10011,10 @@ msgstr ""
 "Hvala vam što koristite vodiča.\n"
 "Pritisnite OK za nastavak."
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Hvala vam što koristite vodiča.\n"
 "Vaš je prijemnik sada spreman za uporabu."
@@ -11058,7 +11073,8 @@ msgstr "Pomoću vodiča za mrežu konfigurirajte odabrani mrežni prilagodnik"
 msgid "Use the network wizard to configure your network\n"
 msgstr "Pomoću vodiča za mrežu konfigurirajte svoju mrežu\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr "Koristite tipke gore/dolje na daljinskom upravljaču za odabir opcije. Nakon toga pritisnite OK."
 
 msgid "Use the wizard to set up basic features"
@@ -11458,11 +11474,12 @@ msgstr ""
 "\n"
 "Pritisnite OK za početak konfiguriranja mreže."
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Dobrodošli.\n"
 "\n"
@@ -11607,9 +11624,6 @@ msgstr "Kada je omogućeno, grafički DVB titlovi bit će centrirani vodoravno."
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Kada je omogućeno, grafički DVB titlovi će biti prikazani na njihovom izvornom položaju."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Kada je omogućeno, grafički DVB titlovi bit će prikazani žutom bojom umjesto izvornom bojom."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Kada je omogućeno, web prijenosi se dekodiraju na strani poslužitelja. Prijemnik (udaljenog) klijenta ne mora raditi dekodiranje. Zadano je uključeno."
@@ -11806,9 +11820,6 @@ msgstr "God"
 
 msgid "Yellow"
 msgstr "Žuta"
-
-msgid "Yellow DVB subtitles"
-msgstr "Žuti DVB titlovi"
 
 #, fuzzy
 msgid "Yellow button function"

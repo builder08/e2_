@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-18 15:32+0000\n"
+"POT-Creation-Date: 2024-12-20 11:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -557,6 +557,9 @@ msgstr "=GEEN STREAM\n"
 
 msgid "A"
 msgstr "A"
+
+msgid "A color filter can be used for better readability of DVB subtitles."
+msgstr ""
 
 msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
 msgstr "Een opname die gereed is wil de ontvanger in stand-by zetten. Akkoord?"
@@ -2747,6 +2750,9 @@ msgstr "Opname knippen"
 msgid "Cutlist editor..."
 msgstr "Opname knippen..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cyprus"
 msgstr "Cyprus"
 
@@ -2797,6 +2803,10 @@ msgstr "DVB driver versie: "
 
 msgid "DVB subtitle black transparency"
 msgstr "Zwarte transparantie"
+
+#, fuzzy
+msgid "DVB subtitles color filter"
+msgstr "Kleur van de externe ondertitel"
 
 msgid "DVB type"
 msgstr "DVB type"
@@ -5652,6 +5662,10 @@ msgstr "Macao"
 
 msgid "Madagascar"
 msgstr "Madagascar"
+
+#, fuzzy
+msgid "Magenta"
+msgstr "Argentinië"
 
 msgid "Main menu"
 msgstr "Hoofdmenu"
@@ -10130,9 +10144,10 @@ msgstr ""
 "\n"
 "Voor uitgebreide aanvullende informatie over tal van onderwerpen kunt u onze WIKI raadplegen. https://wiki.openpli.org"
 
+#, fuzzy
 msgid ""
 "Thank you for using the wizard. Your receiver is now ready for use.\n"
-"Press OK to start using your receiver."
+"Press Blue or OK to start using your receiver."
 msgstr ""
 "Bedankt voor het gebruik van de wizard. Uw ontvanger is nu gebruiksklaar.\n"
 "Druk op Ok om uw ontvanger in gebruik te nemen."
@@ -11194,7 +11209,8 @@ msgstr "Gebruik de netwerkwizard om de geselecteerde netwerkadapter te configure
 msgid "Use the network wizard to configure your network\n"
 msgstr "Gebruik de netwerkwizard om uw netwerk in te stellen\n"
 
-msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
+#, fuzzy
+msgid "Use the up/down keys on your remote control to select an option. After that, press Blue or OK."
 msgstr ""
 "Wizard basisinstellingen.\n"
 "\n"
@@ -11607,11 +11623,12 @@ msgstr ""
 "\n"
 "Druk Ok om te beginnen met de configuratie van uw netwerk."
 
+#, fuzzy
 msgid ""
 "Welcome.\n"
 "\n"
 "This start wizard will guide you through the basic setup of your receiver.\n"
-"Press the OK button on your remote control to move to the next step."
+"Press the Blue or OK button on your remote control to move to the next step."
 msgstr ""
 "Welkom bij de Wizard basisinstellingen.\n"
 "\n"
@@ -11767,9 +11784,6 @@ msgstr ""
 "Indien geactiveerd, dan worden de grafische DVB ondertitels op hun oorspronkelijke locatie weergegeven.\n"
 "\n"
 "U kunt dit instellen met de cursor R/L toetsen tussen origineel, vast of relatief. De standaardwaarde is relatief."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Indien geactiveerd, dan worden de grafische DVB ondertitels in geel weergegeven i.p.v. in de originele kleur."
 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Indien geactiveerd, dan worden http stream aan de serverzijde gedecodeerd. De client ontvanger hoeft dan niet te decoderen. De standaardwaarde is uit."
@@ -11992,9 +12006,6 @@ msgstr "Jaar"
 
 msgid "Yellow"
 msgstr "Geel"
-
-msgid "Yellow DVB subtitles"
-msgstr "Activeer de gele DVB ondertiteling"
 
 msgid "Yellow button function"
 msgstr "Functie van de gele toets"
