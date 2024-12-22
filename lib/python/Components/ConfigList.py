@@ -175,7 +175,7 @@ class ConfigListScreen:
 				"cancel": (self.keyCancel, _("Cancel any changed settings and exit")),
 				"close": (self.closeRecursive, _("Cancel any changed settings and exit all menus")),
 				"save": (self.keySave, _("Save all changed settings and exit"))
-			}, prio=1)
+				}, prio=1)
 			if allowDefault:
 				if "key_yellow" not in self:
 					self["key_yellow"] = StaticText(_("Default"))
