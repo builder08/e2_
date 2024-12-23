@@ -10,7 +10,7 @@ from Components.PluginComponent import plugins
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.ActionMap import NumberActionMap, ActionMap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Button import Button
 from Plugins.Plugin import PluginDescriptor
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -161,9 +161,9 @@ class Menu(Screen, ProtectedScreen):
 		requires = node.get("requires")
 		if requires:
 			if requires[0] == '!':
-				if SystemInfo.get(requires[1:], False):
+				if BoxInfo.getItem(requires[1:], False):
 					return
-			elif not SystemInfo.get(requires, False):
+			elif not BoxInfo.getItem(requires, False):
 				return
 		conditional = node.get("conditional")
 		if conditional and not eval(conditional):
@@ -198,9 +198,9 @@ class Menu(Screen, ProtectedScreen):
 		requires = node.get("requires")
 		if requires:
 			if requires[0] == '!':
-				if SystemInfo.get(requires[1:], False):
+				if BoxInfo.getItem(requires[1:], False):
 					return
-			elif not SystemInfo.get(requires, False):
+			elif not BoxInfo.getItem(requires, False):
 				return
 		conditional = node.get("conditional")
 		if conditional and not eval(conditional):
