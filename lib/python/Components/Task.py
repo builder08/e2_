@@ -71,7 +71,7 @@ class Job:
 				self.callback(self, None, [])
 				self.callback = None
 			else:
-				print("[Task] still waiting for %d resident task(s) %s to finish" % (len(self.resident_tasks), str(self.resident_tasks)))
+				print(f"[Task] still waiting for {len(self.resident_tasks)} resident task(s) {str(self.resident_tasks)} to finish")
 		else:
 			self.tasks[self.current_task].run(self.taskCallback)
 			self.state_changed()
@@ -113,7 +113,7 @@ class Job:
 		self.abort()
 
 	def __str__(self):
-		return "Components.Task.Job name=%s #tasks=%s" % (self.name, len(self.tasks))
+		return f"Components.Task.Job name={self.name} #tasks={len(self.tasks)}"
 
 
 class Task:
@@ -209,6 +209,8 @@ class Task:
 		self.processOutput(data.decode())
 
 	def processOutput(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')
@@ -218,7 +220,7 @@ class Task:
 			self.output_line = self.output_line[i + 1:]
 
 	def processOutputLine(self, line):
-		print("[Task] %s" % self.name, line[:-1])
+		print(f"[Task {self.name}]", line[:-1])
 		pass
 
 	def processFinished(self, returncode):
@@ -263,7 +265,7 @@ class Task:
 	progress = property(getProgress, setProgress)
 
 	def __str__(self):
-		return "Components.Task.Task name=%s" % (self.name)
+		return f"Components.Task.Task name={self.name}"
 
 
 class LoggingTask(Task):
@@ -272,8 +274,10 @@ class LoggingTask(Task):
 		self.log = []
 
 	def processOutput(self, data):
-		print("[Task] %s" % self.name, data,
-		self.log.append(data))
+		if isinstance(data, bytes):
+			data = data.decode()
+		print(f"[Task {self.name}]", data, end=' ')
+		self.log.append(data)
 
 
 class PythonTask(Task):
@@ -387,7 +391,7 @@ class JobManager:
 			AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			return True
 		else:
-			AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type=MessageBox.TYPE_ERROR)
+			AddNotification(MessageBox, job.name + "\n" + _("Error") + f': {problems[0].getErrorMessage(task)}', type=MessageBox.TYPE_ERROR)
 			return False
 
 	def jobDone(self, job, task, problems):
@@ -427,7 +431,7 @@ class JobManager:
 		return list
 
 # some examples:
-# class PartitionExistsPostcondition:
+#class PartitionExistsPostcondition:
 #	def __init__(self, device):
 #		self.device = device
 #
@@ -466,7 +470,7 @@ class Condition:
 	RECOVERABLE = False
 
 	def getErrorMessage(self, task):
-		return _("An unknown error occurred!") + " (%s @ task %s)" % (self.__class__.__name__, task.__class__.__name__)
+		return _("An unknown error occurred!") + f" ({self.__class__.__name__} @ task {task.__class__.__name__})"
 
 
 class WorkspaceExistsPrecondition(Condition):
@@ -529,7 +533,7 @@ class ReturncodePostcondition(Condition):
 			log = '\n'.join(log)
 			return log
 		else:
-			return _("Error code") + ": %s" % task.returncode
+			return _("Error code") + f": {task.returncode}"
 
 
 class FailedPostcondition(Condition):
@@ -544,13 +548,13 @@ class FailedPostcondition(Condition):
 				log = '\n'.join(log)
 				return log
 			else:
-				return _("Error code") + " %s" % self.exception
+				return _("Error code") + f" {self.exception}"
 		return str(self.exception)
 
 	def check(self, task):
 		return (self.exception is None) or (self.exception == 0)
 
-# class HDDInitJob(Job):
+#class HDDInitJob(Job):
 #	def __init__(self, device):
 #		Job.__init__(self, _("Initialize Harddisk"))
 #		self.device = device
