@@ -18,6 +18,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
 from Screens.TimerEntry import TimerEntry
 from Tools.BoundFunction import boundFunction
+from Tools.FallbackTimer import FallbackTimerList
 
 
 class EventViewBase:
@@ -25,7 +26,7 @@ class EventViewBase:
 	REMOVE_TIMER = 1
 	NO_ACTION = 2
 
-	def __init__(self, event, serviceRef, callback=None, similarEPGCB=None):
+	def __init__(self, event, serviceRef, callback=None, similarEPGCB=None, parent=None, windowTitle=None):
 		self.event = event
 		self.serviceRef = serviceRef
 		self.callbackMethod = callback
@@ -35,6 +36,12 @@ class EventViewBase:
 			self.similarBroadcastTimer = eTimer()
 			self.similarBroadcastTimer.callback.append(self.getSimilarEvents)
 		self.similarEPGCB = similarEPGCB
+		if parent and hasattr(parent, "fallbackTimer"):
+			self.fallbackTimer = parent.fallbackTimer
+			self.onLayoutFinish.append(self.layoutFinished)
+		else:
+			self.fallbackTimer = FallbackTimerList(self, self.layoutFinished)
+		self.windowTitle = windowTitle
 		self.isRecording = (not serviceRef.ref.flags & eServiceReference.isGroup) and serviceRef.ref.getPath() and "%3a//" not in serviceRef.ref.toString()
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
@@ -260,18 +267,18 @@ class EventViewBase:
 
 
 class EventViewSimple(Screen, EventViewBase):
-	def __init__(self, session, event, serviceRef, callback=None, similarEPGCB=None, singleEPGCB=None, multiEPGCB=None, skin="EventViewSimple"):
+	def __init__(self, session, event, serviceRef, callback=None, similarEPGCB=None, singleEPGCB=None, multiEPGCB=None, parent=None, windowTitle=None, skin="EventViewSimple"):
 		Screen.__init__(self, session, enableHelp=True)
-		EventViewBase.__init__(self, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB)
+		EventViewBase.__init__(self, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB, parent=parent, windowTitle=windowTitle)
 		self.setTitle(_("Event View"))
 		self.skinName = [skin, "EventView"]
 		self.keyGreenAction = self.NO_ACTION
 
 
 class EventViewEPGSelect(Screen, EventViewBase):
-	def __init__(self, session, event, serviceRef, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skinName=None):
+	def __init__(self, session, event, serviceRef, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, parent=None, windowTitle=None, skinName=None):
 		Screen.__init__(self, session, enableHelp=True)
-		EventViewBase.__init__(self, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB)
+		EventViewBase.__init__(self, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB, parent=parent, windowTitle=windowTitle)
 		self.keyGreenAction = self.ADD_TIMER
 		self["red"] = Pixmap()  # DEBUG: Are these backgrounds still required?
 		self["green"] = Pixmap()

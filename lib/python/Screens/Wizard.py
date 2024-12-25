@@ -263,7 +263,7 @@ class Wizard(Screen):
 					try:
 						exec("from Screens.%s import *" % attributes.get("module", "None"), globals())
 					except ImportError:
-						exec("from Screens.%s import *" % attributes.get("module", "None"), globals())
+						exec("from %s import *" % attributes.get("module", "None"), globals())
 					self.wizard[self.step]["config"]["screen"] = eval(attributes.get("screen", "None"))
 					if "args" in attributes:
 						self.wizard[self.step]["config"]["args"] = attributes.get("args", "None")
