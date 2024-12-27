@@ -16,6 +16,7 @@ has_dvi = BoxInfo.getItem("DreamBoxDVI")
 has_scart = BoxInfo.getItem("HasScart")
 has_yuv = BoxInfo.getItem("yuv")
 has_rca = BoxInfo.getItem("rca")
+has_avjack = BoxInfo.getItem("avjack")
 
 config.av.edid_override = ConfigYesNo(default=False)
 
