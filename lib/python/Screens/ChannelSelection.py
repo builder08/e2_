@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from Screens.Screen import Screen
+from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
 import Screens.InfoBar
 from Screens.ScreenSaver import InfoBarScreenSaver
@@ -34,7 +35,7 @@ from Screens.InputBox import PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
 from Screens.ServiceInfo import ServiceInfo
-from Screens.Hotkey import InfoBarHotkey, hotkeyActionMap, hotkey
+from Screens.Hotkey import InfoBarHotkey, helpableHotkeyActionMap, hotkey, getHotkeyFunctions
 eProfileWrite("ChannelSelection.py 4")
 from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
@@ -112,7 +113,6 @@ class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
 		Screen.__init__(self, session)
 		self.setTitle(_("Choose bouquet"))
-
 		self.selectedFunc = selectedFunc
 
 		self["actions"] = ActionMap(["OkCancelActions"],
@@ -129,12 +129,6 @@ class BouquetSelector(Screen):
 
 	def okbuttonClick(self):
 		self.selectedFunc(self.getCurrent())
-
-	def up(self):
-		self["menu"].up()
-
-	def down(self):
-		self["menu"].down()
 
 	def cancelClick(self):
 		self.close(False)
@@ -180,7 +174,7 @@ def removed_userbouquets_available():
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
 
-		Screen.__init__(self, session, enableHelp=True)
+		Screen.__init__(self, session)
 		self.setTitle(_("Channel context menu"))
 		self.csel = csel
 		self.bsel = None
@@ -871,11 +865,13 @@ class SelectionEventInfo:
 
 class ChannelSelectionEPG(InfoBarHotkey):
 	def __init__(self):
+		if not hotkey.functions:
+			getHotkeyFunctions()
 		self.hotkeys = [("Info (EPG)", "info", "Infobar/openEventView"),
 			("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
 			("EPG/Guide", "epg", "Plugins/Extensions/GraphMultiEPG/1"),
 			("EPG/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")]
-		self["ChannelSelectEPGActions"] = hotkeyActionMap(["ChannelSelectEPGActions"], dict((x[1], self.hotkeyGlobal) for x in self.hotkeys))
+		self["ChannelSelectEPGActions"] = helpableHotkeyActionMap(self, ["ChannelSelectEPGActions"], dict((x[1], (self.hotkeyGlobal, self.getHelpText(x[1]))) for x in self.hotkeys))
 		self.eventViewEPG = self.start_bouquet = self.epg_bouquet = None
 		self.currentSavedPath = []
 
@@ -1060,9 +1056,9 @@ class ChannelSelectionEdit:
 		self.editMode = False
 		self.confirmRemove = True
 
-		class ChannelSelectionEditActionMap(ActionMap):
-			def __init__(self, csel, contexts=[], actions={}, prio=0):
-				ActionMap.__init__(self, contexts, actions, prio)
+		class ChannelSelectionEditActionMap(HelpableActionMap):
+			def __init__(self, csel, *args, **kwargs):
+				HelpableActionMap.__init__(self, csel, *args, **kwargs)
 				self.csel = csel
 
 			def action(self, contexts, action):
@@ -1072,11 +1068,11 @@ class ChannelSelectionEdit:
 				elif action == "ok":
 					return 0  # fall-trough
 				else:
-					return ActionMap.action(self, contexts, action)
+					return HelpableActionMap.action(self, contexts, action)
 
 		self["ChannelSelectEditActions"] = ChannelSelectionEditActionMap(self, ["ChannelSelectEditActions", "OkCancelActions"],
 			{
-				"contextMenu": self.doContext,
+				"contextMenu": (self.doContext, _("Context Menu")),
 			})
 
 	def getMutableList(self, root=eServiceReference()):
@@ -1527,7 +1523,7 @@ multibouquet_radio_ref.setPath('FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
 singlebouquet_radio_ref = serviceRefAppendPath(service_types_radio_ref, ' FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet')
 
 
-class ChannelSelectionBase(Screen):
+class ChannelSelectionBase(Screen, HelpableScreen):
 	def __init__(self, session):
 		def leftHelp():
 			return _("Move to previous marker") if self.servicelist.isVertical() else _("Move to the previous item")
@@ -1535,6 +1531,7 @@ class ChannelSelectionBase(Screen):
 		def rightHelp():
 			return _("Move to next marker") if self.servicelist.isVertical() else _("Move to the next item")
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Satellites"))
 		self["key_yellow"] = Button(_("Provider"))
@@ -1566,26 +1563,34 @@ class ChannelSelectionBase(Screen):
 		self.movemode = False
 		self.showSatDetails = False
 
-		self["channelSelectBaseActions"] = HelpableNumberActionMap(self, ["ColorActions", "NumberActions", "InputAsciiActions"],
+		self["channelSelectBaseActions"] = HelpableNumberActionMap(self, ["ColorActions", "ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"],
 			{
 				"red": (self.showAllServices, _("Show all available services")),
 				"green": (boundFunction(self.showSatellites, changeMode=True), _("Show list of transponders")),
 				"yellow": (self.showProviders, _("Show list of providers")),
 				"blue": (self.showFavourites, _("Show list of bouquets")),
+				"showFavourites": (self.showFavourites, _("Show Favorites")),
+				"showAllServices": (self.showAllServices, _("Show All Services")),
+				"showProviders": (self.showProviders, _("Show Providers")),
+				"showSatellites": (boundFunction(self.showSatellites, changeMode=True), _("Show Satellites")),
+				"nextBouquet": (self.nextBouquet, lambda: self._helpPrevNextBouquet(prev=False)),
+				"prevBouquet": (self.prevBouquet,lambda: self._helpPrevNextBouquet(prev=True)),
+				"nextMarker": (self.nextMarker, _("Jump to next marker")),
+				"prevMarker": (self.prevMarker, _("Jump to previous marker")),
 				"gotAsciiCode": self.keyAsciiCode,
-				"keyLeft": self.keyLeft,
-				"keyRight": self.keyRight,
-				"keyRecord": self.keyRecord,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumber0
+				"keyLeft": (self.keyLeft, lambda: self._helpKeyleftright(prev=False)),
+				"keyRight": (self.keyRight, lambda: self._helpKeyleftright(prev=True)),
+				"keyRecord": (self.keyRecord, _("Start instant recording")),
+				"1": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(1)),
+				"2": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(2)),
+				"3": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(3)),
+				"4": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(4)),
+				"5": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(5)),
+				"6": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(6)),
+				"7": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(7)),
+				"8": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(8)),
+				"9": (self.keyNumberGlobal, lambda: self._helpKeyNumberGlobal(9)),
+				"0": (self.keyNumber0, lambda: self._helpKeyNumberGlobal(0)),
 			}, -2)
 		self["legacyNavigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
 			"pageUp": (self.nextBouquet, _("Move to next bouquet")),
@@ -1624,6 +1629,35 @@ class ChannelSelectionBase(Screen):
 
 	def layoutFinished(self):
 		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value)  # Override list box navigation.
+
+	def _helpPrevNextBouquet(self, prev):
+		if ("reverseB" in config.usage.servicelist_cursor_behavior.value) == prev:
+			return _("Move up in bouquet list")
+		else:
+			return _("Move down in bouquet list")
+
+	def _helpKeyleftright(self, prev):
+		if config.usage.oldstyle_channel_select_controls.value:
+			return _("Bouquet down") if prev else _("Bouquet up")
+		else:
+			return _("Page down") if prev else _("Page up")
+
+	def _helpKeyNumberGlobal(self, number):
+		editmode = {2: _("Rename"), 6: _("Toggle movemode"), 8: _("Remove")}.get(number, None)
+		if self.isBasePathEqual(self.bouquet_root):
+			if hasattr(self, "editMode") and self.editMode:
+				return editmode
+			else:
+				return _("Zap to channel number")
+		else:
+			current_root = self.getRoot()
+			if current_root and 'FROM BOUQUET "bouquets.' in current_root.getPath():
+				if hasattr(self, "editMode") and self.editMode:
+					return editmode
+				else:
+					return _("Zap to channel number")
+			else:
+				return _("Search in SMS mode")
 
 	def compileTitle(self):
 		self.setTitle("%s%s%s%s" % (self.maintitle, self.modetitle, self.functiontitle, self.servicetitle))
@@ -2189,13 +2223,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		ChannelSelectionEPG.__init__(self)
 		SelectionEventInfo.__init__(self)
 
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"],
 			{
-				"cancel": self.cancel,
-				"ok": self.channelSelected,
-				"keyRadio": self.doRadioButton,
-				"keyTV": self.doTVButton,
-				"toggleTvRadio": self.toggleTVRadio,
+				"cancel": (self.cancel, _("Cancel")),
+				"ok": (self.channelSelected, _("Select service")),
+				"keyRadio": (self.doRadioButton, _("Radio mode")),
+				"keyTV": (self.doTVButton, _("TV mode")),
+				"toggleTvRadio": (self.toggleTVRadio, _("Toggle TV Radio mode")),
 			})
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
@@ -2784,13 +2818,13 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.info = session.instantiateDialog(RadioInfoBar)  # our simple infobar
 		self.info.setAnimationMode(0)
 
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"],
 			{
-				"keyTV": self.cancel,
-				"keyRadio": self.cancel,
-				"cancel": self.cancel,
-				"ok": self.channelSelected,
-				"audio": self.audioSelection
+				"keyTV": (self.cancel, _("Cancel")),
+				"keyRadio": (self.cancel, _("Cancel")),
+				"cancel": (self.cancel, _("Cancel")),
+				"ok": (self.channelSelected, _("Select service")),
+				"audio": (self.audioSelection, _("Select Audio")),
 			})
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
@@ -2935,7 +2969,7 @@ class SimpleChannelSelection(ChannelSelectionBase, SelectionEventInfo):
 		self["list"] = ServiceListLegacy(self)  # Force legacy list
 		self.servicelist = self["list"]
 		SelectionEventInfo.__init__(self)
-		self["actions"] = ActionMap(["OkCancelActions", "TvRadioActions"],
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"],
 			{
 				"cancel": self.close,
 				"ok": self.channelSelected,
@@ -2999,7 +3033,7 @@ class SimpleChannelSelection(ChannelSelectionBase, SelectionEventInfo):
 		return None
 
 
-class HistoryZapSelector(Screen):
+class HistoryZapSelector(Screen, HelpableScreen):
 	# HISTORY_SPACER = 0
 	# HISTORY_MARKER = 1
 	# HISTORY_SERVICE_NAME = 2
@@ -3010,7 +3044,8 @@ class HistoryZapSelector(Screen):
 	HISTORY_SERVICE_REFERENCE = 7
 
 	def __init__(self, session, serviceReferences, markedItem=0, selectedItem=0):
-		Screen.__init__(self, session, enableHelp=True)
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		self.setTitle(_("History Zap"))
 		serviceHandler = eServiceCenter.getInstance()
 		historyList = []
