@@ -1,4 +1,4 @@
-SUBDIRS = buttons epg icons infobar LCDIcons menu piconbg screens skin_default spinner
+SUBDIRS = buttons epg icons infobar LCDIcons menu piconbg screens skin_default
 
 installdir = $(datadir)/enigma2/skin_default
 dist_install_DATA = arrowdown.png \
