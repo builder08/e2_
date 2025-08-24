@@ -2,8 +2,7 @@ SUBDIRS = countries display fonts extensions keymaps skin_default rc_models
 
 dist_pkgdata_DATA = \
 	black.mvi \
-	radio.mvi \
-	encoding.conf \
+    encoding.conf \
 	freesat.t1 \
 	freesat.t2 \
 	groupedservices \
